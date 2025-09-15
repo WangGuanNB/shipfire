@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /*?ref=
+Disallow: /*?utm_source=
+Disallow: /*?utm_medium=
+Disallow: /*?utm_campaign=
+Disallow: /*?gclid=
+Disallow: /*?fbclid=
+Disallow: /docs
+Disallow: /docs/
+
+Sitemap: https://miniatur.org/sitemap.xml

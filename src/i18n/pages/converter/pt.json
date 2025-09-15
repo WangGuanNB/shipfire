@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "title": "Conversor de Arte Pixel Wplace - Ferramenta Online Gratuita para Wplace.live | Converter Imagens em Arte Pixel",
+    "description": "Use nosso Conversor de Arte Pixel Wplace para transformar qualquer imagem em arte pixel otimizada para Wplace.live. Carregue imagens JPG, PNG e converta-as instantaneamente com paleta oficial, análise de grade e detalhamento de custos."
+  },
+  "hero": {
+    "badge": "🎨 Ferramenta Online Gratuita",
+    "title": "Conversor de Arte Pixel Wplace",
+    "description": "Transforme qualquer imagem em arte pixel otimizada para a tela colaborativa Wplace.live. Carregue imagens JPG, PNG e converta-as instantaneamente com nosso Conversor de Arte Pixel Wplace.",
+    "features": [
+      "✓ Gratuito para usar",
+      "✓ Sem necessidade de registro", 
+      "✓ Conversão instantânea",
+      "✓ Paleta oficial Wplace.live"
+    ]
+  },
+  "tool": {
+    "title": "Ferramenta Conversor de Arte Pixel Wplace",
+    "description": "Converta qualquer imagem em arte pixel e visualize dados precisos de grade, análise de cores e custos de paleta para Wplace.live usando nosso Conversor de Arte Pixel Wplace"
+  },
+  "upload": {
+    "title": "Carregar Imagem",
+    "click_upload": "Clique para carregar ou arraste a imagem aqui",
+    "format_support": "Suporta formato JPEG, JPG, PNG, máximo 5MB",
+    "processing": "Processando...",
+    "download": "Baixar",
+    "copy": "Copiar"
+  },
+  "settings": {
+    "title": "Configurações",
+    "pixel_size": "Tamanho do Pixel",
+    "scale": "Escala", 
+    "zoom_level": "Nível de Zoom",
+    "show_grid": "Mostrar Grade"
+  },
+  "color_stats": {
+    "title": "Estatísticas de Uso de Cores",
+    "total": "Total",
+    "free": "Gratuitas",
+    "premium": "Premium",
+    "blocks": "blocos"
+  },
+  "palette": {
+    "title": "Paleta Oficial de Cores Wplace",
+    "all": "Todas",
+    "free_only": "Apenas Gratuitas",
+    "premium_note": "Cores premium (pagas no wplace.live)"
+  },
+  "features": {
+    "title": "Por que Escolher Nosso Conversor de Arte Pixel Wplace?",
+    "instant": {
+      "title": "Conversão Instantânea de Arte Pixel Wplace",
+      "description": "Carregue sua imagem e obtenha resultados de arte pixel em segundos com nosso Conversor de Arte Pixel Wplace. Sem necessidade de registro, completamente gratuito para usar online."
+    },
+    "official": {
+      "title": "Paleta Oficial Wplace.live",
+      "description": "Usa a paleta de cores exata do Wplace.live, garantindo perfeita compatibilidade com a plataforma de tela colaborativa."
+    },
+    "analysis": {
+      "title": "Análise Avançada de Grade",
+      "description": "Obtenha estatísticas detalhadas incluindo contagens de blocos, dimensões, divisão de uso de cores e análise de custos para planejar suas construções."
+    }
+  },
+  "how_to_use": {
+    "title": "Como Usar Nosso Conversor de Arte Pixel Wplace",
+    "steps": {
+      "upload": {
+        "title": "Carregue Sua Imagem",
+        "description": "Arraste e solte ou clique para carregar imagens JPG, PNG de até 5MB. Nosso Conversor de Arte Pixel Wplace suporta todos os formatos de imagem comuns."
+      },
+      "adjust": {
+        "title": "Ajustar Configurações de Pixel",
+        "description": "Escolha o tamanho do pixel, escala e visualize a conversão em tempo real com nossas configurações avançadas."
+      },
+      "analyze": {
+        "title": "Analisar e Otimizar",
+        "description": "Visualize estatísticas detalhadas de grade, divisão de cores e análise de custos para planejamento ótimo do Wplace.live com nosso Conversor de Arte Pixel Wplace."
+      },
+      "download": {
+        "title": "Baixar e Construir",
+        "description": "Exporte sua arte pixel e comece a construir na tela colaborativa Wplace.live imediatamente."
+      }
+    }
+  },
+  "cta": {
+    "title": "Pronto para Usar Nosso Conversor de Arte Pixel Wplace?",
+    "description": "Junte-se a milhares de criadores que usam nosso Conversor de Arte Pixel Wplace para planejar e executar suas construções de tela colaborativa Wplace.live.",
+    "button": "Começar a Usar o Conversor de Arte Pixel Wplace"
+  },
+  "faq": {
+    "title": "Perguntas Frequentes Sobre Nosso Conversor de Arte Pixel Wplace",
+    "items": [
+      {
+        "question": "Quais formatos de arquivo seu Conversor de Arte Pixel Wplace suporta?",
+        "answer": "Nosso Conversor de Arte Pixel Wplace suporta formatos JPEG, JPG e PNG com tamanho máximo de arquivo de 5MB para desempenho ideal. Você pode carregar qualquer imagem nesses formatos e convertê-las em arte pixel instantaneamente."
+      },
+      {
+        "question": "Seu Conversor de Arte Pixel Wplace é realmente gratuito para usar online?",
+        "answer": "Sim! Nosso Conversor de Arte Pixel Wplace é completamente gratuito sem custos ocultos. Todos os recursos incluindo análise de paleta, estatísticas de grade e divisão de cores estão disponíveis sem cobrança. Nenhum registro necessário."
+      },
+      {
+        "question": "Quão precisos são os mapeamentos de cores para Wplace.live?",
+        "answer": "Nosso Conversor de Arte Pixel Wplace usa a paleta de cores oficial exata do Wplace.live, garantindo 100% de compatibilidade com a plataforma de tela colaborativa. Todas as cores são combinadas precisamente com a paleta oficial."
+      },
+      {
+        "question": "Posso usar a arte pixel convertida em outras plataformas além do Wplace.live?",
+        "answer": "Absolutamente! Embora otimizada para Wplace.live, a arte pixel exportada pode ser usada em qualquer lugar. O formato PNG é padrão e compatível com todas as plataformas e comunidades de arte pixel."
+      },
+      {
+        "question": "Preciso me registrar ou criar uma conta para usar o Conversor de Arte Pixel Wplace?",
+        "answer": "Nenhum registro necessário! Nosso Conversor de Arte Pixel Wplace funciona imediatamente sem qualquer criação de conta. Simplesmente carregue sua imagem e comece a converter para arte pixel imediatamente."
+      },
+      {
+        "question": "O que torna seu Conversor de Arte Pixel Wplace diferente dos outros?",
+        "answer": "Nosso Conversor de Arte Pixel Wplace é especificamente projetado para Wplace.live com suporte de paleta oficial, rastreamento de coordenadas de pixel em tempo real, análise detalhada de grade e divisão de custos. É a ferramenta mais abrangente para planejamento Wplace.live."
+      },
+      {
+        "question": "Existem outras ferramentas Wplace disponíveis além do conversor de arte pixel?",
+        "answer": "Sim! Além do nosso conversor de arte pixel, oferecemos um conjunto completo de ferramentas Wplace. Visite nossa main Wplace Pixel homepage para acessar nosso gerador abrangente de arte pixel, ferramentas avançadas de conversão de cores, recursos de planejamento de grade e outros utilitários profissionais projetados especificamente para criadores Wplace.live."
+      }
+    ]
+  }
+}

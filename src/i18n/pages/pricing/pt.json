@@ -1,0 +1,42 @@
+{
+  "pricing": {
+    "name": "pricing",
+    "label": "Preços",
+    "title": "Escolha Seu Plano",
+    "description": "Obtenha todos os recursos do Wplace Pixel. Crie pixel art profissional rapidamente.",
+    "groups": [],
+    "items": [
+      {
+        "title": "Gratuito",
+        "description": "Perfeito para projetos pessoais",
+        "features_title": "Inclui",
+        "features": [
+          "Conversões ilimitadas de imagem",
+          "Suporte à paleta oficial",
+          "Visualização em tempo real",
+          "Estatísticas de grade",
+          "Download de pixel art",
+          "Suporte da comunidade"
+        ],
+        "interval": "para sempre",
+        "amount": 0,
+        "cn_amount": 0,
+        "currency": "USD",
+        "price": "$0",
+        "original_price": "",
+        "unit": "USD",
+        "is_featured": true,
+        "tip": "Gratuito para sempre. Comece a criar agora!",
+        "button": {
+          "title": "Começar",
+          "url": "/converter",
+          "icon": "RiFlashlightFill"
+        },
+        "product_id": "free",
+        "product_name": "Wplace Pixel Gratuito",
+        "credits": -1,
+        "valid_months": -1
+      }
+    ]
+  }
+}

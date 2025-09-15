@@ -1,0 +1,240 @@
+{
+  "metadata": {
+    "title": "Miniatur AI - Transforme Fotos em Obras-primas em Miniatura | Miniatur AI",
+    "description": "Miniatur AI transforma fotos comuns em obras-primas em miniatura impressionantes usando tecnologia AI avançada. Crie efeitos tilt-shift profissionais e cenas em miniatura em segundos.",
+    "keywords": "Miniatur AI, gerador de miniaturas, transformação de fotos AI, efeito tilt-shift, fotografia em miniatura, processamento de imagem AI"
+  },
+  "user": {
+    "sign_in": "Entrar",
+    "sign_out": "Sair",
+    "credits": "Créditos",
+    "api_keys": "Chaves API",
+    "my_orders": "Meus Pedidos",
+    "user_center": "Centro do Usuário"
+   
+  },
+  "sign_modal": {
+    "sign_in_title": "Entrar",
+    "sign_in_description": "Entre na sua conta",
+    "sign_up_title": "Cadastrar",
+    "sign_up_description": "Criar uma conta",
+    "email_title": "Email",
+    "email_placeholder": "Digite seu email aqui",
+    "password_title": "Senha",
+    "password_placeholder": "Digite sua senha aqui",
+    "forgot_password": "Esqueceu a senha?",
+    "or": "Ou",
+    "continue": "Continuar",
+    "no_account": "Não tem uma conta?",
+    "email_sign_in": "Entrar com Email",
+    "google_sign_in": "Entrar com Google",
+    "github_sign_in": "Entrar com GitHub",
+    "close_title": "Fechar",
+    "cancel_title": "Cancelar"
+  },
+  "my_orders": {
+    "title": "Meus Pedidos",
+    "description": "Pedidos feitos no Wplace Pixel.",
+    "no_orders": "Nenhum pedido encontrado",
+    "tip": "",
+    "activate_order": "Ativar Pedido",
+    "actived": "Ativado",
+    "join_discord": "Entrar no Discord",
+    "read_docs": "Ler Documentação",
+    "table": {
+      "order_no": "Nº do Pedido",
+      "email": "Email",
+      "product_name": "Nome do Produto",
+      "amount": "Valor",
+      "paid_at": "Pago em",
+      "github_username": "Usuário GitHub",
+      "status": "Status"
+    }
+  },
+  "my_credits": {
+    "title": "Meus Créditos",
+    "left_tip": "créditos restantes: {left_credits}",
+    "no_credits": "Nenhum registro de créditos",
+    "recharge": "Recarregar",
+    "table": {
+      "trans_no": "Nº da Transação",
+      "trans_type": "Tipo de Transação",
+      "credits": "Créditos",
+      "updated_at": "Atualizado em",
+      "status": "Status"
+    }
+  },
+  "api_keys": {
+    "title": "Chaves API",
+    "tip": "Mantenha sua chave API segura para evitar vazamentos",
+    "no_api_keys": "Nenhuma Chave API",
+    "create_api_key": "Criar Chave API",
+    "table": {
+      "name": "Nome",
+      "key": "Chave",
+      "created_at": "Criado em"
+    },
+    "form": {
+      "name": "Nome",
+      "name_placeholder": "Nome da Chave API",
+      "submit": "Enviar"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Notícias, recursos e atualizações sobre o Wplace Pixel",
+    "read_more_text": "Leia Mais",
+    "tools_notice": {
+      "text": "Procurando ferramentas práticas? Além destes tutoriais, explore nosso conjunto completo de ferramentas de criação de pixel art em nossa",
+      "link_text": "página inicial principal do Wplace Pixel",
+      "suffix": "para geração imediata de pixel art e recursos avançados."
+    }
+  },
+  "my_invites": {
+    "title": "Meus Convites",
+    "description": "Veja seus registros de convites",
+    "no_invites": "Nenhum registro de convite encontrado",
+    "my_invite_link": "Meu Link de Convite",
+    "edit_invite_link": "Editar Link de Convite",
+    "copy_invite_link": "Copiar Link de Convite",
+    "invite_code": "Código de Convite",
+    "invite_tip": "Convide 1 amigo para usar o Wplace Pixel, ganhe $50.",
+    "invite_balance": "Saldo de Recompensa de Convite",
+    "total_invite_count": "Total de Convites",
+    "total_paid_count": "Total de Pagamentos",
+    "total_award_amount": "Valor Total de Prêmios",
+    "update_invite_code": "Definir Código de Convite",
+    "update_invite_code_tip": "Digite seu código de convite personalizado",
+    "update_invite_button": "Salvar",
+    "no_orders": "Você não pode convidar outros antes de comprar o Wplace Pixel",
+    "no_affiliates": "Você não tem permissão para convidar outros, entre em contato conosco para solicitar permissão.",
+    "table": {
+      "invite_time": "Hora do Convite",
+      "invite_user": "Usuário Convidado",
+      "status": "Status",
+      "reward_percent": "Porcentagem de Recompensa",
+      "reward_amount": "Valor da Recompensa",
+      "pending": "Pendente",
+      "completed": "Concluído"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "description": "Adoraríamos ouvir o que deu certo ou como podemos melhorar a experiência do produto.",
+    "submit": "Enviar",
+    "loading": "Enviando...",
+    "contact_tip": "Outras formas de nos contatar",
+    "rating_tip": "Como você se sente sobre o Wplace Pixel?",
+    "placeholder": "Deixe suas palavras aqui..."
+  } ,
+  "miniatureGenerator": {
+    "ui": {
+      "title": "Construa Seu Mundo em Miniatura com Miniatur AI",
+      "subtitle": "Transforme suas imagens com edição impulsionada por AI"
+    },
+    "upload": {
+      "title": "Carregar Imagem",
+      "subtitle": "Carregue uma imagem para referência",
+      "dragDrop": "Arraste & solte ou clique para carregar uma imagem",
+      "fileInfo": "JPG, PNG, WEBP • Máx 10MB • Mín 300×300px"
+    },
+    "instructions": {
+      "title": "Instruções de Edição",
+      "subtitle": "Descreva suas mudanças desejadas",
+      "translate": "Traduzir",
+      "autoTranslateEnabled": "Auto-tradução habilitada"
+    },
+    "usage": {
+      "remaining": "Gerações gratuitas restantes: {remaining}/3",
+      "signInTip": "Faça login para gerações ilimitadas!",
+      "limitReached": "Limite diário atingido (3/3 gerações gratuitas usadas)",
+      "signInUnlimited": "Faça login para acesso ilimitado ou tente novamente amanhã!"
+    },
+    "buttons": {
+      "generate": "Gerar Miniatura",
+      "generating": "Gerando Imagem...",
+      "limitReached": "Limite Diário Atingido - Fazer Login",
+      "download": "Baixar",
+      "regenerate": "Regenerar"
+    },
+    "result": {
+      "title": "Pronto para Criar",
+      "subtitle": "Carregue uma imagem para ver a magia da AI acontecer",
+      "readyTitle": "Pronto para Sua Obra-prima",
+      "readySubtitle": "Carregue uma imagem e descreva sua visão. Veja a AI transformá-la em algo incrível.",
+      "willAppear": "Seu resultado Miniatur AI aparecerá aqui",
+      "creating": "Criando sua miniatura...",
+      "almostDone": "Quase pronto! Por favor aguarde",
+      "takeFewMoments": "Isso pode levar alguns minutos"
+    },
+    "messages": {
+      "uploadValidImage": "Por favor carregue apenas arquivos de imagem válidos",
+      "imageTooLarge": "O tamanho da imagem não pode exceder 10MB",
+      "uploadSuccess": "Imagem carregada com sucesso",
+      "uploadRequired": "Por favor carregue uma imagem",
+      "instructionsRequired": "Por favor forneça instruções de edição",
+      "limitExceeded": "Limite diário excedido! Por favor faça login para acesso ilimitado ou tente novamente amanhã.",
+      "generateSuccess": "Miniatura gerada com sucesso!",
+      "generateFailed": "Falha ao gerar miniatura. Por favor tente novamente.",
+      "downloadSuccess": "Imagem baixada com sucesso!",
+      "downloadFailed": "Falha ao baixar imagem"
+    }
+  },
+  "payment": {
+    "modal": {
+      "title": "Escolha Seu Plano",
+      "description": "Atualize para desbloquear mais recursos de IA",
+      "most_popular": "Mais Popular",
+      "credits": "Créditos",
+      "month": "Mês",
+      "year": "Ano",
+      "processing": "Processando...",
+      "select_plan": "Selecionar Este Plano",
+      "international_payment": "Pagamento Internacional",
+      "china_payment": "Alipay/WeChat Pay",
+      "stripe_payment": "Pagamento Stripe",
+      "creem_payment": "Pagamento Creem"
+    },
+    "test": {
+      "basic": {
+        "title": "Plano Básico",
+        "description": "100 Créditos",
+        "feature1": "100 gerações de IA",
+        "feature2": "Velocidade padrão",
+        "feature3": "Suporte por email"
+      },
+      "pro": {
+        "title": "Plano Profissional",
+        "description": "500 Créditos",
+        "feature1": "500 gerações de IA",
+        "feature2": "Velocidade prioritária",
+        "feature3": "Suporte técnico 24/7",
+        "feature4": "Saída HD"
+      },
+      "enterprise": {
+        "title": "Plano Empresarial",
+        "description": "2000 Créditos",
+        "feature1": "2000 gerações de IA",
+        "feature2": "Velocidade mais rápida",
+        "feature3": "Suporte dedicado",
+        "feature4": "Acesso à API",
+        "feature5": "Processamento em lote"
+      },
+      "test_title": "Teste de Modal de Pagamento",
+      "open_default": "Abrir Modal de Pagamento (Config Padrão)",
+      "open_custom": "Abrir Modal de Pagamento (Config Personalizada)",
+      "default_description": "Usando título e descrição traduzidos",
+      "custom_description": "Simulando cenário de créditos insuficientes",
+      "instructions_title": "Instruções de Teste",
+      "instruction1": "Desktop exibe como modal Dialog",
+      "instruction2": "Mobile exibe como Drawer",
+      "instruction3": "Suporta troca de idiomas",
+      "instruction4": "Inclui opções de pagamento internacional e China",
+      "instruction5": "Login necessário para pagamento",
+      "success_message": "Pagamento bem-sucedido! Créditos adicionados",
+      "insufficient_title": "Créditos Insuficientes",
+      "insufficient_description": "Você não tem créditos suficientes, atualize para continuar usando recursos de IA",
+      "upgrade_success": "Atualização bem-sucedida! Recursos desbloqueados"
+    }
+  }
+}

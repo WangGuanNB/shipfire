@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "title": "Wplace 像素艺术转换器 - Wplace.live 免费在线工具 | 图片转像素艺术",
+    "description": "使用我们的 Wplace 像素艺术转换器将任何图片转换为针对 Wplace.live 优化的像素艺术。上传 JPG、PNG 图片，使用官方调色板、网格分析和成本分解即时转换。"
+  },
+  "hero": {
+    "badge": "🎨 免费在线工具",
+    "title": "Wplace 像素艺术转换器",
+    "description": "将任何图片转换为针对 Wplace.live 协作画布优化的像素艺术。上传 JPG、PNG 图片，使用我们的 Wplace 像素艺术转换器即时转换。",
+    "features": [
+      "✓ 免费使用",
+      "✓ 无需注册", 
+      "✓ 即时转换",
+      "✓ 官方 Wplace.live 调色板"
+    ]
+  },
+  "tool": {
+    "title": "Wplace 像素艺术转换器工具",
+    "description": "使用我们的 Wplace 像素艺术转换器将任何图片转换为像素艺术，查看精确的网格数据、颜色分析和 Wplace.live 调色板成本"
+  },
+  "upload": {
+    "title": "上传图片",
+    "click_upload": "点击上传或拖拽图片到这里",
+    "format_support": "支持 JPEG、JPG、PNG 格式，最大 5MB",
+    "processing": "处理中...",
+    "download": "下载",
+    "copy": "复制"
+  },
+  "settings": {
+    "title": "设置",
+    "pixel_size": "像素大小",
+    "scale": "缩放", 
+    "zoom_level": "缩放级别",
+    "show_grid": "显示网格"
+  },
+  "color_stats": {
+    "title": "颜色使用统计",
+    "total": "总计",
+    "free": "免费",
+    "premium": "付费",
+    "blocks": "方块"
+  },
+  "palette": {
+    "title": "Wplace 官方调色板",
+    "all": "全部",
+    "free_only": "仅免费",
+    "premium_note": "付费颜色（在 wplace.live 上付费）"
+  },
+  "features": {
+    "title": "为什么选择我们的 Wplace 像素艺术转换器？",
+    "instant": {
+      "title": "即时 Wplace 像素艺术转换",
+      "description": "上传您的图片，使用我们的 Wplace 像素艺术转换器在几秒钟内获得像素艺术结果。无需注册，完全免费在线使用。"
+    },
+    "official": {
+      "title": "官方 Wplace.live 调色板",
+      "description": "使用来自 Wplace.live 的精确调色板，确保与协作画布平台的完美兼容性。"
+    },
+    "analysis": {
+      "title": "高级网格分析",
+      "description": "获得详细的统计信息，包括方块数量、尺寸、颜色使用分解和成本分析，用于规划您的构建。"
+    }
+  },
+  "how_to_use": {
+    "title": "如何使用我们的 Wplace 像素艺术转换器",
+    "steps": {
+      "upload": {
+        "title": "上传您的图片",
+        "description": "拖拽或点击上传最大 5MB 的 JPG、PNG 图片。我们的 Wplace 像素艺术转换器支持所有常见的图片格式。"
+      },
+      "adjust": {
+        "title": "调整像素设置",
+        "description": "选择像素大小、缩放，并通过我们的高级设置实时预览转换效果。"
+      },
+      "analyze": {
+        "title": "分析和优化",
+        "description": "查看详细的网格统计、颜色分解和成本分析，使用我们的 Wplace 像素艺术转换器进行最佳的 Wplace.live 规划。"
+      },
+      "download": {
+        "title": "下载和构建",
+        "description": "导出您的像素艺术，立即开始在 Wplace.live 协作画布上构建。"
+      }
+    }
+  },
+  "cta": {
+    "title": "准备好使用我们的 Wplace 像素艺术转换器了吗？",
+    "description": "加入成千上万的创作者，使用我们的 Wplace 像素艺术转换器来规划和执行他们的 Wplace.live 协作画布构建。",
+    "button": "开始使用 Wplace 像素艺术转换器"
+  },
+  "faq": {
+    "title": "关于我们 Wplace 像素艺术转换器的常见问题",
+    "items": [
+      {
+        "question": "您的 Wplace 像素艺术转换器支持哪些文件格式？",
+        "answer": "我们的 Wplace 像素艺术转换器支持 JPEG、JPG 和 PNG 格式，最大文件大小为 5MB，以获得最佳性能。您可以上传这些格式的任何图片并立即转换为像素艺术。"
+      },
+      {
+        "question": "您的 Wplace 像素艺术转换器真的免费在线使用吗？",
+        "answer": "是的！我们的 Wplace 像素艺术转换器完全免费，没有隐藏费用。包括调色板分析、网格统计和颜色分解在内的所有功能都免费提供。无需注册。"
+      },
+      {
+        "question": "对于 Wplace.live 的颜色映射有多准确？",
+        "answer": "我们的 Wplace 像素艺术转换器使用确切的官方 Wplace.live 调色板，确保与协作画布平台 100% 兼容。所有颜色都精确匹配官方调色板。"
+      },
+      {
+        "question": "除了 Wplace.live，我可以在其他平台上使用转换的像素艺术吗？",
+        "answer": "绝对可以！虽然针对 Wplace.live 优化，但导出的像素艺术可以在任何地方使用。PNG 格式是标准格式，与所有平台和像素艺术社区兼容。"
+      },
+      {
+        "question": "我需要注册或创建账户来使用 Wplace 像素艺术转换器吗？",
+        "answer": "无需注册！我们的 Wplace 像素艺术转换器无需任何账户创建即可立即使用。只需上传您的图片并立即开始转换为像素艺术。"
+      },
+      {
+        "question": "您的 Wplace 像素艺术转换器与其他转换器有什么不同？",
+        "answer": "我们的 Wplace 像素艺术转换器专为 Wplace.live 设计，具有官方调色板支持、实时像素坐标跟踪、详细网格分析和成本分解。这是 Wplace.live 规划最全面的工具。"
+      },
+      {
+        "question": "除了像素艺术转换器，还有其他 Wplace 工具可用吗？",
+        "answer": "是的！除了我们的像素艺术转换器，我们还提供完整的 Wplace 工具套件。访问我们的 main Wplace Pixel homepage，获取我们全面的像素艺术生成器、高级颜色转换工具、网格规划功能和专为 Wplace.live 创作者设计的其他专业实用工具。"
+      }
+    ]
+  }
+}

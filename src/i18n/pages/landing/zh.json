@@ -1,0 +1,489 @@
+{
+  "template": "shipany-template-one",
+  "theme": "light",
+  "header": {
+    "brand": {
+      "title": "Miniatur AI",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "Miniatur AI"
+      },
+      "url": "/"
+    },
+    "nav": {
+      "items": [
+        {
+          "title": "首页",
+          "url": "/",
+          "icon": "RiHomeLine"
+        },
+        {
+          "title": "生成器",
+          "url": "/#generator",
+          "icon": "RiImageLine"
+        },
+        {
+          "title": "功能特色",
+          "url": "/#features",
+          "icon": "RiStarLine"
+        },
+        {
+          "title": "常见问题",
+          "url": "/#faq",
+          "icon": "RiQuestionLine"
+        }
+      ]
+    },
+    "buttons": [],
+    "show_sign": true,
+    "show_theme": false,
+    "show_locale": true
+  },
+  "hero": {
+    "title": "用 Miniatur AI 将照片转换为微缩杰作",
+    "highlight_text": "Miniatur AI",
+    "description": "将普通照片转换为非凡的微缩世界，具有惊人的移轴效果和迷人的立体模型。我们先进的 Miniatur AI 技术分析每个像素，创建真实的景深效果，媲美昂贵的相机镜头。只需上传您的照片，观看人工智能在几秒钟内创建专业的微缩杰作，完美适用于社交媒体、作品集和创意项目。",
+    "announcement": {
+      "label": "100% 免费",
+      "title": "无需登录",
+      "url": "/#features"
+    },
+    "badges": [
+      {
+        "label": "100% 免费",
+        "icon": "RiStarLine",
+        "color": "green"
+      },
+      {
+        "label": "无需登录", 
+        "icon": "RiUserLine",
+        "color": "blue"
+      },
+      {
+        "label": "纳米香蕉",
+        "icon": "RiLeafLine",
+        "color": "purple"
+      }
+    ],
+    "images": [
+      {
+        "src": "/imgs/features/1.png",
+        "alt": "Miniatur AI 照片转换示例 1",
+        "title": "原始照片到微缩"
+      },
+      {
+        "src": "/imgs/features/2.png",
+        "alt": "Miniatur AI 照片转换示例 2", 
+        "title": "AI 人物生成"
+      }
+    ],
+    "layout": "left-image-right-content",
+    "enable_carousel": true,
+    "buttons": [
+      {
+        "title": "无需登录开始创作",
+        "icon": "RiMagicLine",
+        "url": "/#generator",
+        "target": "_self",
+        "variant": "default"
+      }
+    ],
+    "stats": [
+      {
+        "value": "12,847+",
+        "label": "信赖 Miniatur AI 的用户",
+        "icon": "RiUserLine"
+      },
+      {
+        "value": "89,432+",
+        "label": "生成的微缩图像",
+        "icon": "RiImageLine"
+      }
+    ],
+    "show_happy_users": true,
+    "show_badge": true
+  },
+  "branding": {
+    "title": "由尖端AI技术驱动",
+    "items": [
+      {
+        "title": "OpenAI",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "OpenAI"
+        }
+      },
+      {
+        "title": "计算机视觉",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "计算机视觉"
+        }
+      },
+      {
+        "title": "神经网络",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "神经网络"
+        }
+      },
+      {
+        "title": "机器学习",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "机器学习"
+        }
+      },
+      {
+        "title": "云端处理",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "云端处理"
+        }
+      }
+    ]
+  },
+  "introduce": {
+    "name": "introduce",
+    "title": "什么是 Miniatur AI",
+    "label": "简介",
+    "description": "Miniatur AI 是一个革命性的免费人工智能平台，能将普通照片转换为令人惊叹的微缩杰作。使用先进的计算机视觉和机器学习算法，我们的智能工具分析图像构图、深度和光线，在几秒钟内创建专业的移轴效果和逼真的立体模型场景。无论您是专业摄影师、内容创作者还是爱好者，Miniatur AI 都能以无与伦比的精确度和速度提供博物馆级质量的微缩转换。",
+    "image": {
+      "src": "/imgs/features/3.png"
+    },
+    "items": [
+      {
+        "title": "AI驱动的智能分析",
+        "description": "我们的人工智能系统智能识别照片中的焦点、深度层和空间关系，创建真实的微缩效果，具有完美的模糊渐变和专业的景深模拟，媲美真实的移轴摄影技术。",
+        "icon": "RiRobot2Line"
+      },
+      {
+        "title": "多种微缩风格",
+        "description": "选择移轴摄影、玩具立体模型效果、建筑微缩模型和收藏人物风格。每个AI优化的预设都能为不同的照片构图和创意愿景提供独特的微缩特色。",
+        "icon": "RiPaletteLine"
+      },
+      {
+        "title": "即时AI处理",
+        "description": "先进的基于云端的人工智能处理在10秒内提供专业的微缩效果。无需复杂的软件安装、付费要求或技术专业知识即可创建惊人的结果。",
+        "icon": "RiTimeLine"
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "为什么选择 Miniatur AI",
+    "label": "优势",
+    "description": "全球的专业摄影师和内容创作者信赖 Miniatur AI 提供优质的图像分析、真实的微缩效果和闪电般快速的AI处理。我们的人工智能系统理解摄影原理，提供媲美昂贵相机设备和数小时手动编辑工作的结果。",
+    "items": [
+      {
+        "title": "专业品质的微缩结果",
+        "description": "Miniatur AI 产生博物馆级质量的微缩效果，保持适当的景深、真实的模糊图案和专业微缩摄影中的真实移轴特色。我们的AI确保每次转换都符合行业标准。",
+        "icon": "RiStarLine",
+        "image": {
+          "src": "/imgs/features/4.png"
+        }
+      },
+      {
+        "title": "智能场景识别",
+        "description": "我们先进的AI分析建筑元素、风景、人物和物体，为您特定的照片内容和构图自动应用最适合的微缩效果。智能人工智能适应任何场景类型。",
+        "icon": "RiBrainLine",
+        "image": {
+          "src": "/imgs/features/6.png"
+        }
+      },
+      {
+        "title": "轻松的微缩工作流程",
+        "description": "跳过复杂的照片编辑软件和昂贵的设备。Miniatur AI 只需一键就能将您的照片转换为专业的微缩结果，节省数小时的手动工作，同时提供一致的高质量成果。",
+        "icon": "RiSpeedLine",
+        "image": {
+          "src": "/imgs/features/7.png"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "如何使用 Miniatur AI 创建微缩作品",
+    "description": "通过四个简单步骤将您的照片转换为令人惊叹的微缩杰作。我们的 Miniatur AI 系统自动处理所有复杂的图像分析和处理，每次都能以人工智能精度提供专业的微缩结果。",
+    "image": {
+      "src": "/imgs/features/1.png"
+    },
+    "image_position": "left",
+    "text_align": "center",
+    "items": [
+      {
+        "title": "上传您的照片",
+        "description": "简单地拖放任何最大10MB的JPEG或PNG图像。Miniatur AI 接受风景、建筑、人物和物体的照片进行微缩转换。我们的AI在高分辨率图像上效果最佳。",
+        "icon": "RiUploadLine"
+      },
+      {
+        "title": "选择微缩风格",
+        "description": "从我们的AI优化预设中选择：移轴摄影、玩具立体模型、建筑微缩模型或收藏人物风格。每个预设都通过人工智能为不同的照片类型和构图进行了精细调整。",
+        "icon": "RiSettings3Line"
+      },
+      {
+        "title": "AI处理魔法",
+        "description": "我们的 Miniatur AI 分析深度信息，应用智能模糊效果，创建真实的微缩特色。先进的人工智能算法确保在几秒钟内获得专业级质量的结果。",
+        "icon": "RiMagicLine"
+      },
+      {
+        "title": "下载和分享",
+        "description": "以高分辨率保存您的微缩作品。完美适用于社交媒体、作品集或打印。与世界分享您独特的AI生成微缩艺术，展示专业的转换结果。",
+        "icon": "RiDownloadLine"
+      }
+    ]
+  },
+  "feature": {
+    "name": "feature",
+    "title": "Miniatur AI 高级功能",
+    "description": "探索强大的人工智能功能，使我们的微缩生成器成为照片转换和创意编辑项目最先进的AI工具。",
+    "items": [
+      {
+        "title": "智能深度检测",
+        "description": "Miniatur AI 使用计算机视觉分析图像深度并自动创建真实的焦点平面，确保具有专业景深准确性的真实移轴微缩效果。",
+        "icon": "RiEyeLine"
+      },
+      {
+        "title": "AI风格优化",
+        "description": "我们的机器学习算法根据您照片的内容和构图自动调整模糊强度、景深和色彩饱和度，以获得最佳的微缩结果。",
+        "icon": "RiSettings2Line"
+      },
+      {
+        "title": "批量处理",
+        "description": "上传多张照片并在整个收藏中应用一致的 Miniatur AI 效果。完美适合创建具有统一人工智能处理的凝聚微缩摄影系列。",
+        "icon": "RiStackLine"
+      },
+      {
+        "title": "高分辨率输出",
+        "description": "生成高达4K分辨率的微缩图像，同时保持清晰的细节和平滑的模糊过渡。专业级质量的AI处理适用于任何商业或创意用例。",
+        "icon": "RiHdLine"
+      },
+      {
+        "title": "实时预览",
+        "description": "在调整设置时即时查看您的微缩转换。Miniatur AI 通过实时人工智能处理为每次完美结果提供即时反馈。",
+        "icon": "RiLiveLine"
+      },
+      {
+        "title": "轻松导出和分享",
+        "description": "以多种格式下载您的微缩作品或直接分享到社交媒体平台。轻松展示您的AI生成微缩艺术，获得专业结果。",
+        "icon": "RiShareLine"
+      }
+    ]
+  },
+  "stats": {
+    "name": "stats",
+    "label": "统计",
+    "title": "创作者信赖 Miniatur AI",
+    "description": "在全球范围内获得专业品质的微缩效果和闪电般快速的AI处理。",
+    "icon": "RiHeartLine",
+    "items": [
+      {
+        "title": "信赖用户",
+        "label": "12,847+",
+        "description": "创作者"
+      },
+      {
+        "title": "生成图像",
+        "label": "89,432+",
+        "description": "微缩作品"
+      },
+      {
+        "title": "处理速度",
+        "label": "<10",
+        "description": "秒"
+      }
+    ]
+  },
+  "testimonial": {
+    "name": "testimonial",
+    "label": "推荐",
+    "title": "创作者对 Miniatur AI 的评价",
+    "description": "来自使用 Miniatur AI 进行创意项目和专业微缩转换的摄影师和艺术家的真实反馈。",
+    "icon": "RiThumbUpLine",
+    "items": [
+      {
+        "title": "莎拉·米切尔",
+        "label": "专业摄影师",
+        "description": "Miniatur AI 提供的结果媲美我昂贵的移轴镜头。这个人工智能比我用过的任何编辑软件都更好地理解微缩摄影的深度。",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "詹姆斯·罗德里格斯",
+        "label": "内容创作者",
+        "description": "这个AI太不可思议了！我可以在几秒钟内为Instagram创建微缩风格的内容。自从使用 Miniatur AI 进行社交媒体内容创作以来，我的参与度增加了300%。",
+        "image": {
+          "src": "/imgs/users/2.png"
+        }
+      },
+      {
+        "title": "艾米莉·陈",
+        "label": "数字艺术家",
+        "description": "微缩效果如此逼真。Miniatur AI 为我节省了数小时的手动编辑时间，同时通过先进的人工智能处理每次都能产生专业级质量的结果。",
+        "image": {
+          "src": "/imgs/users/3.png"
+        }
+      },
+      {
+        "title": "迈克尔·汤普森",
+        "label": "旅行博主",
+        "description": "现在我所有的旅行照片都使用 Miniatur AI。微缩效果让普通场景看起来像魔法般的小世界，具有专业AI转换质量。",
+        "image": {
+          "src": "/imgs/users/6.png"
+        }
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "label": "常见问题",
+    "title": "关于 Miniatur AI 的常见问题",
+    "description": "对我们的AI微缩生成器有疑问？在这里找到答案，或联系我们的支持团队获取微缩照片转换的帮助。",
+    "items": [
+      {
+        "title": "Miniatur AI 如何创建微缩效果？",
+        "description": "Miniatur AI 使用先进的计算机视觉和机器学习算法分析图像深度、识别焦点并应用真实的移轴效果。我们的人工智能理解摄影原理，创建媲美专业相机设备和手动编辑技术的真实微缩转换。"
+      },
+      {
+        "title": "什么类型的照片最适合 Miniatur AI？",
+        "description": "Miniatur AI 在风景、建筑、城市景观和航拍摄影上效果极佳。具有清晰深度和有趣主题的照片能产生最戏剧性的微缩效果。我们的人工智能自动适应不同的照片构图，以获得最佳的微缩转换结果。"
+      },
+      {
+        "title": "我可以商用 Miniatur AI 吗？",
+        "description": "可以！使用 Miniatur AI 创建的所有微缩图像都可以用于商业目的，包括社交媒体营销、作品集工作和客户项目。您保留对AI生成的微缩作品和专业转换的完全权利。"
+      },
+      {
+        "title": "Miniatur AI 支持哪些文件格式？",
+        "description": "Miniatur AI 接受最大10MB的JPEG、JPG、PNG和WebP图像格式。为了获得最佳的微缩转换结果，我们建议使用具有良好光线和清晰景深的高分辨率照片，以实现最佳的AI处理效果。"
+      },
+      {
+        "title": "Miniatur AI 真的免费使用吗？",
+        "description": "绝对的！Miniatur AI 永远完全免费使用，没有隐藏费用、无需注册，也没有水印。享受无限制的微缩转换，为您的所有创意项目提供专业级质量的AI结果，零成本。"
+      }
+    ]
+  },
+  "cta": {
+    "name": "cta",
+    "title": "今天就用免费的 Miniatur AI 转换您的照片",
+    "description": "加入数千名使用我们免费人工智能创建惊人微缩摄影效果的创作者。立即开始您的免费微缩转换之旅，使用先进的AI技术 - 无需付费，无需注册！",
+    "buttons": [
+      {
+        "title": "免费开始",
+        "icon": "RiGiftLine",
+        "url": "/#generator",
+        "target": "_self",
+        "variant": "default"
+      }
+    ]
+  },
+  "footer": {
+    "name": "footer",
+    "brand": {
+      "title": "Miniatur AI",
+      "description": "Miniatur AI 使用先进的人工智能技术将普通照片转换为非凡的微缩杰作。使用我们革命性的AI平台在几秒钟内创建专业的移轴效果、立体模型场景和收藏风格微缩作品。",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "Miniatur AI"
+      },
+      "url": "/"
+    },
+    "copyright": "© 2025 • Miniatur AI. 版权所有。",
+    "nav": {
+      "items": [
+        {
+          "title": "微缩生成器",
+          "url": "/#generator"
+        },
+        {
+          "title": "AI功能",
+          "url": "/#features"
+        },
+        {
+          "title": "工作原理",
+          "url": "/#usage"
+        }
+      ]
+    },
+    "social": {
+      "items": [
+        {
+          "title": "X",
+          "icon": "RiTwitterXFill",
+          "url": "https://x.com/miniaturaiapp",
+          "target": "_blank"
+        },
+        {
+          "title": "Github",
+          "icon": "RiGithubFill",
+          "url": "https://github.com/miniaturaiapp",
+          "target": "_blank"
+        },
+        {
+          "title": "Discord",
+          "icon": "RiDiscordFill",
+          "url": "https://discord.gg/miniaturaiapp",
+          "target": "_blank"
+        },
+        {
+          "title": "邮箱",
+          "icon": "RiMailLine",
+          "url": "mailto:support@miniaturaiapp.com",
+          "target": "_self"
+        }
+      ]
+    },
+    "badges": [
+      {
+        "title": "Startup Fame 推荐",
+        "url": "https://startupfa.me/s/miniatur-ai?utm_source=miniatur.org",
+        "target": "_blank",
+        "image": {
+          "src": "https://startupfa.me/badges/featured-badge.webp",
+          "alt": "Startup Fame 推荐",
+          "width": 171,
+          "height": 54
+        }
+      },
+      {
+        "title": "Twelve Tools 推荐",
+        "url": "https://twelve.tools",
+        "target": "_blank", 
+        "image": {
+          "src": "https://twelve.tools/badge0-white.svg",
+          "alt": "Twelve Tools 推荐",
+          "width": 200,
+          "height": 54
+        }
+      },
+      {
+        "title": "Turbo0 收录",
+        "url": "https://turbo0.com/item/miniatur-ai",
+        "target": "_blank",
+        "image": {
+          "src": "https://img.turbo0.com/badge-listed-light.svg",
+          "alt": "Turbo0 收录",
+          "width": 200,
+          "height": 54
+        }
+      }
+    ],
+    "agreement": {
+      "items": [
+        {
+          "title": "隐私政策",
+          "url": "/privacy-policy"
+        },
+        {
+          "title": "服务条款",
+          "url": "/terms-of-service"
+        },
+        {
+          "title": "AIStage",
+          "url": "https://aistage.net",
+          "target": "_blank"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "title": "Wplace 颜色转换器 - 免费在线64色调色板工具 | 将图片转换为 Wplace 颜色",
+    "description": "100% 免费的 Wplace 颜色转换器。使用 Wplace 官方64色调色板将任何图片转换为像素艺术。隐私优先处理，无大小限制。专业的 Wplace 颜色转换工具。",
+    "keywords": ["Wplace 颜色转换器", "Wplace 调色板", "Wplace 像素艺术转换器", "免费颜色转换器", "64色调色板", "Wplace.live 颜色", "图片转 Wplace 颜色", "像素艺术生成器", "Wplace 颜色转换", "在线颜色转换器", "免费像素艺术工具", "Wplace 颜色工具", "Wplace 付费颜色", "Wplace 标准颜色"]
+  },
+  "loading": "正在加载 Wplace 颜色转换器...",
+  "hero": {
+    "badge": "官方 Wplace 工具",
+    "title": "Wplace 颜色转换器",
+    "description": "使用 Wplace 官方64色调色板将任何图片转换为惊艳的像素艺术",
+    "features": {
+      "quality": "专业品质",
+      "privacy": "隐私优先", 
+      "preview": "实时预览"
+    }
+  },
+  "upload": {
+    "title": "图片上传与预览",
+    "heading": "上传您的图片",
+    "description": "拖拽或点击选择",
+    "support": "支持：PNG、JPG、JPEG、WebP • 最大 10MB",
+    "processing": "处理中...",
+    "download": "下载 PNG"
+  },
+  "settings": {
+    "title": "设置",
+    "pixel_size": "像素大小",
+    "preview_scale": "预览缩放",
+    "show_grid": "显示网格"
+  },
+  "status": {
+    "title": "状态",
+    "image_loaded": "图片已加载",
+    "file": "文件",
+    "size": "大小",
+    "colors_used": "此图片中使用的颜色",
+    "total": "总计",
+    "free": "免费",
+    "premium": "付费",
+    "no_image": "未上传图片",
+    "upload_to_start": "上传图片开始使用",
+    "description": "这些是生成图片中使用的所有 Wplace 调色板颜色。付费颜色（带锁图标）需要在官方网站购买。"
+  },
+  "palette": {
+    "title": "Wplace 调色板 - 完整64色合集",
+    "premium_section": "高级颜色需要在 Wplace.live 上购买",
+    "premium_identification": "我们的 Wplace 颜色转换器能准确识别您转换图片中的高级颜色使用情况。",
+    "standard_colors": "标准颜色 - 免费使用",
+    "standard_description": "这些颜色构成了 Wplace 颜色转换器调色板系统的基础。",
+    "integration_title": "完整 Wplace 调色板集成",
+    "integration_description": "我们的 Wplace 颜色转换器使用完整的官方64色 Wplace 调色板，确保与协作画布平台的完美兼容性。"
+  },
+  "why_choose": {
+    "title": "为什么选择 Wplace 颜色转换器？",
+    "free": {
+      "title": "100% 免费颜色转换器",
+      "description": "使用我们先进的 Wplace 颜色转换器技术无限制转换图片为 Wplace 颜色。无隐藏费用，无需注册，永久完全免费。"
+    },
+    "privacy": {
+      "title": "隐私优先处理",
+      "description": "所有图片处理都在您的浏览器本地进行。您的图片不会离开您的设备，确保完全的隐私和安全。"
+    },
+    "accuracy": {
+      "title": "完美色彩准确度",
+      "description": "我们的算法精确匹配官方 Wplace.live 调色板中的颜色，确保与协作画布的完美兼容性。"
+    }
+  },
+  "how_to_use": {
+    "title": "如何使用 Wplace 颜色转换器",
+    "description": "使用我们先进的颜色转换技术，只需4个简单步骤即可将图片转换为 Wplace 颜色",
+    "steps": {
+      "upload": {
+        "title": "上传图片",
+        "description": "选择或拖拽您的图片文件。支持 PNG、JPG、JPEG、WebP 格式，最大10MB。"
+      },
+      "convert": {
+        "title": "自动转换",
+        "description": "我们的 Wplace 颜色转换器使用官方64色调色板自动处理您的图片。"
+      },
+      "analyze": {
+        "title": "分析颜色",
+        "description": "查看详细的颜色分解，显示转换图片中使用的免费与付费颜色。"
+      },
+      "download": {
+        "title": "下载结果",
+        "description": "导出您的 Wplace 优化图片，立即开始在协作画布上构建。"
+      }
+    }
+  },
+  "why_choose_details": {
+    "free": {
+      "prefix": "Wplace 颜色转换器完全免费使用。无隐藏费用，无订阅。",
+      "suffix": "体验专业级 Wplace 像素艺术转换，无任何付费障碍。"
+    },
+    "privacy": {
+      "description": "所有图片转换都在您的浏览器中进行。使用我们安全的 Wplace 颜色转换器，您的图片永远不会离开您的设备。在转换为 Wplace 颜色时保护您的创意作品。我们注重隐私的 Wplace 颜色转换确保完全的数据安全和保密性。"
+    },
+    "interface": {
+      "title": "简单的颜色转换器界面",
+      "description": "直观的界面让每个人都能轻松进行图片到 Wplace 颜色的转换。使用我们用户友好的 Wplace 颜色转换器无需技术技能。简单的拖放功能，实现即时 Wplace 颜色调色板转换和分析。"
+    },
+    "no_limits": {
+      "title": "无大小限制处理",
+      "description": "上传任何大小的图片。我们的颜色转换器可以处理从小图标到大型艺术作品的一切。使用 Wplace 颜色转换器处理高分辨率图片无限制。高效准确地将大型像素艺术项目转换为 Wplace 颜色。"
+    }
+  },
+  "cta": {
+    "title": "立即开始转换为 Wplace 颜色！",
+    "description": "体验专业 Wplace 颜色转换的强大功能。我们的 Wplace 颜色转换器为您的所有像素艺术项目提供行业领先的准确性和速度。在几秒钟内将任何图片转换为令人惊叹的 Wplace 兼容艺术作品。",
+    "button": "立即试用 Wplace 颜色转换器"
+  },
+  "faq": {
+    "title": "常见问题",
+    "subtitle": "关于 Wplace 颜色转换器您需要了解的一切",
+    "items": [
+      {
+        "question": "颜色转换器支持哪些图片格式？",
+        "answer": "我们的颜色转换器支持 PNG、JPG、JPEG 和 WebP 格式。您可以上传任何大小的图片，颜色转换器将使用 Wplace 的颜色调色板自动处理它们。"
+      },
+      {
+        "question": "Wplace 颜色转换器免费使用吗？",
+        "answer": "是的！我们的颜色转换器完全免费使用。没有隐藏费用、订阅或对您可以转换为 Wplace 颜色的图片数量的限制。"
+      },
+      {
+        "question": "颜色大小滑块如何工作？",
+        "answer": "颜色大小滑块控制每个颜色块在最终艺术作品中的显示大小。较小的值（1-8）创建更详细的颜色图案，而较大的值（16-32）使用 Wplace 的颜色调色板创建更抽象的块状设计。"
+      },
+      {
+        "question": "我的图片安全和私密吗？",
+        "answer": "绝对是！所有图片处理都在您的浏览器中进行。您的图片永远不会离开您的设备或上传到我们的服务器。您的隐私是我们的首要任务。"
+      },
+      {
+        "question": "小型和大型下载选项有什么区别？",
+        "answer": "小版本在您创建的确切大小下颜色完美，适合数字使用。大版本经过放大以提高可见性和打印效果，同时保持 Wplace 颜色调色板美学。"
+      },
+      {
+        "question": "我可以直接在 Wplace 中使用结果吗？",
+        "answer": "是的。转换器使用官方 Wplace 调色板，因此您的下载完全兼容 Wplace 项目。"
+      },
+      {
+        "question": "还有哪些其他 Wplace 工具可用？",
+        "answer": "除了我们的颜色转换器，我们还提供全套的 Wplace 工具。访问我们的 main Wplace Pixel homepage 发现我们完整的像素艺术生成器、高级网格规划工具以及专为增强您的 Wplace.live 体验而设计的其他专业功能。"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "用户评价",
+    "subtitle": "使用 Wplace 颜色转换器的创作者的真实反馈",
+    "items": [
+      {
+        "rating": "★★★★★",
+        "text": "令人惊叹的工具！我用它来创建完美的 Wplace 兼容像素艺术。调色板匹配非常准确，工作流程非常简单。",
+        "author": "Sarah C."
+      },
+      {
+        "rating": "★★★★★",
+        "text": "终于有一个真正匹配官方 Wplace 颜色的转换器了。即时上传，即时结果，一切都留在我的设备上。",
+        "author": "Alex R."
+      },
+      {
+        "rating": "★★★★★",
+        "text": "隐私优先的处理让我安心。它快速、准确，下载的内容直接融入我的 Wplace 构建中。",
+        "author": "Diego M."
+      }
+    ]
+  }
+}

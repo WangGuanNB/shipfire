@@ -1,0 +1,258 @@
+{
+  "metadata": {
+    "title": "Miniatur AI - Tukar Foto Menjadi Karya Miniatur | Miniatur AI",
+    "description": "Miniatur AI mengubah foto biasa menjadi karya miniatur yang menakjubkan menggunakan teknologi AI canggih. Cipta kesan tilt-shift profesional dan adegan miniatur dalam beberapa saat.",
+    "keywords": "Miniatur AI, penjana miniatur, transformasi foto AI, kesan tilt-shift, fotografi miniatur, pemprosesan imej AI"
+  },
+  "user": {
+    "sign_in": "Log Masuk",
+    "sign_out": "Log Keluar",
+    "credits": "Kredit",
+    "api_keys": "Kunci API",
+    "my_orders": "Pesanan Saya",
+    "user_center": "Pusat Pengguna"
+   
+  },
+  "sign_modal": {
+    "sign_in_title": "Log Masuk",
+    "sign_in_description": "Log masuk ke akaun anda",
+    "sign_up_title": "Daftar",
+    "sign_up_description": "Cipta akaun",
+    "email_title": "E-mel",
+    "email_placeholder": "Masukkan e-mel anda di sini",
+    "password_title": "Kata Laluan",
+    "password_placeholder": "Masukkan kata laluan anda di sini",
+    "forgot_password": "Lupa kata laluan?",
+    "or": "Atau",
+    "continue": "Teruskan",
+    "no_account": "Tiada akaun?",
+    "email_sign_in": "Log masuk dengan E-mel",
+    "google_sign_in": "Log masuk dengan Google",
+    "github_sign_in": "Log masuk dengan GitHub",
+    "close_title": "Tutup",
+    "cancel_title": "Batal"
+  },
+  "my_orders": {
+    "title": "Pesanan Saya",
+    "description": "Pesanan yang dibuat di Miniatur AI.",
+    "no_orders": "Tiada pesanan dijumpai",
+    "tip": "",
+    "activate_order": "Aktifkan Pesanan",
+    "actived": "Diaktifkan",
+    "join_discord": "Sertai Discord",
+    "read_docs": "Baca Dokumentasi",
+    "table": {
+      "order_no": "No Pesanan",
+      "email": "E-mel",
+      "product_name": "Nama Produk",
+      "amount": "Jumlah",
+      "paid_at": "Dibayar Pada",
+      "github_username": "Nama Pengguna GitHub",
+      "status": "Status"
+    }
+  },
+  "my_credits": {
+    "title": "Kredit Saya",
+    "left_tip": "kredit baki: {left_credits}",
+    "no_credits": "Tiada rekod kredit",
+    "recharge": "Isi Semula",
+    "table": {
+      "trans_no": "No Transaksi",
+      "trans_type": "Jenis Transaksi",
+      "credits": "Kredit",
+      "updated_at": "Dikemas kini Pada",
+      "status": "Status"
+    }
+  },
+  "api_keys": {
+    "title": "Kunci API",
+    "tip": "Sila simpan kunci api anda dengan selamat untuk mengelakkan kebocoran",
+    "no_api_keys": "Tiada Kunci API",
+    "create_api_key": "Cipta Kunci API",
+    "table": {
+      "name": "Nama",
+      "key": "Kunci",
+      "created_at": "Dicipta Pada"
+    },
+    "form": {
+      "name": "Nama",
+      "name_placeholder": "Nama Kunci API",
+      "submit": "Hantar"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Berita, sumber, dan kemas kini tentang Miniatur AI",
+    "read_more_text": "Baca Lagi",
+    "tools_notice": {
+      "text": "Mencari alat praktikal? Selain tutorial ini, terokai rangkaian lengkap alat penjanaan miniatur AI kami di",
+      "link_text": "laman utama Miniatur AI",
+      "suffix": "untuk penjanaan miniatur AI segera dan ciri-ciri canggih."
+    }
+  },
+  "my_invites": {
+    "title": "Jemputan Saya",
+    "description": "Lihat rekod jemputan anda",
+    "no_invites": "Tiada rekod jemputan dijumpai",
+    "my_invite_link": "Pautan Jemputan Saya",
+    "edit_invite_link": "Edit Pautan Jemputan",
+    "copy_invite_link": "Salin Pautan Jemputan",
+    "invite_code": "Kod Jemputan",
+    "invite_tip": "Jemput 1 rakan untuk menggunakan Miniatur AI, ganjaran $50.",
+    "invite_balance": "Baki Ganjaran Jemputan",
+    "total_invite_count": "Jumlah Jemputan",
+    "total_paid_count": "Jumlah Dibayar",
+    "total_award_amount": "Jumlah Ganjaran",
+    "update_invite_code": "Tetapkan Kod Jemputan",
+    "update_invite_code_tip": "Masukkan kod jemputan khas anda",
+    "update_invite_button": "Simpan",
+    "no_orders": "Anda tidak boleh menjemput orang lain sebelum anda membeli Miniatur AI",
+    "no_affiliates": "Anda tidak dibenarkan menjemput orang lain, sila hubungi kami untuk memohon kebenaran.",
+    "table": {
+      "invite_time": "Masa Jemputan",
+      "invite_user": "Pengguna Jemputan",
+      "status": "Status",
+      "reward_percent": "Peratus Ganjaran",
+      "reward_amount": "Jumlah Ganjaran",
+      "pending": "Menunggu",
+      "completed": "Selesai"
+    }
+  },
+  "feedback": {
+    "title": "Maklum Balas",
+    "description": "Kami ingin mendengar apa yang berjalan dengan baik atau bagaimana kami boleh meningkatkan pengalaman produk.",
+    "submit": "Hantar",
+    "loading": "Menghantar...",
+    "contact_tip": "Cara lain untuk menghubungi kami",
+    "rating_tip": "Bagaimana perasaan anda tentang Miniatur AI?",
+    "placeholder": "Tinggalkan kata-kata anda di sini..."
+  },
+  "share": {
+    "title": "Kongsi imej ini",
+    "text": "Baru sahaja cipta figurin miniatur ini PERCUMA menggunakan www.miniatur.org! Cuba sendiri:",
+    "preparing": "Menyediakan untuk kongsi...",
+    "success": "Pautan disalin ke papan keratan!",
+    "failed": "Gagal menyalin pautan",
+    "uploading": "Menyediakan imej untuk perkongsian...",
+    "platforms": {
+      "twitter": "Twitter",
+      "facebook": "Facebook", 
+      "linkedin": "LinkedIn",
+      "pinterest": "Pinterest",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "reddit": "Reddit",
+      "copy": "Salin"
+    }
+  }  ,
+  "miniatureGenerator": {
+    "ui": {
+      "title": "Bina Dunia Miniatur Anda dengan Miniatur AI",
+      "subtitle": "Transformasikan imej anda dengan penyuntingan berkuasa AI"
+    },
+    "upload": {
+      "title": "Muat Naik Imej",
+      "subtitle": "Muat naik satu imej untuk rujukan",
+      "dragDrop": "Seret & lepas atau klik untuk muat naik imej",
+      "fileInfo": "JPG, PNG, WEBP • Maks 10MB • Min 300×300px"
+    },
+    "instructions": {
+      "title": "Arahan Penyuntingan",
+      "subtitle": "Terangkan perubahan yang anda inginkan",
+      "translate": "Terjemah",
+      "autoTranslateEnabled": "Auto-terjemah diaktifkan"
+    },
+    "usage": {
+      "remaining": "Penjanaan percuma yang tinggal: {remaining}/3",
+      "signInTip": "Log masuk untuk penjanaan tanpa had!",
+      "limitReached": "Had harian dicapai (3/3 penjanaan percuma digunakan)",
+      "signInUnlimited": "Log masuk untuk akses tanpa had atau cuba lagi esok!"
+    },
+    "buttons": {
+      "generate": "Jana Miniatur",
+      "generating": "Menjana Imej...",
+      "limitReached": "Had Harian Dicapai - Log Masuk",
+      "download": "Muat Turun",
+      "regenerate": "Jana Semula"
+    },
+    "result": {
+      "title": "Sedia Untuk Mencipta",
+      "subtitle": "Muat naik imej untuk melihat keajaiban AI berlaku",
+      "readyTitle": "Sedia Untuk Karya Agung Anda",
+      "readySubtitle": "Muat naik imej dan terangkan visi anda. Saksikan AI mengubahnya menjadi sesuatu yang menakjubkan.",
+      "willAppear": "Hasil Miniatur AI anda akan muncul di sini",
+      "creating": "Mencipta miniatur anda...",
+      "almostDone": "Hampir selesai! Sila tunggu",
+      "takeFewMoments": "Ini mungkin mengambil masa beberapa minit"
+    },
+    "messages": {
+      "uploadValidImage": "Sila muat naik fail imej yang sah sahaja",
+      "imageTooLarge": "Saiz imej tidak boleh melebihi 10MB",
+      "uploadSuccess": "Imej berjaya dimuat naik",
+      "uploadRequired": "Sila muat naik imej",
+      "instructionsRequired": "Sila berikan arahan penyuntingan",
+      "limitExceeded": "Had harian dilampaui! Sila log masuk untuk akses tanpa had atau cuba lagi esok.",
+      "generateSuccess": "Miniatur berjaya dijana!",
+      "generateFailed": "Gagal menjana miniatur. Sila cuba lagi.",
+      "downloadSuccess": "Imej berjaya dimuat turun!",
+      "downloadFailed": "Gagal memuat turun imej"
+    }
+  },
+  "payment": {
+    "modal": {
+      "title": "Pilih Pelan Anda",
+      "description": "Naik taraf untuk membuka kunci lebih banyak ciri AI",
+      "most_popular": "Paling Popular",
+      "credits": "Kredit",
+      "month": "Bulan",
+      "year": "Tahun",
+      "processing": "Memproses...",
+      "select_plan": "Pilih Pelan Ini",
+      "international_payment": "Pembayaran Antarabangsa",
+      "china_payment": "Alipay/WeChat Pay",
+      "stripe_payment": "Pembayaran Stripe",
+      "creem_payment": "Pembayaran Creem"
+    },
+    "test": {
+      "basic": {
+        "title": "Pelan Asas",
+        "description": "100 Kredit",
+        "feature1": "100 penjanaan AI",
+        "feature2": "Kelajuan standard",
+        "feature3": "Sokongan emel"
+      },
+      "pro": {
+        "title": "Pelan Profesional",
+        "description": "500 Kredit",
+        "feature1": "500 penjanaan AI",
+        "feature2": "Kelajuan keutamaan",
+        "feature3": "Sokongan teknikal 24/7",
+        "feature4": "Output HD"
+      },
+      "enterprise": {
+        "title": "Pelan Perusahaan",
+        "description": "2000 Kredit",
+        "feature1": "2000 penjanaan AI",
+        "feature2": "Kelajuan terpantas",
+        "feature3": "Sokongan khusus",
+        "feature4": "Akses API",
+        "feature5": "Pemprosesan kelompok"
+      },
+      "test_title": "Ujian Modal Pembayaran",
+      "open_default": "Buka Modal Pembayaran (Konfigurasi Lalai)",
+      "open_custom": "Buka Modal Pembayaran (Konfigurasi Khusus)",
+      "default_description": "Menggunakan tajuk dan deskripsi yang diterjemahkan",
+      "custom_description": "Simulasi senario kredit tidak mencukupi",
+      "instructions_title": "Arahan Ujian",
+      "instruction1": "Desktop memaparkan sebagai modal Dialog",
+      "instruction2": "Mobile memaparkan sebagai Drawer",
+      "instruction3": "Menyokong pertukaran berbilang bahasa",
+      "instruction4": "Termasuk pilihan pembayaran antarabangsa dan China",
+      "instruction5": "Log masuk diperlukan untuk pembayaran",
+      "success_message": "Pembayaran berjaya! Kredit ditambah",
+      "insufficient_title": "Kredit Tidak Mencukupi",
+      "insufficient_description": "Anda tidak mempunyai kredit yang mencukupi, sila naik taraf untuk terus menggunakan ciri AI",
+      "upgrade_success": "Naik taraf berjaya! Ciri dibuka kunci"
+    }
+  }
+}

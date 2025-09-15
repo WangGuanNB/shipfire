@@ -1,0 +1,460 @@
+{
+  "template": "shipany-template-one",
+  "theme": "light",
+  "header": {
+    "brand": {
+      "title": "Miniatur AI",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "Miniatur AI"
+      },
+      "url": "/"
+    },
+    "nav": {
+      "items": [
+        {
+          "title": "Laman Utama",
+          "url": "/",
+          "icon": "RiHomeLine"
+        },
+        {
+          "title": "Penjana",
+          "url": "/#generator",
+          "icon": "RiImageLine"
+        },
+        {
+          "title": "Ciri-ciri",
+          "url": "/#features",
+          "icon": "RiStarLine"
+        },
+        {
+          "title": "Soalan Lazim",
+          "url": "/#faq",
+          "icon": "RiQuestionLine"
+        }
+      ]
+    },
+    "buttons": [],
+    "show_sign": true,
+    "show_theme": false,
+    "show_locale": true
+  },
+  "hero": {
+    "title": "Tukar Foto Menjadi Karya Miniatur dengan Miniatur AI",
+    "highlight_text": "Miniatur AI",
+    "description": "Tukar foto biasa menjadi dunia miniatur yang luar biasa dengan kesan tilt-shift menakjubkan dan diorama memikat. Teknologi Miniatur AI canggih kami menganalisis setiap piksel untuk mencipta kesan kedalaman bidang autentik yang menyaingi lensa kamera mahal. Hanya muat naik foto anda dan lihat kecerdasan buatan mencipta karya miniatur profesional dalam beberapa saat, sempurna untuk media sosial, portfolio, dan projek kreatif.",
+    "announcement": {
+      "label": "100% PERCUMA",
+      "title": "TANPA PERLU LOG MASUK",
+      "url": "/#features"
+    },
+    "badges": [
+      {
+        "label": "100% PERCUMA",
+        "icon": "RiStarLine",
+        "color": "green"
+      },
+      {
+        "label": "TANPA PERLU LOG MASUK",
+        "icon": "RiUserLine", 
+        "color": "blue"
+      },
+      {
+        "label": "NANO BANANA",
+        "icon": "RiLeafLine",
+        "color": "purple"
+      }
+    ],
+    "images": [
+      {
+        "src": "/imgs/features/1.png",
+        "alt": "Contoh Transformasi Miniatur AI 1",
+        "title": "Foto Asal kepada Miniatur"
+      },
+      {
+        "src": "/imgs/features/2.png",
+        "alt": "Contoh Transformasi Miniatur AI 2", 
+        "title": "Penjanaan Figur AI"
+      }
+    ],
+    "layout": "left-image-right-content",
+    "enable_carousel": true,
+    "buttons": [
+      {
+        "title": "Mula Cipta Tanpa Log Masuk",
+        "icon": "RiMagicLine",
+        "url": "/#generator",
+        "target": "_self",
+        "variant": "default"
+      }
+    ],
+    "stats": [
+      {
+        "value": "12,847+",
+        "label": "Pengguna Miniatur AI Dipercayai",
+        "icon": "RiUserLine"
+      },
+      {
+        "value": "89,432+",
+        "label": "Imej Miniatur Dijana",
+        "icon": "RiImageLine"
+      }
+    ],
+    "show_happy_users": true,
+    "show_badge": true
+  },
+  "branding": {
+    "title": "Dikuasakan oleh teknologi AI canggih",
+    "items": [
+      {
+        "title": "OpenAI",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "OpenAI"
+        }
+      },
+      {
+        "title": "Penglihatan Komputer",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "Penglihatan Komputer"
+        }
+      },
+      {
+        "title": "Rangkaian Neural",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "Rangkaian Neural"
+        }
+      },
+      {
+        "title": "Pembelajaran Mesin",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "Pembelajaran Mesin"
+        }
+      },
+      {
+        "title": "Pemprosesan Awan",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "Pemprosesan Awan"
+        }
+      }
+    ]
+  },
+  "introduce": {
+    "name": "introduce",
+    "title": "Apa itu Miniatur AI",
+    "label": "Pengenalan",
+    "description": "Miniatur AI adalah platform kecerdasan buatan percuma yang revolusioner yang mengubah fotografi biasa menjadi karya miniatur yang menakjubkan. Menggunakan algoritma penglihatan komputer dan pembelajaran mesin yang canggih, alat pintar kami menganalisis komposisi imej, kedalaman, dan pencahayaan untuk mencipta kesan tilt-shift profesional dan adegan diorama yang realistik dalam beberapa saat. Sama ada anda jurugambar profesional, pencipta kandungan, atau hobbyist, Miniatur AI memberikan transformasi miniatur berkualiti muzium dengan ketepatan dan kelajuan yang tiada tandingan.",
+    "image": {
+      "src": "/imgs/features/3.png"
+    },
+    "items": [
+      {
+        "title": "Analisis Pintar Berkuasa AI",
+        "description": "Sistem kecerdasan buatan kami dengan bijak mengenal pasti titik fokus, lapisan kedalaman, dan hubungan spatial dalam foto anda untuk mencipta kesan miniatur asli dengan gradien kabur yang sempurna dan simulasi kedalaman bidang profesional yang sepadan dengan teknik fotografi tilt-shift sebenar.",
+        "icon": "RiRobot2Line"
+      },
+      {
+        "title": "Pelbagai Gaya Miniatur",
+        "description": "Pilih dari fotografi tilt-shift, kesan diorama mainan, model miniatur seni bina, dan gaya figur koleksi. Setiap preset yang dioptimumkan AI menyampaikan ciri miniatur unik yang disesuaikan untuk komposisi foto dan visi kreatif yang berbeza.",
+        "icon": "RiPaletteLine"
+      },
+      {
+        "title": "Pemprosesan AI Segera",
+        "description": "Pemprosesan kecerdasan buatan berasaskan awan yang canggih memberikan kesan miniatur profesional dalam masa kurang dari 10 saat. Tiada keperluan pemasangan perisian kompleks, bayaran, atau kepakaran teknikal untuk mencipta hasil yang menakjubkan.",
+        "icon": "RiTimeLine"
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "Mengapa Pilih Miniatur AI",
+    "label": "Faedah",
+    "description": "Jurugambar profesional dan pencipta kandungan di seluruh dunia mempercayai Miniatur AI untuk analisis imej yang unggul, kesan miniatur yang asli, dan pemprosesan AI yang sepantas kilat. Sistem kecerdasan buatan kami memahami prinsip fotografi untuk memberikan hasil yang menyaingi peralatan kamera mahal dan berjam-jam kerja editing manual.",
+    "items": [
+      {
+        "title": "Hasil Miniatur Berkualiti Profesional",
+        "description": "Miniatur AI menghasilkan kesan miniatur berkualiti muzium yang mengekalkan kedalaman bidang yang betul, corak kabur yang realistik, dan ciri tilt-shift autentik yang terdapat dalam fotografi miniatur profesional. AI kami memastikan setiap transformasi memenuhi piawaian industri.",
+        "icon": "RiStarLine",
+        "image": {
+          "src": "/imgs/features/4.png"
+        }
+      },
+      {
+        "title": "Pengecaman Adegan Pintar",
+        "description": "AI canggih kami menganalisis elemen seni bina, landskap, manusia, dan objek untuk secara automatik menggunakan kesan miniatur yang paling sesuai untuk kandungan foto dan komposisi spesifik anda. Kecerdasan buatan pintar menyesuaikan dengan mana-mana jenis adegan.",
+        "icon": "RiBrainLine",
+        "image": {
+          "src": "/imgs/features/6.png"
+        }
+      },
+      {
+        "title": "Alur Kerja Miniatur Mudah",
+        "description": "Langkau perisian editing foto yang kompleks dan peralatan mahal. Miniatur AI mengubah foto anda menjadi hasil miniatur profesional dengan hanya satu klik, menjimatkan berjam-jam kerja manual sambil memberikan hasil berkualiti tinggi yang konsisten.",
+        "icon": "RiSpeedLine",
+        "image": {
+          "src": "/imgs/features/7.png"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "Cara Mencipta Miniatur dengan Miniatur AI",
+    "description": "Ubah foto anda menjadi karya miniatur yang menakjubkan dalam empat langkah mudah. Sistem Miniatur AI kami mengendalikan semua analisis imej dan pemprosesan yang kompleks secara automatik, memberikan hasil miniatur profesional setiap kali dengan ketepatan kecerdasan buatan.",
+    "image": {
+      "src": "/imgs/features/1.png"
+    },
+    "image_position": "left",
+    "text_align": "center",
+    "items": [
+      {
+        "title": "Muat Naik Foto Anda",
+        "description": "Hanya seret dan lepas mana-mana imej JPEG atau PNG sehingga 10MB. Miniatur AI menerima foto landskap, seni bina, manusia, dan objek untuk transformasi miniatur. AI kami berfungsi terbaik dengan imej resolusi tinggi.",
+        "icon": "RiUploadLine"
+      },
+      {
+        "title": "Pilih Gaya Miniatur",
+        "description": "Pilih dari preset yang dioptimumkan AI kami: fotografi tilt-shift, diorama mainan, model miniatur seni bina, atau gaya figur koleksi. Setiap preset disetel halus oleh kecerdasan buatan untuk jenis foto dan komposisi yang berbeza.",
+        "icon": "RiSettings3Line"
+      },
+      {
+        "title": "Keajaiban Pemprosesan AI",
+        "description": "Miniatur AI kami menganalisis maklumat kedalaman, menggunakan kesan kabur pintar, dan mencipta ciri miniatur yang asli. Algoritma kecerdasan buatan canggih memastikan hasil berkualiti profesional dalam beberapa saat.",
+        "icon": "RiMagicLine"
+      },
+      {
+        "title": "Muat Turun & Kongsi",
+        "description": "Simpan ciptaan miniatur anda dalam resolusi tinggi. Sempurna untuk media sosial, portfolio, atau percetakan. Kongsi seni miniatur unik yang dijana AI dengan dunia dan tunjukkan hasil transformasi profesional.",
+        "icon": "RiDownloadLine"
+      }
+    ]
+  },
+  "feature": {
+    "name": "feature",
+    "title": "Ciri-ciri Miniatur AI Canggih",
+    "description": "Temui keupayaan kecerdasan buatan yang berkuasa yang menjadikan penjana miniatur kami alat AI paling canggih yang tersedia untuk transformasi foto dan projek editing kreatif.",
+    "items": [
+      {
+        "title": "Pengesanan Kedalaman Pintar",
+        "description": "Miniatur AI menggunakan penglihatan komputer untuk menganalisis kedalaman imej dan secara automatik mencipta satah fokus yang realistik, memastikan kesan miniatur tilt-shift yang asli dengan ketepatan kedalaman bidang profesional.",
+        "icon": "RiEyeLine"
+      },
+      {
+        "title": "Pengoptimuman Gaya AI",
+        "description": "Algoritma pembelajaran mesin kami secara automatik menyesuaikan intensiti kabur, kedalaman bidang, dan ketepuan warna berdasarkan kandungan dan komposisi foto anda untuk hasil miniatur yang optimum.",
+        "icon": "RiSettings2Line"
+      },
+      {
+        "title": "Pemprosesan Kelompok",
+        "description": "Muat naik beberapa foto dan gunakan kesan Miniatur AI yang konsisten merentasi keseluruhan koleksi anda. Sempurna untuk mencipta siri fotografi miniatur yang kohesif dengan pemprosesan kecerdasan buatan yang seragam.",
+        "icon": "RiStackLine"
+      },
+      {
+        "title": "Output Resolusi Tinggi",
+        "description": "Jana imej miniatur sehingga resolusi 4K sambil mengekalkan butiran yang tajam dan peralihan kabur yang lancar. Pemprosesan AI berkualiti profesional untuk sebarang kes penggunaan komersial atau kreatif.",
+        "icon": "RiHdLine"
+      },
+      {
+        "title": "Pratonton Masa Nyata",
+        "description": "Lihat transformasi miniatur anda serta-merta semasa anda menyesuaikan tetapan. Miniatur AI menyediakan maklum balas segera untuk hasil yang sempurna setiap kali dengan pemprosesan kecerdasan buatan secara langsung.",
+        "icon": "RiLiveLine"
+      },
+      {
+        "title": "Eksport & Perkongsian Mudah",
+        "description": "Muat turun ciptaan miniatur anda dalam pelbagai format atau kongsi terus ke platform media sosial. Tunjukkan seni miniatur yang dijana AI anda dengan mudah bersama hasil yang profesional.",
+        "icon": "RiShareLine"
+      }
+    ]
+  },
+  "stats": {
+    "name": "stats",
+    "label": "Statistik",
+    "title": "Pencipta Mempercayai Miniatur AI",
+    "description": "untuk kesan miniatur berkualiti profesional dan pemprosesan AI secepat kilat di seluruh dunia.",
+    "icon": "RiHeartLine",
+    "items": [
+      {
+        "title": "Pengguna Dipercayai",
+        "label": "12,847+",
+        "description": "Pencipta"
+      },
+      {
+        "title": "Imej Dijana",
+        "label": "89,432+",
+        "description": "Miniatur"
+      },
+      {
+        "title": "Kelajuan Pemprosesan",
+        "label": "<10",
+        "description": "Saat"
+      }
+    ]
+  },
+  "testimonial": {
+    "name": "testimonial",
+    "label": "Testimoni",
+    "title": "Apa Kata Pencipta Tentang Miniatur AI",
+    "description": "Maklum balas sebenar dari jurugambar dan artis yang menggunakan Miniatur AI untuk projek kreatif dan transformasi miniatur profesional mereka.",
+    "icon": "RiThumbUpLine",
+    "items": [
+      {
+        "title": "Sarah Mitchell",
+        "label": "Jurugambar Profesional",
+        "description": "Miniatur AI memberikan hasil yang menyaingi lensa tilt-shift mahal saya. Kecerdasan buatan ini memahami kedalaman lebih baik daripada mana-mana perisian editing yang pernah saya gunakan untuk fotografi miniatur.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "James Rodriguez",
+        "label": "Pencipta Kandungan",
+        "description": "AI ini luar biasa! Saya mencipta kandungan gaya miniatur untuk Instagram dalam beberapa saat. Engagement saya meningkat 300% sejak menggunakan Miniatur AI untuk penciptaan kandungan media sosial.",
+        "image": {
+          "src": "/imgs/users/2.png"
+        }
+      },
+      {
+        "title": "Emily Chen",
+        "label": "Artis Digital",
+        "description": "Kesan miniatur sangat realistik. Miniatur AI menjimatkan berjam-jam editing manual sambil menghasilkan hasil berkualiti profesional setiap kali dengan pemprosesan kecerdasan buatan canggih.",
+        "image": {
+          "src": "/imgs/users/3.png"
+        }
+      },
+      {
+        "title": "Michael Thompson",
+        "label": "Blogger Pelancongan",
+        "description": "Saya menggunakan Miniatur AI untuk semua foto perjalanan saya sekarang. Kesan miniatur menjadikan adegan biasa kelihatan seperti dunia kecil yang ajaib dengan kualiti transformasi AI profesional.",
+        "image": {
+          "src": "/imgs/users/6.png"
+        }
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "label": "Soalan Lazim",
+    "title": "Soalan Lazim Tentang Miniatur AI",
+    "description": "Ada soalan tentang penjana miniatur AI kami? Cari jawapan di sini atau hubungi pasukan sokongan kami untuk bantuan dengan transformasi foto miniatur.",
+    "items": [
+      {
+        "title": "Bagaimana Miniatur AI mencipta kesan miniatur?",
+        "description": "Miniatur AI menggunakan algoritma penglihatan komputer dan pembelajaran mesin yang canggih untuk menganalisis kedalaman imej, mengenal pasti titik fokus, dan menggunakan kesan tilt-shift yang asli. Kecerdasan buatan kami memahami prinsip fotografi untuk mencipta transformasi miniatur yang realistik yang menyaingi peralatan kamera profesional dan teknik editing manual."
+      },
+      {
+        "title": "Jenis foto apa yang paling sesuai dengan Miniatur AI?",
+        "description": "Miniatur AI berfungsi dengan sangat baik dengan landskap, seni bina, cityscapes, dan fotografi udara. Foto dengan kedalaman yang jelas dan subjek yang menarik menghasilkan kesan miniatur yang paling dramatik. Kecerdasan buatan kami secara automatik menyesuaikan dengan komposisi foto yang berbeza untuk hasil transformasi miniatur yang optimum."
+      },
+      {
+        "title": "Bolehkah saya menggunakan Miniatur AI secara komersial?",
+        "description": "Ya! Semua imej miniatur yang dicipta dengan Miniatur AI boleh digunakan untuk tujuan komersial termasuk pemasaran media sosial, kerja portfolio, dan projek klien. Anda mengekalkan hak penuh ke atas ciptaan miniatur yang dijana AI dan transformasi profesional anda."
+      },
+      {
+        "title": "Format fail apa yang disokong oleh Miniatur AI?",
+        "description": "Miniatur AI menerima format imej JPEG, JPG, PNG, dan WebP sehingga 10MB saiz. Untuk hasil transformasi miniatur terbaik, kami mengesyorkan foto resolusi tinggi dengan pencahayaan yang baik dan kedalaman bidang yang jelas untuk pemprosesan AI yang optimum."
+      },
+      {
+        "title": "Adakah Miniatur AI benar-benar percuma untuk digunakan?",
+        "description": "Sudah tentu! Miniatur AI adalah percuma sepenuhnya untuk digunakan selamanya tanpa kos tersembunyi, tiada pendaftaran diperlukan, dan tiada watermark. Nikmati transformasi miniatur tanpa had dengan hasil AI berkualiti profesional tanpa sebarang kos untuk semua projek kreatif anda."
+      }
+    ]
+  },
+  "cta": {
+    "name": "cta",
+    "title": "Ubah Foto Anda dengan Miniatur AI Percuma Hari Ini",
+    "description": "Sertai ribuan pencipta yang menggunakan kecerdasan buatan percuma kami untuk mencipta kesan fotografi miniatur yang menakjubkan. Mulakan perjalanan transformasi miniatur percuma anda sekarang dengan teknologi AI canggih - tanpa bayaran, tanpa pendaftaran diperlukan!",
+    "buttons": [
+      {
+        "title": "Mula Percuma Sekarang",
+        "icon": "RiGiftLine",
+        "url": "/#generator",
+        "target": "_self",
+        "variant": "default"
+      }
+    ]
+  },
+  "footer": {
+    "name": "footer",
+    "brand": {
+      "title": "Miniatur AI",
+      "description": "Miniatur AI mengubah foto biasa menjadi karya miniatur yang luar biasa menggunakan teknologi kecerdasan buatan yang canggih. Cipta kesan tilt-shift profesional, adegan diorama, dan miniatur gaya koleksi dalam beberapa saat dengan platform AI revolusioner kami.",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "Miniatur AI"
+      },
+      "url": "/"
+    },
+    "copyright": "© 2025 • Miniatur AI. Hak cipta terpelihara.",
+    "nav": {
+      "items": [
+        {
+          "title": "Penjana Miniatur",
+          "url": "/#generator"
+        },
+        {
+          "title": "Ciri AI",
+          "url": "/#features"
+        },
+        {
+          "title": "Cara Ia Berfungsi",
+          "url": "/#usage"
+        }
+      ]
+    },
+    "social": {
+      "items": [
+        {
+          "title": "X",
+          "icon": "RiTwitterXFill",
+          "url": "https://x.com/miniaturaiapp",
+          "target": "_blank"
+        },
+        {
+          "title": "Github",
+          "icon": "RiGithubFill",
+          "url": "https://github.com/miniaturaiapp",
+          "target": "_blank"
+        },
+        {
+          "title": "Discord",
+          "icon": "RiDiscordFill",
+          "url": "https://discord.gg/miniaturaiapp",
+          "target": "_blank"
+        },
+        {
+          "title": "Email",
+          "icon": "RiMailLine",
+          "url": "mailto:support@miniaturaiapp.com",
+          "target": "_self"
+        }
+      ]
+    },
+    "badge": {
+      "title": "Dikuasakan oleh AI Canggih",
+      "url": "/#features",
+      "target": "_self",
+      "image": {
+        "src": "/imgs/badges/ai-powered.svg",
+        "alt": "Dikuasakan oleh AI Canggih",
+        "width": 200,
+        "height": 54
+      }
+    },
+    "agreement": {
+      "items": [
+        {
+          "title": "Dasar Privasi",
+          "url": "/privacy-policy"
+        },
+        {
+          "title": "Terma Perkhidmatan",
+          "url": "/terms-of-service"
+        }
+      ]
+    }
+  }
+}

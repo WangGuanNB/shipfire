@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- ENGLISH (Default) -->
+  <url>
+    <loc>https://miniatur.org/</loc>
+    <lastmod>2025-09-12T16:30:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- MALAY 马来语版本 -->
+  <url>
+    <loc>https://miniatur.org/ms/</loc>
+    <lastmod>2025-09-12T16:30:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- CHINESE 中文版本 -->
+  <url>
+    <loc>https://miniatur.org/zh/</loc>
+    <lastmod>2025-09-12T16:30:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- PORTUGUESE 葡萄牙语版本 -->
+  <url>
+    <loc>https://miniatur.org/pt/</loc>
+    <lastmod>2025-09-12T16:30:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://miniatur.org/privacy-policy</loc>
+    <lastmod>2025-09-12T16:30:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://miniatur.org/terms-of-service</loc>
+    <lastmod>2025-09-12T16:30:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

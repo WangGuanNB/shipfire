@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "title": "Wplace Pixel Art Converter - Free Online Tool for Wplace.live | Convert Images to Pixel Art",
+    "description": "Use our Wplace Pixel Art Converter to transform any image into pixel art optimized for Wplace.live. Upload JPG, PNG images and convert them instantly with official palette, grid analysis, and cost breakdown."
+  },
+  "hero": {
+    "badge": "🎨 Free Online Tool",
+    "title": "Wplace Pixel Art Converter",
+    "description": "Transform any image into pixel art optimized for Wplace.live collaborative canvas. Upload JPG, PNG images and convert them instantly with our Wplace Pixel Art Converter.",
+    "features": [
+      "✓ Free to use",
+      "✓ No registration required", 
+      "✓ Instant conversion",
+      "✓ Official Wplace.live palette"
+    ]
+  },
+  "tool": {
+    "title": "Wplace Pixel Art Converter Tool",
+    "description": "Convert any image to pixel art and view precise grid data, color analysis, and palette costs for Wplace.live using our Wplace Pixel Art Converter"
+  },
+  "upload": {
+    "title": "Upload Image",
+    "click_upload": "Click to upload or drag image here",
+    "format_support": "Supports JPEG, JPG, PNG format, max 5MB",
+    "processing": "Processing...",
+    "download": "Download",
+    "copy": "Copy"
+  },
+  "settings": {
+    "title": "Settings",
+    "pixel_size": "Pixel Size",
+    "scale": "Scale", 
+    "zoom_level": "Zoom Level",
+    "show_grid": "Show Grid"
+  },
+  "color_stats": {
+    "title": "Color Usage Statistics",
+    "total": "Total",
+    "free": "Free",
+    "premium": "Premium",
+    "blocks": "blocks"
+  },
+  "palette": {
+    "title": "Wplace Official Color Palette",
+    "all": "All",
+    "free_only": "Free Only",
+    "premium_note": "Premium colors (paid on wplace.live)"
+  },
+  "features": {
+    "title": "Why Choose Our Wplace Pixel Art Converter?",
+    "instant": {
+      "title": "Instant Wplace Pixel Art Conversion",
+      "description": "Upload your image and get pixel art results in seconds with our Wplace Pixel Art Converter. No registration required, completely free to use online."
+    },
+    "official": {
+      "title": "Official Wplace.live Palette",
+      "description": "Uses the exact color palette from Wplace.live, ensuring perfect compatibility with the collaborative canvas platform."
+    },
+    "analysis": {
+      "title": "Advanced Grid Analysis",
+      "description": "Get detailed statistics including block counts, dimensions, color usage breakdown, and cost analysis for planning your builds."
+    }
+  },
+  "how_to_use": {
+    "title": "How to Use Our Wplace Pixel Art Converter",
+    "steps": {
+      "upload": {
+        "title": "Upload Your Image",
+        "description": "Drag & drop or click to upload JPG, PNG images up to 5MB. Our Wplace Pixel Art Converter supports all common image formats."
+      },
+      "adjust": {
+        "title": "Adjust Pixel Settings",
+        "description": "Choose pixel size, scale, and preview the conversion in real-time with our advanced settings."
+      },
+      "analyze": {
+        "title": "Analyze & Optimize",
+        "description": "View detailed grid stats, color breakdown, and cost analysis for optimal Wplace.live planning with our Wplace Pixel Art Converter."
+      },
+      "download": {
+        "title": "Download & Build",
+        "description": "Export your pixel art and start building on Wplace.live collaborative canvas immediately."
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to Use Our Wplace Pixel Art Converter?",
+    "description": "Join thousands of creators using our Wplace Pixel Art Converter to plan and execute their Wplace.live collaborative canvas builds.",
+    "button": "Start Using Wplace Pixel Art Converter"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions About Our Wplace Pixel Art Converter",
+    "items": [
+      {
+        "question": "What file formats does your Wplace Pixel Art Converter support?",
+        "answer": "Our Wplace Pixel Art Converter supports JPEG, JPG, and PNG formats with a maximum file size of 5MB for optimal performance. You can upload any image in these formats and convert them to pixel art instantly."
+      },
+      {
+        "question": "Is your Wplace Pixel Art Converter really free to use online?",
+        "answer": "Yes! Our Wplace Pixel Art Converter is completely free with no hidden costs. All features including palette analysis, grid statistics, and color breakdown are available at no charge. No registration required."
+      },
+      {
+        "question": "How accurate are the color mappings for Wplace.live?",
+        "answer": "Our Wplace Pixel Art Converter uses the exact official Wplace.live color palette, ensuring 100% compatibility with the collaborative canvas platform. All colors are precisely matched to the official palette."
+      },
+      {
+        "question": "Can I use the converted pixel art on other platforms besides Wplace.live?",
+        "answer": "Absolutely! While optimized for Wplace.live, the exported pixel art can be used anywhere. The PNG format is standard and compatible with all platforms and pixel art communities."
+      },
+      {
+        "question": "Do I need to register or create an account to use the Wplace Pixel Art Converter?",
+        "answer": "No registration required! Our Wplace Pixel Art Converter works immediately without any account creation. Simply upload your image and start converting to pixel art right away."
+      },
+      {
+        "question": "What makes your Wplace Pixel Art Converter different from others?",
+        "answer": "Our Wplace Pixel Art Converter is specifically designed for Wplace.live with official palette support, real-time pixel coordinate tracking, detailed grid analysis, and cost breakdown. It's the most comprehensive tool for Wplace.live planning."
+      },
+      {
+        "question": "Are there other Wplace tools available beyond the pixel art converter?",
+        "answer": "Yes! Beyond our pixel art converter, we offer a complete suite of Wplace tools. Visit our main Wplace Pixel homepage to access our comprehensive pixel art generator, advanced color conversion tools, grid planning features, and other professional utilities designed specifically for Wplace.live creators."
+      }
+    ]
+  }
+}

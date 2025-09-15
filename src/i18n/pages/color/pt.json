@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "title": "Conversor de Cores Wplace - Ferramenta de Paleta 64 Cores Online Gratuita | Converter Imagens para Cores Wplace",
+    "description": "Conversor de Cores Wplace 100% Gratuito. Converta qualquer imagem em pixel art usando a paleta oficial de 64 cores do Wplace. Processamento com privacidade em primeiro lugar, sem limites de tamanho. Ferramenta profissional de conversão de cores Wplace.",
+    "keywords": ["Conversor de Cores Wplace", "paleta de cores Wplace", "conversor pixel art Wplace", "conversor cores gratuito", "paleta 64 cores", "cores Wplace.live", "imagem para cores Wplace", "gerador pixel art", "conversão cores Wplace", "conversor cores online", "ferramenta pixel art gratuita", "ferramenta cores Wplace", "cores premium Wplace", "cores padrão Wplace"]
+  },
+  "loading": "Carregando Conversor de Cores Wplace...",
+  "hero": {
+    "badge": "Ferramenta Oficial Wplace",
+    "title": "Conversor de Cores Wplace",
+    "description": "Converta qualquer imagem em pixel art impressionante usando a paleta oficial de 64 cores do Wplace",
+    "features": {
+      "quality": "Qualidade Profissional",
+      "privacy": "Privacidade Primeiro", 
+      "preview": "Visualização em Tempo Real"
+    }
+  },
+  "upload": {
+    "title": "Upload e Visualização de Imagem",
+    "heading": "Carregar Sua Imagem",
+    "description": "Arraste e solte ou clique para selecionar",
+    "support": "Suporta: PNG, JPG, JPEG, WebP • Máx 10MB",
+    "processing": "Processando...",
+    "download": "Baixar PNG"
+  },
+  "settings": {
+    "title": "Configurações",
+    "pixel_size": "Tamanho do Pixel",
+    "preview_scale": "Escala de Visualização",
+    "show_grid": "Mostrar Grade"
+  },
+  "status": {
+    "title": "Status",
+    "image_loaded": "Imagem Carregada",
+    "file": "Arquivo",
+    "size": "Tamanho",
+    "colors_used": "Cores Usadas nesta Imagem",
+    "total": "Total",
+    "free": "Gratuitas",
+    "premium": "Premium",
+    "no_image": "Nenhuma imagem carregada",
+    "upload_to_start": "Carregue uma imagem para começar",
+    "description": "Estas são todas as cores da paleta Wplace usadas em sua imagem gerada. Cores premium (com ícones de cadeado) precisam ser compradas no site oficial."
+  },
+  "palette": {
+    "title": "Paleta de Cores Wplace - Coleção Completa de 64 Cores",
+    "premium_section": "Cores premium requerem compra no Wplace.live",
+    "premium_identification": "Nosso Conversor de Cores Wplace identifica com precisão o uso de cores premium em suas imagens convertidas.",
+    "standard_colors": "Cores Padrão - Grátis para Usar",
+    "standard_description": "Essas cores formam a base do sistema de paleta do Conversor de Cores Wplace.",
+    "integration_title": "Integração Completa da Paleta de Cores Wplace",
+    "integration_description": "Nosso Conversor de Cores Wplace usa a paleta oficial completa de 64 cores Wplace para garantir perfeita compatibilidade com a plataforma de tela colaborativa."
+  },
+  "why_choose": {
+    "title": "Por que Escolher o Conversor de Cores Wplace?",
+    "free": {
+      "title": "Conversor de Cores 100% Gratuito",
+      "description": "Converta imagens ilimitadas para cores Wplace com nossa tecnologia avançada de Conversor de Cores Wplace. Sem taxas ocultas, sem necessidade de registro, completamente grátis para sempre."
+    },
+    "privacy": {
+      "title": "Processamento com Privacidade em Primeiro Lugar",
+      "description": "Todo o processamento de imagens acontece localmente em seu navegador. Suas imagens nunca saem do seu dispositivo, garantindo privacidade e segurança completas."
+    },
+    "accuracy": {
+      "title": "Precisão Perfeita de Cores",
+      "description": "Nossos algoritmos combinam cores precisamente com a paleta oficial Wplace.live, garantindo perfeita compatibilidade com a tela colaborativa."
+    }
+  },
+  "how_to_use": {
+    "title": "Como Usar o Conversor de Cores Wplace",
+    "description": "Converta imagens para cores Wplace em 4 passos simples com nossa tecnologia avançada de conversão de cores",
+    "steps": {
+      "upload": {
+        "title": "Carregar Imagem",
+        "description": "Selecione ou arraste e solte seu arquivo de imagem. Suporta formatos PNG, JPG, JPEG, WebP até 10MB."
+      },
+      "convert": {
+        "title": "Auto Conversão",
+        "description": "Nosso Conversor de Cores Wplace processa automaticamente sua imagem usando a paleta oficial de 64 cores."
+      },
+      "analyze": {
+        "title": "Analisar Cores",
+        "description": "Visualize a divisão detalhada de cores mostrando cores gratuitas vs premium usadas em sua imagem convertida."
+      },
+      "download": {
+        "title": "Baixar Resultado",
+        "description": "Exporte sua imagem otimizada para Wplace e comece a construir na tela colaborativa imediatamente."
+      }
+    }
+  },
+  "why_choose_details": {
+    "free": {
+      "prefix": "O conversor de cores Wplace é completamente gratuito para usar. Sem custos ocultos, sem assinaturas.",
+      "suffix": "Experimente conversão de arte pixel Wplace de nível profissional sem barreiras de pagamento."
+    },
+    "privacy": {
+      "description": "Toda conversão de imagem acontece no seu navegador. Suas imagens nunca deixam seu dispositivo com nosso Conversor de Cores Wplace seguro. Proteja seu trabalho criativo enquanto converte para cores Wplace. Nossa conversão de cores Wplace focada em privacidade garante segurança e confidencialidade completas dos dados."
+    },
+    "interface": {
+      "title": "Interface Fácil do Conversor de Cores",
+      "description": "Interface intuitiva torna a conversão de imagem para cores Wplace acessível a todos. Nenhuma habilidade técnica necessária com nosso Conversor de Cores Wplace amigável. Funcionalidade simples de arrastar e soltar para conversão instantânea de paleta de cores Wplace e análise."
+    },
+    "no_limits": {
+      "title": "Processamento Sem Limites de Tamanho",
+      "description": "Carregue imagens de qualquer tamanho. Nosso conversor de cores lida com tudo, desde pequenos ícones até grandes obras de arte. Processe imagens de alta resolução com o Conversor de Cores Wplace sem restrições. Converta projetos massivos de arte pixel para cores Wplace de forma eficiente e precisa."
+    }
+  },
+  "cta": {
+    "title": "Comece a Converter para Cores Wplace Hoje!",
+    "description": "Experimente o poder da conversão profissional de cores Wplace. Nosso Conversor de Cores Wplace oferece precisão e velocidade líderes da indústria para todos os seus projetos de arte pixel. Transforme qualquer imagem em arte compatível com Wplace deslumbrante em segundos.",
+    "button": "Experimente o Conversor de Cores Wplace Agora"
+  },
+  "faq": {
+    "title": "Perguntas Frequentes",
+    "subtitle": "Tudo que você precisa saber sobre o Conversor de Cores Wplace",
+    "items": [
+      {
+        "question": "Quais formatos de imagem o conversor de cores suporta?",
+        "answer": "Nosso conversor de cores suporta formatos PNG, JPG, JPEG e WebP. Você pode carregar imagens de qualquer tamanho, e o conversor de cores processará automaticamente usando a paleta de cores do Wplace."
+      },
+      {
+        "question": "O Conversor de Cores Wplace é gratuito para usar?",
+        "answer": "Sim! Nosso conversor de cores é completamente gratuito para usar. Não há custos ocultos, assinaturas ou limitações no número de imagens que você pode converter para cores Wplace."
+      },
+      {
+        "question": "Como funciona o controle deslizante de tamanho de cor?",
+        "answer": "O controle deslizante de tamanho de cor controla quão grande cada bloco de cor aparece em sua arte final. Valores menores (1-8) criam padrões de cores mais detalhados, enquanto valores maiores (16-32) criam designs mais abstratos e em blocos usando a paleta de cores do Wplace."
+      },
+      {
+        "question": "Minhas imagens são seguras e privadas?",
+        "answer": "Absolutamente! Todo processamento de imagem acontece no seu navegador. Suas imagens nunca deixam seu dispositivo ou são enviadas para nossos servidores. Sua privacidade é nossa prioridade máxima."
+      },
+      {
+        "question": "Qual é a diferença entre as opções de download pequeno e grande?",
+        "answer": "A versão pequena é perfeita em cores no tamanho exato que você criou, ideal para uso digital. A versão grande é ampliada para melhor visibilidade e impressão, mantendo a estética da paleta de cores Wplace."
+      },
+      {
+        "question": "Posso usar o resultado diretamente no Wplace?",
+        "answer": "Sim. O conversor usa a paleta oficial do Wplace, então seus downloads são totalmente compatíveis com projetos Wplace."
+      },
+      {
+        "question": "Quais outras ferramentas Wplace estão disponíveis?",
+        "answer": "Além do nosso conversor de cores, oferecemos um conjunto abrangente de ferramentas Wplace. Visite nossa main Wplace Pixel homepage para descobrir nosso gerador completo de arte pixel, ferramentas avançadas de planejamento de grade e outros recursos profissionais projetados para melhorar sua experiência Wplace.live."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "O Que os Jogadores Dizem",
+    "subtitle": "Feedback real de criadores usando o Conversor de Cores Wplace",
+    "items": [
+      {
+        "rating": "★★★★★",
+        "text": "Ferramenta incrível! Eu a uso para criar arte pixel perfeita compatível com Wplace. A correspondência de paleta é precisa e o fluxo de trabalho é super simples.",
+        "author": "Sarah C."
+      },
+      {
+        "rating": "★★★★★",
+        "text": "Finalmente um conversor que realmente corresponde às cores oficiais do Wplace. Uploads instantâneos, resultados instantâneos, e tudo fica no meu dispositivo.",
+        "author": "Alex R."
+      },
+      {
+        "rating": "★★★★★",
+        "text": "O processamento focado na privacidade me dá tranquilidade. É rápido, preciso, e os downloads vão direto para minhas construções Wplace.",
+        "author": "Diego M."
+      }
+    ]
+  }
+}

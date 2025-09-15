@@ -1,0 +1,516 @@
+{
+  "template": "shipany-template-one",
+  "theme": "light",
+  "header": {
+    "brand": {
+      "title": "Miniatur AI",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "Miniatur AI"
+      },
+      "url": "/"
+    },
+    "nav": {
+      "items": [
+        {
+          "title": "Home",
+          "url": "/",
+          "icon": "RiHomeLine"
+        },
+        {
+          "title": "Generator",
+          "url": "/#generator",
+          "icon": "RiImageLine"
+        },
+        {
+          "title": "Features",
+          "url": "/#features",
+          "icon": "RiStarLine"
+        },
+        {
+          "title": "FAQ",
+          "url": "/#faq",
+          "icon": "RiQuestionLine"
+        }
+      ]
+    },
+    "buttons": [],
+    "show_sign": true,
+    "show_theme": false,
+    "show_locale": true
+  },
+  "hero": {
+    "title": "Transform Photos into Miniature Masterpieces with Miniatur AI",
+    "highlight_text": "Miniatur AI",
+    "description": "Transform ordinary photos into extraordinary miniature worlds with stunning tilt-shift effects and captivating dioramas. Our advanced Miniatur AI technology analyzes every pixel to create authentic depth-of-field effects that rival expensive camera lenses. Just upload your photo and watch artificial intelligence create professional miniature masterpieces in seconds, perfect for social media, portfolios, and creative projects.",
+    "announcement": {
+      "label": "100% FREE",
+      "title": "NO LOGIN REQUIRED",
+      "url": "/#features"
+    },
+    "badges": [
+      {
+        "label": "100% FREE",
+        "icon": "RiStarLine",
+        "color": "green"
+      },
+      {
+        "label": "NO LOGIN REQUIRED",
+        "icon": "RiUserLine", 
+        "color": "blue"
+      },
+      {
+        "label": "NANO BANANA",
+        "icon": "RiLeafLine",
+        "color": "purple"
+      }
+    ],
+    "images": [
+      {
+        "src": "/imgs/features/1.png",
+        "alt": "Miniatur AI Photo Transformation Example 1",
+        "title": "Original Photo to Miniature"
+      },
+      {
+        "src": "/imgs/features/2.png",
+        "alt": "Miniatur AI Photo Transformation Example 2", 
+        "title": "AI Figure Generation"
+      }
+    ],
+    "layout": "left-image-right-content",
+    "enable_carousel": true,
+    "buttons": [
+      {
+        "title": "No Login Start Creating",
+        "icon": "RiMagicLine",
+        "url": "/#generator",
+        "target": "_self",
+        "variant": "default"
+      }
+    ],
+    "stats": [
+      {
+        "value": "12,847+",
+        "label": "Trusted Miniatur AI Users",
+        "icon": "RiUserLine"
+      },
+      {
+        "value": "89,432+",
+        "label": "Miniature Images Generated",
+        "icon": "RiImageLine"
+      }
+    ],
+    "show_happy_users": true,
+    "show_badge": true
+  },
+  "branding": {
+    "title": "Powered by cutting-edge AI technology",
+    "items": [
+      {
+        "title": "OpenAI",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "OpenAI"
+        }
+      },
+      {
+        "title": "Computer Vision",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "Computer Vision"
+        }
+      },
+      {
+        "title": "Neural Networks",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "Neural Networks"
+        }
+      },
+      {
+        "title": "Machine Learning",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "Machine Learning"
+        }
+      },
+      {
+        "title": "Cloud Processing",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "Cloud Processing"
+        }
+      }
+    ]
+  },
+  "introduce": {
+    "name": "introduce",
+    "title": "What is Miniatur AI",
+    "label": "Introduction",
+    "description": "Miniatur AI is a revolutionary free artificial intelligence platform that transforms ordinary photographs into stunning miniature masterpieces. Using advanced computer vision and machine learning algorithms, our intelligent tool analyzes image composition, depth, and lighting to create professional tilt-shift effects and realistic diorama scenes in seconds. Whether you're a professional photographer, content creator, or hobbyist, Miniatur AI delivers museum-quality miniature transformations with unparalleled precision and speed.",
+    "image": {
+      "src": "/imgs/features/3.png"
+    },
+    "items": [
+      {
+        "title": "AI-Powered Smart Analysis",
+        "description": "Our artificial intelligence system intelligently identifies focal points, depth layers, and spatial relationships in your photos to create authentic miniature effects with perfect blur gradients and professional depth-of-field simulation that matches real tilt-shift photography techniques.",
+        "icon": "RiRobot2Line"
+      },
+      {
+        "title": "Multiple Miniature Styles",
+        "description": "Choose from tilt-shift photography, toy diorama effects, architectural miniature models, and collectible figure styles. Each AI-optimized preset delivers unique miniature characteristics tailored for different photo compositions and creative visions.",
+        "icon": "RiPaletteLine"
+      },
+      {
+        "title": "Instant AI Processing",
+        "description": "Advanced cloud-based artificial intelligence processing delivers professional miniature effects in under 10 seconds. No complex software installation, payment requirements, or technical expertise needed to create stunning results.",
+        "icon": "RiTimeLine"
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "Why Choose Miniatur AI",
+    "label": "Benefits",
+    "description": "Professional photographers and content creators worldwide trust Miniatur AI for superior image analysis, authentic miniature effects, and lightning-fast AI processing. Our artificial intelligence system understands photography principles to deliver results that rival expensive camera equipment and hours of manual editing work.",
+    "items": [
+      {
+        "title": "Professional Quality Miniature Results",
+        "description": "Miniatur AI produces museum-quality miniature effects that maintain proper depth of field, realistic blur patterns, and authentic tilt-shift characteristics found in professional miniature photography. Our AI ensures every transformation meets industry standards.",
+        "icon": "RiStarLine",
+        "image": {
+          "src": "/imgs/features/4.png"
+        }
+      },
+      {
+        "title": "Intelligent Scene Recognition",
+        "description": "Our advanced AI analyzes architectural elements, landscapes, people, and objects to automatically apply the most suitable miniature effect for your specific photo content and composition. Smart artificial intelligence adapts to any scene type.",
+        "icon": "RiBrainLine",
+        "image": {
+          "src": "/imgs/features/6.png"
+        }
+      },
+      {
+        "title": "Effortless Miniature Workflow",
+        "description": "Skip complex photo editing software and expensive equipment. Miniatur AI transforms your photos into professional miniature results with just one click, saving hours of manual work while delivering consistent high-quality outcomes.",
+        "icon": "RiSpeedLine",
+        "image": {
+          "src": "/imgs/features/7.png"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "How to Create Miniatures with Miniatur AI",
+    "description": "Transform your photos into stunning miniature masterpieces in four simple steps. Our Miniatur AI system handles all complex image analysis and processing automatically, delivering professional miniature results every time with artificial intelligence precision.",
+    "image": {
+      "src": "/imgs/features/1.png"
+    },
+    "image_position": "left",
+    "text_align": "center",
+    "items": [
+      {
+        "title": "Upload Your Photo",
+        "description": "Simply drag and drop any JPEG or PNG image up to 10MB. Miniatur AI accepts photos of landscapes, architecture, people, and objects for miniature transformation. Our AI works best with high-resolution images.",
+        "icon": "RiUploadLine"
+      },
+      {
+        "title": "Choose Miniature Style",
+        "description": "Select from our AI-optimized presets: tilt-shift photography, toy diorama, architectural miniature model, or collectible figure style. Each preset is fine-tuned by artificial intelligence for different photo types and compositions.",
+        "icon": "RiSettings3Line"
+      },
+      {
+        "title": "AI Processing Magic",
+        "description": "Our Miniatur AI analyzes depth information, applies intelligent blur effects, and creates authentic miniature characteristics. Advanced artificial intelligence algorithms ensure professional-quality results in seconds.",
+        "icon": "RiMagicLine"
+      },
+      {
+        "title": "Download & Share",
+        "description": "Save your miniature creation in high resolution. Perfect for social media, portfolios, or printing. Share your unique AI-generated miniature art with the world and showcase professional transformation results.",
+        "icon": "RiDownloadLine"
+      }
+    ]
+  },
+  "feature": {
+    "name": "feature",
+    "title": "Advanced Miniatur AI Features",
+    "description": "Discover the powerful artificial intelligence capabilities that make our miniature generator the most advanced AI tool available for photo transformation and creative editing projects.",
+    "items": [
+      {
+        "title": "Smart Depth Detection",
+        "description": "Miniatur AI uses computer vision to analyze image depth and automatically create realistic focal planes, ensuring authentic tilt-shift miniature effects with professional depth-of-field accuracy.",
+        "icon": "RiEyeLine"
+      },
+      {
+        "title": "AI Style Optimization",
+        "description": "Our machine learning algorithms automatically adjust blur intensity, depth of field, and color saturation based on your photo's content and composition for optimal miniature results.",
+        "icon": "RiSettings2Line"
+      },
+      {
+        "title": "Batch Processing",
+        "description": "Upload multiple photos and apply consistent Miniatur AI effects across your entire collection. Perfect for creating cohesive miniature photography series with unified artificial intelligence processing.",
+        "icon": "RiStackLine"
+      },
+      {
+        "title": "High-Resolution Output",
+        "description": "Generate miniature images up to 4K resolution while maintaining crisp details and smooth blur transitions. Professional quality AI processing for any commercial or creative use case.",
+        "icon": "RiHdLine"
+      },
+      {
+        "title": "Real-time Preview",
+        "description": "See your miniature transformation instantly as you adjust settings. Miniatur AI provides immediate feedback for perfect results every time with live artificial intelligence processing.",
+        "icon": "RiLiveLine"
+      },
+      {
+        "title": "Easy Export & Sharing",
+        "description": "Download your miniature creations in multiple formats or share directly to social media platforms. Showcase your AI-generated miniature art effortlessly with professional results.",
+        "icon": "RiShareLine"
+      }
+    ]
+  },
+  "stats": {
+    "name": "stats",
+    "label": "Statistics",
+    "title": "Creators Trust Miniatur AI",
+    "description": "for professional-quality miniature effects and lightning-fast AI processing worldwide.",
+    "icon": "RiHeartLine",
+    "items": [
+      {
+        "title": "Trusted Users",
+        "label": "12,847+",
+        "description": "Creators"
+      },
+      {
+        "title": "Images Generated",
+        "label": "89,432+",
+        "description": "Miniatures"
+      },
+      {
+        "title": "Processing Speed",
+        "label": "<10",
+        "description": "Seconds"
+      }
+    ]
+  },
+  "testimonial": {
+    "name": "testimonial",
+    "label": "Testimonials",
+    "title": "What Creators Say About Miniatur AI",
+    "description": "Real feedback from photographers and artists using Miniatur AI for their creative projects and professional miniature transformations.",
+    "icon": "RiThumbUpLine",
+    "items": [
+      {
+        "title": "Sarah Mitchell",
+        "label": "Professional Photographer",
+        "description": "Miniatur AI delivers results that rival my expensive tilt-shift lens. The artificial intelligence understands depth better than any editing software I've used for miniature photography.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "James Rodriguez",
+        "label": "Content Creator",
+        "description": "This AI is incredible! I create miniature-style content for Instagram in seconds. My engagement increased 300% since using Miniatur AI for social media content creation.",
+        "image": {
+          "src": "/imgs/users/2.png"
+        }
+      },
+      {
+        "title": "Emily Chen",
+        "label": "Digital Artist",
+        "description": "The miniature effects are so realistic. Miniatur AI saves me hours of manual editing while producing professional-quality results every time with advanced artificial intelligence processing.",
+        "image": {
+          "src": "/imgs/users/3.png"
+        }
+      },
+      {
+        "title": "Michael Thompson",
+        "label": "Travel Blogger",
+        "description": "I use Miniatur AI for all my travel photos now. The miniature effects make ordinary scenes look like magical tiny worlds with professional AI transformation quality.",
+        "image": {
+          "src": "/imgs/users/6.png"
+        }
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "label": "FAQ",
+    "title": "Frequently Asked Questions About Miniatur AI",
+    "description": "Have questions about our AI miniature generator? Find answers here or contact our support team for assistance with miniature photo transformations.",
+    "items": [
+      {
+        "title": "How does Miniatur AI create miniature effects?",
+        "description": "Miniatur AI uses advanced computer vision and machine learning algorithms to analyze image depth, identify focal points, and apply authentic tilt-shift effects. Our artificial intelligence understands photography principles to create realistic miniature transformations that rival professional camera equipment and manual editing techniques."
+      },
+      {
+        "title": "What photo types work best with Miniatur AI?",
+        "description": "Miniatur AI works excellently with landscapes, architecture, cityscapes, and aerial photography. Photos with clear depth and interesting subjects produce the most dramatic miniature effects. Our artificial intelligence automatically adapts to different photo compositions for optimal miniature transformation results."
+      },
+      {
+        "title": "Can I use Miniatur AI commercially?",
+        "description": "Yes! All miniature images created with Miniatur AI can be used for commercial purposes including social media marketing, portfolio work, and client projects. You retain full rights to your AI-generated miniature creations and professional transformations."
+      },
+      {
+        "title": "What file formats does Miniatur AI support?",
+        "description": "Miniatur AI accepts JPEG, JPG, PNG, and WebP image formats up to 10MB in size. For best miniature transformation results, we recommend high-resolution photos with good lighting and clear depth of field for optimal AI processing."
+      },
+      {
+        "title": "Is Miniatur AI really free to use?",
+        "description": "Absolutely! Miniatur AI is completely free to use forever with no hidden costs, no signup required, and no watermarks. Enjoy unlimited miniature transformations with professional-quality AI results at zero cost for all your creative projects."
+      }
+    ]
+  },
+  "cta": {
+    "name": "cta",
+    "title": "Transform Your Photos with Free Miniatur AI Today",
+    "description": "Join thousands of creators using our free artificial intelligence to create stunning miniature photography effects. Start your free miniature transformation journey now with advanced AI technology - no payment, no signup required!",
+    "buttons": [
+      {
+        "title": "Start Free Now",
+        "icon": "RiGiftLine",
+        "url": "/#generator",
+        "target": "_self",
+        "variant": "default"
+      }
+    ]
+  },
+  "footer": {
+    "name": "footer",
+    "brand": {
+      "title": "Miniatur AI",
+      "description": "Miniatur AI transforms ordinary photos into extraordinary miniature masterpieces using advanced artificial intelligence technology. Create professional tilt-shift effects, diorama scenes, and collectible-style miniatures in seconds with our revolutionary AI platform.",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "Miniatur AI"
+      },
+      "url": "/"
+    },
+    "copyright": "© 2025 • Miniatur AI. All rights reserved.",
+    "nav": {
+      "items": [
+        {
+          "title": "Miniature Generator",
+          "url": "/#generator"
+        },
+        {
+          "title": "AI Features",
+          "url": "/#features"
+        },
+        {
+          "title": "How It Works",
+          "url": "/#usage"
+        }
+      ]
+    },
+    "social": {
+      "items": [
+        {
+          "title": "X",
+          "icon": "RiTwitterXFill",
+          "url": "https://x.com/miniaturaiapp",
+          "target": "_blank"
+        },
+        {
+          "title": "Github",
+          "icon": "RiGithubFill",
+          "url": "https://github.com/miniaturaiapp",
+          "target": "_blank"
+        },
+        {
+          "title": "Discord",
+          "icon": "RiDiscordFill",
+          "url": "https://discord.gg/miniaturaiapp",
+          "target": "_blank"
+        },
+        {
+          "title": "Email",
+          "icon": "RiMailLine",
+          "url": "mailto:support@miniaturaiapp.com",
+          "target": "_self"
+        }
+      ]
+    },
+    "badges": [
+      {
+        "title": "Featured on Startup Fame",
+        "url": "https://startupfa.me/s/miniatur-ai?utm_source=miniatur.org",
+        "target": "_blank",
+        "image": {
+          "src": "https://startupfa.me/badges/featured-badge.webp",
+          "alt": "Featured on Startup Fame",
+          "width": 171,
+          "height": 54
+        }
+      },
+      {
+        "title": "Featured on Twelve Tools",
+        "url": "https://twelve.tools",
+        "target": "_blank", 
+        "image": {
+          "src": "https://twelve.tools/badge0-white.svg",
+          "alt": "Featured on Twelve Tools",
+          "width": 200,
+          "height": 54
+        }
+      },
+      {
+        "title": "Listed on Turbo0",
+        "url": "https://turbo0.com/item/miniatur-ai",
+        "target": "_blank",
+        "image": {
+          "src": "https://img.turbo0.com/badge-listed-light.svg",
+          "alt": "Listed on Turbo0",
+          "width": 200,
+          "height": 54
+        }
+      },
+      {
+        "title": "Featured on ShowMeBestAI",
+        "url": "https://www.showmebest.ai",
+        "target": "_blank",
+        "image": {
+          "src": "https://www.showmebest.ai/badge/feature-badge-white.webp",
+          "alt": "Featured on ShowMeBestAI",
+          "width": 220,
+          "height": 60
+        }
+      },
+      {
+        "title": "Submit AI Tools",
+        "url": "https://submitaitools.org",
+        "target": "_blank",
+        "image": {
+          "src": "https://submitaitools.org/static_submitaitools/images/submitaitools.png",
+          "alt": "Submit AI Tools – The ultimate platform to discover, submit, and explore the best AI tools across various categories.",
+          "width": 200,
+          "height": 60
+        }
+      }
+    ],
+    "agreement": {
+      "items": [
+        {
+          "title": "Privacy Policy",
+          "url": "/privacy-policy"
+        },
+        {
+          "title": "Terms of Service",
+          "url": "/terms-of-service"
+        },
+        {
+          "title": "AIStage",
+          "url": "https://aistage.net",
+          "target": "_blank"
+        },
+        {
+          "title": "AI Toolz Dir",
+          "url": "https://www.aitoolzdir.com",
+          "target": "_blank"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "metadata": {
+    "title": "Sobre Wplace Pixel - Ferramenta Líder de Conversor de Arte Pixel Gratuito",
+    "description": "Saiba mais sobre Wplace Pixel, a ferramenta gratuita #1 para converter imagens em pixel art Wplace. Construído pela comunidade, conversor focado em privacidade com suporte oficial à paleta de 64 cores.",
+    "keywords": ["sobre wplace pixel", "conversor wplace pixel", "ferramenta pixel art gratuita", "conversor arte wplace", "conversor imagem para pixel", "paleta cores wplace", "gerador pixel art"]
+  },
+  "title": "Sobre Wplace Pixel",
+  "intro": "Wplace Pixel é a ferramenta definitiva de pixel art especificamente projetada para Wplace.live. Nosso conversor transforma suas fotos em pixel art perfeita que se integra perfeitamente à tela colaborativa global, permitindo que você crie obras de arte impressionantes no mapa mundial.",
+  "story": {
+    "title": "Nossa História",
+    "content": "Wplace Pixel nasceu da paixão dos membros da comunidade Wplace que queriam criar pixel art mais detalhada e precisa no jogo. Notamos que os jogadores lutavam para converter suas imagens favoritas para a paleta limitada de cores do Wplace, então desenvolvemos esta ferramenta para ajudar os jogadores a transformar facilmente suas ideias criativas em obras de arte pixel-perfeitas."
+  },
+  "mission": {
+    "title": "Nossa Missão",
+    "empowerment": {
+      "title": "Empoderamento Através de Ferramentas",
+      "description": "Acreditamos que todo jogador Wplace deve ter acesso a ferramentas de nível profissional que melhorem sua experiência criativa, independentemente de seu histórico técnico."
+    },
+    "community": {
+      "title": "Comunidade em Primeiro Lugar",
+      "description": "Construído pela comunidade, para a comunidade. Nossas ferramentas são gratuitas e abertas, projetadas para servir a comunidade de jogadores Wplace sem barreiras."
+    },
+    "privacy": {
+      "title": "Privacidade por Design",
+      "description": "Todo processamento acontece localmente em seu navegador. Suas imagens nunca deixam seu dispositivo, garantindo privacidade e segurança completas."
+    },
+    "innovation": {
+      "title": "Inovação Contínua",
+      "description": "Melhoramos continuamente nossos algoritmos e recursos com base no feedback da comunidade e nas necessidades em evolução dos jogadores Wplace."
+    }
+  },
+  "features": {
+    "title": "Nossos Recursos",
+    "fast": {
+      "title": "Processamento Ultrarrápido",
+      "description": "Algoritmos avançados processam imagens instantaneamente, fornecendo visualização em tempo real de sua pixel art Wplace."
+    },
+    "matching": {
+      "title": "Correspondência Perfeita",
+      "description": "Nosso algoritmo de correspondência de cores garante a correspondência mais próxima possível com a paleta oficial de cores Wplace."
+    },
+    "global": {
+      "title": "Suporte Global",
+      "description": "Suporte multilíngue torna fácil para jogadores Wplace em todo o mundo criar pixel art."
+    }
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "description": "Tem sugestões, encontrou um bug ou quer contribuir? Adoraríamos ouvir da comunidade Wplace!",
+    "notice": "Aviso Importante: Este é um site não oficial e independente criado por fãs para abordar pontos problemáticos da comunidade. Não somos afiliados ou endossados pela plataforma oficial Wplace. Esta ferramenta é criada por fãs, para fãs, para melhorar a experiência de criação de pixel art."
+  },
+  "ready": {
+    "title": "Pronto para Começar a Criar?",
+    "description": "Agora que você sabe mais sobre Wplace Pixel, é hora de experimentar nossas ferramentas em primeira mão! Visite nossa",
+    "homepage_link": "página inicial principal do Wplace Pixel",
+    "description_continued": "para acessar nosso gerador completo de pixel art, conversor de cores e ferramentas avançadas de planejamento projetadas especificamente para criadores Wplace.live.",
+    "subtitle": "Transforme suas ideias criativas em pixel art impressionante - completamente gratuito e com privacidade em primeiro lugar!"
+  },
+  "footer": {
+    "copyright": "© 2025 Wplace Pixel - Gratuito para usar, nenhuma propriedade reivindicada sobre obras de arte geradas",
+    "privacy": "Processamento no lado do cliente protege sua privacidade"
+  }
+}

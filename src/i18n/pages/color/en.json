@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "title": "Wplace Color Converter - Free Online 64-Color Palette Tool | Convert Images to Wplace Colors",
+    "description": "100% Free Wplace Color Converter. Convert any image to pixel art using Wplace's official 64-color palette. Privacy-first processing, no size limits. Professional Wplace color conversion tool.",
+    "keywords": ["Wplace Color Converter", "Wplace color palette", "Wplace pixel art converter", "free color converter", "64 color palette", "Wplace.live colors", "image to Wplace colors", "pixel art generator", "Wplace color conversion", "online color converter", "free pixel art tool", "Wplace color tool", "premium Wplace colors", "standard Wplace colors"]
+  },
+  "loading": "Loading Wplace Color Converter...",
+  "hero": {
+    "badge": "Official Wplace Tool",
+    "title": "Wplace Color Converter",
+    "description": "Convert any image to stunning pixel art using Wplace's official 64-color palette",
+    "features": {
+      "quality": "Professional Quality",
+      "privacy": "Privacy First", 
+      "preview": "Real-time Preview"
+    }
+  },
+  "upload": {
+    "title": "Image Upload & Preview",
+    "heading": "Upload Your Image",
+    "description": "Drag and drop or click to select",
+    "support": "Supports: PNG, JPG, JPEG, WebP • Max 10MB",
+    "processing": "Processing...",
+    "download": "Download PNG"
+  },
+  "settings": {
+    "title": "Settings",
+    "pixel_size": "Pixel Size",
+    "preview_scale": "Preview Scale",
+    "show_grid": "Show Grid"
+  },
+  "status": {
+    "title": "Status",
+    "image_loaded": "Image Loaded",
+    "file": "File",
+    "size": "Size",
+    "colors_used": "Colors Used in This Image",
+    "total": "Total",
+    "free": "Free",
+    "premium": "Premium",
+    "no_image": "No image uploaded",
+    "upload_to_start": "Upload an image to get started",
+    "description": "These are all the colors from the Wplace color palette used in your generated image. Premium colors (with lock icons) need to be purchased on the official website."
+  },
+  "palette": {
+    "title": "Wplace Color Palette - Complete 64-Color Collection",
+    "premium_section": "Premium colors require purchase on Wplace.live",
+    "premium_identification": "Our Wplace Color Converter accurately identifies premium color usage in your converted images.",
+    "standard_colors": "Standard Colors - Free to Use",
+    "standard_description": "These colors form the foundation of the Wplace Color Converter palette system.",
+    "integration_title": "Complete Wplace Color Palette Integration",
+    "integration_description": "Our Wplace Color Converter uses the complete official 64-color Wplace palette to ensure perfect compatibility with the collaborative canvas platform."
+  },
+  "why_choose": {
+    "title": "Why Choose Wplace Color Converter?",
+    "free": {
+      "title": "100% Free Color Converter",
+      "description": "Convert unlimited images to Wplace colors with our advanced Wplace Color Converter technology. No hidden fees, no registration required, completely free forever."
+    },
+    "privacy": {
+      "title": "Privacy First Processing",
+      "description": "All image processing happens locally in your browser. Your images never leave your device, ensuring complete privacy and security."
+    },
+    "accuracy": {
+      "title": "Perfect Color Accuracy",
+      "description": "Our algorithms precisely match colors to the official Wplace.live palette, ensuring perfect compatibility with the collaborative canvas."
+    }
+  },
+  "how_to_use": {
+    "title": "How to Use Wplace Color Converter",
+    "description": "Convert images to Wplace colors in 4 simple steps with our advanced color conversion technology",
+    "steps": {
+      "upload": {
+        "title": "Upload Image",
+        "description": "Select or drag & drop your image file. Supports PNG, JPG, JPEG, WebP formats up to 10MB."
+      },
+      "convert": {
+        "title": "Auto Convert",
+        "description": "Our Wplace Color Converter automatically processes your image using the official 64-color palette."
+      },
+      "analyze": {
+        "title": "Analyze Colors",
+        "description": "View detailed color breakdown showing free vs premium colors used in your converted image."
+      },
+      "download": {
+        "title": "Download Result",
+        "description": "Export your Wplace-optimized image and start building on the collaborative canvas immediately."
+      }
+    }
+  },
+  "why_choose_details": {
+    "free": {
+      "prefix": "Wplace color converter is completely free to use. No hidden costs, no subscriptions.",
+      "suffix": "Experience professional-grade Wplace pixel art conversion without any payment barriers."
+    },
+    "privacy": {
+      "description": "All image conversion happens in your browser. Your images never leave your device with our secure Wplace Color Converter. Protect your creative work while converting to Wplace colors. Our privacy-focused Wplace color conversion ensures complete data security and confidentiality."
+    },
+    "interface": {
+      "title": "Easy Color Converter Interface",
+      "description": "Intuitive interface makes image to Wplace color conversion accessible to everyone. No technical skills required with our user-friendly Wplace Color Converter. Simple drag-and-drop functionality for instant Wplace color palette conversion and analysis."
+    },
+    "no_limits": {
+      "title": "No Size Limits Processing",
+      "description": "Upload images of any size. Our color converter handles everything from small icons to large artwork. Process high-resolution images with the Wplace Color Converter without restrictions. Convert massive pixel art projects to Wplace colors efficiently and accurately."
+    }
+  },
+  "cta": {
+    "title": "Start Converting to Wplace Colors Today!",
+    "description": "Experience the power of professional Wplace color conversion. Our Wplace Color Converter delivers industry-leading accuracy and speed for all your pixel art projects. Transform any image into stunning Wplace-compatible artwork in seconds.",
+    "button": "Try Wplace Color Converter Now"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about the Wplace Color Converter",
+    "items": [
+      {
+        "question": "What image formats does the color converter support?",
+        "answer": "Our color converter supports PNG, JPG, JPEG, and WebP formats. You can upload images of any size, and the color converter will automatically process them using Wplace's color palette."
+      },
+      {
+        "question": "Is the Wplace Color Converter free to use?",
+        "answer": "Yes! Our color converter is completely free to use. There are no hidden costs, subscriptions, or limitations on the number of images you can convert to Wplace colors."
+      },
+      {
+        "question": "How does the color size slider work?",
+        "answer": "The color size slider controls how large each color block appears in your final artwork. Smaller values (1-8) create more detailed color patterns, while larger values (16-32) create more abstract, blocky designs using Wplace's color palette."
+      },
+      {
+        "question": "Are my images safe and private?",
+        "answer": "Absolutely! All image processing happens in your browser. Your images never leave your device or get uploaded to our servers. Your privacy is our top priority."
+      },
+      {
+        "question": "What's the difference between small and large download options?",
+        "answer": "The small version is color-perfect at the exact size you created, ideal for digital use. The large version is scaled up for better visibility and printing, while maintaining the Wplace color palette aesthetic."
+      },
+      {
+        "question": "Can I use the result directly in Wplace?",
+        "answer": "Yes. The converter uses the official Wplace palette, so your downloads are fully compatible with Wplace projects."
+      },
+      {
+        "question": "What other Wplace tools are available?",
+        "answer": "Beyond our color converter, we offer a comprehensive suite of Wplace tools. Visit our main Wplace Pixel homepage to discover our complete pixel art generator, advanced grid planning tools, and other professional features designed to enhance your Wplace.live experience."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Players Say",
+    "subtitle": "Real feedback from creators using the Wplace Color Converter",
+    "items": [
+      {
+        "rating": "★★★★★",
+        "text": "Amazing tool! I use it to create perfect Wplace‑compatible pixel art. The palette matching is spot on and the workflow is super simple.",
+        "author": "Sarah C."
+      },
+      {
+        "rating": "★★★★★",
+        "text": "Finally a converter that truly matches the official Wplace colors. Instant uploads, instant results, and everything stays on my device.",
+        "author": "Alex R."
+      },
+      {
+        "rating": "★★★★★",
+        "text": "Privacy‑first processing gives me peace of mind. It's fast, accurate, and the downloads drop straight into my Wplace builds.",
+        "author": "Diego M."
+      }
+    ]
+  }
+}
