@@ -5,11 +5,11 @@
   "build": {
     "command": "pnpm run cf:build"
   },
-  // 由 next-on-pages 生成的 Worker 入口
-  "main": ".vercel/output/static/_worker.js",
-  // 静态资源目录
+  // 由 OpenNext Cloudflare 生成
+  "main": ".open-next/worker.js",
+  // 静态资源目录（OpenNext 输出）
   "assets": {
-    "directory": ".vercel/output/static"
+    "directory": ".open-next/assets"
   }
 }
 
