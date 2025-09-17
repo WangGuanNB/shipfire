@@ -1,11 +1,12 @@
 // OpenNext 配置（Cloudflare 适配器）
 // 目的：避免构建时的交互式提示（CI 环境会卡住）
-import type { OpenNextConfig } from "@opennextjs/cloudflare";
+// 注意：这里不用引入任何类型，避免 Next 类型检查时找不到包的声明导致失败。
 
-export default {
+const config = {
   // 输出目录保持与 wrangler.jsonc 一致
   outDir: ".open-next",
-  // 其余使用默认配置即可；如需按需绑定 D1/KV/R2 等，可后续在此扩展
-} satisfies OpenNextConfig;
+};
+
+export default config;
 
 
