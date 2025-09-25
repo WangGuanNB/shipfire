@@ -7,7 +7,8 @@ import Feature2 from "@/components/blocks/feature2";
 import Feature3 from "@/components/blocks/feature3";
 import Hero from "@/components/blocks/hero";
 import MiniaturaAIHero from "@/components/blocks/miniatura-ai-hero";
-import MiniaturaAIGenerator from "@/components/blocks/miniatur-ai-generator";
+import FeatureWhatOne from "@/components/blocks/feature-what-one";
+import Feature2WhyOne from "@/components/blocks/feature2-why-one";
 import Pricing from "@/components/blocks/pricing";
 import Showcase from "@/components/blocks/showcase";
 import Stats from "@/components/blocks/stats";
@@ -51,25 +52,51 @@ export default async function LandingPage({
 
   return (
     <>
-      {/* 原有Hero组件 -标准版 */}
+      {/* 原有Hero组件 -标准版 ------------------------------------------------*/}
       {/* {page.hero && <Hero hero={page.hero} />} */}
-      
-      {/* 新的Miniatur AI Hero组件-适用图片类的网站 */}
+      {/* 图片类的网站 */}
       {page.hero && <MiniaturaAIHero hero={page.hero as any} />}
+
+      {/* 工具页 ------------------------------------------------*/}
       {/* <TestPaymentModal /> */}
-      {/* Miniatur AI 图片生成器 */}
-      <MiniaturaAIGenerator />
+      {/*I 图片生成器 */}
+      {/* <MiniaturaAIGenerator /> */}
+    
+
       {/* {page.branding && <Branding section={page.branding} />} */}
-      {page.introduce && <Feature1 section={page.introduce} />}
-      {page.benefit && <Feature2 section={page.benefit} />}
+
+      {/* 介绍页，what------------------------------------------------ */}
+      {/* <带图片 /> */}
+      {/* {page.introduce && <Feature1 section={page.introduce} />} */}
+      {/* <不带图片 /> */}
+      {page.introduce && <FeatureWhatOne section={page.introduce} />}
+
+      {/* 为什么选择页，why------------------------------------------------ */}
+        {/* <带图片 /> */}
+      {/* {page.benefit && <Feature2 section={page.benefit} />} */}
+        {/* <不带图片 /> */}
+      {page.benefit && <Feature2WhyOne section={page.benefit} />}
+
+      {/* 使用流程页，------------------------------------------------ */}
       {page.usage && <Feature3 section={page.usage} />}
+
+
+      {/* 特色功能页， ------------------------------------------------- */}
       {page.feature && <Feature section={page.feature} />}
-      {page.showcase && <Showcase section={page.showcase} />}
+       
+      {/* 用户问答页， ------------------------------------------------- */}
+      {page.faq && <FAQ section={page.faq} />}
+      
+      
+      {/* 哈牛皮页， ------------------------------------------------- */}
+      {page.cta && <CTA section={page.cta} />}
+
+      {/* {page.showcase && <Showcase section={page.showcase} />} */}
       {/* {page.stats && <Stats section={page.stats} />} */}
       {/* {page.pricing && <Pricing pricing={page.pricing} />} */}
       {/* {page.testimonial && <Testimonial section={page.testimonial} />} */}
-      {page.faq && <FAQ section={page.faq} />}
-      {page.cta && <CTA section={page.cta} />}
+    
+    
     </>
   );
 }
