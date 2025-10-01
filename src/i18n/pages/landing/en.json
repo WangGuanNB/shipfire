@@ -22,7 +22,7 @@
     "buttons": [],
     "show_sign": true,
     "show_theme": true,
-    "show_locale": true
+    "show_locale": false
   },
   "hero": {
     "title": "Transform Photos into Miniature Masterpieces with Miniatur AI",
@@ -69,8 +69,8 @@
         "icon": "RiImageLine"
       }
     ],
-    "show_happy_users": true,
-    "show_badge": true
+    "show_happy_users": false,
+    "show_badge": false
   },
   "branding": {
     "title": "Powered by cutting-edge AI technology",
