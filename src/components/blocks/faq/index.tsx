@@ -1,4 +1,10 @@
 import { Badge } from "@/components/ui/badge";
+import { 
+  Accordion, 
+  AccordionContent, 
+  AccordionItem, 
+  AccordionTrigger 
+} from "@/components/ui/accordion";
 import { Section as SectionType } from "@/types/blocks/section";
 
 export default function FAQ({ section }: { section: SectionType }) {
@@ -7,33 +13,48 @@ export default function FAQ({ section }: { section: SectionType }) {
   }
 
   return (
-    <section id={section.name} className="py-16">
+    <section id={section.name} className="py-16 bg-muted/20">
       <div className="container">
-        <div className="text-center">
+        <div className="text-center mb-16">
           {section.label && (
-            <Badge className="text-xs font-medium">{section.label}</Badge>
+            <Badge variant="outline" className="mb-4 text-sm font-medium">
+              {section.label}
+            </Badge>
           )}
-          <h2 className="mt-4 text-4xl font-semibold">{section.title}</h2>
-          <p className="mt-6 font-medium text-muted-foreground">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl mb-2">
+            {section.title}
+          </h2>
+          <p className="mx-auto max-w-4xl text-lg text-muted-foreground">
             {section.description}
           </p>
         </div>
-        <div className="mx-auto mt-14 grid gap-8 md:grid-cols-2 md:gap-12">
-          {section.items?.map((item, index) => (
-            <div key={index} className="flex gap-4">
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-sm border border-primary font-mono text-xs text-primary">
-                {index + 1}
-              </span>
-              <div>
-                <div className="mb-2 flex items-center justify-between">
-                  <h3 className="font-semibold">{item.title}</h3>
-                </div>
-                <p className="text-md text-muted-foreground">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          ))}
+        
+        <div className="mx-auto max-w-4xl">
+          <Accordion type="multiple" className="w-full">
+            {section.items?.map((item, index) => (
+              <AccordionItem 
+                key={index} 
+                value={`item-${index}`}
+                className="border-b border-border/40"
+              >
+                <AccordionTrigger className="text-left hover:no-underline group">
+                  <div className="flex items-center gap-4">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 font-mono text-sm font-semibold text-primary group-hover:bg-primary/20 transition-colors">
+                      {index + 1}
+                    </span>
+                    <span className="text-base font-semibold group-hover:text-primary transition-colors">
+                      {item.title}
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-6 pl-12">
+                  <p className="text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </section>

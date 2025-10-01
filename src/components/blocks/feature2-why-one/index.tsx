@@ -47,7 +47,7 @@ export default function Feature2WhyOne({ section }: { section: SectionType }) {
           {section.items && (
             <div className={getGridClass(section.items.length)}>
               {section.items.map((item, i) => (
-                <div key={i} className="text-center group">
+                <div key={i} className="text-center group h-full flex flex-col">
                   <div className="mx-auto mb-6 flex size-16 items-center justify-center cursor-pointer">
                     <div className="relative flex size-full items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1">
                       <div className="absolute inset-0 bg-primary rounded-2xl shadow-lg transition-all duration-300 group-hover:shadow-xl"></div>
@@ -63,17 +63,19 @@ export default function Feature2WhyOne({ section }: { section: SectionType }) {
                     </div>
                   </div>
 
-                  <div className="space-y-4 transition-all duration-300 group-hover:transform group-hover:-translate-y-1">
-                    {item.title && (
-                      <h3 className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary">
-                        {item.title}
-                      </h3>
-                    )}
-                    {item.description && (
-                      <p className="text-muted-foreground leading-relaxed text-sm px-2">
-                        {item.description}
-                      </p>
-                    )}
+                  <div className="space-y-4 transition-all duration-300 group-hover:transform group-hover:-translate-y-1 flex-1 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      {item.title && (
+                        <h3 className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary">
+                          {item.title}
+                        </h3>
+                      )}
+                      {item.description && (
+                        <p className="text-muted-foreground leading-relaxed text-sm px-2">
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}

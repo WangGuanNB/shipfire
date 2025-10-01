@@ -20,12 +20,14 @@ export default function Feature({ section }: { section: SectionType }) {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {section.items?.map((item, i) => (
             <div key={i} className="flex flex-col">
-              {item.icon && (
-                <div className="mb-5 flex size-16 items-center justify-center rounded-full border border-primary">
-                  <Icon name={item.icon} className="size-8 text-primary" />
-                </div>
-              )}
-              <h3 className="mb-2 text-xl font-semibold">{item.title}</h3>
+              <div className="flex items-center gap-4 mb-4">
+                {item.icon && (
+                  <div className="flex size-14 items-center justify-center rounded-full border border-primary shrink-0">
+                    <Icon name={item.icon} className="size-7 text-primary" />
+                  </div>
+                )}
+                <h3 className="text-xl font-semibold">{item.title}</h3>
+              </div>
               <p className="text-muted-foreground">{item.description}</p>
             </div>
           ))}

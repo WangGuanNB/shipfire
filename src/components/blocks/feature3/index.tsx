@@ -11,7 +11,7 @@ export default function Feature3({ section }: { section: SectionType }) {
   return (
     <section className="py-16">
       <div className="container px-8">
-        <div className="mb-16 max-w-xl px-8 lg:px-0 text-center mx-auto">
+        <div className="mb-16 max-w-6xl px-8 lg:px-0 text-center mx-auto">
           {section.label && (
             <Badge variant="outline" className="mb-4">
               {section.label}
@@ -20,7 +20,7 @@ export default function Feature3({ section }: { section: SectionType }) {
           <h2 className="mb-6 text-pretty text-3xl font-bold lg:text-4xl">
             {section.title}
           </h2>
-          <p className="mb-4 max-w-xl text-muted-foreground lg:max-w-none lg:text-lg">
+          <p className="mb-4 max-w-4xl text-muted-foreground lg:text-lg mx-auto">
             {section.description}
           </p>
         </div>
