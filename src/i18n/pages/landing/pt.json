@@ -16,21 +16,6 @@
           "title": "Início",
           "url": "/",
           "icon": "RiHomeLine"
-        },
-        {
-          "title": "Gerador",
-          "url": "/#generator",
-          "icon": "RiImageLine"
-        },
-        {
-          "title": "Recursos",
-          "url": "/#features",
-          "icon": "RiStarLine"
-        },
-        {
-          "title": "FAQ",
-          "url": "/#faq",
-          "icon": "RiQuestionLine"
         }
       ]
     },

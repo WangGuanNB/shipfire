@@ -16,21 +16,6 @@
           "title": "首页",
           "url": "/",
           "icon": "RiHomeLine"
-        },
-        {
-          "title": "生成器",
-          "url": "/#generator",
-          "icon": "RiImageLine"
-        },
-        {
-          "title": "功能特色",
-          "url": "/#features",
-          "icon": "RiStarLine"
-        },
-        {
-          "title": "常见问题",
-          "url": "/#faq",
-          "icon": "RiQuestionLine"
         }
       ]
     },

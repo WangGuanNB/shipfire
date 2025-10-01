@@ -152,7 +152,7 @@ export default function MiniaturaAIHero({ hero }: { hero: MiniaturaAIHeroType })
           </div>
 
           {/* 中间徽章区域 */}
-          {hero.badges && (
+          {/* {hero.badges && (
             <div className="flex flex-wrap gap-4 justify-center mb-12">
               {hero.badges.map((badge, index) => (
                 <Badge
@@ -165,7 +165,7 @@ export default function MiniaturaAIHero({ hero }: { hero: MiniaturaAIHeroType })
                 </Badge>
               ))}
             </div>
-          )}
+          )} */}
 
           {/* 下方左图右内容布局 */}
           {hero.layout === "left-image-right-content" ? (

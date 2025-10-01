@@ -16,21 +16,6 @@
           "title": "Laman Utama",
           "url": "/",
           "icon": "RiHomeLine"
-        },
-        {
-          "title": "Penjana",
-          "url": "/#generator",
-          "icon": "RiImageLine"
-        },
-        {
-          "title": "Ciri-ciri",
-          "url": "/#features",
-          "icon": "RiStarLine"
-        },
-        {
-          "title": "Soalan Lazim",
-          "url": "/#faq",
-          "icon": "RiQuestionLine"
         }
       ]
     },

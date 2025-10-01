@@ -16,9 +16,13 @@ export default async function DefaultLayout({
 
   return (
     <>
+      {/* 头部导航栏*/}
       {page.header && <Header header={page.header} />}
+      {/* 中间内容页*/}
       <main className="overflow-x-hidden">{children}</main>
+      {/* 底部导航栏*/}
       {page.footer && <Footer footer={page.footer} />}
+      {/* 悬浮信息按钮*/}
       {/* <Feedback socialLinks={page.footer?.social?.items} /> */}
     </>
   );
