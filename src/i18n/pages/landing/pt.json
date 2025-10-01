@@ -33,23 +33,7 @@
       "title": "SEM LOGIN NECESSÁRIO",
       "url": "/#features"
     },
-    "badges": [
-      {
-        "label": "100% GRÁTIS",
-        "icon": "RiStarLine",
-        "color": "green"
-      },
-      {
-        "label": "SEM LOGIN NECESSÁRIO",
-        "icon": "RiUserLine", 
-        "color": "blue"
-      },
-      {
-        "label": "NANO BANANA",
-        "icon": "RiLeafLine",
-        "color": "purple"
-      }
-    ],
+  
     "images": [
       {
         "src": "/imgs/features/1.png",
@@ -377,15 +361,15 @@
     "nav": {
       "items": [
         {
-          "title": "Gerador de Miniaturas",
-          "url": "/#generator"
+          "title": "Sobre",
+          "url": "/about"
         },
         {
-          "title": "Recursos AI",
+          "title": "Recursos",
           "url": "/#features"
         },
         {
-          "title": "Como Funciona",
+          "title": "Amigos",
           "url": "/#usage"
         }
       ]
@@ -419,39 +403,7 @@
       ]
     },
     "badges": [
-      {
-        "title": "Destacado no Startup Fame",
-        "url": "https://startupfa.me/s/miniatur-ai?utm_source=miniatur.org",
-        "target": "_blank",
-        "image": {
-          "src": "https://startupfa.me/badges/featured-badge.webp",
-          "alt": "Destacado no Startup Fame",
-          "width": 171,
-          "height": 54
-        }
-      },
-      {
-        "title": "Destacado no Twelve Tools",
-        "url": "https://twelve.tools",
-        "target": "_blank", 
-        "image": {
-          "src": "https://twelve.tools/badge0-white.svg",
-          "alt": "Destacado no Twelve Tools",
-          "width": 200,
-          "height": 54
-        }
-      },
-      {
-        "title": "Listado no Turbo0",
-        "url": "https://turbo0.com/item/miniatur-ai",
-        "target": "_blank",
-        "image": {
-          "src": "https://img.turbo0.com/badge-listed-light.svg",
-          "alt": "Listado no Turbo0",
-          "width": 200,
-          "height": 54
-        }
-      }
+      
     ],
     "agreement": {
       "items": [
@@ -462,11 +414,6 @@
         {
           "title": "Termos de Serviço",
           "url": "/terms-of-service"
-        },
-        {
-          "title": "AIStage",
-          "url": "https://aistage.net",
-          "target": "_blank"
         }
       ]
     }

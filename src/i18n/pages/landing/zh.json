@@ -33,23 +33,7 @@
       "title": "无需登录",
       "url": "/#features"
     },
-    "badges": [
-      {
-        "label": "100% 免费",
-        "icon": "RiStarLine",
-        "color": "green"
-      },
-      {
-        "label": "无需登录", 
-        "icon": "RiUserLine",
-        "color": "blue"
-      },
-      {
-        "label": "纳米香蕉",
-        "icon": "RiLeafLine",
-        "color": "purple"
-      }
-    ],
+  
     "images": [
       {
         "src": "/imgs/features/1.png",
@@ -377,15 +361,15 @@
     "nav": {
       "items": [
         {
-          "title": "微缩生成器",
-          "url": "/#generator"
+          "title": "关于",
+          "url": "/about"
         },
         {
-          "title": "AI功能",
+          "title": "资源",
           "url": "/#features"
         },
         {
-          "title": "工作原理",
+          "title": "朋友",
           "url": "/#usage"
         }
       ]
@@ -419,39 +403,7 @@
       ]
     },
     "badges": [
-      {
-        "title": "Startup Fame 推荐",
-        "url": "https://startupfa.me/s/miniatur-ai?utm_source=miniatur.org",
-        "target": "_blank",
-        "image": {
-          "src": "https://startupfa.me/badges/featured-badge.webp",
-          "alt": "Startup Fame 推荐",
-          "width": 171,
-          "height": 54
-        }
-      },
-      {
-        "title": "Twelve Tools 推荐",
-        "url": "https://twelve.tools",
-        "target": "_blank", 
-        "image": {
-          "src": "https://twelve.tools/badge0-white.svg",
-          "alt": "Twelve Tools 推荐",
-          "width": 200,
-          "height": 54
-        }
-      },
-      {
-        "title": "Turbo0 收录",
-        "url": "https://turbo0.com/item/miniatur-ai",
-        "target": "_blank",
-        "image": {
-          "src": "https://img.turbo0.com/badge-listed-light.svg",
-          "alt": "Turbo0 收录",
-          "width": 200,
-          "height": 54
-        }
-      }
+      
     ],
     "agreement": {
       "items": [
@@ -462,11 +414,6 @@
         {
           "title": "服务条款",
           "url": "/terms-of-service"
-        },
-        {
-          "title": "AIStage",
-          "url": "https://aistage.net",
-          "target": "_blank"
         }
       ]
     }

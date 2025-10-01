@@ -21,7 +21,7 @@
     },
     "buttons": [],
     "show_sign": true,
-    "show_theme": false,
+    "show_theme": true,
     "show_locale": true
   },
   "hero": {
@@ -33,23 +33,7 @@
       "title": "NO LOGIN REQUIRED",
       "url": "/#features"
     },
-    "badges": [
-      {
-        "label": "100% FREE",
-        "icon": "RiStarLine",
-        "color": "green"
-      },
-      {
-        "label": "NO LOGIN REQUIRED",
-        "icon": "RiUserLine", 
-        "color": "blue"
-      },
-      {
-        "label": "NANO BANANA",
-        "icon": "RiLeafLine",
-        "color": "purple"
-      }
-    ],
+   
     "images": [
       {
         "src": "/imgs/features/1.png",
@@ -377,16 +361,28 @@
     "nav": {
       "items": [
         {
-          "title": "Miniature Generator",
-          "url": "/#generator"
+          "title": "About",
+          "children": [
+            {
+             
+            }
+          ]
         },
         {
-          "title": "AI Features",
-          "url": "/#features"
+          "title": "Resources", 
+          "children": [
+            {
+              
+            }
+          ]
         },
         {
-          "title": "How It Works",
-          "url": "/#usage"
+          "title": "Friends",
+          "children": [
+            {
+             
+            }
+          ]
         }
       ]
     },
@@ -419,61 +415,7 @@
       ]
     },
     "badges": [
-      {
-        "title": "Featured on Startup Fame",
-        "url": "https://startupfa.me/s/miniatur-ai?utm_source=miniatur.org",
-        "target": "_blank",
-        "image": {
-          "src": "https://startupfa.me/badges/featured-badge.webp",
-          "alt": "Featured on Startup Fame",
-          "width": 171,
-          "height": 54
-        }
-      },
-      {
-        "title": "Featured on Twelve Tools",
-        "url": "https://twelve.tools",
-        "target": "_blank", 
-        "image": {
-          "src": "https://twelve.tools/badge0-white.svg",
-          "alt": "Featured on Twelve Tools",
-          "width": 200,
-          "height": 54
-        }
-      },
-      {
-        "title": "Listed on Turbo0",
-        "url": "https://turbo0.com/item/miniatur-ai",
-        "target": "_blank",
-        "image": {
-          "src": "https://img.turbo0.com/badge-listed-light.svg",
-          "alt": "Listed on Turbo0",
-          "width": 200,
-          "height": 54
-        }
-      },
-      {
-        "title": "Featured on ShowMeBestAI",
-        "url": "https://www.showmebest.ai",
-        "target": "_blank",
-        "image": {
-          "src": "https://www.showmebest.ai/badge/feature-badge-white.webp",
-          "alt": "Featured on ShowMeBestAI",
-          "width": 220,
-          "height": 60
-        }
-      },
-      {
-        "title": "Submit AI Tools",
-        "url": "https://submitaitools.org",
-        "target": "_blank",
-        "image": {
-          "src": "https://submitaitools.org/static_submitaitools/images/submitaitools.png",
-          "alt": "Submit AI Tools – The ultimate platform to discover, submit, and explore the best AI tools across various categories.",
-          "width": 200,
-          "height": 60
-        }
-      }
+    
     ],
     "agreement": {
       "items": [
@@ -484,16 +426,6 @@
         {
           "title": "Terms of Service",
           "url": "/terms-of-service"
-        },
-        {
-          "title": "AIStage",
-          "url": "https://aistage.net",
-          "target": "_blank"
-        },
-        {
-          "title": "AI Toolz Dir",
-          "url": "https://www.aitoolzdir.com",
-          "target": "_blank"
         }
       ]
     }

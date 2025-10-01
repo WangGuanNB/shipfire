@@ -33,23 +33,7 @@
       "title": "TANPA PERLU LOG MASUK",
       "url": "/#features"
     },
-    "badges": [
-      {
-        "label": "100% PERCUMA",
-        "icon": "RiStarLine",
-        "color": "green"
-      },
-      {
-        "label": "TANPA PERLU LOG MASUK",
-        "icon": "RiUserLine", 
-        "color": "blue"
-      },
-      {
-        "label": "NANO BANANA",
-        "icon": "RiLeafLine",
-        "color": "purple"
-      }
-    ],
+   
     "images": [
       {
         "src": "/imgs/features/1.png",
@@ -377,15 +361,15 @@
     "nav": {
       "items": [
         {
-          "title": "Penjana Miniatur",
-          "url": "/#generator"
+          "title": "Tentang",
+          "url": "/about"
         },
         {
-          "title": "Ciri AI",
+          "title": "Sumber",
           "url": "/#features"
         },
         {
-          "title": "Cara Ia Berfungsi",
+          "title": "Rakan",
           "url": "/#usage"
         }
       ]
@@ -418,17 +402,9 @@
         }
       ]
     },
-    "badge": {
-      "title": "Dikuasakan oleh AI Canggih",
-      "url": "/#features",
-      "target": "_self",
-      "image": {
-        "src": "/imgs/badges/ai-powered.svg",
-        "alt": "Dikuasakan oleh AI Canggih",
-        "width": 200,
-        "height": 54
-      }
-    },
+    "badges": [
+    
+    ],
     "agreement": {
       "items": [
         {
