@@ -345,18 +345,7 @@
         {
           "title": "Product",
           "children": [
-            {
-              "title": "Graffiti Fonts",
-              "url": "/#introduce"
-            },
-            {
-              "title": "Features",
-              "url": "/#feature"
-            },
-            {
-              "title": "How It Works",
-              "url": "/#usage"
-            }
+           
           ]
         },
         {
@@ -365,32 +354,13 @@
             {
               "title": "FAQ",
               "url": "/#faq"
-            },
-            {
-              "title": "Testimonials",
-              "url": "/#testimonial"
-            },
-            {
-              "title": "Blog",
-              "url": "/posts"
             }
           ]
         },
         {
           "title": "Community",
           "children": [
-            {
-              "title": "About Us",
-              "url": "/about"
-            },
-            {
-              "title": "Showcase",
-              "url": "/showcase"
-            },
-            {
-              "title": "Contact",
-              "url": "mailto:support@graffitigen.com"
-            }
+           
           ]
         }
       ]
