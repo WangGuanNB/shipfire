@@ -13,7 +13,7 @@ export default function FeatureWhatOne({ section }: { section: SectionType }) {
   
 
   return (
-    <section id={section.name} className="py-8 bg-muted/30">
+    <section id={section.name} className="py-8">
       <div className="container">
         <div className="mx-auto max-w-7xl">
           {/* Title area */}

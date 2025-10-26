@@ -21,7 +21,7 @@ export default function Feature2WhyOne({ section }: { section: SectionType }) {
   };
 
   return (
-    <section id={section.name} className="py-16 bg-muted/20">
+    <section id={section.name} className="py-16">
       <div className="container">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-16">

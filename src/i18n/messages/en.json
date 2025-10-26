@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "Miniatur AI - Transform Photos into Miniature Masterpieces | Miniatur AI",
-    "description": "Miniatur AI transforms ordinary photos into stunning miniature masterpieces using advanced AI technology. Create professional tilt-shift effects and miniature scenes in seconds.",
-    "keywords": "Miniatur AI, miniature generator, AI photo transform, tilt-shift effect, miniature photography, AI image processing"
+    "title": "Free Graffiti Generator - Create Custom Graffiti Art Online",
+    "description": "Free online graffiti generator with 50+ professional street art fonts. Create custom graffiti names, logos, and designs instantly. No login required, 100% free forever.",
+    "keywords": "graffiti generator, free graffiti maker, graffiti fonts, graffiti creator, street art generator, graffiti text generator, custom graffiti, graffiti design tool, graffiti name creator"
   },
   "user": {
     "sign_in": "Sign In",
@@ -11,7 +11,6 @@
     "api_keys": "API Keys",
     "my_orders": "My Orders",
     "user_center": "User Center"
-   
   },
   "sign_modal": {
     "sign_in_title": "Sign In",
@@ -34,7 +33,7 @@
   },
   "my_orders": {
     "title": "My Orders",
-    "description": "Orders placed on Miniatur AI.",
+    "description": "Orders placed on Graffiti Generator.",
     "no_orders": "No orders found",
     "tip": "",
     "activate_order": "Activate Order",
@@ -82,12 +81,12 @@
   },
   "blog": {
     "title": "Blog",
-    "description": "News, resources, and updates about Miniatur AI",
+    "description": "News, resources, and updates about Graffiti Generator",
     "read_more_text": "Read More",
     "tools_notice": {
-      "text": "Looking for hands-on tools? Beyond these tutorials, explore our complete suite of AI miniature generation tools on our",
-      "link_text": "main Miniatur AI homepage",
-      "suffix": "for immediate AI miniature generation and advanced features."
+      "text": "Looking for hands-on tools? Beyond these tutorials, explore our complete suite of graffiti creation tools on our",
+      "link_text": "main Graffiti Generator homepage",
+      "suffix": "for immediate graffiti creation and advanced features."
     }
   },
   "my_invites": {
@@ -98,7 +97,7 @@
     "edit_invite_link": "Edit Invite Link",
     "copy_invite_link": "Copy Invite Link",
     "invite_code": "Invite Code",
-    "invite_tip": "Invite 1 friend to use Miniatur AI, reward $50.",
+    "invite_tip": "Invite 1 friend to use Graffiti Generator, reward $50.",
     "invite_balance": "Invite Reward Balance",
     "total_invite_count": "Total Invite Count",
     "total_paid_count": "Total Paid Count",
@@ -106,7 +105,7 @@
     "update_invite_code": "Set Invite Code",
     "update_invite_code_tip": "Input your custom invite code",
     "update_invite_button": "Save",
-    "no_orders": "You can't invite others before you purchased Miniatur AI",
+    "no_orders": "You can't invite others before you purchased Graffiti Generator",
     "no_affiliates": "You're not allowed to invite others, please contact us to apply for permission.",
     "table": {
       "invite_time": "Invite Time",
@@ -120,20 +119,20 @@
   },
   "feedback": {
     "title": "Feedback",
-    "description": "We'd love to hear what went well or how we can improve the product experience.",
+    "description": "We'd love to hear what went well or how we can improve the graffiti generator experience.",
     "submit": "Submit",
     "loading": "Submitting...",
     "contact_tip": "Other ways to contact us",
-    "rating_tip": "How do you feel about Miniatur AI?",
+    "rating_tip": "How do you feel about Graffiti Generator?",
     "placeholder": "Leave your words here..."
   },
   "share": {
-    "title": "Share this image",
-    "text": "Just created this miniature figurine for FREE using www.miniatur.org! Try it yourself:",
+    "title": "Share this graffiti",
+    "text": "Just created this graffiti art for FREE using www.graffitigen.com! Try it yourself:",
     "preparing": "Preparing for share...",
     "success": "Link copied to clipboard!",
     "failed": "Failed to copy link",
-    "uploading": "Preparing image for sharing...",
+    "uploading": "Preparing graffiti for sharing...",
     "platforms": {
       "twitter": "Twitter",
       "facebook": "Facebook", 
@@ -144,65 +143,65 @@
       "reddit": "Reddit",
       "copy": "Copy"
     }
-  } ,
-  "miniatureGenerator": {
+  },
+  "graffitiGenerator": {
     "ui": {
-      "title": "Build Your Miniature World with Miniatur AI",
-      "subtitle": "Transform your images with AI-powered editing"
+      "title": "Create Your Graffiti Art with Free Generator",
+      "subtitle": "Transform your text into stunning street art with AI"
     },
     "upload": {
-      "title": "Upload Image",
-      "subtitle": "Upload one image for reference",
-      "dragDrop": "Drag & drop or click to upload an image",
-      "fileInfo": "JPG, PNG, WEBP • Max 10MB • Min 300×300px"
+      "title": "Choose Graffiti Style",
+      "subtitle": "Select from 50+ professional graffiti fonts",
+      "dragDrop": "Browse our diverse graffiti font collection",
+      "fileInfo": "Bubble Letters • Wildstyle • 3D Effects • Modern & More"
     },
     "instructions": {
-      "title": "Editing Instructions",
-      "subtitle": "Describe your desired changes",
+      "title": "Enter Your Text",
+      "subtitle": "Type the text you want to transform into graffiti",
       "translate": "Translate",
       "autoTranslateEnabled": "Auto-translate enabled"
     },
     "usage": {
-      "remaining": "Free generations remaining: {remaining}/3",
-      "signInTip": "Sign in for unlimited generations!",
+      "remaining": "Free graffiti generations remaining: {remaining}/3",
+      "signInTip": "Sign in for unlimited graffiti creations!",
       "limitReached": "Daily limit reached (3/3 free generations used)",
       "signInUnlimited": "Sign in for unlimited access or try again tomorrow!"
     },
     "buttons": {
-      "generate": "Generate Miniature",
-      "generating": "Generating Image...",
+      "generate": "Generate Graffiti",
+      "generating": "Creating Your Graffiti...",
       "limitReached": "Daily Limit Reached - Sign In",
-      "download": "Download",
-      "regenerate": "Regenerate"
+      "download": "Download Graffiti",
+      "regenerate": "Try Another Style"
     },
     "result": {
       "title": "Ready to Create",
-      "subtitle": "Upload an image to see the AI magic happen",
-      "readyTitle": "Ready for Your Masterpiece",
-      "readySubtitle": "Upload an image and describe your vision. Watch AI transform it into something amazing.",
-      "willAppear": "Your Miniatur AI result will appear here",
-      "creating": "Creating your miniature...",
-      "almostDone": "Almost done! Please stay with us",
+      "subtitle": "Enter your text to see the graffiti magic happen",
+      "readyTitle": "Your Free Graffiti Generator Awaits",
+      "readySubtitle": "Type your text and choose from 50+ diverse graffiti styles. Create professional street art in seconds.",
+      "willAppear": "Your custom graffiti will appear here",
+      "creating": "Creating your graffiti art...",
+      "almostDone": "Almost done! Your graffiti is taking shape",
       "takeFewMoments": "This may take a few moments"
     },
     "messages": {
-      "uploadValidImage": "Please upload valid image files only",
-      "imageTooLarge": "Image size cannot exceed 10MB",
-      "uploadSuccess": "Image uploaded successfully",
-      "pleaseUploadImage": "Please upload an image",
-      "pleaseProvideInstructions": "Please provide editing instructions",
-      "dailyLimitExceeded": "Daily limit exceeded! Please sign in for unlimited access or try again tomorrow.",
-      "miniatureGeneratedSuccess": "Miniature generated successfully!",
+      "uploadValidImage": "Please select a valid graffiti style",
+      "imageTooLarge": "Text is too long, please keep it under 50 characters",
+      "uploadSuccess": "Graffiti style selected successfully",
+      "pleaseUploadImage": "Please enter your text",
+      "pleaseProvideInstructions": "Please select a graffiti font style",
+      "dailyLimitExceeded": "Daily limit exceeded! Please sign in for unlimited graffiti creation or try again tomorrow.",
+      "graffitiGeneratedSuccess": "Graffiti created successfully!",
       "generationFailed": "Generation failed",
-      "generateMiniatureFailed": "Failed to generate miniature. Please try again.",
-      "imageDownloaded": "Image downloaded!",
-      "imageDownloadFailed": "Failed to download image"
+      "generateGraffitiFailed": "Failed to generate graffiti. Please try again.",
+      "imageDownloaded": "Graffiti downloaded!",
+      "imageDownloadFailed": "Failed to download graffiti"
     }
   },
   "payment": {
     "modal": {
       "title": "Choose Your Plan",
-      "description": "Upgrade to unlock more AI features",
+      "description": "Upgrade to unlock more graffiti styles and features",
       "most_popular": "Most Popular",
       "credits": "Credits",
       "month": "Month",
@@ -218,14 +217,14 @@
       "basic": {
         "title": "Basic Plan",
         "description": "100 Credits",
-        "feature1": "100 AI generations",
+        "feature1": "100 graffiti generations",
         "feature2": "Standard speed",
         "feature3": "Email support"
       },
       "pro": {
         "title": "Professional Plan",
         "description": "500 Credits",
-        "feature1": "500 AI generations",
+        "feature1": "500 graffiti generations",
         "feature2": "Priority speed",
         "feature3": "24/7 technical support",
         "feature4": "HD output"
@@ -233,7 +232,7 @@
       "enterprise": {
         "title": "Enterprise Plan",
         "description": "2000 Credits",
-        "feature1": "2000 AI generations",
+        "feature1": "2000 graffiti generations",
         "feature2": "Fastest speed",
         "feature3": "Dedicated support",
         "feature4": "API access",
@@ -252,7 +251,7 @@
       "instruction5": "Login required for payment",
       "success_message": "Payment successful! Credits added",
       "insufficient_title": "Insufficient Credits",
-      "insufficient_description": "You don't have enough credits, please upgrade to continue using AI features",
+      "insufficient_description": "You don't have enough credits, please upgrade to continue using graffiti features",
       "upgrade_success": "Upgrade successful! Features unlocked"
     }
   }

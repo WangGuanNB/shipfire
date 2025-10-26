@@ -53,9 +53,9 @@ export default async function LandingPage({
   return (
     <>
       {/* 原有Hero组件 -标准版 ------------------------------------------------*/}
-      {/* {page.hero && <Hero hero={page.hero} />} */}
+      {page.hero && <Hero hero={page.hero}/> }
       {/* 图片类的网站 */}
-      {page.hero && <MiniaturaAIHero hero={page.hero as any} />}
+      {/* {page.hero && <MiniaturaAIHero hero={page.hero as any} />} */}
 
       {/* 工具页 ------------------------------------------------*/}
       {/* <TestPaymentModal /> */}
@@ -67,15 +67,15 @@ export default async function LandingPage({
 
       {/* 介绍页，what------------------------------------------------ */}
       {/* <带图片 /> */}
-      {/* {page.introduce && <Feature1 section={page.introduce} />} */}
+       {/* {page.introduce && <Feature1 section={page.introduce} />}  */}
       {/* <不带图片 /> */}
       {page.introduce && <FeatureWhatOne section={page.introduce} />}
 
       {/* 为什么选择页，why------------------------------------------------ */}
         {/* <带图片 /> */}
-      {/* {page.benefit && <Feature2 section={page.benefit} />} */}
+       {/* {page.benefit && <Feature2 section={page.benefit} />} */}
         {/* <不带图片 /> */}
-      {page.benefit && <Feature2WhyOne section={page.benefit} />}
+       {page.benefit && <Feature2WhyOne section={page.benefit} />}
 
       {/* 使用流程页，------------------------------------------------ */}
       {page.usage && <Feature3 section={page.usage} />}
@@ -86,15 +86,17 @@ export default async function LandingPage({
        
       {/* 用户问答页， ------------------------------------------------- */}
       {page.faq && <FAQ section={page.faq} />}
-      
+      {/* 用户点评页， ------------------------------------------------- */}  
+      {/* {page.testimonial && <Testimonial section={page.testimonial} />} */}
       
       {/* 哈牛皮页， ------------------------------------------------- */}
       {page.cta && <CTA section={page.cta} />}
+      
 
       {/* {page.showcase && <Showcase section={page.showcase} />} */}
       {/* {page.stats && <Stats section={page.stats} />} */}
       {/* {page.pricing && <Pricing pricing={page.pricing} />} */}
-      {/* {page.testimonial && <Testimonial section={page.testimonial} />} */}
+    
     
     
     </>

@@ -57,7 +57,7 @@ export default function Testimonial({ section }: { section: SectionType }) {
             <CarouselContent>
               {section.items?.map((item, index) => (
                 <CarouselItem key={index} className="basis-auto">
-                  <Card className="max-w-96 select-none p-6">
+                  <Card className="max-w-96 h-[280px] flex flex-col select-none p-6">
                     <div className="flex justify-between">
                       <div className="mb-4 flex gap-4">
                         <Avatar className="size-14 rounded-full ring-1 ring-input">
@@ -82,7 +82,7 @@ export default function Testimonial({ section }: { section: SectionType }) {
                         ))}
                       </div>
                     </div>
-                    <q className="leading-7 text-muted-foreground">
+                    <q className="leading-7 text-muted-foreground line-clamp-4 flex-1">
                       {item.description}
                     </q>
                   </Card>
