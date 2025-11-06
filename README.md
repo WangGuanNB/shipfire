@@ -1,95 +1,326 @@
 # 🔥 ShipFire
 
-> **极速启航的 Next.js SaaS 项目模板 + AI 功能**  
-> 让你的想法瞬间燃起，快速交付 SaaS 产品！
-
 <div align="center">
 
+> **The Ultimate Next.js 15 SaaS Starter Kit with AI Integration**  
+> Ship your SaaS product faster with production-ready features and modern tech stack
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js_15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+ [🚀 **Get Started**](https://github.com/WangGuanNB/shipfire)
 
 </div>
 
-## 🚀 快速启航
+---
 
+## ✨ Why ShipFire?
 
-## 🔥 为什么选择 ShipFire？
+<table>
+<tr>
+<td width="50%">
 
-- **⚡ 极速启动**：30秒创建，5分钟上线
-- **🤖 AI 加持**：内置多种 AI 功能和工具
-- **💎 企业级**：认证、支付、数据库、国际化全搞定
-- **🎨 颜值在线**：精美 UI + 响应式设计
-- **🔧 易于定制**：模块化设计，想改哪里改哪里
+### ⚡ Launch in Minutes
+- 30 seconds to initialize
+- 5 minutes to deploy
+- Zero configuration needed
 
-## 📦 火力全开的功能
+</td>
+<td width="50%">
 
-### 🏗️ 核心架构
-- 🔥 **Next.js 15** + App Router + TypeScript
-- 🎨 **Tailwind CSS** + Shadcn UI 组件库
-- 🗄️ **PostgreSQL** + Drizzle ORM
-- 🌍 **多语言支持** (next-intl)
-- 🌙 **深色/浅色主题**
+### 🤖 AI-First Approach
+- OpenAI & Google AI integrated
+- Image & video generation ready
+- Built-in AI tools & utilities
 
-### 🤖 AI 功能
-- 🎨 **AI 图像生成** (OpenAI DALL-E, Google Imagen)
-- 🎬 **AI 视频生成** (Kling AI)
-- 🖼️ **图像处理工具**
-- 🎯 **像素转换器**
-- 🌈 **颜色转换器**
+</td>
+</tr>
+<tr>
+<td width="50%">
 
-### 🔐 认证系统
-- 🔑 **NextAuth.js v5** 完整认证流程
-- 🍎 **Google One Tap** 一键登录  
-- ✉️ **邮箱登录** + 魔法链接
-- 👑 **用户权限管理**
+### 💎 Enterprise Ready
+- Complete authentication system
+- Stripe payment integration
+- Multi-tenant architecture
 
-### 💳 支付系统
-- 💰 **Stripe** 支付集成
-- 📊 **订阅管理**
-- 🎁 **积分奖励系统**
-- 👥 **邀请返现**
+</td>
+<td width="50%">
 
-### 📊 管理后台
-- 👥 **用户管理**
-- 📋 **订单管理**
-- 💬 **反馈管理**
-- 📝 **文章管理**
-- 🔑 **API 密钥管理**
+### 🎨 Modern Design
+- Shadcn UI components
+- Dark/Light theme support
+- Fully responsive
 
-### 📝 内容系统
-- 📖 **MDX 博客系统**
-- 📚 **文档系统** (Fumadocs)
-- ✏️ **Markdown 编辑器**
+</td>
+</tr>
+</table>
 
-## 🛠️ 环境配置
+---
 
+## 🚀 Quick Start
 
-## 🚀 部署选项
+### 📋 Prerequisites
 
-### Vercel (推荐)
+- Node.js 18+ 
+- PostgreSQL database
+- npm / yarn / pnpm
+
+### 🛠️ Installation
+
 ```bash
+# 1. Clone the repository
+git clone https://github.com/WangGuanNB/shipfire.git
+cd shipfire
+
+# 2. Install dependencies
+pnpm install
+
+# 3. Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your configuration
+
+# 4. Initialize database
+pnpm db:push
+
+# 5. Start development server
+pnpm dev
+```
+
+🎉 Visit `http://localhost:3000` to see your app!
+
+---
+
+## 📦 Tech Stack
+
+<div align="center">
+
+| Category | Technologies |
+|:---:|:---|
+| **🏗️ Framework** | Next.js 15 • React 19 • TypeScript |
+| **🎨 Styling** | Tailwind CSS • Shadcn UI • Radix UI |
+| **🗄️ Database** | PostgreSQL • Drizzle ORM |
+| **🔐 Auth** | NextAuth.js v5 • Google One Tap |
+| **💳 Payments** | Stripe |
+| **🤖 AI** | OpenAI DALL-E • Google Imagen • Kling AI |
+| **🌍 i18n** | next-intl |
+| **📝 Content** | MDX • Fumadocs |
+| **🚀 Deploy** | Vercel • Docker |
+
+</div>
+
+---
+
+## 🔥 Features
+
+### 🏗️ **Core Architecture**
+
+```
+✅ Next.js 15 App Router        - Modern routing system
+✅ TypeScript Strict Mode       - Type-safe development
+✅ Tailwind CSS + Shadcn UI    - Beautiful UI components
+✅ PostgreSQL + Drizzle ORM    - Robust data layer
+✅ Internationalization         - Multi-language support
+✅ Dark/Light Theme            - User preference
+```
+
+### 🤖 **AI Integration**
+
+| Feature | Description | Services |
+|:---:|:---|:---|
+| 🎨 **AI Image Generation** | Text-to-image creation | OpenAI DALL-E, Google Imagen |
+| 🎬 **AI Video Generation** | Intelligent video creation | Kling AI |
+| 🖼️ **Image Processing** | Crop, resize, filters | Built-in tools |
+| 🎯 **Format Conversion** | Image format converter | Multiple formats |
+| 🌈 **Color Tools** | Color space conversion | RGB/HEX/HSL |
+
+### 🔐 **Authentication System**
+
+```typescript
+✅ NextAuth.js v5              - Latest auth solution
+✅ Google One Tap              - One-click sign-in  
+✅ Magic Link Login            - Passwordless auth
+✅ Role-Based Access Control   - Multi-role support
+✅ Session Management          - Secure & persistent
+```
+
+### 💳 **Payment & Billing**
+
+```
+💰 Stripe Integration          - Secure payments
+📊 Subscription Management     - Recurring billing
+🎁 Credit System              - Reward & incentives
+👥 Referral Program           - Invite & earn
+💳 One-time Purchases         - Flexible pricing
+```
+
+### 📊 **Admin Dashboard**
+
+| Module | Features |
+|:---|:---|
+| 👥 **User Management** | View, edit, suspend users |
+| 📋 **Order Management** | Transaction history & analytics |
+| 💬 **Feedback System** | User feedback & support tickets |
+| 📝 **Content Management** | Blog posts & documentation |
+| 🔑 **API Management** | API keys & rate limiting |
+
+### 📝 **Content System**
+
+```
+📖 MDX Blog System            - Write in Markdown
+📚 Documentation (Fumadocs)   - Beautiful docs
+✏️ Rich Text Editor           - WYSIWYG editing
+🔍 Full-Text Search          - Fast content search
+📱 Responsive Design         - Mobile-friendly
+```
+
+---
+
+## 🗂️ Project Structure
+
+```
+shipfire/
+├── app/                    # Next.js App Router
+│   ├── (auth)/            # Authentication pages
+│   ├── (dashboard)/       # Protected dashboard
+│   ├── api/               # API routes
+│   └── [locale]/          # Internationalized pages
+├── components/            # React components
+│   ├── ui/               # Shadcn UI components
+│   └── shared/           # Shared components
+├── lib/                  # Utility functions
+│   ├── db/              # Database utilities
+│   └── auth/            # Auth helpers
+├── services/            # Business logic
+├── types/               # TypeScript definitions
+├── public/              # Static assets
+└── config/              # Configuration files
+```
+
+---
+
+## 🔧 Environment Setup
+
+Create a `.env.local` file with the following variables:
+
+```env
+# Database
+DATABASE_URL=postgresql://user:password@localhost:5432/shipfire
+
+# Authentication
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key-here
+
+# Google OAuth
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# Stripe
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+
+# OpenAI
+OPENAI_API_KEY=sk-...
+
+# Google AI (Optional)
+GOOGLE_AI_API_KEY=your-google-ai-key
+
+# Kling AI (Optional)
+KLING_AI_API_KEY=your-kling-ai-key
+```
+
+---
+
+## 🚀 Deployment
+
+### Deploy to Vercel (Recommended)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/WangGuanNB/shipfire)
+
+```bash
+# Or use Vercel CLI
 vercel --prod
 ```
 
-### Docker
+### Docker Deployment
+
 ```bash
+# Build the Docker image
 pnpm docker:build
+
+# Run the container
 docker run -p 3000:3000 shipfire:latest
 ```
 
-## 🙏 致谢
+---
 
-- 感谢 [WangGuanNB](https://github.com/WangGuanNB) 提供的优秀基础项目
-- 感谢所有开源项目的贡献者们
+## 📖 Documentation
 
-## 📄 许可证
+Comprehensive documentation is available at [shipfire.cn/docs](https://shipfire.cn/docs)
 
-基于 MIT 许可证开源
+
+---
+
+## 🎯 Use Cases
+
+Perfect for building:
+
+- 🚀 **SaaS Applications** - Subscription-based services
+- 🤖 **AI-Powered Tools** - Image/video generation apps
+- 💼 **B2B Platforms** - Enterprise solutions
+- 📊 **Analytics Dashboards** - Data visualization
+- 🎨 **Creative Tools** - Design & editing platforms
+- 📱 **Mobile-First Apps** - Progressive web apps
+
+---
+
+## 🛣️ Roadmap
+
+- [ ] Mobile app support (React Native / Expo)
+- [ ] More AI model integrations (Anthropic Claude, Mistral)
+- [ ] Advanced analytics & reporting
+- [ ] Team collaboration features
+- [ ] Multi-database support (MySQL, MongoDB)
+- [ ] GraphQL API option
+- [ ] Serverless function templates
+- [ ] E-commerce features
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- Built with love by [WangGuanNB](https://github.com/WangGuanNB)
+- Powered by [Next.js](https://nextjs.org/)
+- UI components from [Shadcn UI](https://ui.shadcn.com/)
+- Icons from [Lucide](https://lucide.dev/)
 
 ---
 
 <div align="center">
 
-**🔥 让你的 SaaS 想法瞬间燃起！**
+**🔥 Ship your SaaS faster with ShipFire!**
 
+[⭐ Star on GitHub](https://github.com/WangGuanNB/shipfire) • [🐦 Follow on Twitter](https://twitter.com/your-handle) • [💬 Join Discord](https://discord.gg/your-server)
 
+Made with ❤️ by developers, for developers
 
-</div>
+</div> 
