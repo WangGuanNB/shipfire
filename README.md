@@ -275,6 +275,80 @@ Perfect for building:
 
 ---
 
+🌟 Built with ShipFire
+Real products shipped using this starter template. Join these successful projects!
+<table>
+<tr>
+<td width="33%" align="center">
+<a href="https://circle-fifths.com" target="_blank">
+<img src="https://circle-fifths.com/favicon.ico" width="64" height="64" alt="Circle of Fifths">
+<br/>
+<strong>Circle of Fifths</strong>
+</a>
+<br/>
+<sub>Interactive music theory learning platform</sub>
+<br/>
+<sup>🎵 Education • AI • Music</sup>
+</td>
+<td width="33%" align="center">
+<a href="https://graffiti-generator.org" target="_blank">
+<img src="https://graffiti-generator.org/favicon.ico" width="64" height="64" alt="Graffiti Generator">
+<br/>
+<strong>Graffiti Generator</strong>
+</a>
+<br/>
+<sub>AI-powered street art creation tool</sub>
+<br/>
+<sup>🎨 Design • AI • Creative</sup>
+</td>
+<td width="33%" align="center">
+<a href="https://pinpointanswer.net" target="_blank">
+<img src="https://pinpointanswer.net/favicon.ico" width="64" height="64" alt="Pinpoint Answer">
+<br/>
+<strong>Pinpoint Answer</strong>
+</a>
+<br/>
+<sub>Daily LinkedIn puzzle solver</sub>
+<br/>
+<sup>🎯 Gaming • Community</sup>
+</td>
+</tr>
+<tr>
+<td width="33%" align="center">
+<a href="https://love-mbti.com" target="_blank">
+<img src="https://love-mbti.com/favicon.ico" width="64" height="64" alt="Love MBTI">
+<br/>
+<strong>Love MBTI</strong>
+</a>
+<br/>
+<sub>Romance personality test platform</sub>
+<br/>
+<sup>💕 Psychology • Testing</sup>
+</td>
+<td width="33%" align="center">
+<a href="https://wplaceart.com" target="_blank">
+<img src="https://wplaceart.com/favicon.ico" width="64" height="64" alt="WPlaceArt">
+<br/>
+<strong>WPlaceArt</strong>
+</a>
+<br/>
+<sub>Creative art platform</sub>
+<br/>
+<sup>🖼️ Art • Creative</sup>
+</td>
+<td width="33%" align="center">
+<strong>Your Project?</strong>
+<br/>
+<sub>Built something with ShipFire?</sub>
+<br/>
+<a href="https://github.com/WangGuanNB/shipfire/issues">Share your project →</a>
+</td>
+</tr>
+</table>
+
+💡 Want to be featured? If you've built something with ShipFire, submit your project and get listed here!
+
+
 ## 🛣️ Roadmap
 
 - [ ] Mobile app support (React Native / Expo)
