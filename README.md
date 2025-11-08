@@ -342,6 +342,8 @@ Real products shipped using this starter template. Join these successful project
 <sub>Built something with ShipFire?</sub>
 <br/>
 <a href="https://github.com/WangGuanNB/shipfire/issues">Share your project →</a>
+ <a href="https://circle-fifths.com/">Circle of Fifths</a>
+  <a href="https://graffiti-generator.org">graffiti generator</a>
 </td>
 </tr>
 </table>
