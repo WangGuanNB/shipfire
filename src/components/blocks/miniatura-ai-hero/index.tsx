@@ -169,18 +169,18 @@ export default function MiniaturaAIHero({ hero }: { hero: MiniaturaAIHeroType })
 
           {/* 下方左图右内容布局 */}
           {hero.layout === "left-image-right-content" ? (
-            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
               {/* 左侧图片区域 */}
-              <div className="order-2 lg:order-1">
+              <div className="order-2 lg:order-1 h-full">
                 {hero.images && hero.images.length > 0 ? (
-                  <div className="relative w-full">
-                    <Card className="overflow-hidden shadow-lg">
-                      <CardContent className="p-0">
-                        <div className="relative aspect-[16/10] w-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+                  <div className="relative w-full h-full">
+                    <Card className="h-full overflow-hidden shadow-lg">
+                      <CardContent className="h-full p-0">
+                        <div className="relative h-full min-h-[420px] lg:min-h-[520px] w-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
                           <img
                             src={hero.images[currentImageIndex]?.src}
                             alt={hero.images[currentImageIndex]?.alt}
-                            className="w-full h-full object-cover"
+                            className="absolute inset-0 h-full w-full object-cover"
                             onError={(e) => {
                               // 如果图片加载失败，显示占位符
                               (e.target as HTMLImageElement).src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjMgZjQgZjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TWluaWF0dXIgQUkgRXhhbXBsZTwvdGV4dD48L3N2Zz4=";
@@ -201,7 +201,7 @@ export default function MiniaturaAIHero({ hero }: { hero: MiniaturaAIHeroType })
                         {hero.images.map((_, index) => (
                           <button
                             key={index}
-                            className={`w-2 h-2 rounded-full transition-colors ${
+                            className={`w-2.5 h-2.5 rounded-full transition-colors ${
                               index === currentImageIndex ? 'bg-primary' : 'bg-gray-300'
                             }`}
                             onClick={() => setCurrentImageIndex(index)}
@@ -211,7 +211,7 @@ export default function MiniaturaAIHero({ hero }: { hero: MiniaturaAIHeroType })
                     )}
                   </div>
                 ) : (
-                  <Card className="aspect-[16/10] flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+                  <Card className="h-full min-h-[420px] flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
                     <div className="text-center">
                       <Icon name="RiImageLine" className="mx-auto mb-4 text-4xl text-gray-400" />
                       <p className="text-gray-500">Miniatur AI Examples</p>
@@ -225,7 +225,7 @@ export default function MiniaturaAIHero({ hero }: { hero: MiniaturaAIHeroType })
               <div className="order-1 lg:order-2 flex flex-col justify-center h-full">
                 {/* 描述文字 */}
                 <p
-                  className="text-base lg:text-lg xl:text-xl text-muted-foreground mb-8 leading-relaxed lg:text-left text-center"
+                  className="text-base lg:text-lg xl:text-xl text-muted-foreground mb-8 leading-relaxed lg:text-left text-center max-w-2xl lg:max-w-none mx-auto lg:mx-0"
                   dangerouslySetInnerHTML={{ __html: hero.description || "" }}
                 />
 

@@ -44,65 +44,66 @@ export default function Feature2({ section }: { section: SectionType }) {
   return (
     <section id={section.name} className="py-32">
       <div className="container">
-        <div className="mx-auto grid gap-20 lg:grid-cols-2">
-          <div>
-            {section.label && (
-              <Badge variant="outline" className="mb-4">
-                {section.label}
-              </Badge>
-            )}
-            <h2 className="mb-6 text-pretty text-3xl font-bold lg:text-4xl">
-              {section.title}
-            </h2>
-            <p className="mb-4 max-w-xl text-muted-foreground lg:max-w-none lg:text-lg">
-              {section.description}
-            </p>
+        <div className="mx-auto max-w-3xl lg:max-w-4xl">
+          {section.label && (
+            <Badge variant="outline" className="mb-4">
+              {section.label}
+            </Badge>
+          )}
+          <h2 className="mb-6 text-pretty text-3xl font-bold lg:text-4xl">
+            {section.title}
+          </h2>
+          <p className="text-lg text-muted-foreground lg:text-xl">
+            {section.description}
+          </p>
+        </div>
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-stretch">
+          <div className="flex h-full flex-col">
             <Accordion
               type="single"
               value={currentAccordion}
               onValueChange={(value) => {
                 setCurrentAccordion(value);
-                console.log(value);
-                api?.scrollTo(+value - 1);
+                if (value) {
+                  api?.scrollTo(+value - 1);
+                }
               }}
+              className="space-y-4"
             >
               {section.items?.map((item, i) => (
                 <AccordionItem
                   key={i}
                   value={(i + 1).toString()}
-                  className="border-b-0 border-secondary"
+                  className="rounded-xl border border-border/60 bg-background/90 px-4"
                 >
-                  <AccordionTrigger className="text-left data-[state=closed]:text-muted-foreground">
-                    <div className="flex items-center justify-between gap-2">
+                  <AccordionTrigger className="gap-4 py-4 text-left text-base font-semibold lg:text-lg">
+                    <div className="flex items-center gap-3">
                       {item.icon && (
-                        <p className="flex size-9 items-center justify-center rounded-lg bg-muted">
+                        <span className="flex size-10 items-center justify-center rounded-lg bg-muted">
                           <Icon
                             name={item.icon}
-                            className="size-5 shrink-0 lg:size-6"
+                            className="size-5 shrink-0 text-primary"
                           />
-                        </p>
+                        </span>
                       )}
-                      <span className="font-medium lg:text-lg">
-                        {item.title}
-                      </span>
+                      <span>{item.title}</span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground lg:text-base">
+                  <AccordionContent className="pb-6 text-sm text-muted-foreground lg:text-base">
                     {item.description}
-                    <div className="mt-8 h-px bg-muted">
+                    <div className="mt-6 h-px w-full bg-muted">
                       <div
                         className="h-px animate-progress bg-primary"
-                        style={{
-                          animationDuration: `${DURATION}ms`,
-                        }}
-                      ></div>
+                        style={{ animationDuration: `${DURATION}ms` }}
+                      />
                     </div>
                   </AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
           </div>
-          <div>
+          <div className="flex h-full items-center rounded-3xl border border-border/60 bg-background/90 p-3 shadow-sm">
             <Carousel
               opts={{
                 duration: 50,
@@ -113,11 +114,11 @@ export default function Feature2({ section }: { section: SectionType }) {
               <CarouselContent>
                 {section.items?.map((item, i) => (
                   <CarouselItem key={i}>
-                    <div>
+                    <div className="h-full min-h-[320px] overflow-hidden rounded-2xl lg:min-h-[420px]">
                       <img
                         src={item.image?.src}
                         alt={item.image?.alt || item.title}
-                        className="max-h-auto w-full object-cover lg:max-h-none rounded-md"
+                        className="h-full w-full object-cover"
                       />
                     </div>
                   </CarouselItem>

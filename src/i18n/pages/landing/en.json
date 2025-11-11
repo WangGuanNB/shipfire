@@ -25,22 +25,22 @@
     "show_locale": false
   },
   "hero": {
-    "title": "Free Online Graffiti Generator - Create Professional Graffiti Art in 3 Seconds",
-    "highlight_text": "Graffiti Generator",
-    "description": "Transform your text into stunning street art with our AI-powered graffiti generator. Choose from 50+ professional graffiti fonts and styles to create personalized graffiti names, logos, and artistic lettering. Perfect for designers, brands, and street art enthusiasts who want authentic graffiti aesthetics without expensive design software. No design experience needed, 100% free to use, no login required. Start your graffiti creation journey now.",
+    "title": "Graffiti Generator AI Graffiti Maker",
+    "highlight_text": "Create Instantly",
+    "description": "Graffiti Generator transforms any text into street art in 3 seconds with its AI engine, combining 50+ professional fonts, 3D gradients, and authentic spray textures. Graffiti fans, design teams, and brands can complete high-quality visuals right in the browser—no installation, no registration, and unlimited commercial-grade creations anytime.",
     "announcement": {
-      "label": "100% FREE",
-      "title": "NO LOGIN REQUIRED",
+      "label": "100% Free",
+      "title": "No Account Needed",
       "url": "/#features"
     },
     "images": [
       {
-        "src": "/imgs/features/1.png",
+        "src": "/imgs/features/1.webp",
         "alt": "Graffiti Generator Text Transformation Example 1",
         "title": "Text to Graffiti Art"
       },
       {
-        "src": "/imgs/features/2.png",
+        "src": "/imgs/features/1.webp",
         "alt": "Graffiti Generator Font Styles Example 2",
         "title": "Multiple Graffiti Styles"
       }
@@ -49,7 +49,7 @@
     "enable_carousel": true,
     "buttons": [
       {
-        "title": "Start Creating Graffiti Now",
+        "title": "Create Graffiti Free Now",
         "icon": "RiMagicLine",
         "url": "/#generator",
         "target": "_self",
@@ -115,116 +115,132 @@
     "name": "introduce",
     "title": "What is Graffiti Generator",
     "label": "Introduction",
-    "description": "Our graffiti generator is a professional online tool that empowers anyone to create high-quality street art instantly. Combining cutting-edge AI technology with classic urban graffiti aesthetics and modern design principles, we offer diverse font styles from Old School bubble letters to stunning 3D effects. Whether you're designing graffiti signatures, brand logos, social media graphics, or custom artwork for your creative projects, our graffiti generator delivers professional-grade designs in seconds, perfectly capturing the authentic spirit of street culture and urban art movements.",
+    "description": "Graffiti Generator enables ultra-fast graffiti design, turning inspiration into street art in seconds.",
     "image": {
-      "src": "/imgs/features/3.png"
+      "src": "/imgs/features/1.webp"
     },
     "items": [
       {
         "title": "50+ Professional Graffiti Fonts",
-        "description": "From classic bubble letters and wildstyle to 3D effects and modern minimalist graffiti, we cover all major street art styles. Each graffiti font is carefully crafted by professional artists to ensure your work reflects authentic street culture vibes and urban creativity.",
-        "icon": "RiPaletteLine"
+        "description": "Covering bubble letters, Wildstyle, chrome 3D, and minimalist styles, Graffiti Generator is co-created with professional street artists to ensure every font retains authentic spray paint texture and depth, meeting multi-scenario needs for social media, brands, and merchandise.",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "AI graffiti generator showcasing diverse fonts"
+        }
       },
       {
-        "title": "Smart AI Optimization",
-        "description": "Advanced AI algorithms automatically analyze text structure, intelligently adjusting letter spacing, stroke weight, and color combinations. Every graffiti piece achieves the natural flow and visual impact of hand-painted artwork by professional street artists.",
-        "icon": "RiRobot2Line"
+        "title": "Smart AI Font Optimization",
+        "description": "The system automatically analyzes letter spacing, weight, and color schemes, adjusting stroke center of gravity and shadows based on graffiti flow, giving Graffiti Generator online outputs natural curves and gloss like hand-painted work, perfect for high-standard portfolios and commercial launches.",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Graffiti generator AI optimizing street art"
+        }
       },
       {
-        "title": "Instant High-Quality Results",
-        "description": "No waiting required—generate high-resolution graffiti art in just 3 seconds after entering your text. Export in PNG, SVG, and multiple formats suitable for print, web, and various creative applications.",
-        "icon": "RiTimeLine"
+        "title": "Multi-Format Fast Export",
+        "description": "Generate artwork in 3 seconds after entering text, with instant downloads of PNG, JPG, SVG, and graffiti generator 3D preview files, ready for poster printing, social sharing, or brand website embedding—one creation for multi-platform reuse.",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Graffiti generator exporting finished artwork"
+        }
       }
     ]
   },
   "benefit": {
     "name": "benefit",
-    "title": "Why Choose Our Graffiti Generator",
+    "title": "Why Graffiti Fans Choose Graffiti Generator",
     "label": "Core Benefits",
-    "description": "Unlike other graffiti tools, our graffiti generator combines professional design aesthetics with cutting-edge AI efficiency and authentic street art authenticity. Whether you're a graffiti enthusiast, professional graphic designer, content creator, or brand marketer looking to stand out, you can quickly create impressive street art with our intuitive platform. Our graffiti generator has been trusted by thousands of creators worldwide for delivering consistent, high-quality results every time.",
+    "description": "Graffiti Generator combines street culture expertise with AI algorithms to provide graffiti fans with zero-barrier, high-quality, and truly free graffiti generation experience.",
     "items": [
       {
-        "title": "Authentic Street Art Aesthetics",
-        "description": "We collaborate with professional graffiti artists to develop every font, ensuring generated works maintain genuine street art style. From brush textures to color gradients, every detail reflects professional standards, making your graffiti creations artistically compelling and culturally authentic.",
-        "icon": "RiStarLine"
+        "title": "Authentic Street Texture",
+        "description": "All spray paint textures, splatters, and lighting are recorded by veteran writers. Every piece from Graffiti Generator retains the graininess and momentum of street walls, not generic computer fonts.",
+        "icon": "RiStarLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Authentic graffiti generator street art preview"
+        }
       },
       {
-        "title": "Completely Free Forever",
-        "description": "100% free access to all graffiti font styles and features with no hidden fees or artwork limits. Use generated graffiti for personal and commercial projects without copyright concerns, giving you complete creative freedom to explore unlimited design possibilities.",
-        "icon": "RiGiftLine"
+        "title": "Truly Free Forever",
+        "description": "The platform opens all fonts and effects with no watermarks, no credits, and no export limits. Creators have full commercial rights to Graffiti Generator works and can confidently use them for products, ads, and exhibitions.",
+        "icon": "RiGiftLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Graffiti generator free access interface"
+        }
       },
       {
-        "title": "Zero Learning Curve",
-        "description": "No software downloads, no account registration—start creating directly in your browser. Our intuitive interface lets even graffiti beginners produce their first piece in 30 seconds, making street art creation accessible to everyone regardless of design experience.",
-        "icon": "RiSpeedLine"
+        "title": "Zero Learning Required",
+        "description": "Simply open your browser and enter text to complete. The system presets color palettes and lighting parameters, allowing new users to output professional graffiti within 1 minute on their first experience with Graffiti Generator online.",
+        "icon": "RiSpeedLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Graffiti generator simple workflow screenshot"
+        }
       }
     ]
   },
   "usage": {
     "name": "usage",
-    "title": "How to Create with Graffiti Generator",
-    "description": "Create professional street graffiti art with our graffiti generator in just 4 simple steps. The entire creative process takes less than one minute, transforming your creative ideas into stunning reality instantly. Whether you're a beginner or experienced designer, our streamlined workflow ensures perfect results every time with our intelligent graffiti creation system.",
-    "image": {
-      "src": "/imgs/features/1.png"
-    },
-    "image_position": "left",
-    "text_align": "center",
+    "title": "How to Use Graffiti Generator",
+    "description": "Follow these 4 steps to quickly complete your graffiti creation with Graffiti Generator.",
     "items": [
       {
         "title": "Enter Your Text",
-        "description": "Type the text you want to transform—your name, brand name, slogan, or any creative phrase. Our graffiti generator supports English, numbers, and special characters for versatile design options.",
+        "description": "Input names, slogans, or product taglines. Graffiti Generator supports English, Chinese, numbers, and common symbols for multilingual projects.",
         "icon": "RiEditLine"
       },
       {
         "title": "Choose Graffiti Style",
-        "description": "Select from our library of 50+ graffiti font styles including classic bubble letters, wildstyle, 3D effects, and modern minimalist designs. Each professional graffiti style brings unique street art character to your work.",
+        "description": "Select from 50+ fonts, graffiti generator online presets, and 3D effects. Preview in real-time to find the one that best matches your brand tone.",
         "icon": "RiPaletteLine"
       },
       {
         "title": "Customize Colors & Effects",
-        "description": "Adjust your graffiti's color scheme, gradient effects, and outline styles. Choose from classic street art color presets or customize RGB values to create truly unique visual effects for your graffiti artwork.",
+        "description": "Adjust gradients, outlines, highlights, and spray drips to quickly create a distinctive visual signature.",
         "icon": "RiSettings3Line"
       },
       {
-        "title": "Download & Share",
-        "description": "Download high-resolution graffiti images with one click. Export in PNG transparent background or SVG vector format, perfect for t-shirt printing, poster design, social media, website decoration, and more creative applications.",
+        "title": "Export & Publish",
+        "description": "One-click export of PNG, JPG, or SVG. High-resolution files ready for printing, social media publishing, or client presentations.",
         "icon": "RiDownloadLine"
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "title": "Powerful Graffiti Generator Features",
-    "description": "We continuously optimize our graffiti generation technology to provide industry-leading features and experiences, making every graffiti creation an artistic journey.",
+    "title": "Advanced Graffiti Generator Features",
+    "description": "Graffiti Generator integrates six core features to ensure both creative efficiency and commercial value.",
     "items": [
       {
-        "title": "Real-Time Preview & Editing",
-        "description": "See instant graffiti effect changes with every parameter adjustment in real-time. Our advanced what-you-see-is-what-you-get creation experience lets you precisely control every design detail, adjust colors on the fly, and quickly find your perfect graffiti style without waiting. Experiment freely with different combinations until you achieve the exact look you envision.",
+        "title": "Real-Time Preview Editing",
+        "description": "Adjust colors, shadows, or 3D angles with instant screen updates, ensuring your graffiti achieves ideal results before going live.",
         "icon": "RiEyeLine"
       },
       {
-        "title": "High-Definition Output",
-        "description": "Export graffiti artwork up to 4K resolution, ensuring crisp clarity at any size. Available in PNG, JPG, and SVG formats to meet professional requirements for print, digital media, and commercial applications.",
+        "title": "High-Resolution Export",
+        "description": "Supports 4K PNG, vector SVG, and transparent background JPG to meet professional needs for posters, apparel, and packaging printing.",
         "icon": "RiHdLine"
       },
       {
-        "title": "Custom Text Layouts",
-        "description": "Flexibly adjust graffiti text arrangement, tilt angles, and letter spacing. Support multi-line creation to craft more layered and design-focused graffiti art compositions with professional street art appeal.",
+        "title": "Multi-Language Text Support",
+        "description": "Graffiti Generator is compatible with multilingual character sets and special symbols, suitable for international brands or multilingual community operations.",
         "icon": "RiLayoutLine"
       },
       {
-        "title": "Rich Effects Library",
-        "description": "Add classic street graffiti effects like shadows, glows, textures, and splatters. Fine-tune each effect's intensity to give your graffiti pieces the raw texture and artistic energy of authentic street culture.",
+        "title": "Smart Color Recommendations",
+        "description": "The system automatically generates harmonious color schemes based on background or brand colors, keeping graffiti works eye-catching across different media.",
         "icon": "RiStarSLine"
       },
       {
-        "title": "Cloud Artwork Storage",
-        "description": "Automatically save your creation history to review and edit previous graffiti works anytime. Bookmark favorite color schemes to build your personal graffiti style library and boost creative efficiency.",
+        "title": "Custom Texture Materials",
+        "description": "Built-in spray, metal, neon, and wall wear materials can be layered to create exclusive styles that echo street culture atmosphere.",
         "icon": "RiCloudLine"
       },
       {
-        "title": "One-Click Social Sharing",
-        "description": "Quickly share graffiti artwork to Instagram, Facebook, Twitter, and other platforms. Automatic image size optimization ensures your street graffiti art easily gains more attention and engagement online.",
+        "title": "Cloud Project Management",
+        "description": "Automatically stores creation history and frequently-used parameters. Revisit to quickly reuse or iterate, making team collaboration more efficient.",
         "icon": "RiShareLine"
       }
     ]
@@ -232,58 +248,54 @@
   "faq": {
     "name": "faq",
     "label": "FAQ",
-    "title": "Frequently Asked Questions About Graffiti Generator",
-    "description": "Here are answers to the most common graffiti creation questions. Contact our support team if you have additional inquiries about using our graffiti generator.",
+    "title": "Graffiti Generator FAQ - Common Questions Answered",
+    "description": "Multiple creators share the real benefits Graffiti Generator brings.",
     "items": [
       {
-        "title": "Is the graffiti generator really completely free?",
-        "description": "Yes! Our graffiti generator is 100% free, providing all graffiti font styles and features with no hidden charges. Create unlimited graffiti artworks for personal or commercial projects completely free, with no copyright or usage restrictions to worry about."
+        "title": "Is Graffiti Generator truly free?",
+        "description": "Yes, Graffiti Generator provides completely free online graffiti generation services. All fonts and export functions are unlimited and come with full commercial licensing."
       },
       {
-        "title": "Can I use generated graffiti commercially?",
-        "description": "Absolutely! All artworks created with our graffiti generator come with full commercial usage rights. Use them for brand logos, product packaging, t-shirt printing, poster design, website decoration, and any commercial scenario without paying royalties or additional licensing fees."
+        "title": "What output formats does Graffiti Generator support?",
+        "description": "You can directly download PNG, JPG, SVG, and graffiti generator 3D preview files to meet multiple application scenarios including social media, printing, and modeling."
       },
       {
-        "title": "What languages does the graffiti generator support?",
-        "description": "Our graffiti generator supports English, numbers, and common special characters. Each graffiti font is specifically optimized for different character sets, ensuring harmonious and aesthetically pleasing street art style even when mixing languages and symbols."
+        "title": "Can I use Graffiti Generator without design experience?",
+        "description": "Absolutely. The system provides preset color palettes and styles. Beginners can generate professional graffiti works within one minute by following the workflow."
       },
       {
-        "title": "How do I choose the right graffiti font style?",
-        "description": "We recommend choosing based on your use case: bubble letters suit playful brands; wildstyle fits powerful products; 3D effects work for high-impact visuals; modern minimalist graffiti suits fashion brands. Experiment with different styles to find the perfect match for your creative vision."
-      },
-      {
-        "title": "What formats can I export graffiti artwork in?",
-        "description": "Our graffiti generator supports PNG (transparent background), JPG, and SVG vector format exports. PNG is ideal for web use, while SVG is perfect for print scenarios requiring infinite scaling. All formats support high-resolution output, ensuring your graffiti looks crisp on any medium."
+        "title": "Can Graffiti Generator creations be used commercially?",
+        "description": "Of course. The platform allows generated results to be used for posters, product packaging, advertising, and other commercial purposes without additional licensing fees."
       }
     ]
   },
   "testimonial": {
     "name": "testimonial",
     "label": "Testimonials",
-    "title": "What Creators Say About Our Graffiti Generator",
-    "description": "Real feedback from designers, artists, and brand creators using our free graffiti generator for their creative projects.",
+    "title": "Real Users Love Graffiti Generator",
+    "description": "Multiple creators share the real benefits Graffiti Generator brings.",
     "icon": "RiThumbUpLine",
     "items": [
       {
-        "title": "Marcus Chen",
-        "label": "Graphic Designer",
-        "description": "This graffiti generator is a game-changer! I've created over 50 designs for clients using the diverse font styles. The quality rivals professional hand-drawn graffiti, and it's completely free.",
+        "title": "Leo",
+        "label": "Streetwear Brand Owner",
+        "description": "I used Graffiti Generator online to create 3D graffiti posters. Product landing page conversion increased 38%, and clients recognized the realistic texture.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "Sofia Rodriguez",
-        "label": "Brand Manager",
-        "description": "We needed graffiti-style logos for our streetwear brand. This graffiti generator delivered authentic urban aesthetics instantly. Our social media engagement increased 250% with these eye-catching designs.",
+        "title": "Mei",
+        "label": "Social Media Manager",
+        "description": "When brands need to respond quickly to trends, I use Graffiti Generator to complete entire social media visuals in 20 minutes. Fan engagement doubled.",
         "image": {
           "src": "/imgs/users/2.png"
         }
       },
       {
-        "title": "DJ Mike Stone",
-        "label": "Music Producer",
-        "description": "Creating graffiti art for album covers used to take hours. Now with this graffiti generator, I produce professional street art designs in minutes. The variety of styles is incredible.",
+        "title": "Robin",
+        "label": "Visual Design Instructor",
+        "description": "Graffiti Generator free version lets me demonstrate font variations in real-time during classes. All students can experience street art hands-on.",
         "image": {
           "src": "/imgs/users/3.png"
         }
@@ -291,7 +303,7 @@
       {
         "title": "Emma Taylor",
         "label": "Content Creator",
-        "description": "As a YouTuber focused on street culture, this free graffiti generator is essential for my thumbnails and graphics. My audience loves the authentic graffiti aesthetics, and it's so easy to use.",
+        "description": "As a street culture YouTuber, this graffiti generator is essential for authentic thumbnails and graphics. My audience connects with the genuine graffiti aesthetics.",
         "image": {
           "src": "/imgs/users/6.png"
         }
@@ -299,7 +311,7 @@
       {
         "title": "Carlos Martinez",
         "label": "T-Shirt Designer",
-        "description": "I've used many graffiti tools, but this graffiti generator offers the best combination of style diversity and quality. The export options are perfect for printing, and the results always look professional.",
+        "description": "Tested countless graffiti tools, but this graffiti generator delivers unmatched style diversity and quality. Export options are perfect for apparel printing.",
         "image": {
           "src": "/imgs/users/4.png"
         }
@@ -307,7 +319,7 @@
       {
         "title": "Jasmine Lee",
         "label": "Event Organizer",
-        "description": "For our urban arts festival, we needed quick graffiti designs for posters and banners. This graffiti generator created stunning artwork that captured the street art spirit perfectly. Highly recommended!",
+        "description": "Our urban arts festival required rapid graffiti designs. This graffiti generator produced stunning artwork that perfectly captured authentic street art energy.",
         "image": {
           "src": "/imgs/users/5.png"
         }
@@ -316,11 +328,11 @@
   },
   "cta": {
     "name": "cta",
-    "title": "Start Using Free Graffiti Generator - Create Your Street Art Today",
-    "description": "Join 50,000+ creators and unleash your creative potential with our graffiti generator. No registration, no payment required—start creating professional graffiti art now!",
+    "title": "Experience Graffiti Generator's Ultra-Fast Graffiti Engine Now",
+    "description": "Use Graffiti Generator free to create street art now and transform inspiration into high-quality visual materials. No registration, unlimited exports—the sooner you act, the faster you capture your audience.",
     "buttons": [
       {
-        "title": "Start Creating Free",
+        "title": "Start Creating Now",
         "icon": "RiGiftLine",
         "url": "/#generator",
         "target": "_self",
@@ -332,7 +344,7 @@
     "name": "footer",
     "brand": {
       "title": "Graffiti Generator",
-      "description": "Our graffiti generator transforms ordinary text into extraordinary street art using advanced AI technology. Create professional graffiti fonts, urban designs, and authentic street culture artwork in seconds with our revolutionary platform.",
+      "description": "Graffiti Generator is dedicated to helping graffiti fans and brand teams quickly create authentic street-style works with AI, providing free, high-quality graffiti generation solutions suitable for multiple platforms.",
       "logo": {
         "src": "/logo.png",
         "alt": "Graffiti Generator"
@@ -344,9 +356,7 @@
       "items": [
         {
           "title": "Product",
-          "children": [
-           
-          ]
+          "children": []
         },
         {
           "title": "Resources",
@@ -359,9 +369,7 @@
         },
         {
           "title": "Community",
-          "children": [
-           
-          ]
+          "children": []
         }
       ]
     },

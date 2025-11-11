@@ -1,0 +1,109 @@
+import Icon from "@/components/icon";
+import { cn } from "@/lib/utils";
+import { Section as SectionType } from "@/types/blocks/section";
+
+export default function FeatureWhatTwo({
+  section,
+}: {
+  section: SectionType;
+}) {
+  if (section.disabled) {
+    return null;
+  }
+
+  return (
+    <section id={section.name} className="py-20 lg:py-24">
+      <div className="container max-w-6xl space-y-16">
+        <header className="flex flex-col items-center text-center gap-4">
+          {section.label && (
+            <span className="mb-4 inline-flex items-center rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
+              {section.label}
+            </span>
+          )}
+          {section.title && (
+            <h2 className="mb-4 max-w-3xl text-balance text-3xl font-bold lg:text-4xl">
+              {section.title}
+            </h2>
+          )}
+          {section.description && (
+            <p className="max-w-4xl text-muted-foreground lg:text-lg">
+              {section.description}
+            </p>
+          )}
+        </header>
+
+        <div className="space-y-20 lg:space-y-24">
+          {section.items?.map((item, index) => {
+            const hasImage = Boolean(item.image?.src);
+            const isReversed = index % 2 === 1;
+
+            return (
+              <article
+                key={index}
+                className={cn(
+                  "grid grid-cols-1 items-center gap-12 lg:gap-16",
+                  hasImage ? "lg:grid-cols-2" : "lg:grid-cols-[1fr]"
+                )}
+              >
+                {hasImage && (
+                  <div
+                    className={cn(
+                      "order-1 overflow-hidden rounded-3xl",
+                      isReversed && "lg:order-2"
+                    )}
+                  >
+                    <div className="relative aspect-[4/3] w-full bg-muted">
+                      <img
+                        src={item.image?.src}
+                        alt={item.image?.alt || item.title}
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                <div
+                  className={cn(
+                    "order-2 flex flex-col gap-6 lg:gap-8",
+                    isReversed && hasImage && "lg:order-1"
+                  )}
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      {item.icon && (
+                        <Icon
+                          name={item.icon}
+                          className="mt-1 size-7 shrink-0 text-primary"
+                        />
+                      )}
+                      <h3 className="text-3xl font-semibold leading-tight lg:text-4xl">
+                        {item.title}
+                      </h3>
+                    </div>
+                    {item.description && (
+                      <p className="max-w-2xl text-base leading-relaxed text-muted-foreground lg:text-lg">
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+
+                  {item.list && item.list.length > 0 && (
+                    <ul className="grid gap-3 text-sm text-muted-foreground lg:grid-cols-2 lg:text-base">
+                      {item.list.map((point, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <span className="mt-2 inline-block size-1.5 rounded-full bg-primary"></span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
