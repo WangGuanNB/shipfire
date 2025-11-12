@@ -3,6 +3,9 @@ import { getTranslations } from "next-intl/server";
 import { getAboutPage } from "@/services/page";
 import { getCanonicalUrl } from "@/lib/utils";
 
+// 启用 ISR：关于页面内容基本不变，24小时重新生成一次
+export const revalidate = 86400;
+
 export async function generateMetadata({
   params,
 }: {

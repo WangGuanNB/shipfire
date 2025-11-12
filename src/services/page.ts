@@ -1,31 +1,32 @@
+import { cache } from 'react';
 import { LandingPage, PricingPage, ShowcasePage, ConverterPage, ColorPage, AboutPage } from "@/types/pages/landing";
 import { replaceSocialMediaUrls } from "@/lib/utils";
 
-export async function getLandingPage(locale: string): Promise<LandingPage> {
+export const getLandingPage = cache(async (locale: string): Promise<LandingPage> => {
   const pageData = (await getPage("landing", locale)) as LandingPage;
   // 注入环境变量配置的社交媒体链接
   return replaceSocialMediaUrls(pageData);
-}
+});
 
-export async function getPricingPage(locale: string): Promise<PricingPage> {
+export const getPricingPage = cache(async (locale: string): Promise<PricingPage> => {
   return (await getPage("pricing", locale)) as PricingPage;
-}
+});
 
-export async function getShowcasePage(locale: string): Promise<ShowcasePage> {
+export const getShowcasePage = cache(async (locale: string): Promise<ShowcasePage> => {
   return (await getPage("showcase", locale)) as ShowcasePage;
-}
+});
 
-export async function getConverterPage(locale: string): Promise<ConverterPage> {
+export const getConverterPage = cache(async (locale: string): Promise<ConverterPage> => {
   return (await getPage("converter", locale)) as ConverterPage;
-}
+});
 
-export async function getColorPage(locale: string): Promise<ColorPage> {
+export const getColorPage = cache(async (locale: string): Promise<ColorPage> => {
   return (await getPage("color", locale)) as ColorPage;
-}
+});
 
-export async function getAboutPage(locale: string): Promise<AboutPage> {
+export const getAboutPage = cache(async (locale: string): Promise<AboutPage> => {
   return (await getPage("about", locale)) as AboutPage;
-}
+});
 
 export async function getPage(
   name: string,

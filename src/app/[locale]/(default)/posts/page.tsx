@@ -3,6 +3,9 @@ import { BlogItem, Blog as BlogType } from "@/types/blocks/blog";
 import { getPostsByLocaleWithFallback } from "@/models/post";
 import { getTranslations } from "next-intl/server";
 
+// 启用 ISR：博客列表可能更新，1小时重新生成一次
+export const revalidate = 3600;
+
 export async function generateMetadata({
   params,
 }: {

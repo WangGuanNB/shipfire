@@ -17,7 +17,8 @@ import { getLandingPage } from "@/services/page";
 import { getCanonicalUrl } from "@/lib/utils";
 // import TestPaymentModal from '@/components/payment/test-payment-modal';
 
-
+// 启用 ISR（增量静态再生）：24小时重新生成一次，降低 CPU 消耗
+export const revalidate = 86400;
 
 export async function generateMetadata({
   params,

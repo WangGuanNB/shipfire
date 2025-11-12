@@ -4,6 +4,9 @@ import { Suspense } from 'react';
 import { getColorPage } from "@/services/page";
 import { getCanonicalUrl } from "@/lib/utils";
 
+// 启用 ISR：工具页面内容稳定，7天重新生成一次
+export const revalidate = 604800;
+
 export async function generateMetadata({
   params,
 }: {
