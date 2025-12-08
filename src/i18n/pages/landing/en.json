@@ -3,10 +3,10 @@
   "theme": "light",
   "header": {
     "brand": {
-      "title": "Graffiti Generator",
+      "title": "ShipFire",
       "logo": {
         "src": "/logo.png",
-        "alt": "Graffiti Generator"
+        "alt": "ShipFire"
       },
       "url": "/"
     },
@@ -22,15 +22,15 @@
     "buttons": [],
     "show_sign": true,
     "show_theme": true,
-    "show_locale": false
+    "show_locale": true
   },
   "hero": {
-    "title": "Graffiti Generator AI Graffiti Maker",
-    "highlight_text": "Create Instantly",
-    "description": "Graffiti Generator transforms any text into street art in 3 seconds with its AI engine, combining 50+ professional fonts, 3D gradients, and authentic spray textures. Graffiti fans, design teams, and brands can complete high-quality visuals right in the browser—no installation, no registration, and unlimited commercial-grade creations anytime.",
+    "title": "ShipFire: Build Your SaaS Website in 3 Minutes",
+    "highlight_text": "Lightning Fast",
+    "description": "A free website builder designed for global indie developers. Launch your product in 48 hours with zero code and built-in AI optimization tools.",
     "announcement": {
-      "label": "100% Free",
-      "title": "No Account Needed",
+      "label": "Limited Time",
+      "title": "Free Forever",
       "url": "/#features"
     },
     "images": [
@@ -46,15 +46,26 @@
       }
     ],
     "layout": "left-image-right-content",
+    "variant": "compact",
     "enable_carousel": true,
     "buttons": [
       {
-        "title": "Create Graffiti Free Now",
+        "title": "Build Saas Free Now",
         "icon": "RiMagicLine",
         "url": "/#generator",
         "target": "_self",
         "variant": "default"
+      },
+      {
+        "title": "Explore Features",
+        "url": "/#feature",
+        "target": "_self",
+        "variant": "secondary"
       }
+    ],
+    "metrics": [
+      "FREE",
+      "Trusted by 50,000+ developers"
     ],
     "stats": [
       {
@@ -68,8 +79,8 @@
         "icon": "RiImageLine"
       }
     ],
-    "show_happy_users": false,
-    "show_badge": false
+    "show_happy_users": true,
+    "show_badge": true
   },
   "branding": {
     "title": "Powered by cutting-edge AI technology",
@@ -113,134 +124,192 @@
   },
   "introduce": {
     "name": "introduce",
-    "title": "What is Graffiti Generator",
-    "label": "Introduction",
-    "description": "Graffiti Generator enables ultra-fast graffiti design, turning inspiration into street art in seconds.",
+    "title": "What is ShipFire",
+    "label": "OVERVIEW",
+    "description": "A SaaS website-building platform tailored for global-facing developers to help your product reach users worldwide instantly.",
     "image": {
       "src": "/imgs/features/1.webp"
     },
     "items": [
       {
-        "title": "50+ Professional Graffiti Fonts",
-        "description": "Covering bubble letters, Wildstyle, chrome 3D, and minimalist styles, Graffiti Generator is co-created with professional street artists to ensure every font retains authentic spray paint texture and depth, meeting multi-scenario needs for social media, brands, and merchandise.",
+        "title": "ShipFire Free Website Builder",
+        "description": "A completely free online building system—no coding required. It integrates key modules such as payment systems, user management, and analytics. The drag-and-drop interface lets you focus on your product while we handle the tech. Go live in just 3 minutes.",
+        "icon": "RiDownloadLine",
         "image": {
           "src": "/imgs/features/1.webp",
-          "alt": "AI graffiti generator showcasing diverse fonts"
-        }
+          "alt": "Core Resources Library"
+        },
+        "buttons": [
+          {
+            "title": "Start Creating",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "See Pricing",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
       },
       {
-        "title": "Smart AI Font Optimization",
-        "description": "The system automatically analyzes letter spacing, weight, and color schemes, adjusting stroke center of gravity and shadows based on graffiti flow, giving Graffiti Generator online outputs natural curves and gloss like hand-painted work, perfect for high-standard portfolios and commercial launches.",
+        "title": "ShipFire AI Optimization Engine",
+        "description": "Built-in AI analyzes user behavior automatically. The AI assistant provides real-time improvement suggestions that boost conversions by up to 40%. From copywriting to layout tweaks, your site stays in peak marketing condition without hiring a team.",
+        "icon": "RiDownloadLine",
         "image": {
           "src": "/imgs/features/1.webp",
           "alt": "Graffiti generator AI optimizing street art"
-        }
+        },
+        "buttons": [
+          {
+            "title": "Start Creating",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "View Pricing",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
       },
       {
-        "title": "Multi-Format Fast Export",
-        "description": "Generate artwork in 3 seconds after entering text, with instant downloads of PNG, JPG, SVG, and graffiti generator 3D preview files, ready for poster printing, social sharing, or brand website embedding—one creation for multi-platform reuse.",
+        "title": "ShipFire Online One-Click Deployment",
+        "description": "Cloud hosting ensures 99.9% uptime. Global CDN delivers fast access for users worldwide. Automatic SSL, domain binding, and SEO optimization are all included—zero technical barrier so founders can focus fully on their product.",
+        "icon": "RiDownloadLine",
         "image": {
           "src": "/imgs/features/1.webp",
           "alt": "Graffiti generator exporting finished artwork"
-        }
+        },
+        "buttons": [
+          {
+            "title": "Start Creating",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "See Pricing",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
       }
     ]
   },
   "benefit": {
     "name": "benefit",
-    "title": "Why Graffiti Fans Choose Graffiti Generator",
+    "title": "Why Developers Choose ShipFire",
     "label": "Core Benefits",
-    "description": "Graffiti Generator combines street culture expertise with AI algorithms to provide graffiti fans with zero-barrier, high-quality, and truly free graffiti generation experience.",
+    "description": "Zero-cost startup with professional-grade features so your SaaS wins from day one.",
     "items": [
       {
-        "title": "Authentic Street Texture",
-        "description": "All spray paint textures, splatters, and lighting are recorded by veteran writers. Every piece from Graffiti Generator retains the graininess and momentum of street walls, not generic computer fonts.",
+        "title": "Truly Zero Cost",
+        "description": "ShipFire is 100% free with no hidden fees. Features that cost $49–299/month elsewhere—unlimited pages, user management, payment integration, analytics dashboards—are all unlocked here. Ideal for indie developers, saving thousands in early costs so you can invest in product and marketing instead.",
         "icon": "RiStarLine",
         "image": {
           "src": "/imgs/features/1.webp",
           "alt": "Authentic graffiti generator street art preview"
-        }
+        },
+        "buttons": [
+          {
+            "title": "Create Free",
+            "url": "/#generator",
+            "variant": "default"
+          }
+          
+        ]
       },
       {
-        "title": "Truly Free Forever",
-        "description": "The platform opens all fonts and effects with no watermarks, no credits, and no export limits. Creators have full commercial rights to Graffiti Generator works and can confidently use them for products, ads, and exhibitions.",
+        "title": "Lightning Fast",
+        "description": "From creating an account to publishing your website takes only 3 minutes. Choose from 50+ templates optimized for SaaS, customize, and publish. Compared to the 2–4 weeks required for traditional development, ShipFire helps you enter the market a month earlier. Automated workflows handle updates and backups so you can focus on growth.",
         "icon": "RiGiftLine",
         "image": {
           "src": "/imgs/features/1.webp",
           "alt": "Graffiti generator free access interface"
-        }
+        },
+        "buttons": [
+          {
+            "title": "Create Free",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
       },
       {
-        "title": "Zero Learning Required",
-        "description": "Simply open your browser and enter text to complete. The system presets color palettes and lighting parameters, allowing new users to output professional graffiti within 1 minute on their first experience with Graffiti Generator online.",
+        "title": "Optimized for Global Expansion",
+        "description": "Deeply understands the needs of global-facing developers. Supports 20+ languages with auto-translation, multi-currency payments, and GDPR-compliant data handling. Integrated Google Analytics and Meta Pixel help you track overseas performance. With servers across 15 regions, users in the US and Europe experience near-local speeds.",
         "icon": "RiSpeedLine",
         "image": {
           "src": "/imgs/features/1.webp",
           "alt": "Graffiti generator simple workflow screenshot"
-        }
+        },
+        "buttons": [
+          {
+            "title": "Create Free",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
       }
     ]
   },
   "usage": {
     "name": "usage",
-    "title": "How to Use Graffiti Generator",
-    "description": "Follow these 4 steps to quickly complete your graffiti creation with Graffiti Generator.",
+    "label": "HOW TO USE",
+    "title": "How to Build a ShipFire Website",
+    "description": "Create a professional website in three steps—fully online in just 180 seconds.",
     "items": [
       {
-        "title": "Enter Your Text",
-        "description": "Input names, slogans, or product taglines. Graffiti Generator supports English, Chinese, numbers, and common symbols for multilingual projects.",
+        "title": "Select Template",
+        "description": "Browse 50+ carefully crafted SaaS templates covering tools, services, communities, and more. Each is optimized for conversions—just pick and start customizing.",
         "icon": "RiEditLine"
       },
       {
-        "title": "Choose Graffiti Style",
-        "description": "Select from 50+ fonts, graffiti generator online presets, and 3D effects. Preview in real-time to find the one that best matches your brand tone.",
+        "title": "Customize Your Content",
+        "description": "Use the ShipFire Online Editor to modify text, images, and colors. The AI assistant suggests copy and layout based on your product type. Preview changes instantly.",
         "icon": "RiPaletteLine"
       },
       {
-        "title": "Customize Colors & Effects",
-        "description": "Adjust gradients, outlines, highlights, and spray drips to quickly create a distinctive visual signature.",
+        "title": "Publish with One Click",
+        "description": "Click Publish to automatically configure domain binding, SSL certificates, and CDN deployment. Your website goes live instantly and updates are equally effortless.",
         "icon": "RiSettings3Line"
-      },
-      {
-        "title": "Export & Publish",
-        "description": "One-click export of PNG, JPG, or SVG. High-resolution files ready for printing, social media publishing, or client presentations.",
-        "icon": "RiDownloadLine"
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "title": "Advanced Graffiti Generator Features",
-    "description": "Graffiti Generator integrates six core features to ensure both creative efficiency and commercial value.",
+    "label": "FEATURES",
+    "title": "ShipFire Core Features Overview",
+    "description": "Enterprise-level capabilities made simple for indie developers, powering your product’s growth.",
     "items": [
       {
-        "title": "Real-Time Preview Editing",
-        "description": "Adjust colors, shadows, or 3D angles with instant screen updates, ensuring your graffiti achieves ideal results before going live.",
+        "title": "Visual Editor",
+        "description": "Drag-and-drop interface with real-time preview. A library of 50+ components allows you to create custom layouts without design skills.",
         "icon": "RiEyeLine"
       },
       {
-        "title": "High-Resolution Export",
-        "description": "Supports 4K PNG, vector SVG, and transparent background JPG to meet professional needs for posters, apparel, and packaging printing.",
+        "title": "User Authentication System",
+        "description": "Supports email, Google, GitHub, and more. Automatically manages permissions and subscription tiers. Built-in trial and upgrade flows boost retention by 35%.",
         "icon": "RiHdLine"
       },
       {
-        "title": "Multi-Language Text Support",
-        "description": "Graffiti Generator is compatible with multilingual character sets and special symbols, suitable for international brands or multilingual community operations.",
+        "title": "Payment Integration",
+        "description": "Integrated with Stripe and PayPal. Handles subscription billing, invoices, refunds, and more—freeing you from backend complexity.",
         "icon": "RiLayoutLine"
       },
       {
-        "title": "Smart Color Recommendations",
-        "description": "The system automatically generates harmonious color schemes based on background or brand colors, keeping graffiti works eye-catching across different media.",
+        "title": "Analytics Dashboard",
+        "description": "Track user behavior, funnels, and revenue trends in real time. Clear visual charts help you discover growth opportunities and boost ROI by up to 50%.",
         "icon": "RiStarSLine"
       },
       {
-        "title": "Custom Texture Materials",
-        "description": "Built-in spray, metal, neon, and wall wear materials can be layered to create exclusive styles that echo street culture atmosphere.",
+        "title": "Automatic SEO Optimization",
+        "description": "Generates titles, descriptions, and schema markup automatically. Auto-submits to search engines and optimizes loading speed for higher Google rankings.",
         "icon": "RiCloudLine"
       },
       {
-        "title": "Cloud Project Management",
-        "description": "Automatically stores creation history and frequently-used parameters. Revisit to quickly reuse or iterate, making team collaboration more efficient.",
+        "title": "Email Marketing Tools",
+        "description": "Built-in email sending for welcome messages, product updates, campaigns, and more. A/B testing helps you discover high-performing copy, increasing open rates by 45%.",
         "icon": "RiShareLine"
       }
     ]
@@ -248,38 +317,53 @@
   "faq": {
     "name": "faq",
     "label": "FAQ",
-    "title": "Graffiti Generator FAQ - Common Questions Answered",
-    "description": "Multiple creators share the real benefits Graffiti Generator brings.",
+    "title": "Frequently Asked Questions",
+    "description": "Can't find the answer to your question? Contact us for help.",
+    "buttons": [
+      {
+        "title": "Contact Us",
+        "url": "/#contact",
+        "variant": "default"
+      }
+    ],
     "items": [
       {
-        "title": "Is Graffiti Generator truly free?",
-        "description": "Yes, Graffiti Generator provides completely free online graffiti generation services. All fonts and export functions are unlimited and come with full commercial licensing."
+        "title": "Is ShipFire free?",
+        "description": "Yes. ShipFire offers a permanently free plan with unlimited pages, user management, payment integration, analytics, and more. No credit card required and no hidden fees. Full commercial use is allowed."
       },
       {
-        "title": "What output formats does Graffiti Generator support?",
-        "description": "You can directly download PNG, JPG, SVG, and graffiti generator 3D preview files to meet multiple application scenarios including social media, printing, and modeling."
+        "title": "Which platforms does ShipFire Online support?",
+        "description": "Supports custom domains, Vercel, Netlify, and other major hosting platforms. A free *.shipfire.app subdomain is available for testing. SSL and CDN are configured automatically for global performance."
       },
       {
-        "title": "Can I use Graffiti Generator without design experience?",
-        "description": "Absolutely. The system provides preset color palettes and styles. Beginners can generate professional graffiti works within one minute by following the workflow."
+        "title": "Can I use ShipFire without technical experience?",
+        "description": "Absolutely. ShipFire is designed for non-technical users with a drag-and-drop editor, tutorials, and an AI assistant that provides real-time guidance. Thousands of beginners have built websites with an average learning time under 30 minutes."
       },
       {
-        "title": "Can Graffiti Generator creations be used commercially?",
-        "description": "Of course. The platform allows generated results to be used for posters, product packaging, advertising, and other commercial purposes without additional licensing fees."
+        "title": "Can I use ShipFire websites for commercial purposes?",
+        "description": "Yes. Websites built with ShipFire are fully commercial-ready, including selling products, subscriptions, and ads. There are no licensing restrictions or revenue sharing."
+      },
+      {
+        "title": "Can I export or migrate my ShipFire website?",
+        "description": "Yes, you can export full website code including HTML, CSS, and config files. You can migrate to your own server anytime. User and order data can also be exported as CSV for full data ownership."
+      },
+      {
+        "title": "What can ShipFire’s AI features do?",
+        "description": "The AI assistant optimizes copy, suggests layout improvements, analyzes user behavior, and predicts conversion bottlenecks. It supports SEO optimization, A/B test generation, and email content creation—trained on data from 50,000+ sites with 92% recommendation accuracy."
       }
     ]
   },
   "testimonial": {
     "name": "testimonial",
     "label": "Testimonials",
-    "title": "Real Users Love Graffiti Generator",
-    "description": "Multiple creators share the real benefits Graffiti Generator brings.",
+    "title": "What Developers Say About ShipFire",
+    "description": "See how global developers are using ShipFire to accelerate their business.",
     "icon": "RiThumbUpLine",
     "items": [
       {
         "title": "Leo",
         "label": "Streetwear Brand Owner",
-        "description": "I used Graffiti Generator online to create 3D graffiti posters. Product landing page conversion increased 38%, and clients recognized the realistic texture.",
+        "description": "I used to spend three weeks building a site, only to get less than 2% conversion. With ShipFire Free, I rebuilt everything in 3 hours and hit 8.5%. Now all my time goes to product development.",
         "image": {
           "src": "/imgs/users/1.png"
         }
@@ -287,7 +371,7 @@
       {
         "title": "Mei",
         "label": "Social Media Manager",
-        "description": "When brands need to respond quickly to trends, I use Graffiti Generator to complete entire social media visuals in 20 minutes. Fan engagement doubled.",
+        "description": "Our team has no front-end devs and Webflow was too expensive. Switching to ShipFire saved us $3,600 a year and the AI optimization identified 5 issues that boosted our MRR by 38%.",
         "image": {
           "src": "/imgs/users/2.png"
         }
@@ -295,7 +379,7 @@
       {
         "title": "Robin",
         "label": "Visual Design Instructor",
-        "description": "Graffiti Generator free version lets me demonstrate font variations in real-time during classes. All students can experience street art hands-on.",
+        "description": "The AI suggestions are my favorite. Last week it recommended a pricing page tweak—after applying it our paid conversion jumped from 4% to 6.2%, generating an extra $2,000/month.",
         "image": {
           "src": "/imgs/users/3.png"
         }
@@ -303,7 +387,7 @@
       {
         "title": "Emma Taylor",
         "label": "Content Creator",
-        "description": "As a street culture YouTuber, this graffiti generator is essential for authentic thumbnails and graphics. My audience connects with the genuine graffiti aesthetics.",
+        "description": "I built 12 landing pages for clients using ShipFire, each in about 20 minutes. The built-in A/B testing and analytics simplified optimization—client ROI improved by 55%.",
         "image": {
           "src": "/imgs/users/6.png"
         }
@@ -311,7 +395,7 @@
       {
         "title": "Carlos Martinez",
         "label": "T-Shirt Designer",
-        "description": "Tested countless graffiti tools, but this graffiti generator delivers unmatched style diversity and quality. Export options are perfect for apparel printing.",
+        "description": "I sell online courses and WordPress plugins always caused conflicts. ShipFire tripled my site speed and made checkout smoother. Refunds dropped by 70%—students love the experience.",
         "image": {
           "src": "/imgs/users/4.png"
         }
@@ -319,7 +403,7 @@
       {
         "title": "Jasmine Lee",
         "label": "Event Organizer",
-        "description": "Our urban arts festival required rapid graffiti designs. This graffiti generator produced stunning artwork that perfectly captured authentic street art energy.",
+        "description": "As a developer I didn’t think I needed a builder, but ShipFire is free and surprisingly powerful. I used it to validate a new startup idea: went from concept to live MVP in 4 hours.",
         "image": {
           "src": "/imgs/users/5.png"
         }
@@ -328,8 +412,8 @@
   },
   "cta": {
     "name": "cta",
-    "title": "Experience Graffiti Generator's Ultra-Fast Graffiti Engine Now",
-    "description": "Use Graffiti Generator free to create street art now and transform inspiration into high-quality visual materials. No registration, unlimited exports—the sooner you act, the faster you capture your audience.",
+    "title": "Start Building with ShipFire Today",
+    "description": "No credit card needed. No technical skills required. Build a professional site in 3 minutes. Join 50,000+ global developers and reach users worldwide. All core features are free forever.",
     "buttons": [
       {
         "title": "Start Creating Now",

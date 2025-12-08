@@ -20,4 +20,7 @@ export interface Hero {
   tip?: string;
   show_happy_users?: boolean;
   show_badge?: boolean;
+  layout?: string;
+  variant?: "default" | "compact";
+  metrics?: string[];
 }

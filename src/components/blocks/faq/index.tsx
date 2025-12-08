@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { 
   Accordion, 
   AccordionContent, 
@@ -6,6 +7,7 @@ import {
   AccordionTrigger 
 } from "@/components/ui/accordion";
 import { Section as SectionType } from "@/types/blocks/section";
+import { Link } from "@/i18n/navigation";
 
 export default function FAQ({ section }: { section: SectionType }) {
   if (section.disabled) {
@@ -13,48 +15,58 @@ export default function FAQ({ section }: { section: SectionType }) {
   }
 
   return (
-    <section id={section.name} className="py-16">
+    <section id={section.name} className="py-12 md:py-20">
       <div className="container">
-        <div className="text-center mb-16">
-          {section.label && (
-            <Badge variant="outline" className="mb-4 text-sm font-medium">
-              {section.label}
-            </Badge>
-          )}
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl mb-2">
-            {section.title}
-          </h2>
-          <p className="mx-auto max-w-4xl text-lg text-muted-foreground">
-            {section.description}
-          </p>
-        </div>
-        
-        <div className="mx-auto max-w-4xl">
-          <Accordion type="multiple" className="w-full">
-            {section.items?.map((item, index) => (
-              <AccordionItem 
-                key={index} 
-                value={`item-${index}`}
-                className="border-b border-border/40"
-              >
-                <AccordionTrigger className="text-left hover:no-underline group">
-                  <div className="flex items-center gap-4">
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 font-mono text-sm font-semibold text-primary group-hover:bg-primary/20 transition-colors">
-                      {index + 1}
-                    </span>
-                    <span className="text-base font-semibold group-hover:text-primary transition-colors">
+        <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:items-start">
+          {/* 左侧：标题和描述 */}
+          <div className="space-y-6">
+            {section.label && (
+              <Badge variant="outline" className="mb-4">
+                {section.label}
+              </Badge>
+            )}
+            <h2 className="text-balance text-4xl font-medium lg:text-5xl">
+              {section.title}
+            </h2>
+            {section.description && (
+              <p className="text-muted-foreground lg:text-lg">
+                {section.description}
+              </p>
+            )}
+            {section.buttons && section.buttons.length > 0 && (
+              <div className="pt-4">
+                <Button asChild size="lg">
+                  <Link href={section.buttons[0].url || "#"}>
+                    {section.buttons[0].title}
+                  </Link>
+                </Button>
+              </div>
+            )}
+          </div>
+
+          {/* 右侧：问题列表 */}
+          <div className="lg:pl-8">
+            <Accordion type="single" collapsible className="w-full">
+              {section.items?.map((item, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`}
+                  className="border-0 border-b border-border last:border-b-0 py-4 first:pt-0"
+                >
+                  <AccordionTrigger className="text-left hover:no-underline py-0">
+                    <span className="text-base font-semibold pr-8">
                       {item.title}
                     </span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="pt-2 pb-6 pl-12">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-4 pb-0">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </div>
     </section>

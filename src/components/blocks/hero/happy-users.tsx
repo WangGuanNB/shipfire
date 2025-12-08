@@ -9,7 +9,7 @@ export default function HappyUsers() {
         {Array.from({ length: 5 }).map((_, index) => (
           <Avatar className="size-12 border" key={index}>
             <AvatarImage
-              src={`/imgs/users/${index + 6}.png`}
+              src={`/imgs/users/${index + 1}.png`}
               alt="placeholder"
             />
           </Avatar>

@@ -27,7 +27,7 @@ export default function Testimonial({ section }: { section: SectionType }) {
   );
 
   return (
-    <section id={section.name} className="py-16">
+    <section id={section.name} className="py-12 md:py-20">
       <div className="flex flex-col items-center gap-4">
         {section.label && (
           <div className="flex items-center gap-1 text-sm font-semibold text-primary">
@@ -37,23 +37,24 @@ export default function Testimonial({ section }: { section: SectionType }) {
             {section.label}
           </div>
         )}
-        <h2 className="text-center text-3xl font-semibold lg:text-4xl">
+        <h2 className="text-balance text-4xl font-medium lg:text-5xl">
           {section.title}
         </h2>
-        <p className="text-center text-muted-foreground lg:text-lg">
+        <p className="mx-auto max-w-3xl text-muted-foreground lg:text-lg">
           {section.description}
         </p>
       </div>
-      <div className="lg:container">
+      <div className="container">
         <div className="mt-16 space-y-4">
-          <Carousel
-            opts={{
-              loop: true,
-            }}
-            plugins={[plugin.current]}
-            onMouseLeave={() => plugin.current.play()}
-            className="relative before:absolute before:bottom-0 before:left-0 before:top-0 before:z-10 before:w-36 before:bg-linear-to-r before:from-background before:to-transparent after:absolute after:bottom-0 after:right-0 after:top-0 after:z-10 after:w-36 after:bg-linear-to-l after:from-background after:to-transparent"
-          >
+          <div className="relative -mx-4 px-4 before:absolute before:bottom-0 before:left-0 before:top-0 before:z-10 before:w-36 before:bg-gradient-to-r before:from-background before:to-transparent after:absolute after:bottom-0 after:right-0 after:top-0 after:z-10 after:w-36 after:bg-gradient-to-l after:from-background after:to-transparent">
+            <Carousel
+              opts={{
+                loop: true,
+              }}
+              plugins={[plugin.current]}
+              onMouseLeave={() => plugin.current.play()}
+              className="relative"
+            >
             <CarouselContent>
               {section.items?.map((item, index) => (
                 <CarouselItem key={index} className="basis-auto">
@@ -90,6 +91,7 @@ export default function Testimonial({ section }: { section: SectionType }) {
               ))}
             </CarouselContent>
           </Carousel>
+          </div>
         </div>
       </div>
     </section>

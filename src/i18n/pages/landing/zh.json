@@ -3,10 +3,10 @@
   "theme": "light",
   "header": {
     "brand": {
-      "title": "Miniatur AI",
+      "title": "ShipFire",
       "logo": {
         "src": "/logo.png",
-        "alt": "Miniatur AI"
+        "alt": "ShipFire"
       },
       "url": "/"
     },
@@ -25,12 +25,12 @@
     "show_locale": true
   },
   "hero": {
-    "title": "用 Miniatur AI 将照片转换为微缩杰作",
-    "highlight_text": "Miniatur AI",
-    "description": "将普通照片转换为非凡的微缩世界，具有惊人的移轴效果和迷人的立体模型。我们先进的 Miniatur AI 技术分析每个像素，创建真实的景深效果，媲美昂贵的相机镜头。只需上传您的照片，观看人工智能在几秒钟内创建专业的微缩杰作，完美适用于社交媒体、作品集和创意项目。",
+    "title": "ShipFire: 3 分钟内构建您的 SaaS 网站",
+    "highlight_text": "闪电般快速",
+    "description": "专为全球独立开发者设计的免费网站构建器。零代码，48 小时内发布产品，内置 AI 优化工具。",
     "announcement": {
-      "label": "100% 免费",
-      "title": "无需登录",
+      "label": "限时",
+      "title": "永久免费",
       "url": "/#features"
     },
   
@@ -47,25 +47,36 @@
       }
     ],
     "layout": "left-image-right-content",
+    "variant": "compact",
     "enable_carousel": true,
     "buttons": [
       {
-        "title": "无需登录开始创作",
+        "title": "立即免费构建 SaaS",
         "icon": "RiMagicLine",
         "url": "/#generator",
         "target": "_self",
         "variant": "default"
+      },
+      {
+        "title": "探索功能",
+        "url": "/#feature",
+        "target": "_self",
+        "variant": "secondary"
       }
+    ],
+    "metrics": [
+      "免费",
+      "50,000+ 开发者信赖"
     ],
     "stats": [
       {
-        "value": "12,847+",
-        "label": "信赖 Miniatur AI 的用户",
+        "value": "50,000+",
+        "label": "涂鸦创作者",
         "icon": "RiUserLine"
       },
       {
-        "value": "89,432+",
-        "label": "生成的微缩图像",
+        "value": "200,000+",
+        "label": "生成的涂鸦艺术作品",
         "icon": "RiImageLine"
       }
     ],
@@ -114,127 +125,191 @@
   },
   "introduce": {
     "name": "introduce",
-    "title": "什么是 Miniatur AI",
-    "label": "简介",
-    "description": "Miniatur AI 是一个革命性的免费人工智能平台，能将普通照片转换为令人惊叹的微缩杰作。使用先进的计算机视觉和机器学习算法，我们的智能工具分析图像构图、深度和光线，在几秒钟内创建专业的移轴效果和逼真的立体模型场景。无论您是专业摄影师、内容创作者还是爱好者，Miniatur AI 都能以无与伦比的精确度和速度提供博物馆级质量的微缩转换。",
+    "title": "什么是 ShipFire",
+    "label": "OVERVIEW",
+    "description": "一个面向全球开发者的 SaaS 网站构建平台，帮助您的产品快速触达全球用户。",
     "image": {
-      "src": "/imgs/features/3.png"
+      "src": "/imgs/features/1.webp"
     },
     "items": [
       {
-        "title": "AI驱动的智能分析",
-        "description": "我们的人工智能系统智能识别照片中的焦点、深度层和空间关系，创建真实的微缩效果，具有完美的模糊渐变和专业的景深模拟，媲美真实的移轴摄影技术。",
-        "icon": "RiRobot2Line"
+        "title": "ShipFire 免费网站构建器",
+        "description": "完全免费的在线构建系统—无需编码。它集成了关键模块，如支付系统、用户管理和分析。拖放界面让您专注于产品，而我们处理技术。只需3分钟即可上线。",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "核心资源库"
+        },
+        "buttons": [
+          {
+            "title": "开始创作",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "查看价格",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
       },
       {
-        "title": "多种微缩风格",
-        "description": "选择移轴摄影、玩具立体模型效果、建筑微缩模型和收藏人物风格。每个AI优化的预设都能为不同的照片构图和创意愿景提供独特的微缩特色。",
-        "icon": "RiPaletteLine"
+        "title": "ShipFire AI 优化引擎",
+        "description": "内置 AI 自动分析用户行为。AI 助手提供实时改进建议，将转化率提升高达 40%。从文案到布局调整，您的网站始终保持最佳营销状态，无需雇佣团队。",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "涂鸦生成器 AI 优化街头艺术"
+        },
+        "buttons": [
+          {
+            "title": "开始创作",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "查看价格",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
       },
       {
-        "title": "即时AI处理",
-        "description": "先进的基于云端的人工智能处理在10秒内提供专业的微缩效果。无需复杂的软件安装、付费要求或技术专业知识即可创建惊人的结果。",
-        "icon": "RiTimeLine"
+        "title": "ShipFire 在线一键部署",
+        "description": "云托管确保 99.9% 的正常运行时间。全球 CDN 为全球用户提供快速访问。自动 SSL、域名绑定和 SEO 优化全部包含—零技术障碍，让创始人可以完全专注于产品。",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "涂鸦生成器导出完成的作品"
+        },
+        "buttons": [
+          {
+            "title": "开始创作",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "查看价格",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
       }
     ]
   },
   "benefit": {
     "name": "benefit",
-    "title": "为什么选择 Miniatur AI",
-    "label": "优势",
-    "description": "全球的专业摄影师和内容创作者信赖 Miniatur AI 提供优质的图像分析、真实的微缩效果和闪电般快速的AI处理。我们的人工智能系统理解摄影原理，提供媲美昂贵相机设备和数小时手动编辑工作的结果。",
+    "title": "为什么开发者选择 ShipFire",
+    "label": "Core Benefits",
+    "description": "零成本启动，具备专业级功能，让您的 SaaS 从第一天起就获胜。",
     "items": [
       {
-        "title": "专业品质的微缩结果",
-        "description": "Miniatur AI 产生博物馆级质量的微缩效果，保持适当的景深、真实的模糊图案和专业微缩摄影中的真实移轴特色。我们的AI确保每次转换都符合行业标准。",
+        "title": "真正零成本",
+        "description": "ShipFire 100% 免费，无隐藏费用。在其他地方需要 $49–299/月的功能—无限页面、用户管理、支付集成、分析仪表板—在这里全部解锁。非常适合独立开发者，节省数千早期成本，让您可以投资于产品和营销。",
         "icon": "RiStarLine",
         "image": {
-          "src": "/imgs/features/4.png"
-        }
+          "src": "/imgs/features/1.webp",
+          "alt": "真实的涂鸦生成器街头艺术预览"
+        },
+        "buttons": [
+          {
+            "title": "免费创建",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
       },
       {
-        "title": "智能场景识别",
-        "description": "我们先进的AI分析建筑元素、风景、人物和物体，为您特定的照片内容和构图自动应用最适合的微缩效果。智能人工智能适应任何场景类型。",
-        "icon": "RiBrainLine",
+        "title": "闪电般快速",
+        "description": "从创建账户到发布网站只需 3 分钟。从 50+ 个针对 SaaS 优化的模板中选择，自定义并发布。相比传统开发所需的 2–4 周，ShipFire 帮助您提前一个月进入市场。自动化工作流程处理更新和备份，让您可以专注于增长。",
+        "icon": "RiGiftLine",
         "image": {
-          "src": "/imgs/features/6.png"
-        }
+          "src": "/imgs/features/1.webp",
+          "alt": "涂鸦生成器免费访问界面"
+        },
+        "buttons": [
+          {
+            "title": "免费创建",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
       },
       {
-        "title": "轻松的微缩工作流程",
-        "description": "跳过复杂的照片编辑软件和昂贵的设备。Miniatur AI 只需一键就能将您的照片转换为专业的微缩结果，节省数小时的手动工作，同时提供一致的高质量成果。",
+        "title": "为全球扩张优化",
+        "description": "深刻理解面向全球的开发者的需求。支持 20+ 种语言，具有自动翻译、多币种支付和符合 GDPR 的数据处理。集成的 Google Analytics 和 Meta Pixel 帮助您跟踪海外表现。在 15 个地区拥有服务器，美国和欧洲的用户体验接近本地速度。",
         "icon": "RiSpeedLine",
         "image": {
-          "src": "/imgs/features/7.png"
-        }
+          "src": "/imgs/features/1.webp",
+          "alt": "涂鸦生成器简单工作流程截图"
+        },
+        "buttons": [
+          {
+            "title": "免费创建",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
       }
     ]
   },
   "usage": {
     "name": "usage",
-    "title": "如何使用 Miniatur AI 创建微缩作品",
-    "description": "通过四个简单步骤将您的照片转换为令人惊叹的微缩杰作。我们的 Miniatur AI 系统自动处理所有复杂的图像分析和处理，每次都能以人工智能精度提供专业的微缩结果。",
-    "image": {
-      "src": "/imgs/features/1.png"
-    },
-    "image_position": "left",
-    "text_align": "center",
+    "label": "HOW TO USE",
+    "title": "如何构建 ShipFire 网站",
+    "description": "通过三个简单步骤创建专业网站—完全在线，仅需180秒。",
     "items": [
       {
-        "title": "上传您的照片",
-        "description": "简单地拖放任何最大10MB的JPEG或PNG图像。Miniatur AI 接受风景、建筑、人物和物体的照片进行微缩转换。我们的AI在高分辨率图像上效果最佳。",
-        "icon": "RiUploadLine"
+        "title": "选择模板",
+        "description": "浏览50+精心制作的SaaS模板，涵盖工具、服务、社区等。每个模板都针对转化进行了优化—只需选择并开始自定义。",
+        "icon": "RiEditLine"
       },
       {
-        "title": "选择微缩风格",
-        "description": "从我们的AI优化预设中选择：移轴摄影、玩具立体模型、建筑微缩模型或收藏人物风格。每个预设都通过人工智能为不同的照片类型和构图进行了精细调整。",
+        "title": "自定义您的内容",
+        "description": "使用 ShipFire 在线编辑器修改文本、图像和颜色。AI助手根据您的产品类型建议文案和布局。即时预览更改。",
+        "icon": "RiPaletteLine"
+      },
+      {
+        "title": "一键发布",
+        "description": "点击发布即可自动配置域名绑定、SSL证书和CDN部署。您的网站立即上线，更新同样轻松。",
         "icon": "RiSettings3Line"
-      },
-      {
-        "title": "AI处理魔法",
-        "description": "我们的 Miniatur AI 分析深度信息，应用智能模糊效果，创建真实的微缩特色。先进的人工智能算法确保在几秒钟内获得专业级质量的结果。",
-        "icon": "RiMagicLine"
-      },
-      {
-        "title": "下载和分享",
-        "description": "以高分辨率保存您的微缩作品。完美适用于社交媒体、作品集或打印。与世界分享您独特的AI生成微缩艺术，展示专业的转换结果。",
-        "icon": "RiDownloadLine"
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "title": "Miniatur AI 高级功能",
-    "description": "探索强大的人工智能功能，使我们的微缩生成器成为照片转换和创意编辑项目最先进的AI工具。",
+    "label": "FEATURES",
+    "title": "ShipFire 核心功能概览",
+    "description": "企业级功能，为独立开发者简化，推动您的产品增长。",
     "items": [
       {
-        "title": "智能深度检测",
-        "description": "Miniatur AI 使用计算机视觉分析图像深度并自动创建真实的焦点平面，确保具有专业景深准确性的真实移轴微缩效果。",
+        "title": "可视化编辑器",
+        "description": "拖放界面，实时预览。50+ 组件库让您无需设计技能即可创建自定义布局。",
         "icon": "RiEyeLine"
       },
       {
-        "title": "AI风格优化",
-        "description": "我们的机器学习算法根据您照片的内容和构图自动调整模糊强度、景深和色彩饱和度，以获得最佳的微缩结果。",
-        "icon": "RiSettings2Line"
-      },
-      {
-        "title": "批量处理",
-        "description": "上传多张照片并在整个收藏中应用一致的 Miniatur AI 效果。完美适合创建具有统一人工智能处理的凝聚微缩摄影系列。",
-        "icon": "RiStackLine"
-      },
-      {
-        "title": "高分辨率输出",
-        "description": "生成高达4K分辨率的微缩图像，同时保持清晰的细节和平滑的模糊过渡。专业级质量的AI处理适用于任何商业或创意用例。",
+        "title": "用户认证系统",
+        "description": "支持邮箱、Google、GitHub 等。自动管理权限和订阅层级。内置试用和升级流程将留存率提升 35%。",
         "icon": "RiHdLine"
       },
       {
-        "title": "实时预览",
-        "description": "在调整设置时即时查看您的微缩转换。Miniatur AI 通过实时人工智能处理为每次完美结果提供即时反馈。",
-        "icon": "RiLiveLine"
+        "title": "支付集成",
+        "description": "与 Stripe 和 PayPal 集成。处理订阅计费、发票、退款等—让您摆脱后端复杂性。",
+        "icon": "RiLayoutLine"
       },
       {
-        "title": "轻松导出和分享",
-        "description": "以多种格式下载您的微缩作品或直接分享到社交媒体平台。轻松展示您的AI生成微缩艺术，获得专业结果。",
+        "title": "分析仪表板",
+        "description": "实时跟踪用户行为、漏斗和收入趋势。清晰的可视化图表帮助您发现增长机会，将 ROI 提升高达 50%。",
+        "icon": "RiStarSLine"
+      },
+      {
+        "title": "自动 SEO 优化",
+        "description": "自动生成标题、描述和 schema 标记。自动提交到搜索引擎并优化加载速度以获得更高的 Google 排名。",
+        "icon": "RiCloudLine"
+      },
+      {
+        "title": "电子邮件营销工具",
+        "description": "内置电子邮件发送，用于欢迎消息、产品更新、营销活动等。A/B 测试帮助您发现高性能文案，将打开率提高 45%。",
         "icon": "RiShareLine"
       }
     ]
@@ -266,79 +341,106 @@
   "testimonial": {
     "name": "testimonial",
     "label": "推荐",
-    "title": "创作者对 Miniatur AI 的评价",
-    "description": "来自使用 Miniatur AI 进行创意项目和专业微缩转换的摄影师和艺术家的真实反馈。",
+    "title": "开发者对 ShipFire 的评价",
+    "description": "看看全球开发者如何使用 ShipFire 加速他们的业务。",
     "icon": "RiThumbUpLine",
     "items": [
       {
-        "title": "莎拉·米切尔",
-        "label": "专业摄影师",
-        "description": "Miniatur AI 提供的结果媲美我昂贵的移轴镜头。这个人工智能比我用过的任何编辑软件都更好地理解微缩摄影的深度。",
+        "title": "Leo",
+        "label": "街头服饰品牌主",
+        "description": "我曾经花三周时间构建一个网站，只获得了不到 2% 的转化率。使用 ShipFire 免费版，我在 3 小时内重建了一切，达到了 8.5%。现在我的所有时间都用于产品开发。",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "詹姆斯·罗德里格斯",
-        "label": "内容创作者",
-        "description": "这个AI太不可思议了！我可以在几秒钟内为Instagram创建微缩风格的内容。自从使用 Miniatur AI 进行社交媒体内容创作以来，我的参与度增加了300%。",
+        "title": "Mei",
+        "label": "社交媒体经理",
+        "description": "我们的团队没有前端开发人员，Webflow 太贵了。改用 ShipFire 每年为我们节省了 $3,600，AI 优化识别了 5 个问题，使我们的 MRR 提升了 38%。",
         "image": {
           "src": "/imgs/users/2.png"
         }
       },
       {
-        "title": "艾米莉·陈",
-        "label": "数字艺术家",
-        "description": "微缩效果如此逼真。Miniatur AI 为我节省了数小时的手动编辑时间，同时通过先进的人工智能处理每次都能产生专业级质量的结果。",
+        "title": "Robin",
+        "label": "视觉设计讲师",
+        "description": "AI 建议是我的最爱。上周它推荐了一个定价页面调整—应用后，我们的付费转化率从 4% 跃升至 6.2%，每月额外产生 $2,000。",
         "image": {
           "src": "/imgs/users/3.png"
         }
       },
       {
-        "title": "迈克尔·汤普森",
-        "label": "旅行博主",
-        "description": "现在我所有的旅行照片都使用 Miniatur AI。微缩效果让普通场景看起来像魔法般的小世界，具有专业AI转换质量。",
+        "title": "艾玛·泰勒",
+        "label": "内容创作者",
+        "description": "我使用 ShipFire 为客户构建了 12 个落地页，每个大约 20 分钟。内置的 A/B 测试和分析简化了优化—客户 ROI 提高了 55%。",
         "image": {
           "src": "/imgs/users/6.png"
+        }
+      },
+      {
+        "title": "卡洛斯·马丁内斯",
+        "label": "T恤设计师",
+        "description": "我销售在线课程，WordPress 插件总是导致冲突。ShipFire 使我的网站速度提高了三倍，并使结账更加顺畅。退款下降了 70%—学生们喜欢这种体验。",
+        "image": {
+          "src": "/imgs/users/4.png"
+        }
+      },
+      {
+        "title": "Jasmine Lee",
+        "label": "活动组织者",
+        "description": "作为开发者，我不认为需要构建器，但 ShipFire 是免费的且功能强大。我用它验证了一个新的创业想法：从概念到上线 MVP 仅用了 4 小时。",
+        "image": {
+          "src": "/imgs/users/5.png"
         }
       }
     ]
   },
   "faq": {
     "name": "faq",
-    "label": "常见问题",
-    "title": "关于 Miniatur AI 的常见问题",
-    "description": "对我们的AI微缩生成器有疑问？在这里找到答案，或联系我们的支持团队获取微缩照片转换的帮助。",
+    "label": "FAQ",
+    "title": "常见问题",
+    "description": "找不到问题的答案？请联系我们获取帮助。",
+    "buttons": [
+      {
+        "title": "联系我们",
+        "url": "/#contact",
+        "variant": "default"
+      }
+    ],
     "items": [
       {
-        "title": "Miniatur AI 如何创建微缩效果？",
-        "description": "Miniatur AI 使用先进的计算机视觉和机器学习算法分析图像深度、识别焦点并应用真实的移轴效果。我们的人工智能理解摄影原理，创建媲美专业相机设备和手动编辑技术的真实微缩转换。"
+        "title": "ShipFire 免费吗？",
+        "description": "是的。ShipFire 提供永久免费计划，包括无限页面、用户管理、支付集成、分析等。无需信用卡，无隐藏费用。允许完全商业使用。"
       },
       {
-        "title": "什么类型的照片最适合 Miniatur AI？",
-        "description": "Miniatur AI 在风景、建筑、城市景观和航拍摄影上效果极佳。具有清晰深度和有趣主题的照片能产生最戏剧性的微缩效果。我们的人工智能自动适应不同的照片构图，以获得最佳的微缩转换结果。"
+        "title": "ShipFire Online 支持哪些平台？",
+        "description": "支持自定义域名、Vercel、Netlify 和其他主要托管平台。提供免费的 *.shipfire.app 子域名用于测试。SSL 和 CDN 自动配置以实现全球性能。"
       },
       {
-        "title": "我可以商用 Miniatur AI 吗？",
-        "description": "可以！使用 Miniatur AI 创建的所有微缩图像都可以用于商业目的，包括社交媒体营销、作品集工作和客户项目。您保留对AI生成的微缩作品和专业转换的完全权利。"
+        "title": "我可以在没有技术经验的情况下使用 ShipFire 吗？",
+        "description": "绝对可以。ShipFire 专为非技术用户设计，具有拖放编辑器、教程和提供实时指导的 AI 助手。数千名初学者已构建网站，平均学习时间不到 30 分钟。"
       },
       {
-        "title": "Miniatur AI 支持哪些文件格式？",
-        "description": "Miniatur AI 接受最大10MB的JPEG、JPG、PNG和WebP图像格式。为了获得最佳的微缩转换结果，我们建议使用具有良好光线和清晰景深的高分辨率照片，以实现最佳的AI处理效果。"
+        "title": "我可以将 ShipFire 网站用于商业目的吗？",
+        "description": "可以。使用 ShipFire 构建的网站完全可用于商业，包括销售产品、订阅和广告。没有许可限制或收入分成。"
       },
       {
-        "title": "Miniatur AI 真的免费使用吗？",
-        "description": "绝对的！Miniatur AI 永远完全免费使用，没有隐藏费用、无需注册，也没有水印。享受无限制的微缩转换，为您的所有创意项目提供专业级质量的AI结果，零成本。"
+        "title": "我可以导出或迁移我的 ShipFire 网站吗？",
+        "description": "可以，您可以导出完整的网站代码，包括 HTML、CSS 和配置文件。您可以随时迁移到自己的服务器。用户和订单数据也可以导出为 CSV 以实现完全的数据所有权。"
+      },
+      {
+        "title": "ShipFire 的 AI 功能可以做什么？",
+        "description": "AI 助手优化文案，建议布局改进，分析用户行为，并预测转化瓶颈。它支持 SEO 优化、A/B 测试生成和电子邮件内容创建—基于 50,000+ 网站的数据训练，推荐准确率达 92%。"
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "今天就用免费的 Miniatur AI 转换您的照片",
-    "description": "加入数千名使用我们免费人工智能创建惊人微缩摄影效果的创作者。立即开始您的免费微缩转换之旅，使用先进的AI技术 - 无需付费，无需注册！",
+    "title": "今天就开始使用 ShipFire 构建",
+    "description": "无需信用卡。无需技术技能。3 分钟内构建专业网站。加入 50,000+ 全球开发者，触达全球用户。所有核心功能永久免费。",
     "buttons": [
       {
-        "title": "免费开始",
+        "title": "立即开始创建",
         "icon": "RiGiftLine",
         "url": "/#generator",
         "target": "_self",
@@ -349,15 +451,15 @@
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "Miniatur AI",
-      "description": "Miniatur AI 使用先进的人工智能技术将普通照片转换为非凡的微缩杰作。使用我们革命性的AI平台在几秒钟内创建专业的移轴效果、立体模型场景和收藏风格微缩作品。",
+      "title": "ShipFire",
+      "description": "ShipFire 是一个面向全球独立开发者的 SaaS 网站构建平台。零代码，48 小时内发布产品，内置 AI 优化工具。",
       "logo": {
         "src": "/logo.png",
-        "alt": "Miniatur AI"
+        "alt": "ShipFire"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • Miniatur AI. 版权所有。",
+    "copyright": "© 2025 • ShipFire. 版权所有。",
     "nav": {
       "items": [
         {

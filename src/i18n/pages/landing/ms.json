@@ -3,10 +3,10 @@
   "theme": "light",
   "header": {
     "brand": {
-      "title": "Miniatur AI",
+      "title": "ShipFire",
       "logo": {
         "src": "/logo.png",
-        "alt": "Miniatur AI"
+        "alt": "ShipFire"
       },
       "url": "/"
     },
@@ -25,47 +25,58 @@
     "show_locale": true
   },
   "hero": {
-    "title": "Tukar Foto Menjadi Karya Miniatur dengan Miniatur AI",
-    "highlight_text": "Miniatur AI",
-    "description": "Tukar foto biasa menjadi dunia miniatur yang luar biasa dengan kesan tilt-shift menakjubkan dan diorama memikat. Teknologi Miniatur AI canggih kami menganalisis setiap piksel untuk mencipta kesan kedalaman bidang autentik yang menyaingi lensa kamera mahal. Hanya muat naik foto anda dan lihat kecerdasan buatan mencipta karya miniatur profesional dalam beberapa saat, sempurna untuk media sosial, portfolio, dan projek kreatif.",
+    "title": "ShipFire: Bina Laman Web SaaS Anda dalam 3 Minit",
+    "highlight_text": "Pantas Seperti Kilat",
+    "description": "Pembina laman web percuma yang direka untuk pembangun indie global. Lancarkan produk anda dalam 48 jam dengan kod sifar dan alat pengoptimuman AI terbina dalam.",
     "announcement": {
-      "label": "100% PERCUMA",
-      "title": "TANPA PERLU LOG MASUK",
+      "label": "Masa Terhad",
+      "title": "Percuma Selamanya",
       "url": "/#features"
     },
    
     "images": [
       {
-        "src": "/imgs/features/1.png",
-        "alt": "Contoh Transformasi Miniatur AI 1",
-        "title": "Foto Asal kepada Miniatur"
+        "src": "/imgs/features/1.webp",
+        "alt": "Contoh Transformasi Teks Graffiti Generator 1",
+        "title": "Teks kepada Seni Graffiti"
       },
       {
-        "src": "/imgs/features/2.png",
-        "alt": "Contoh Transformasi Miniatur AI 2", 
-        "title": "Penjanaan Figur AI"
+        "src": "/imgs/features/1.webp",
+        "alt": "Contoh Gaya Fon Graffiti Generator 2", 
+        "title": "Pelbagai Gaya Graffiti"
       }
     ],
     "layout": "left-image-right-content",
+    "variant": "compact",
     "enable_carousel": true,
     "buttons": [
       {
-        "title": "Mula Cipta Tanpa Log Masuk",
+        "title": "Bina SaaS Percuma Sekarang",
         "icon": "RiMagicLine",
         "url": "/#generator",
         "target": "_self",
         "variant": "default"
+      },
+      {
+        "title": "Terokai Ciri-ciri",
+        "url": "/#feature",
+        "target": "_self",
+        "variant": "secondary"
       }
+    ],
+    "metrics": [
+      "PERCUMA",
+      "Dipercayai oleh 50,000+ pembangun"
     ],
     "stats": [
       {
-        "value": "12,847+",
-        "label": "Pengguna Miniatur AI Dipercayai",
+        "value": "50,000+",
+        "label": "Pencipta Graffiti",
         "icon": "RiUserLine"
       },
       {
-        "value": "89,432+",
-        "label": "Imej Miniatur Dijana",
+        "value": "200,000+",
+        "label": "Karya Seni Graffiti Dijana",
         "icon": "RiImageLine"
       }
     ],
@@ -114,127 +125,191 @@
   },
   "introduce": {
     "name": "introduce",
-    "title": "Apa itu Miniatur AI",
-    "label": "Pengenalan",
-    "description": "Miniatur AI adalah platform kecerdasan buatan percuma yang revolusioner yang mengubah fotografi biasa menjadi karya miniatur yang menakjubkan. Menggunakan algoritma penglihatan komputer dan pembelajaran mesin yang canggih, alat pintar kami menganalisis komposisi imej, kedalaman, dan pencahayaan untuk mencipta kesan tilt-shift profesional dan adegan diorama yang realistik dalam beberapa saat. Sama ada anda jurugambar profesional, pencipta kandungan, atau hobbyist, Miniatur AI memberikan transformasi miniatur berkualiti muzium dengan ketepatan dan kelajuan yang tiada tandingan.",
+    "title": "Apakah ShipFire",
+    "label": "OVERVIEW",
+    "description": "Platform pembinaan laman web SaaS yang disesuaikan untuk pembangun yang menghadapi global untuk membantu produk anda mencapai pengguna di seluruh dunia dengan segera.",
     "image": {
-      "src": "/imgs/features/3.png"
+      "src": "/imgs/features/1.webp"
     },
     "items": [
       {
-        "title": "Analisis Pintar Berkuasa AI",
-        "description": "Sistem kecerdasan buatan kami dengan bijak mengenal pasti titik fokus, lapisan kedalaman, dan hubungan spatial dalam foto anda untuk mencipta kesan miniatur asli dengan gradien kabur yang sempurna dan simulasi kedalaman bidang profesional yang sepadan dengan teknik fotografi tilt-shift sebenar.",
-        "icon": "RiRobot2Line"
+        "title": "Pembina Laman Web ShipFire Percuma",
+        "description": "Sistem pembinaan dalam talian yang sepenuhnya percuma—tiada kod diperlukan. Ia mengintegrasikan modul utama seperti sistem pembayaran, pengurusan pengguna, dan analitik. Antara muka seret dan lepas membolehkan anda fokus pada produk anda sementara kami mengendalikan teknologi. Mula berfungsi dalam hanya 3 minit.",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Perpustakaan Sumber Teras"
+        },
+        "buttons": [
+          {
+            "title": "Mula Mencipta",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "Lihat Harga",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
       },
       {
-        "title": "Pelbagai Gaya Miniatur",
-        "description": "Pilih dari fotografi tilt-shift, kesan diorama mainan, model miniatur seni bina, dan gaya figur koleksi. Setiap preset yang dioptimumkan AI menyampaikan ciri miniatur unik yang disesuaikan untuk komposisi foto dan visi kreatif yang berbeza.",
-        "icon": "RiPaletteLine"
+        "title": "Enjin Pengoptimuman AI ShipFire",
+        "description": "AI terbina dalam menganalisis tingkah laku pengguna secara automatik. Pembantu AI menyediakan cadangan penambahbaikan masa nyata yang meningkatkan penukaran sehingga 40%. Dari penulisan salinan hingga tweak susun atur, laman web anda kekal dalam keadaan pemasaran puncak tanpa mengupah pasukan.",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Penjana graffiti AI mengoptimumkan seni jalanan"
+        },
+        "buttons": [
+          {
+            "title": "Mula Mencipta",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "Lihat Harga",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
       },
       {
-        "title": "Pemprosesan AI Segera",
-        "description": "Pemprosesan kecerdasan buatan berasaskan awan yang canggih memberikan kesan miniatur profesional dalam masa kurang dari 10 saat. Tiada keperluan pemasangan perisian kompleks, bayaran, atau kepakaran teknikal untuk mencipta hasil yang menakjubkan.",
-        "icon": "RiTimeLine"
+        "title": "Penyebaran Satu Klik ShipFire Online",
+        "description": "Hos awan memastikan masa aktif 99.9%. CDN global menyampaikan akses pantas untuk pengguna di seluruh dunia. SSL automatik, pengikatan domain, dan pengoptimuman SEO semuanya disertakan—tiada halangan teknikal supaya pengasas boleh fokus sepenuhnya pada produk mereka.",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Penjana graffiti mengeksport karya seni siap"
+        },
+        "buttons": [
+          {
+            "title": "Mula Mencipta",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "Lihat Harga",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
       }
     ]
   },
   "benefit": {
     "name": "benefit",
-    "title": "Mengapa Pilih Miniatur AI",
-    "label": "Faedah",
-    "description": "Jurugambar profesional dan pencipta kandungan di seluruh dunia mempercayai Miniatur AI untuk analisis imej yang unggul, kesan miniatur yang asli, dan pemprosesan AI yang sepantas kilat. Sistem kecerdasan buatan kami memahami prinsip fotografi untuk memberikan hasil yang menyaingi peralatan kamera mahal dan berjam-jam kerja editing manual.",
+    "title": "Mengapa Pembangun Memilih ShipFire",
+    "label": "Core Benefits",
+    "description": "Permulaan kos sifar dengan ciri gred profesional supaya SaaS anda menang dari hari pertama.",
     "items": [
       {
-        "title": "Hasil Miniatur Berkualiti Profesional",
-        "description": "Miniatur AI menghasilkan kesan miniatur berkualiti muzium yang mengekalkan kedalaman bidang yang betul, corak kabur yang realistik, dan ciri tilt-shift autentik yang terdapat dalam fotografi miniatur profesional. AI kami memastikan setiap transformasi memenuhi piawaian industri.",
+        "title": "Benar-benar Kos Sifar",
+        "description": "ShipFire adalah 100% percuma tanpa yuran tersembunyi. Ciri yang menelan kos $49–299/bulan di tempat lain—halaman tanpa had, pengurusan pengguna, integrasi pembayaran, papan pemuka analitik—semuanya dibuka kunci di sini. Sesuai untuk pembangun indie, menjimatkan ribuan dalam kos awal supaya anda boleh melabur dalam produk dan pemasaran sebaliknya.",
         "icon": "RiStarLine",
         "image": {
-          "src": "/imgs/features/4.png"
-        }
+          "src": "/imgs/features/1.webp",
+          "alt": "Pratonton seni jalanan penjana graffiti autentik"
+        },
+        "buttons": [
+          {
+            "title": "Cipta Percuma",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
       },
       {
-        "title": "Pengecaman Adegan Pintar",
-        "description": "AI canggih kami menganalisis elemen seni bina, landskap, manusia, dan objek untuk secara automatik menggunakan kesan miniatur yang paling sesuai untuk kandungan foto dan komposisi spesifik anda. Kecerdasan buatan pintar menyesuaikan dengan mana-mana jenis adegan.",
-        "icon": "RiBrainLine",
+        "title": "Pantas Seperti Kilat",
+        "description": "Dari mencipta akaun hingga menerbitkan laman web anda hanya mengambil masa 3 minit. Pilih dari 50+ templat yang dioptimumkan untuk SaaS, sesuaikan, dan terbitkan. Berbanding dengan 2–4 minggu yang diperlukan untuk pembangunan tradisional, ShipFire membantu anda memasuki pasaran sebulan lebih awal. Alur kerja automatik mengendalikan kemas kini dan sandaran supaya anda boleh fokus pada pertumbuhan.",
+        "icon": "RiGiftLine",
         "image": {
-          "src": "/imgs/features/6.png"
-        }
+          "src": "/imgs/features/1.webp",
+          "alt": "Antara muka akses percuma penjana graffiti"
+        },
+        "buttons": [
+          {
+            "title": "Cipta Percuma",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
       },
       {
-        "title": "Alur Kerja Miniatur Mudah",
-        "description": "Langkau perisian editing foto yang kompleks dan peralatan mahal. Miniatur AI mengubah foto anda menjadi hasil miniatur profesional dengan hanya satu klik, menjimatkan berjam-jam kerja manual sambil memberikan hasil berkualiti tinggi yang konsisten.",
+        "title": "Dioptimumkan untuk Pengembangan Global",
+        "description": "Memahami dengan mendalam keperluan pembangun yang menghadapi global. Menyokong 20+ bahasa dengan terjemahan automatik, pembayaran pelbagai mata wang, dan pengendalian data yang mematuhi GDPR. Google Analytics dan Meta Pixel bersepadu membantu anda menjejaki prestasi luar negara. Dengan pelayan di 15 wilayah, pengguna di AS dan Eropah mengalami kelajuan hampir tempatan.",
         "icon": "RiSpeedLine",
         "image": {
-          "src": "/imgs/features/7.png"
-        }
+          "src": "/imgs/features/1.webp",
+          "alt": "Tangkapan skrin alur kerja mudah penjana graffiti"
+        },
+        "buttons": [
+          {
+            "title": "Cipta Percuma",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
       }
     ]
   },
   "usage": {
     "name": "usage",
-    "title": "Cara Mencipta Miniatur dengan Miniatur AI",
-    "description": "Ubah foto anda menjadi karya miniatur yang menakjubkan dalam empat langkah mudah. Sistem Miniatur AI kami mengendalikan semua analisis imej dan pemprosesan yang kompleks secara automatik, memberikan hasil miniatur profesional setiap kali dengan ketepatan kecerdasan buatan.",
-    "image": {
-      "src": "/imgs/features/1.png"
-    },
-    "image_position": "left",
-    "text_align": "center",
+    "label": "HOW TO USE",
+    "title": "Cara Membina Laman Web ShipFire",
+    "description": "Cipta laman web profesional dalam tiga langkah—sepenuhnya dalam talian dalam hanya 180 saat.",
     "items": [
       {
-        "title": "Muat Naik Foto Anda",
-        "description": "Hanya seret dan lepas mana-mana imej JPEG atau PNG sehingga 10MB. Miniatur AI menerima foto landskap, seni bina, manusia, dan objek untuk transformasi miniatur. AI kami berfungsi terbaik dengan imej resolusi tinggi.",
-        "icon": "RiUploadLine"
+        "title": "Pilih Templat",
+        "description": "Lihat 50+ templat SaaS yang dibuat dengan teliti merangkumi alat, perkhidmatan, komuniti, dan banyak lagi. Setiap satu dioptimumkan untuk penukaran—hanya pilih dan mula menyesuaikan.",
+        "icon": "RiEditLine"
       },
       {
-        "title": "Pilih Gaya Miniatur",
-        "description": "Pilih dari preset yang dioptimumkan AI kami: fotografi tilt-shift, diorama mainan, model miniatur seni bina, atau gaya figur koleksi. Setiap preset disetel halus oleh kecerdasan buatan untuk jenis foto dan komposisi yang berbeza.",
+        "title": "Sesuaikan Kandungan Anda",
+        "description": "Gunakan Editor ShipFire Dalam Talian untuk mengubah teks, imej, dan warna. Pembantu AI mencadangkan salinan dan susun atur berdasarkan jenis produk anda. Pratonton perubahan serta-merta.",
+        "icon": "RiPaletteLine"
+      },
+      {
+        "title": "Terbitkan dengan Satu Klik",
+        "description": "Klik Terbitkan untuk mengkonfigurasi pengikatan domain, sijil SSL, dan penyebaran CDN secara automatik. Laman web anda mula berfungsi serta-merta dan kemas kini sama mudah.",
         "icon": "RiSettings3Line"
-      },
-      {
-        "title": "Keajaiban Pemprosesan AI",
-        "description": "Miniatur AI kami menganalisis maklumat kedalaman, menggunakan kesan kabur pintar, dan mencipta ciri miniatur yang asli. Algoritma kecerdasan buatan canggih memastikan hasil berkualiti profesional dalam beberapa saat.",
-        "icon": "RiMagicLine"
-      },
-      {
-        "title": "Muat Turun & Kongsi",
-        "description": "Simpan ciptaan miniatur anda dalam resolusi tinggi. Sempurna untuk media sosial, portfolio, atau percetakan. Kongsi seni miniatur unik yang dijana AI dengan dunia dan tunjukkan hasil transformasi profesional.",
-        "icon": "RiDownloadLine"
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "title": "Ciri-ciri Miniatur AI Canggih",
-    "description": "Temui keupayaan kecerdasan buatan yang berkuasa yang menjadikan penjana miniatur kami alat AI paling canggih yang tersedia untuk transformasi foto dan projek editing kreatif.",
+    "label": "FEATURES",
+    "title": "Gambaran Keseluruhan Ciri Teras ShipFire",
+    "description": "Keupayaan peringkat perusahaan yang dipermudahkan untuk pembangun indie, memacu pertumbuhan produk anda.",
     "items": [
       {
-        "title": "Pengesanan Kedalaman Pintar",
-        "description": "Miniatur AI menggunakan penglihatan komputer untuk menganalisis kedalaman imej dan secara automatik mencipta satah fokus yang realistik, memastikan kesan miniatur tilt-shift yang asli dengan ketepatan kedalaman bidang profesional.",
+        "title": "Editor Visual",
+        "description": "Antara muka seret dan lepas dengan pratonton masa nyata. Perpustakaan 50+ komponen membolehkan anda mencipta susun atur tersuai tanpa kemahiran reka bentuk.",
         "icon": "RiEyeLine"
       },
       {
-        "title": "Pengoptimuman Gaya AI",
-        "description": "Algoritma pembelajaran mesin kami secara automatik menyesuaikan intensiti kabur, kedalaman bidang, dan ketepuan warna berdasarkan kandungan dan komposisi foto anda untuk hasil miniatur yang optimum.",
-        "icon": "RiSettings2Line"
-      },
-      {
-        "title": "Pemprosesan Kelompok",
-        "description": "Muat naik beberapa foto dan gunakan kesan Miniatur AI yang konsisten merentasi keseluruhan koleksi anda. Sempurna untuk mencipta siri fotografi miniatur yang kohesif dengan pemprosesan kecerdasan buatan yang seragam.",
-        "icon": "RiStackLine"
-      },
-      {
-        "title": "Output Resolusi Tinggi",
-        "description": "Jana imej miniatur sehingga resolusi 4K sambil mengekalkan butiran yang tajam dan peralihan kabur yang lancar. Pemprosesan AI berkualiti profesional untuk sebarang kes penggunaan komersial atau kreatif.",
+        "title": "Sistem Pengesahan Pengguna",
+        "description": "Menyokong e-mel, Google, GitHub, dan banyak lagi. Menguruskan kebenaran dan tahap langganan secara automatik. Aliran percubaan dan naik taraf terbina dalam meningkatkan pengekalan sebanyak 35%.",
         "icon": "RiHdLine"
       },
       {
-        "title": "Pratonton Masa Nyata",
-        "description": "Lihat transformasi miniatur anda serta-merta semasa anda menyesuaikan tetapan. Miniatur AI menyediakan maklum balas segera untuk hasil yang sempurna setiap kali dengan pemprosesan kecerdasan buatan secara langsung.",
-        "icon": "RiLiveLine"
+        "title": "Integrasi Pembayaran",
+        "description": "Bersepadu dengan Stripe dan PayPal. Mengendalikan pengebilan langganan, invois, bayaran balik, dan banyak lagi—membebaskan anda daripada kerumitan backend.",
+        "icon": "RiLayoutLine"
       },
       {
-        "title": "Eksport & Perkongsian Mudah",
-        "description": "Muat turun ciptaan miniatur anda dalam pelbagai format atau kongsi terus ke platform media sosial. Tunjukkan seni miniatur yang dijana AI anda dengan mudah bersama hasil yang profesional.",
+        "title": "Papan Pemuka Analitik",
+        "description": "Jejaki tingkah laku pengguna, corong, dan trend pendapatan secara masa nyata. Carta visual yang jelas membantu anda menemui peluang pertumbuhan dan meningkatkan ROI sehingga 50%.",
+        "icon": "RiStarSLine"
+      },
+      {
+        "title": "Pengoptimuman SEO Automatik",
+        "description": "Menjana tajuk, keterangan, dan markup skema secara automatik. Menyerahkan secara automatik kepada enjin carian dan mengoptimumkan kelajuan pemuatan untuk kedudukan Google yang lebih tinggi.",
+        "icon": "RiCloudLine"
+      },
+      {
+        "title": "Alat Pemasaran E-mel",
+        "description": "Penghantaran e-mel terbina dalam untuk mesej selamat datang, kemas kini produk, kempen, dan banyak lagi. Ujian A/B membantu anda menemui salinan berprestasi tinggi, meningkatkan kadar buka sebanyak 45%.",
         "icon": "RiShareLine"
       }
     ]
@@ -266,79 +341,106 @@
   "testimonial": {
     "name": "testimonial",
     "label": "Testimoni",
-    "title": "Apa Kata Pencipta Tentang Miniatur AI",
-    "description": "Maklum balas sebenar dari jurugambar dan artis yang menggunakan Miniatur AI untuk projek kreatif dan transformasi miniatur profesional mereka.",
+    "title": "Apa Kata Pembangun Tentang ShipFire",
+    "description": "Lihat bagaimana pembangun global menggunakan ShipFire untuk mempercepatkan perniagaan mereka.",
     "icon": "RiThumbUpLine",
     "items": [
       {
-        "title": "Sarah Mitchell",
-        "label": "Jurugambar Profesional",
-        "description": "Miniatur AI memberikan hasil yang menyaingi lensa tilt-shift mahal saya. Kecerdasan buatan ini memahami kedalaman lebih baik daripada mana-mana perisian editing yang pernah saya gunakan untuk fotografi miniatur.",
+        "title": "Leo",
+        "label": "Pemilik Jenama Streetwear",
+        "description": "Saya pernah menghabiskan tiga minggu membina laman web, hanya mendapat penukaran kurang daripada 2%. Dengan ShipFire Percuma, saya membina semula semuanya dalam 3 jam dan mencapai 8.5%. Sekarang semua masa saya digunakan untuk pembangunan produk.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "James Rodriguez",
-        "label": "Pencipta Kandungan",
-        "description": "AI ini luar biasa! Saya mencipta kandungan gaya miniatur untuk Instagram dalam beberapa saat. Engagement saya meningkat 300% sejak menggunakan Miniatur AI untuk penciptaan kandungan media sosial.",
+        "title": "Mei",
+        "label": "Pengurus Media Sosial",
+        "description": "Pasukan kami tidak mempunyai pembangun front-end dan Webflow terlalu mahal. Beralih ke ShipFire menjimatkan kami $3,600 setahun dan pengoptimuman AI mengenal pasti 5 isu yang meningkatkan MRR kami sebanyak 38%.",
         "image": {
           "src": "/imgs/users/2.png"
         }
       },
       {
-        "title": "Emily Chen",
-        "label": "Artis Digital",
-        "description": "Kesan miniatur sangat realistik. Miniatur AI menjimatkan berjam-jam editing manual sambil menghasilkan hasil berkualiti profesional setiap kali dengan pemprosesan kecerdasan buatan canggih.",
+        "title": "Robin",
+        "label": "Pengajar Reka Bentuk Visual",
+        "description": "Cadangan AI adalah kegemaran saya. Minggu lepas ia mencadangkan tweak halaman harga—selepas menggunakannya, penukaran berbayar kami melonjak dari 4% kepada 6.2%, menjana tambahan $2,000/bulan.",
         "image": {
           "src": "/imgs/users/3.png"
         }
       },
       {
-        "title": "Michael Thompson",
-        "label": "Blogger Pelancongan",
-        "description": "Saya menggunakan Miniatur AI untuk semua foto perjalanan saya sekarang. Kesan miniatur menjadikan adegan biasa kelihatan seperti dunia kecil yang ajaib dengan kualiti transformasi AI profesional.",
+        "title": "Emma Taylor",
+        "label": "Pencipta Kandungan",
+        "description": "Saya membina 12 halaman pendaratan untuk pelanggan menggunakan ShipFire, setiap satu dalam kira-kira 20 minit. Ujian A/B dan analitik terbina dalam memudahkan pengoptimuman—ROI pelanggan meningkat sebanyak 55%.",
         "image": {
           "src": "/imgs/users/6.png"
+        }
+      },
+      {
+        "title": "Carlos Martinez",
+        "label": "Pereka T-Shirt",
+        "description": "Saya menjual kursus dalam talian dan plugin WordPress sentiasa menyebabkan konflik. ShipFire menggandakan kelajuan laman web saya dan menjadikan pembayaran lebih lancar. Bayaran balik menurun sebanyak 70%—pelajar menyukai pengalaman tersebut.",
+        "image": {
+          "src": "/imgs/users/4.png"
+        }
+      },
+      {
+        "title": "Jasmine Lee",
+        "label": "Penganjur Acara",
+        "description": "Sebagai pembangun saya tidak fikir saya memerlukan pembina, tetapi ShipFire adalah percuma dan sangat berkuasa. Saya menggunakannya untuk mengesahkan idea startup baru: dari konsep kepada MVP langsung dalam 4 jam.",
+        "image": {
+          "src": "/imgs/users/5.png"
         }
       }
     ]
   },
   "faq": {
     "name": "faq",
-    "label": "Soalan Lazim",
-    "title": "Soalan Lazim Tentang Miniatur AI",
-    "description": "Ada soalan tentang penjana miniatur AI kami? Cari jawapan di sini atau hubungi pasukan sokongan kami untuk bantuan dengan transformasi foto miniatur.",
+    "label": "FAQ",
+    "title": "Soalan Lazim",
+    "description": "Tidak dapat mencari jawapan kepada soalan anda? Hubungi kami untuk bantuan.",
+    "buttons": [
+      {
+        "title": "Hubungi Kami",
+        "url": "/#contact",
+        "variant": "default"
+      }
+    ],
     "items": [
       {
-        "title": "Bagaimana Miniatur AI mencipta kesan miniatur?",
-        "description": "Miniatur AI menggunakan algoritma penglihatan komputer dan pembelajaran mesin yang canggih untuk menganalisis kedalaman imej, mengenal pasti titik fokus, dan menggunakan kesan tilt-shift yang asli. Kecerdasan buatan kami memahami prinsip fotografi untuk mencipta transformasi miniatur yang realistik yang menyaingi peralatan kamera profesional dan teknik editing manual."
+        "title": "Adakah ShipFire percuma?",
+        "description": "Ya. ShipFire menawarkan pelan percuma kekal dengan halaman tanpa had, pengurusan pengguna, integrasi pembayaran, analitik, dan banyak lagi. Tiada kad kredit diperlukan dan tiada yuran tersembunyi. Penggunaan komersial penuh dibenarkan."
       },
       {
-        "title": "Jenis foto apa yang paling sesuai dengan Miniatur AI?",
-        "description": "Miniatur AI berfungsi dengan sangat baik dengan landskap, seni bina, cityscapes, dan fotografi udara. Foto dengan kedalaman yang jelas dan subjek yang menarik menghasilkan kesan miniatur yang paling dramatik. Kecerdasan buatan kami secara automatik menyesuaikan dengan komposisi foto yang berbeza untuk hasil transformasi miniatur yang optimum."
+        "title": "Platform manakah yang disokong oleh ShipFire Online?",
+        "description": "Menyokong domain tersuai, Vercel, Netlify, dan platform hosting utama lain. Subdomain percuma *.shipfire.app tersedia untuk ujian. SSL dan CDN dikonfigurasi secara automatik untuk prestasi global."
       },
       {
-        "title": "Bolehkah saya menggunakan Miniatur AI secara komersial?",
-        "description": "Ya! Semua imej miniatur yang dicipta dengan Miniatur AI boleh digunakan untuk tujuan komersial termasuk pemasaran media sosial, kerja portfolio, dan projek klien. Anda mengekalkan hak penuh ke atas ciptaan miniatur yang dijana AI dan transformasi profesional anda."
+        "title": "Bolehkah saya menggunakan ShipFire tanpa pengalaman teknikal?",
+        "description": "Sudah tentu. ShipFire direka untuk pengguna bukan teknikal dengan editor seret dan lepas, tutorial, dan pembantu AI yang menyediakan panduan masa nyata. Ribuan pemula telah membina laman web dengan purata masa pembelajaran di bawah 30 minit."
       },
       {
-        "title": "Format fail apa yang disokong oleh Miniatur AI?",
-        "description": "Miniatur AI menerima format imej JPEG, JPG, PNG, dan WebP sehingga 10MB saiz. Untuk hasil transformasi miniatur terbaik, kami mengesyorkan foto resolusi tinggi dengan pencahayaan yang baik dan kedalaman bidang yang jelas untuk pemprosesan AI yang optimum."
+        "title": "Bolehkah saya menggunakan laman web ShipFire untuk tujuan komersial?",
+        "description": "Ya. Laman web yang dibina dengan ShipFire siap sepenuhnya untuk komersial, termasuk menjual produk, langganan, dan iklan. Tiada sekatan lesen atau perkongsian hasil."
       },
       {
-        "title": "Adakah Miniatur AI benar-benar percuma untuk digunakan?",
-        "description": "Sudah tentu! Miniatur AI adalah percuma sepenuhnya untuk digunakan selamanya tanpa kos tersembunyi, tiada pendaftaran diperlukan, dan tiada watermark. Nikmati transformasi miniatur tanpa had dengan hasil AI berkualiti profesional tanpa sebarang kos untuk semua projek kreatif anda."
+        "title": "Bolehkah saya mengeksport atau memindahkan laman web ShipFire saya?",
+        "description": "Ya, anda boleh mengeksport kod laman web penuh termasuk HTML, CSS, dan fail config. Anda boleh memindahkan ke pelayan anda sendiri pada bila-bila masa. Data pengguna dan pesanan juga boleh dieksport sebagai CSV untuk pemilikan data penuh."
+      },
+      {
+        "title": "Apakah yang boleh dilakukan oleh ciri AI ShipFire?",
+        "description": "Pembantu AI mengoptimumkan salinan, mencadangkan penambahbaikan susun atur, menganalisis tingkah laku pengguna, dan meramalkan halangan penukaran. Ia menyokong pengoptimuman SEO, penjanaan ujian A/B, dan penciptaan kandungan e-mel—dilatih pada data dari 50,000+ laman web dengan ketepatan cadangan 92%."
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "Ubah Foto Anda dengan Miniatur AI Percuma Hari Ini",
-    "description": "Sertai ribuan pencipta yang menggunakan kecerdasan buatan percuma kami untuk mencipta kesan fotografi miniatur yang menakjubkan. Mulakan perjalanan transformasi miniatur percuma anda sekarang dengan teknologi AI canggih - tanpa bayaran, tanpa pendaftaran diperlukan!",
+    "title": "Mula Membina dengan ShipFire Hari Ini",
+    "description": "Tiada kad kredit diperlukan. Tiada kemahiran teknikal diperlukan. Bina laman web profesional dalam 3 minit. Sertai 50,000+ pembangun global dan capai pengguna di seluruh dunia. Semua ciri teras adalah percuma selamanya.",
     "buttons": [
       {
-        "title": "Mula Percuma Sekarang",
+        "title": "Mula Mencipta Sekarang",
         "icon": "RiGiftLine",
         "url": "/#generator",
         "target": "_self",
@@ -349,15 +451,15 @@
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "Miniatur AI",
-      "description": "Miniatur AI mengubah foto biasa menjadi karya miniatur yang luar biasa menggunakan teknologi kecerdasan buatan yang canggih. Cipta kesan tilt-shift profesional, adegan diorama, dan miniatur gaya koleksi dalam beberapa saat dengan platform AI revolusioner kami.",
+      "title": "ShipFire",
+      "description": "ShipFire adalah platform pembinaan laman web SaaS yang direka untuk pembangun indie global. Lancarkan produk anda dalam 48 jam dengan kod sifar dan alat pengoptimuman AI terbina dalam.",
       "logo": {
         "src": "/logo.png",
-        "alt": "Miniatur AI"
+        "alt": "ShipFire"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • Miniatur AI. Hak cipta terpelihara.",
+    "copyright": "© 2025 • ShipFire. Hak cipta terpelihara.",
     "nav": {
       "items": [
         {
