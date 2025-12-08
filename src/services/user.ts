@@ -1,4 +1,4 @@
-import { CreditsAmount, CreditsTransType } from "./credit";
+import { CreditsTransType } from "./credit";
 import { findUserByEmail, findUserByUuid, insertUser } from "@/models/user";
 
 import { User } from "@/types/user";
@@ -9,6 +9,7 @@ import { headers } from "next/headers";
 import { increaseCredits } from "./credit";
 import { users } from "@/db/schema";
 import { getUuid } from "@/lib/hash";
+import { getNewUserCredits } from "./config";
 
 // save user to database, if user not exist, create a new user
 export async function saveUser(user: User) {
@@ -33,7 +34,7 @@ export async function saveUser(user: User) {
       await increaseCredits({
         user_uuid: user.uuid,
         trans_type: CreditsTransType.NewUser,
-        credits: CreditsAmount.NewUserGet,
+        credits: getNewUserCredits(), // 从配置读取新用户积分（默认 1000）
         expired_at: getOneYearLaterTimestr(),
       });
 
