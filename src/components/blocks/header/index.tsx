@@ -39,7 +39,7 @@ export default function Header({ header }: { header: HeaderType }) {
           className={cn(
             "mx-auto mt-2 max-w-7xl px-6 transition-all duration-300 lg:px-12",
             isScrolled &&
-              "bg-background/50 max-w-6xl rounded-2xl border border-border/30 backdrop-blur-lg lg:px-5"
+              "bg-background/50 rounded-2xl border border-border/30 backdrop-blur-lg"
           )}
         >
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
@@ -58,7 +58,7 @@ export default function Header({ header }: { header: HeaderType }) {
                   />
                 )}
                 {header.brand?.title && (
-                  <span className="text-lg text-primary font-bold">
+                  <span className="text-lg font-semibold text-foreground">
                     {header.brand?.title || ""}
                   </span>
                 )}
@@ -80,7 +80,7 @@ export default function Header({ header }: { header: HeaderType }) {
                       <Link
                         href={item.url as any}
                         target={item.target}
-                        className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                        className="text-foreground/80 hover:text-foreground font-medium block duration-150 transition-colors"
                       >
                         {item.icon && (
                           <Icon
@@ -130,7 +130,7 @@ export default function Header({ header }: { header: HeaderType }) {
                     <Link
                       href={item.url as any}
                       target={item.target}
-                      className="text-foreground hover:text-accent-foreground block py-2 text-base font-medium transition-colors duration-150"
+                      className="text-foreground/90 hover:text-foreground block py-2 text-base font-medium transition-colors duration-150"
                     >
                       {item.icon && (
                         <Icon

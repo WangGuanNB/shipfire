@@ -4,6 +4,13 @@ import { getLocale, setRequestLocale } from "next-intl/server";
 import { locales } from "@/i18n/locale";
 import { cn } from "@/lib/utils";
 import Script from "next/script";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export default async function RootLayout({
   children,
@@ -44,7 +51,7 @@ export default async function RootLayout({
           ))}
         <link rel="alternate" hrefLang="x-default" href={webUrl} />
       </head>
-      <body className={cn("min-h-screen overflow-x-hidden")}>
+      <body className={cn("min-h-screen overflow-x-hidden", inter.variable)}>
         {children}
         <Script id="enforce-external-nofollow" strategy="afterInteractive">
           {`
