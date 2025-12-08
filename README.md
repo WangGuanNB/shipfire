@@ -301,6 +301,19 @@ Real products shipped using this starter template. Join these successful project
 <br/>
 <sup>🎨 Design • AI • Creative</sup>
 </td>
+
+ <td width="33%" align="center">
+<a href="https://astrocarto.org/" target="_blank">
+<img src="https://astrocarto.org/favicon.ico" width="64" height="64" alt="astrocarto.org">
+<br/>
+<strong>astrocarto.org</strong>
+</a>
+<br/>
+<sub>AI-powered street art creation tool</sub>
+<br/>
+<sup>🎨 Design • AI • Creative</sup>
+</td>
+
 <td width="33%" align="center">
 <a href="https://pinpointanswer.net" target="_blank">
 <img src="https://pinpointanswer.net/favicon.ico" width="64" height="64" alt="Pinpoint Answer">
