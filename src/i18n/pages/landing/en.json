@@ -36,13 +36,13 @@
     "images": [
       {
         "src": "/imgs/features/1.webp",
-        "alt": "Graffiti Generator Text Transformation Example 1",
-        "title": "Text to Graffiti Art"
+        "alt": "ShipFire Website Builder Example 1",
+        "title": "Build Your SaaS Website"
       },
       {
         "src": "/imgs/features/1.webp",
-        "alt": "Graffiti Generator Font Styles Example 2",
-        "title": "Multiple Graffiti Styles"
+        "alt": "ShipFire Website Templates Example 2",
+        "title": "50+ Professional Templates"
       }
     ],
     "layout": "left-image-right-content",
@@ -70,12 +70,12 @@
     "stats": [
       {
         "value": "50,000+",
-        "label": "Graffiti Creators",
+        "label": "Active Developers",
         "icon": "RiUserLine"
       },
       {
         "value": "200,000+",
-        "label": "Graffiti Artworks Generated",
+        "label": "Websites Built",
         "icon": "RiImageLine"
       }
     ],
@@ -158,7 +158,7 @@
         "icon": "RiDownloadLine",
         "image": {
           "src": "/imgs/features/1.webp",
-          "alt": "Graffiti generator AI optimizing street art"
+          "alt": "ShipFire AI optimizing website performance"
         },
         "buttons": [
           {
@@ -179,7 +179,7 @@
         "icon": "RiDownloadLine",
         "image": {
           "src": "/imgs/features/1.webp",
-          "alt": "Graffiti generator exporting finished artwork"
+          "alt": "ShipFire deploying website to production"
         },
         "buttons": [
           {
@@ -208,7 +208,7 @@
         "icon": "RiStarLine",
         "image": {
           "src": "/imgs/features/1.webp",
-          "alt": "Authentic graffiti generator street art preview"
+          "alt": "ShipFire free website builder interface"
         },
         "buttons": [
           {
@@ -225,7 +225,7 @@
         "icon": "RiGiftLine",
         "image": {
           "src": "/imgs/features/1.webp",
-          "alt": "Graffiti generator free access interface"
+          "alt": "ShipFire lightning fast deployment"
         },
         "buttons": [
           {
@@ -241,7 +241,7 @@
         "icon": "RiSpeedLine",
         "image": {
           "src": "/imgs/features/1.webp",
-          "alt": "Graffiti generator simple workflow screenshot"
+          "alt": "ShipFire global expansion features"
         },
         "buttons": [
           {
@@ -427,15 +427,15 @@
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "Graffiti Generator",
-      "description": "Graffiti Generator is dedicated to helping graffiti fans and brand teams quickly create authentic street-style works with AI, providing free, high-quality graffiti generation solutions suitable for multiple platforms.",
+      "title": "ShipFire",
+      "description": "ShipFire is dedicated to helping global indie developers quickly build professional SaaS websites with zero code, providing free, high-quality website building solutions with built-in AI optimization tools.",
       "logo": {
         "src": "/logo.png",
-        "alt": "Graffiti Generator"
+        "alt": "ShipFire"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • Graffiti Generator. All rights reserved.",
+    "copyright": "© 2025 • ShipFire. All rights reserved.",
     "nav": {
       "items": [
         {
@@ -462,25 +462,25 @@
         {
           "title": "X",
           "icon": "RiTwitterXFill",
-          "url": "https://x.com/graffitigen",
+          "url": "https://x.com/shipfire",
           "target": "_blank"
         },
         {
           "title": "Github",
           "icon": "RiGithubFill",
-          "url": "https://github.com/graffitigen",
+          "url": "https://github.com/shipfire",
           "target": "_blank"
         },
         {
           "title": "Discord",
           "icon": "RiDiscordFill",
-          "url": "https://discord.gg/graffitigen",
+          "url": "https://discord.gg/shipfire",
           "target": "_blank"
         },
         {
           "title": "Email",
           "icon": "RiMailLine",
-          "url": "mailto:support@graffitigen.com",
+          "url": "mailto:support@shipfire.com",
           "target": "_self"
         }
       ]

@@ -37,13 +37,13 @@
     "images": [
       {
         "src": "/imgs/features/1.png",
-        "alt": "Miniatur AI 照片转换示例 1",
-        "title": "原始照片到微缩"
+        "alt": "ShipFire 网站构建示例 1",
+        "title": "构建您的 SaaS 网站"
       },
       {
         "src": "/imgs/features/2.png",
-        "alt": "Miniatur AI 照片转换示例 2", 
-        "title": "AI 人物生成"
+        "alt": "ShipFire 网站模板示例 2", 
+        "title": "50+ 专业模板"
       }
     ],
     "layout": "left-image-right-content",
@@ -317,8 +317,8 @@
   "stats": {
     "name": "stats",
     "label": "统计",
-    "title": "创作者信赖 Miniatur AI",
-    "description": "在全球范围内获得专业品质的微缩效果和闪电般快速的AI处理。",
+    "title": "开发者信赖 ShipFire",
+    "description": "在全球范围内获得专业品质的网站构建和闪电般快速的部署。",
     "icon": "RiHeartLine",
     "items": [
       {
@@ -481,25 +481,25 @@
         {
           "title": "X",
           "icon": "RiTwitterXFill",
-          "url": "https://x.com/miniaturaiapp",
+          "url": "https://x.com/shipfire",
           "target": "_blank"
         },
         {
           "title": "Github",
           "icon": "RiGithubFill",
-          "url": "https://github.com/miniaturaiapp",
+          "url": "https://github.com/shipfire",
           "target": "_blank"
         },
         {
           "title": "Discord",
           "icon": "RiDiscordFill",
-          "url": "https://discord.gg/miniaturaiapp",
+          "url": "https://discord.gg/shipfire",
           "target": "_blank"
         },
         {
           "title": "邮箱",
           "icon": "RiMailLine",
-          "url": "mailto:support@miniaturaiapp.com",
+          "url": "mailto:support@shipfire.com",
           "target": "_self"
         }
       ]

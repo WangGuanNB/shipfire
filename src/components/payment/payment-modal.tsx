@@ -1,7 +1,7 @@
 /**
  * @fileoverview 支付弹窗组件
  * @description 可复用的支付弹窗组件，支持桌面端和移动端适配，多语言支持
- * @author Miniatur AI Team
+ * @author ShipFire Team
  * @created 2025-01-26
  * 
  * @features

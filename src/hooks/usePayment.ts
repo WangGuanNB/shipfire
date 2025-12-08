@@ -1,7 +1,7 @@
 /**
  * @fileoverview 支付处理逻辑 Hook
  * @description 提供统一的支付处理逻辑，包括订单创建、Stripe支付跳转等功能
- * @author Miniatur AI Team
+ * @author ShipFire Team
  * @created 2025-01-26
  * 
  * @features

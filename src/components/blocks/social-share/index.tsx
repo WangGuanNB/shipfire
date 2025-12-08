@@ -30,9 +30,9 @@ export default function SocialShare({
   imageUrl,
   imageData,
   mimeType,
-  title = "Check out my AI-generated miniature!",
-  description = "I just created this amazing miniature figurine using Miniatur AI. Transform your photos into collectible masterpieces!",
-  hashtags = ["MiniaturAI", "AIGenerated", "Miniature", "Figurine"],
+  title = "Check out my website built with ShipFire!",
+  description = "I just built this amazing SaaS website using ShipFire. Build your website in 3 minutes with zero code!",
+  hashtags = ["ShipFire", "SaaS", "WebsiteBuilder", "NoCode"],
   onShare
 }: SocialShareProps) {
   const [isUploading, setIsUploading] = useState(false);
@@ -184,7 +184,7 @@ export default function SocialShare({
     try {
       const link = document.createElement('a');
       link.href = imageData;
-      link.download = `miniature-${Date.now()}.${mimeType.split('/')[1] || 'png'}`;
+      link.download = `website-${Date.now()}.${mimeType.split('/')[1] || 'png'}`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -226,7 +226,7 @@ export default function SocialShare({
           Share Your Creation
         </CardTitle>
         <p className="text-sm text-muted-foreground">
-          Show off your AI-generated miniature to the world!
+          Show off your website built with ShipFire to the world!
         </p>
       </CardHeader>
       <CardContent className="space-y-4">

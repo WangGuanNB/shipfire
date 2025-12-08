@@ -26,17 +26,17 @@ export default function ({ isIcon = false }: { isIcon?: boolean }) {
       
       if (value === 'en') {
         // 英文是默认语言，不需要前缀
-        if (pathname === '/zh' || pathname === '/pt') {
+        if (pathname === '/zh') {
           newPath = '/';
         } else {
-          newPath = pathname.replace(/^\/(zh|pt)/, '') || '/';
+          newPath = pathname.replace(/^\/zh/, '') || '/';
         }
       } else {
-        // 其他语言需要前缀
+        // 中文需要前缀
         if (pathname === '/' || !pathname.startsWith('/')) {
           newPath = `/${value}`;
-        } else if (pathname.startsWith('/zh') || pathname.startsWith('/pt')) {
-          newPath = pathname.replace(/^\/(zh|pt)/, `/${value}`);
+        } else if (pathname.startsWith('/zh')) {
+          newPath = pathname.replace(/^\/zh/, `/${value}`);
         } else {
           newPath = `/${value}${pathname}`;
         }

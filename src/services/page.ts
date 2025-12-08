@@ -1,5 +1,5 @@
 import { cache } from 'react';
-import { LandingPage, PricingPage, ShowcasePage, ConverterPage, ColorPage, AboutPage } from "@/types/pages/landing";
+import { LandingPage, PricingPage, ShowcasePage, AboutPage } from "@/types/pages/landing";
 import { replaceSocialMediaUrls } from "@/lib/utils";
 
 export const getLandingPage = cache(async (locale: string): Promise<LandingPage> => {
@@ -16,14 +16,6 @@ export const getShowcasePage = cache(async (locale: string): Promise<ShowcasePag
   return (await getPage("showcase", locale)) as ShowcasePage;
 });
 
-export const getConverterPage = cache(async (locale: string): Promise<ConverterPage> => {
-  return (await getPage("converter", locale)) as ConverterPage;
-});
-
-export const getColorPage = cache(async (locale: string): Promise<ColorPage> => {
-  return (await getPage("color", locale)) as ColorPage;
-});
-
 export const getAboutPage = cache(async (locale: string): Promise<AboutPage> => {
   return (await getPage("about", locale)) as AboutPage;
 });
@@ -31,7 +23,7 @@ export const getAboutPage = cache(async (locale: string): Promise<AboutPage> => 
 export async function getPage(
   name: string,
   locale: string
-): Promise<LandingPage | PricingPage | ShowcasePage | ConverterPage | ColorPage | AboutPage> {
+): Promise<LandingPage | PricingPage | ShowcasePage | AboutPage> {
   try {
     if (locale === "zh-CN") {
       locale = "zh";

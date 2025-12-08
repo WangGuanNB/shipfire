@@ -21,14 +21,14 @@ function ShareContent({ imageUrl }: { imageUrl: string | null }) {
               <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
                 <Wand2 className="h-8 w-8" />
               </div>
-              <h1 className="mb-4 text-2xl font-bold">No Image to Share</h1>
+              <h1 className="mb-4 text-2xl font-bold">No Content to Share</h1>
               <p className="mb-6 text-muted-foreground">
-                It looks like there's no image associated with this link.
+                It looks like there's no content associated with this link.
               </p>
               <Button asChild>
                 <Link href="/">
                   <Sparkles className="mr-2 h-4 w-4" />
-                  Create Your Own
+                  Build Your Website
                 </Link>
               </Button>
             </CardContent>
@@ -47,18 +47,18 @@ function ShareContent({ imageUrl }: { imageUrl: string | null }) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Sparkles className="h-5 w-5" />
-                AI-Generated Miniature
+                ShipFire Website
               </CardTitle>
               <div className="flex gap-2">
-                <Badge variant="secondary">AI Generated</Badge>
-                <Badge variant="outline">Miniatur AI</Badge>
+                <Badge variant="secondary">Built with ShipFire</Badge>
+                <Badge variant="outline">SaaS Platform</Badge>
               </div>
             </CardHeader>
             <CardContent>
               <div className="aspect-square overflow-hidden rounded-lg border bg-muted">
                 <img
                   src={imageUrl}
-                  alt="AI-generated miniature figurine"
+                  alt="Website built with ShipFire"
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -68,16 +68,16 @@ function ShareContent({ imageUrl }: { imageUrl: string | null }) {
           {/* 介绍和CTA */}
           <Card>
             <CardHeader>
-              <CardTitle>Transform Your Photos Too!</CardTitle>
+              <CardTitle>Build Your Website Too!</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
                 <div className="rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 p-4 dark:from-blue-900/20 dark:to-purple-900/20">
                   <h3 className="font-semibold text-blue-900 dark:text-blue-100">
-                    🎨 Create Amazing Miniatures with AI
+                    🚀 Build Your SaaS Website in 3 Minutes
                   </h3>
                   <p className="mt-2 text-sm text-blue-700 dark:text-blue-200">
-                    Transform your photos into stunning collectible figurines using our advanced AI technology.
+                    Create professional websites with zero code using ShipFire's advanced platform and AI optimization tools.
                   </p>
                 </div>
 
@@ -87,9 +87,9 @@ function ShareContent({ imageUrl }: { imageUrl: string | null }) {
                       ✓
                     </div>
                     <div>
-                      <h4 className="font-medium">100% Free to Use</h4>
+                      <h4 className="font-medium">100% Free Forever</h4>
                       <p className="text-sm text-muted-foreground">
-                        No registration required, no hidden costs
+                        No credit card required, no hidden costs
                       </p>
                     </div>
                   </div>
@@ -99,9 +99,9 @@ function ShareContent({ imageUrl }: { imageUrl: string | null }) {
                       ✓
                     </div>
                     <div>
-                      <h4 className="font-medium">Multiple Styles</h4>
+                      <h4 className="font-medium">50+ Professional Templates</h4>
                       <p className="text-sm text-muted-foreground">
-                        Realistic, anime, and cartoon figurine styles
+                        SaaS, landing pages, product pages, and more
                       </p>
                     </div>
                   </div>
@@ -111,9 +111,9 @@ function ShareContent({ imageUrl }: { imageUrl: string | null }) {
                       ✓
                     </div>
                     <div>
-                      <h4 className="font-medium">Instant Results</h4>
+                      <h4 className="font-medium">Lightning Fast Deployment</h4>
                       <p className="text-sm text-muted-foreground">
-                        AI processing in under 10 seconds
+                        Launch your website in just 3 minutes
                       </p>
                     </div>
                   </div>
@@ -124,22 +124,22 @@ function ShareContent({ imageUrl }: { imageUrl: string | null }) {
                 <Button asChild className="w-full" size="lg">
                   <Link href="/#generator">
                     <Wand2 className="mr-2 h-4 w-4" />
-                    Create Your Miniature Now
+                    Build Your Website Now
                   </Link>
                 </Button>
 
                 <Button asChild variant="outline" className="w-full">
                   <Link href="/">
                     <ExternalLink className="mr-2 h-4 w-4" />
-                    Learn More About Miniatur AI
+                    Learn More About ShipFire
                   </Link>
                 </Button>
               </div>
 
               <div className="rounded-lg bg-muted p-4 text-center">
                 <p className="text-sm text-muted-foreground">
-                  Join <strong>12,847+</strong> creators who have already transformed{' '}
-                  <strong>89,432+</strong> images into amazing miniatures!
+                  Join <strong>50,000+</strong> developers who have already built{' '}
+                  <strong>200,000+</strong> websites with ShipFire!
                 </p>
               </div>
             </CardContent>
@@ -153,9 +153,9 @@ function ShareContent({ imageUrl }: { imageUrl: string | null }) {
 export async function generateMetadata({ searchParams }: SharePageProps) {
   const { image } = await searchParams;
   
-  const title = "Amazing AI-Generated Miniature Figurine | Free Miniatur AI Tool";
-  const description = "🎨 Incredible miniature figurine created with Miniatur AI! Transform your photos into collectible masterpieces for FREE. No signup required - Try our AI-powered miniature generator now!";
-  const keywords = "AI miniature, miniature figurine, AI art, photo transformation, collectible figurine, free AI tool, miniatur AI, tilt-shift effect";
+  const title = "Amazing Website Built with ShipFire | Free SaaS Website Builder";
+  const description = "🚀 Professional website created with ShipFire! Build your SaaS website in 3 minutes with zero code. FREE forever - Try our website builder now!";
+  const keywords = "ShipFire, SaaS website builder, website builder, no-code website builder, free website builder, AI website builder, indie developer tools";
   
   return {
     title,
@@ -166,20 +166,20 @@ export async function generateMetadata({ searchParams }: SharePageProps) {
       description,
       type: 'website',
       url: `${getBaseUrl()}/share${image ? `?image=${encodeURIComponent(image)}` : ''}`,
-      siteName: 'Miniatur AI',
+      siteName: 'ShipFire',
       images: image ? [
         {
           url: image,
           width: 1200,
           height: 630,
-          alt: 'AI-generated miniature figurine created with Miniatur AI',
+          alt: 'Website built with ShipFire',
         }
       ] : [],
     },
     twitter: {
       card: 'summary_large_image',
-      site: '@miniaturaiapp',
-      creator: '@miniaturaiapp',
+      site: '@shipfire',
+      creator: '@shipfire',
       title,
       description,
       images: image ? [image] : [],

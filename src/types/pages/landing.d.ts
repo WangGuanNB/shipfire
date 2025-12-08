@@ -3,8 +3,6 @@ import { Hero } from "@/types/blocks/hero";
 import { Section } from "@/types/blocks/section";
 import { Footer } from "@/types/blocks/footer";
 import { Pricing } from "@/types/blocks/pricing";
-import { ConverterPage } from "./converter";
-import { ColorPage } from "./color";
 
 export interface LandingPage {
   header?: Header;
@@ -96,4 +94,4 @@ export interface AboutPage {
 }
 
 // Export the new page types
-export type { ConverterPage, ColorPage, AboutPage };
+export type { AboutPage };

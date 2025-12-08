@@ -28,9 +28,9 @@ export default function CompactSocialShare({
   imageUrl,
   imageData,
   mimeType,
-  title = "Check out my AI-generated miniature!",
-  description = "I just created this amazing miniature figurine using Miniatur AI. Transform your photos into collectible masterpieces!",
-  hashtags = ["MiniaturAI", "AIGenerated", "Miniature", "Figurine"],
+  title = "Check out my website built with ShipFire!",
+  description = "I just built this amazing SaaS website using ShipFire. Build your website in 3 minutes with zero code!",
+  hashtags = ["ShipFire", "SaaS", "WebsiteBuilder", "NoCode"],
   onShare
 }: CompactSocialShareProps) {
   const [isUploading, setIsUploading] = useState(false);
@@ -133,7 +133,7 @@ export default function CompactSocialShare({
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`;
         break;
       case 'linkedin':
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&title=${encodeURIComponent('Amazing Miniatur AI Creation')}&summary=${encodedText}`;
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&title=${encodeURIComponent('Amazing Website Built with ShipFire')}&summary=${encodedText}`;
         break;
       case 'pinterest':
         shareUrl = `https://pinterest.com/pin/create/button/?url=${encodedUrl}&description=${encodedText}&media=${encodeURIComponent(imageUrl)}`;
@@ -145,7 +145,7 @@ export default function CompactSocialShare({
         shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`;
         break;
       case 'reddit':
-        shareUrl = `https://reddit.com/submit?url=${encodedUrl}&title=${encodeURIComponent('Created this miniature figurine with AI!')}`;
+        shareUrl = `https://reddit.com/submit?url=${encodedUrl}&title=${encodeURIComponent('Built this website with ShipFire!')}`;
         break;
       default:
         return;

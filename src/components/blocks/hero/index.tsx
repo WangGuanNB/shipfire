@@ -135,7 +135,7 @@ function DefaultHero({ hero }: { hero: HeroType }) {
 function CompactHero({ hero }: { hero: HeroType }) {
   const fallbackButtons = [
     {
-      title: "Create Graffiti Free Now",
+      title: "Build Website Free Now",
       url: "/#generator",
     },
     {

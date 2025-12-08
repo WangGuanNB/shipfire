@@ -39,10 +39,10 @@ export function getCanonicalUrl(locale: string, path: string = '/'): string {
  */
 export function getSocialMediaConfig() {
   return {
-    support_email: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'support@miniaturaiapp.com',
-    twitter_url: process.env.NEXT_PUBLIC_TWITTER_URL || 'https://x.com/miniaturaiapp',
-    github_url: process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/miniaturaiapp', 
-    discord_url: process.env.NEXT_PUBLIC_DISCORD_URL || 'https://discord.gg/miniaturaiapp'
+    support_email: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'support@shipfire.com',
+    twitter_url: process.env.NEXT_PUBLIC_TWITTER_URL || 'https://x.com/shipfire',
+    github_url: process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/shipfire', 
+    discord_url: process.env.NEXT_PUBLIC_DISCORD_URL || 'https://discord.gg/shipfire'
   };
 }
 

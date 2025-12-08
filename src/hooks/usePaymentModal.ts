@@ -1,7 +1,7 @@
 /**
  * @fileoverview 支付弹窗控制 Hook
  * @description 管理支付弹窗的显示状态、配置数据和交互逻辑
- * @author Miniatur AI Team
+ * @author ShipFire Team
  * @created 2025-01-26
  * 
  * @features

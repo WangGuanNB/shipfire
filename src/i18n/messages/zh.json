@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "Miniatur AI - 将照片转换为微缩杰作 | Miniatur AI",
-    "description": "Miniatur AI 使用先进的AI技术将普通照片转换为令人惊叹的微缩杰作。在几秒钟内创建专业的移轴效果和微缩场景。",
-    "keywords": "Miniatur AI, 微缩生成器, AI照片转换, 移轴效果, 微缩摄影, AI图像处理"
+    "title": "ShipFire - 3 分钟内构建您的 SaaS 网站",
+    "description": "专为全球独立开发者设计的免费网站构建器。零代码，48 小时内发布产品，内置 AI 优化工具。ShipFire 帮助您的产品快速触达全球用户。",
+    "keywords": "ShipFire, SaaS 网站构建器, 网站构建器, 独立开发者工具, 无代码网站构建器, AI 网站构建器, 全球网站构建器, 免费网站构建器"
   },
   "user": {
     "sign_in": "登录",
@@ -34,7 +34,7 @@
   },
   "my_orders": {
     "title": "我的订单",
-    "description": "在 Wplace Pixel 上的订单记录。",
+    "description": "在 ShipFire 上的订单记录。",
     "no_orders": "未找到订单",
     "tip": "",
     "activate_order": "激活订单",
@@ -82,12 +82,12 @@
   },
   "blog": {
     "title": "博客",
-    "description": "关于 Wplace Pixel 的新闻、资源和更新",
+    "description": "关于 ShipFire 的新闻、资源和更新",
     "read_more_text": "阅读更多",
     "tools_notice": {
       "text": "寻找实用工具？除了这些教程，还可以在我们的",
-      "link_text": "Wplace Pixel 主页",
-      "suffix": "探索完整的像素艺术创作工具套件，实现即时像素艺术生成和高级功能。"
+      "link_text": "ShipFire 主页",
+      "suffix": "探索完整的网站构建工具套件，实现即时网站创建和高级功能。"
     }
   },
   "my_invites": {
@@ -98,7 +98,7 @@
     "edit_invite_link": "编辑邀请链接",
     "copy_invite_link": "复制邀请链接",
     "invite_code": "邀请码",
-    "invite_tip": "邀请朋友使用 Wplace Pixel，共同创作像素艺术。",
+    "invite_tip": "邀请朋友使用 ShipFire，共同构建网站。",
     "invite_balance": "邀请奖励余额",
     "total_invite_count": "总邀请人数",
     "total_paid_count": "已充值人数",
@@ -106,7 +106,7 @@
     "update_invite_code": "设置邀请码",
     "update_invite_code_tip": "输入你的自定义邀请码",
     "update_invite_button": "保存",
-    "no_orders": "你需要先使用过 Wplace Pixel 才能邀请朋友",
+    "no_orders": "你需要先使用过 ShipFire 才能邀请朋友",
     "no_affiliates": "你暂无邀请朋友的权限，请联系我们申请开通。",
     "table": {
       "invite_time": "邀请时间",
@@ -124,16 +124,16 @@
     "submit": "提交",
     "loading": "提交中...",
     "contact_tip": "其他联系方式",
-    "rating_tip": "您对 Miniatur AI 的看法如何？",
+    "rating_tip": "您对 ShipFire 的看法如何？",
     "placeholder": "在这里留下您的反馈..."
   },
   "share": {
-    "title": "分享这张图片",
-    "text": "我刚在 www.miniatur.org 免费生成了这个微缩手办！你也来试试：",
+    "title": "分享这个网站",
+    "text": "我刚在 ShipFire 免费构建了这个网站！你也来试试：",
     "preparing": "准备分享中...",
     "success": "链接已复制到剪贴板！",
     "failed": "复制链接失败",
-    "uploading": "正在准备图片分享...",
+    "uploading": "正在准备网站分享...",
     "platforms": {
       "twitter": "Twitter",
       "facebook": "Facebook", 
@@ -145,63 +145,63 @@
       "copy": "复制"
     }
   } ,
-  "miniatureGenerator": {
+  "websiteBuilder": {
     "ui": {
-      "title": "使用 Miniatur AI 构建您的微缩世界",
-      "subtitle": "使用AI驱动的编辑转换您的图像"
+      "title": "使用 ShipFire 构建您的 SaaS 网站",
+      "subtitle": "零代码，48 小时内发布产品"
     },
     "upload": {
-      "title": "上传图片",
-      "subtitle": "上传一张图片作为参考",
-      "dragDrop": "拖放或点击上传图片",
-      "fileInfo": "JPG, PNG, WEBP • 最大 10MB • 最小 300×300px"
+      "title": "选择您的模板",
+      "subtitle": "从我们的专业网站模板中选择",
+      "dragDrop": "浏览我们多样化的模板集合",
+      "fileInfo": "SaaS 模板 • 落地页 • 产品页 • 更多"
     },
     "instructions": {
-      "title": "编辑说明",
-      "subtitle": "描述您期望的变化",
+      "title": "输入您的产品详情",
+      "subtitle": "描述您的产品并自定义您的网站",
       "translate": "翻译",
       "autoTranslateEnabled": "已启用自动翻译"
     },
     "usage": {
-      "remaining": "剩余免费生成次数：{remaining}/3",
-      "signInTip": "登录获取无限生成次数！",
-      "limitReached": "已达到每日限制（已使用 3/3 次免费生成）",
+      "remaining": "剩余免费网站构建次数：{remaining}/3",
+      "signInTip": "登录获取无限网站创建次数！",
+      "limitReached": "已达到每日限制（已使用 3/3 次免费构建）",
       "signInUnlimited": "登录获取无限访问权限或明天再试！"
     },
     "buttons": {
-      "generate": "生成微缩模型",
-      "generating": "正在生成图像...",
+      "generate": "构建网站",
+      "generating": "正在创建您的网站...",
       "limitReached": "已达到每日限制 - 请登录",
-      "download": "下载",
-      "regenerate": "重新生成"
+      "download": "下载网站",
+      "regenerate": "尝试其他模板"
     },
     "result": {
-      "title": "准备创建",
-      "subtitle": "上传图片，见证AI魔法",
-      "readyTitle": "准备创造您的杰作",
-      "readySubtitle": "上传图片并描述您的构想。观看AI将其转换为令人惊叹的作品。",
-      "willAppear": "您的 Miniatur AI 结果将显示在这里",
-      "creating": "正在创建您的微缩模型...",
-      "almostDone": "即将完成！请稍候",
+      "title": "准备构建",
+      "subtitle": "输入您的产品详情，见证魔法发生",
+      "readyTitle": "您的免费网站构建器等待中",
+      "readySubtitle": "描述您的产品并从多样化的模板中选择。几分钟内创建专业网站。",
+      "willAppear": "您的自定义网站将显示在这里",
+      "creating": "正在创建您的网站...",
+      "almostDone": "即将完成！您的网站正在成型",
       "takeFewMoments": "这可能需要几分钟时间"
     },
     "messages": {
-      "uploadValidImage": "请仅上传有效的图片文件",
-      "imageTooLarge": "图片大小不能超过10MB",
-      "uploadSuccess": "图片上传成功",
-      "uploadRequired": "请上传一张图片",
-      "instructionsRequired": "请提供编辑说明",
-      "limitExceeded": "已超过每日限制！请登录获取无限访问权限或明天再试。",
-      "generateSuccess": "微缩模型生成成功！",
-      "generateFailed": "生成微缩模型失败。请重试。",
-      "downloadSuccess": "图片下载成功！",
-      "downloadFailed": "下载图片失败"
+      "uploadValidImage": "请选择有效的模板",
+      "imageTooLarge": "内容过长，请保持简洁",
+      "uploadSuccess": "模板选择成功",
+      "uploadRequired": "请输入您的产品详情",
+      "instructionsRequired": "请选择网站模板",
+      "limitExceeded": "已超过每日限制！请登录获取无限网站创建权限或明天再试。",
+      "websiteGeneratedSuccess": "网站创建成功！",
+      "generateFailed": "生成网站失败。请重试。",
+      "downloadSuccess": "网站下载成功！",
+      "downloadFailed": "下载网站失败"
     }
   },
   "payment": {
     "modal": {
       "title": "选择您的套餐",
-      "description": "升级到付费套餐，解锁更多AI功能",
+      "description": "升级到付费套餐，解锁更多网站模板和功能",
       "most_popular": "最受欢迎",
       "credits": "积分",
       "month": "月",
@@ -217,14 +217,14 @@
       "basic": {
         "title": "基础套餐",
         "description": "100 积分",
-        "feature1": "100 AI 生成次数",
+        "feature1": "100 次网站构建",
         "feature2": "标准处理速度",
         "feature3": "邮件支持"
       },
       "pro": {
         "title": "专业套餐",
         "description": "500 积分",
-        "feature1": "500 AI 生成次数",
+        "feature1": "500 次网站构建",
         "feature2": "优先处理速度",
         "feature3": "24/7 技术支持",
         "feature4": "高清输出"
@@ -232,7 +232,7 @@
       "enterprise": {
         "title": "企业套餐",
         "description": "2000 积分",
-        "feature1": "2000 AI 生成次数",
+        "feature1": "2000 次网站构建",
         "feature2": "最快处理速度",
         "feature3": "专属客服",
         "feature4": "API 访问",
@@ -251,7 +251,7 @@
       "instruction5": "需要登录才能进行支付",
       "success_message": "支付成功！积分已到账",
       "insufficient_title": "积分不足",
-      "insufficient_description": "您的积分不足，请升级套餐继续使用AI功能",
+      "insufficient_description": "您的积分不足，请升级套餐继续使用网站构建功能",
       "upgrade_success": "升级成功！功能已解锁"
     }
   }
