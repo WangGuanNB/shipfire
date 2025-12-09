@@ -186,7 +186,7 @@ export default function FeatureWhatTwo({
                   {/* CTA 按钮组 - 固定在底部 */}
                   {hasButtons && (
                     <div className="mt-6 flex flex-wrap items-center gap-3">
-                      {item.buttons.map((button, btnIndex) => (
+                      {item.buttons?.map((button, btnIndex) => (
                         <Link
                           key={btnIndex}
                           href={button.url as any}

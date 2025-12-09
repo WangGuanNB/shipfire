@@ -193,15 +193,15 @@ function CompactHero({ hero }: { hero: HeroType }) {
               <Link
                 key={`${button.title}-${index}`}
                 href={button.url as any}
-                target={button.target || undefined}
+                target={'target' in button && button.target ? button.target : undefined}
                 className="flex"
               >
                 <Button
                   size="lg"
-                  variant={button.variant || (index === 0 ? "default" : "secondary")}
+                  variant={'variant' in button && button.variant ? button.variant : (index === 0 ? "default" : "secondary")}
                   className="min-w-[160px]"
                 >
-                  {button.icon && <Icon name={button.icon} className="mr-2" />}
+                  {'icon' in button && button.icon && <Icon name={button.icon} className="mr-2" />}
                   {button.title}
                 </Button>
               </Link>

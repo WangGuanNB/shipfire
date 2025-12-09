@@ -10,6 +10,7 @@ export interface SectionItem {
   url?: string;
   target?: string;
   children?: SectionItem[];
+  list?: string[];
 }
 
 export interface Section {

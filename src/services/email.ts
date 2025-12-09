@@ -179,11 +179,6 @@ export async function sendContactFormEmail({
 
     // 发送给支持邮箱的通知邮件
     const html = `
-  try {
-    const supportEmail = getSocialMediaConfig().support_email;
-
-    // 发送给支持邮箱的通知邮件
-    const html = `
 <!DOCTYPE html>
 <html>
 <head>

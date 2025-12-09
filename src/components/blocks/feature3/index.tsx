@@ -30,8 +30,8 @@ const iconMap: Record<string, ComponentType<{ className?: string }>> = {
 
 interface StepCardProps {
   icon: string | undefined;
-  title: string;
-  description: string;
+  title: string | undefined;
+  description: string | undefined;
   index: number;
 }
 
@@ -67,8 +67,8 @@ const StepCard: React.FC<StepCardProps> = ({ icon, title, description, index }) 
       )}
 
       {/* Title and Description */}
-      <h3 className="mb-2 text-base font-semibold lg:text-lg">{title}</h3>
-      <p className="text-muted-foreground lg:text-lg">{description}</p>
+      {title && <h3 className="mb-2 text-base font-semibold lg:text-lg">{title}</h3>}
+      {description && <p className="text-muted-foreground lg:text-lg">{description}</p>}
     </motion.div>
   );
 };
