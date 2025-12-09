@@ -2,7 +2,14 @@ import { Resend } from "resend";
 import { getSocialMediaConfig } from "@/lib/utils";
 import type { Order } from "@/types/order";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// 延迟创建 Resend 实例，避免在构建时因缺少 API key 而报错
+function getResendInstance() {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return null;
+  }
+  return new Resend(apiKey);
+}
 
 interface SendEmailParams {
   to: string;
@@ -22,7 +29,8 @@ export async function sendEmail({
   from,
 }: SendEmailParams) {
   try {
-    if (!process.env.RESEND_API_KEY) {
+    const resend = getResendInstance();
+    if (!resend) {
       console.log("RESEND_API_KEY not configured, skip sending email");
       return;
     }
