@@ -40,7 +40,7 @@ const nextConfig = {
   },
   // 压缩和优化
   compress: true,
-  swcMinify: true,
+  // swcMinify 在 Next.js 15 中已默认启用，无需配置
   async redirects() {
     return [
       {

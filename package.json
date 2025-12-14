@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_NO_WARNINGS=1 next dev --turbopack",
     "build": "next build",
-    "cf:build": "npx @opennextjs/cloudflare@latest build --config ./open-next.config.mjs",
+    "cf:build": "next build && npx @opennextjs/cloudflare@latest build",
     "cf:deploy": "pnpm run cf:build && npx wrangler deploy",
     "start": "NODE_NO_WARNINGS=1 next start",
     "lint": "next lint",
