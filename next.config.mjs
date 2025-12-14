@@ -12,7 +12,7 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  // ❌ 已移除 output: "standalone" - Cloudflare Workers 不需要此配置
   reactStrictMode: false,
   trailingSlash: true, // 确保URL都带尾部斜杠，与canonical保持一致
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
@@ -24,6 +24,23 @@ const nextConfig = {
       },
     ],
   },
+  // Webpack 优化配置（用于 Cloudflare Workers 环境）
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.optimization = {
+        ...config.optimization,
+        usedExports: true,
+        sideEffects: false,
+        minimize: true,
+        moduleIds: 'deterministic',
+        chunkIds: 'deterministic',
+      };
+    }
+    return config;
+  },
+  // 压缩和优化
+  compress: true,
+  swcMinify: true,
   async redirects() {
     return [
       {
@@ -42,6 +59,19 @@ const configWithMDX = {
   ...nextConfig,
   experimental: {
     mdxRs: true,
+    // 优化包导入（减少 bundle 大小）
+    optimizePackageImports: [
+      "@radix-ui/react-accordion",
+      "@radix-ui/react-avatar",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-select",
+      "@radix-ui/react-tabs",
+      "@radix-ui/react-tooltip",
+      "lucide-react",
+      "framer-motion",
+      // 根据项目添加其他大型 UI 库
+    ],
   },
 };
 
