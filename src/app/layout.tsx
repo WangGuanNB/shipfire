@@ -22,11 +22,16 @@ export default async function RootLayout({
 
   const webUrl = process.env.NEXT_PUBLIC_WEB_URL || "";
   const googleAdsenseCode = process.env.NEXT_PUBLIC_GOOGLE_ADCODE || "";
+  const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "";
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* Google Analytics ID - 作为备用方案，供客户端组件读取 */}
+        {googleAnalyticsId && (
+          <meta name="ga-id" content={googleAnalyticsId} />
+        )}
         {googleAdsenseCode && (
           <>
             <meta name="google-adsense-account" content={googleAdsenseCode} />
