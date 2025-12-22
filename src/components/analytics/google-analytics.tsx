@@ -26,7 +26,7 @@ export default function GoogleAnalytics() {
     if (!analyticsId && typeof window !== "undefined") {
       const metaTag = document.querySelector('meta[name="ga-id"]');
       if (metaTag) {
-        analyticsId = metaTag.getAttribute("content") || null;
+        analyticsId = metaTag.getAttribute("content") || undefined;
       }
     }
 
