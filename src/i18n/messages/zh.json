@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "ShipFire - 3 分钟内构建您的 SaaS 网站",
-    "description": "专为全球独立开发者设计的免费网站构建器。零代码，48 小时内发布产品，内置 AI 优化工具。ShipFire 帮助您的产品快速触达全球用户。",
-    "keywords": "ShipFire, SaaS 网站构建器, 网站构建器, 独立开发者工具, 无代码网站构建器, AI 网站构建器, 全球网站构建器, 免费网站构建器"
+    "title": "ShipStart - 3 分钟内构建您的 SaaS 网站",
+    "description": "专为全球独立开发者设计的免费网站构建器。零代码，48 小时内发布产品，内置 AI 优化工具。ShipStart 帮助您的产品快速触达全球用户。",
+    "keywords": "ShipStart, SaaS 网站构建器, 网站构建器, 独立开发者工具, 无代码网站构建器, AI 网站构建器, 全球网站构建器, 免费网站构建器"
   },
   "user": {
     "sign_in": "登录",
@@ -34,7 +34,7 @@
   },
   "my_orders": {
     "title": "我的订单",
-    "description": "在 ShipFire 上的订单记录。",
+    "description": "在 ShipStart 上的订单记录。",
     "no_orders": "未找到订单",
     "tip": "",
     "activate_order": "激活订单",
@@ -82,11 +82,11 @@
   },
   "blog": {
     "title": "博客",
-    "description": "关于 ShipFire 的新闻、资源和更新",
+    "description": "关于 ShipStart 的新闻、资源和更新",
     "read_more_text": "阅读更多",
     "tools_notice": {
       "text": "寻找实用工具？除了这些教程，还可以在我们的",
-      "link_text": "ShipFire 主页",
+      "link_text": "ShipStart 主页",
       "suffix": "探索完整的网站构建工具套件，实现即时网站创建和高级功能。"
     }
   },
@@ -98,7 +98,7 @@
     "edit_invite_link": "编辑邀请链接",
     "copy_invite_link": "复制邀请链接",
     "invite_code": "邀请码",
-    "invite_tip": "邀请朋友使用 ShipFire，共同构建网站。",
+    "invite_tip": "邀请朋友使用 ShipStart，共同构建网站。",
     "invite_balance": "邀请奖励余额",
     "total_invite_count": "总邀请人数",
     "total_paid_count": "已充值人数",
@@ -106,7 +106,7 @@
     "update_invite_code": "设置邀请码",
     "update_invite_code_tip": "输入你的自定义邀请码",
     "update_invite_button": "保存",
-    "no_orders": "你需要先使用过 ShipFire 才能邀请朋友",
+    "no_orders": "你需要先使用过 ShipStart 才能邀请朋友",
     "no_affiliates": "你暂无邀请朋友的权限，请联系我们申请开通。",
     "table": {
       "invite_time": "邀请时间",
@@ -124,12 +124,12 @@
     "submit": "提交",
     "loading": "提交中...",
     "contact_tip": "其他联系方式",
-    "rating_tip": "您对 ShipFire 的看法如何？",
+    "rating_tip": "您对 ShipStart 的看法如何？",
     "placeholder": "在这里留下您的反馈..."
   },
   "share": {
     "title": "分享这个网站",
-    "text": "我刚在 ShipFire 免费构建了这个网站！你也来试试：",
+    "text": "我刚在 ShipStart 免费构建了这个网站！你也来试试：",
     "preparing": "准备分享中...",
     "success": "链接已复制到剪贴板！",
     "failed": "复制链接失败",
@@ -147,7 +147,7 @@
   } ,
   "websiteBuilder": {
     "ui": {
-      "title": "使用 ShipFire 构建您的 SaaS 网站",
+      "title": "使用 ShipStart 构建您的 SaaS 网站",
       "subtitle": "零代码，48 小时内发布产品"
     },
     "upload": {

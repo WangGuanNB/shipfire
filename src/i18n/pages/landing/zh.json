@@ -3,10 +3,10 @@
   "theme": "light",
   "header": {
     "brand": {
-      "title": "ShipFire",
+      "title": "ShipStart",
       "logo": {
         "src": "/logo.png",
-        "alt": "ShipFire"
+        "alt": "ShipStart"
       },
       "url": "/"
     },
@@ -25,7 +25,7 @@
     "show_locale": true
   },
   "hero": {
-    "title": "ShipFire: 3 分钟内构建您的 SaaS 网站",
+    "title": "ShipStart: 3 分钟内构建您的 SaaS 网站",
     "highlight_text": "闪电般快速",
     "description": "专为全球独立开发者设计的免费网站构建器。零代码，48 小时内发布产品，内置 AI 优化工具。",
     "announcement": {
@@ -37,12 +37,12 @@
     "images": [
       {
         "src": "/imgs/features/1.png",
-        "alt": "ShipFire 网站构建示例 1",
+        "alt": "ShipStart 网站构建示例 1",
         "title": "构建您的 SaaS 网站"
       },
       {
         "src": "/imgs/features/2.png",
-        "alt": "ShipFire 网站模板示例 2", 
+        "alt": "ShipStart 网站模板示例 2", 
         "title": "50+ 专业模板"
       }
     ],
@@ -125,7 +125,7 @@
   },
   "introduce": {
     "name": "introduce",
-    "title": "什么是 ShipFire",
+    "title": "什么是 ShipStart",
     "label": "OVERVIEW",
     "description": "一个面向全球开发者的 SaaS 网站构建平台，帮助您的产品快速触达全球用户。",
     "image": {
@@ -133,7 +133,7 @@
     },
     "items": [
       {
-        "title": "ShipFire 免费网站构建器",
+        "title": "ShipStart 免费网站构建器",
         "description": "完全免费的在线构建系统—无需编码。它集成了关键模块，如支付系统、用户管理和分析。拖放界面让您专注于产品，而我们处理技术。只需3分钟即可上线。",
         "icon": "RiDownloadLine",
         "image": {
@@ -154,7 +154,7 @@
         ]
       },
       {
-        "title": "ShipFire AI 优化引擎",
+        "title": "ShipStart AI 优化引擎",
         "description": "内置 AI 自动分析用户行为。AI 助手提供实时改进建议，将转化率提升高达 40%。从文案到布局调整，您的网站始终保持最佳营销状态，无需雇佣团队。",
         "icon": "RiDownloadLine",
         "image": {
@@ -175,7 +175,7 @@
         ]
       },
       {
-        "title": "ShipFire 在线一键部署",
+        "title": "ShipStart 在线一键部署",
         "description": "云托管确保 99.9% 的正常运行时间。全球 CDN 为全球用户提供快速访问。自动 SSL、域名绑定和 SEO 优化全部包含—零技术障碍，让创始人可以完全专注于产品。",
         "icon": "RiDownloadLine",
         "image": {
@@ -199,13 +199,13 @@
   },
   "benefit": {
     "name": "benefit",
-    "title": "为什么开发者选择 ShipFire",
+    "title": "为什么开发者选择 ShipStart",
     "label": "Core Benefits",
     "description": "零成本启动，具备专业级功能，让您的 SaaS 从第一天起就获胜。",
     "items": [
       {
         "title": "真正零成本",
-        "description": "ShipFire 100% 免费，无隐藏费用。在其他地方需要 $49–299/月的功能—无限页面、用户管理、支付集成、分析仪表板—在这里全部解锁。非常适合独立开发者，节省数千早期成本，让您可以投资于产品和营销。",
+        "description": "ShipStart 100% 免费，无隐藏费用。在其他地方需要 $49–299/月的功能—无限页面、用户管理、支付集成、分析仪表板—在这里全部解锁。非常适合独立开发者，节省数千早期成本，让您可以投资于产品和营销。",
         "icon": "RiStarLine",
         "image": {
           "src": "/imgs/features/1.webp",
@@ -221,7 +221,7 @@
       },
       {
         "title": "闪电般快速",
-        "description": "从创建账户到发布网站只需 3 分钟。从 50+ 个针对 SaaS 优化的模板中选择，自定义并发布。相比传统开发所需的 2–4 周，ShipFire 帮助您提前一个月进入市场。自动化工作流程处理更新和备份，让您可以专注于增长。",
+        "description": "从创建账户到发布网站只需 3 分钟。从 50+ 个针对 SaaS 优化的模板中选择，自定义并发布。相比传统开发所需的 2–4 周，ShipStart 帮助您提前一个月进入市场。自动化工作流程处理更新和备份，让您可以专注于增长。",
         "icon": "RiGiftLine",
         "image": {
           "src": "/imgs/features/1.webp",
@@ -256,7 +256,7 @@
   "usage": {
     "name": "usage",
     "label": "HOW TO USE",
-    "title": "如何构建 ShipFire 网站",
+    "title": "如何构建 ShipStart 网站",
     "description": "通过三个简单步骤创建专业网站—完全在线，仅需180秒。",
     "items": [
       {
@@ -266,7 +266,7 @@
       },
       {
         "title": "自定义您的内容",
-        "description": "使用 ShipFire 在线编辑器修改文本、图像和颜色。AI助手根据您的产品类型建议文案和布局。即时预览更改。",
+        "description": "使用 ShipStart 在线编辑器修改文本、图像和颜色。AI助手根据您的产品类型建议文案和布局。即时预览更改。",
         "icon": "RiPaletteLine"
       },
       {
@@ -279,7 +279,7 @@
   "feature": {
     "name": "feature",
     "label": "FEATURES",
-    "title": "ShipFire 核心功能概览",
+    "title": "ShipStart 核心功能概览",
     "description": "企业级功能，为独立开发者简化，推动您的产品增长。",
     "items": [
       {
@@ -317,7 +317,7 @@
   "stats": {
     "name": "stats",
     "label": "统计",
-    "title": "开发者信赖 ShipFire",
+    "title": "开发者信赖 ShipStart",
     "description": "在全球范围内获得专业品质的网站构建和闪电般快速的部署。",
     "icon": "RiHeartLine",
     "items": [
@@ -341,14 +341,14 @@
   "testimonial": {
     "name": "testimonial",
     "label": "推荐",
-    "title": "开发者对 ShipFire 的评价",
-    "description": "看看全球开发者如何使用 ShipFire 加速他们的业务。",
+    "title": "开发者对 ShipStart 的评价",
+    "description": "看看全球开发者如何使用 ShipStart 加速他们的业务。",
     "icon": "RiThumbUpLine",
     "items": [
       {
         "title": "Leo",
         "label": "街头服饰品牌主",
-        "description": "我曾经花三周时间构建一个网站，只获得了不到 2% 的转化率。使用 ShipFire 免费版，我在 3 小时内重建了一切，达到了 8.5%。现在我的所有时间都用于产品开发。",
+        "description": "我曾经花三周时间构建一个网站，只获得了不到 2% 的转化率。使用 ShipStart 免费版，我在 3 小时内重建了一切，达到了 8.5%。现在我的所有时间都用于产品开发。",
         "image": {
           "src": "/imgs/users/1.png"
         }
@@ -356,7 +356,7 @@
       {
         "title": "Mei",
         "label": "社交媒体经理",
-        "description": "我们的团队没有前端开发人员，Webflow 太贵了。改用 ShipFire 每年为我们节省了 $3,600，AI 优化识别了 5 个问题，使我们的 MRR 提升了 38%。",
+        "description": "我们的团队没有前端开发人员，Webflow 太贵了。改用 ShipStart 每年为我们节省了 $3,600，AI 优化识别了 5 个问题，使我们的 MRR 提升了 38%。",
         "image": {
           "src": "/imgs/users/2.png"
         }
@@ -372,7 +372,7 @@
       {
         "title": "艾玛·泰勒",
         "label": "内容创作者",
-        "description": "我使用 ShipFire 为客户构建了 12 个落地页，每个大约 20 分钟。内置的 A/B 测试和分析简化了优化—客户 ROI 提高了 55%。",
+        "description": "我使用 ShipStart 为客户构建了 12 个落地页，每个大约 20 分钟。内置的 A/B 测试和分析简化了优化—客户 ROI 提高了 55%。",
         "image": {
           "src": "/imgs/users/6.png"
         }
@@ -380,7 +380,7 @@
       {
         "title": "卡洛斯·马丁内斯",
         "label": "T恤设计师",
-        "description": "我销售在线课程，WordPress 插件总是导致冲突。ShipFire 使我的网站速度提高了三倍，并使结账更加顺畅。退款下降了 70%—学生们喜欢这种体验。",
+        "description": "我销售在线课程，WordPress 插件总是导致冲突。ShipStart 使我的网站速度提高了三倍，并使结账更加顺畅。退款下降了 70%—学生们喜欢这种体验。",
         "image": {
           "src": "/imgs/users/4.png"
         }
@@ -388,7 +388,7 @@
       {
         "title": "Jasmine Lee",
         "label": "活动组织者",
-        "description": "作为开发者，我不认为需要构建器，但 ShipFire 是免费的且功能强大。我用它验证了一个新的创业想法：从概念到上线 MVP 仅用了 4 小时。",
+        "description": "作为开发者，我不认为需要构建器，但 ShipStart 是免费的且功能强大。我用它验证了一个新的创业想法：从概念到上线 MVP 仅用了 4 小时。",
         "image": {
           "src": "/imgs/users/5.png"
         }
@@ -409,34 +409,34 @@
     ],
     "items": [
       {
-        "title": "ShipFire 免费吗？",
-        "description": "是的。ShipFire 提供永久免费计划，包括无限页面、用户管理、支付集成、分析等。无需信用卡，无隐藏费用。允许完全商业使用。"
+        "title": "ShipStart 免费吗？",
+        "description": "是的。ShipStart 提供永久免费计划，包括无限页面、用户管理、支付集成、分析等。无需信用卡，无隐藏费用。允许完全商业使用。"
       },
       {
-        "title": "ShipFire Online 支持哪些平台？",
-        "description": "支持自定义域名、Vercel、Netlify 和其他主要托管平台。提供免费的 *.shipfire.app 子域名用于测试。SSL 和 CDN 自动配置以实现全球性能。"
+        "title": "ShipStart Online 支持哪些平台？",
+        "description": "支持自定义域名、Vercel、Netlify 和其他主要托管平台。提供免费的 *.shipstart.net 子域名用于测试。SSL 和 CDN 自动配置以实现全球性能。"
       },
       {
-        "title": "我可以在没有技术经验的情况下使用 ShipFire 吗？",
-        "description": "绝对可以。ShipFire 专为非技术用户设计，具有拖放编辑器、教程和提供实时指导的 AI 助手。数千名初学者已构建网站，平均学习时间不到 30 分钟。"
+        "title": "我可以在没有技术经验的情况下使用 ShipStart 吗？",
+        "description": "绝对可以。ShipStart 专为非技术用户设计，具有拖放编辑器、教程和提供实时指导的 AI 助手。数千名初学者已构建网站，平均学习时间不到 30 分钟。"
       },
       {
-        "title": "我可以将 ShipFire 网站用于商业目的吗？",
-        "description": "可以。使用 ShipFire 构建的网站完全可用于商业，包括销售产品、订阅和广告。没有许可限制或收入分成。"
+        "title": "我可以将 ShipStart 网站用于商业目的吗？",
+        "description": "可以。使用 ShipStart 构建的网站完全可用于商业，包括销售产品、订阅和广告。没有许可限制或收入分成。"
       },
       {
-        "title": "我可以导出或迁移我的 ShipFire 网站吗？",
+        "title": "我可以导出或迁移我的 ShipStart 网站吗？",
         "description": "可以，您可以导出完整的网站代码，包括 HTML、CSS 和配置文件。您可以随时迁移到自己的服务器。用户和订单数据也可以导出为 CSV 以实现完全的数据所有权。"
       },
       {
-        "title": "ShipFire 的 AI 功能可以做什么？",
+        "title": "ShipStart 的 AI 功能可以做什么？",
         "description": "AI 助手优化文案，建议布局改进，分析用户行为，并预测转化瓶颈。它支持 SEO 优化、A/B 测试生成和电子邮件内容创建—基于 50,000+ 网站的数据训练，推荐准确率达 92%。"
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "今天就开始使用 ShipFire 构建",
+    "title": "今天就开始使用 ShipStart 构建",
     "description": "无需信用卡。无需技术技能。3 分钟内构建专业网站。加入 50,000+ 全球开发者，触达全球用户。所有核心功能永久免费。",
     "buttons": [
       {
@@ -451,15 +451,15 @@
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "ShipFire",
-      "description": "ShipFire 是一个面向全球独立开发者的 SaaS 网站构建平台。零代码，48 小时内发布产品，内置 AI 优化工具。",
+      "title": "ShipStart",
+      "description": "ShipStart 是一个面向全球独立开发者的 SaaS 网站构建平台。零代码，48 小时内发布产品，内置 AI 优化工具。",
       "logo": {
         "src": "/logo.png",
-        "alt": "ShipFire"
+        "alt": "ShipStart"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • ShipFire. 版权所有。",
+    "copyright": "© 2025 • ShipStart. 版权所有。",
     "nav": {
       "items": [
         {
@@ -481,25 +481,25 @@
         {
           "title": "X",
           "icon": "RiTwitterXFill",
-          "url": "https://x.com/shipfire",
+          "url": "https://x.com/shipstart",
           "target": "_blank"
         },
         {
           "title": "Github",
           "icon": "RiGithubFill",
-          "url": "https://github.com/shipfire",
+          "url": "https://github.com/shipstart",
           "target": "_blank"
         },
         {
           "title": "Discord",
           "icon": "RiDiscordFill",
-          "url": "https://discord.gg/shipfire",
+          "url": "https://discord.gg/shipstart",
           "target": "_blank"
         },
         {
           "title": "邮箱",
           "icon": "RiMailLine",
-          "url": "mailto:support@shipfire.com",
+          "url": "mailto:support@shipstart.net",
           "target": "_self"
         }
       ]

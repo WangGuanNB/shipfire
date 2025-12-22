@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "ShipFire - Build Your SaaS Website in 3 Minutes",
-    "description": "A free website builder designed for global indie developers. Launch your product in 48 hours with zero code and built-in AI optimization tools. ShipFire helps your product reach users worldwide instantly.",
-    "keywords": "ShipFire, SaaS website builder, website builder, indie developer tools, no-code website builder, AI website builder, global website builder, free website builder"
+    "title": "ShipStart - Build Your SaaS Website in 3 Minutes",
+    "description": "A free website builder designed for global indie developers. Launch your product in 48 hours with zero code and built-in AI optimization tools. ShipStart helps your product reach users worldwide instantly.",
+    "keywords": "ShipStart, SaaS website builder, website builder, indie developer tools, no-code website builder, AI website builder, global website builder, free website builder"
   },
   "user": {
     "sign_in": "Sign In",
@@ -33,7 +33,7 @@
   },
   "my_orders": {
     "title": "My Orders",
-    "description": "Orders placed on ShipFire.",
+    "description": "Orders placed on ShipStart.",
     "no_orders": "No orders found",
     "tip": "",
     "activate_order": "Activate Order",
@@ -81,11 +81,11 @@
   },
   "blog": {
     "title": "Blog",
-    "description": "News, resources, and updates about ShipFire",
+    "description": "News, resources, and updates about ShipStart",
     "read_more_text": "Read More",
     "tools_notice": {
       "text": "Looking for hands-on tools? Beyond these tutorials, explore our complete suite of website building tools on our",
-      "link_text": "main ShipFire homepage",
+      "link_text": "main ShipStart homepage",
       "suffix": "for immediate website creation and advanced features."
     }
   },
@@ -97,7 +97,7 @@
     "edit_invite_link": "Edit Invite Link",
     "copy_invite_link": "Copy Invite Link",
     "invite_code": "Invite Code",
-    "invite_tip": "Invite 1 friend to use ShipFire, reward $50.",
+    "invite_tip": "Invite 1 friend to use ShipStart, reward $50.",
     "invite_balance": "Invite Reward Balance",
     "total_invite_count": "Total Invite Count",
     "total_paid_count": "Total Paid Count",
@@ -105,7 +105,7 @@
     "update_invite_code": "Set Invite Code",
     "update_invite_code_tip": "Input your custom invite code",
     "update_invite_button": "Save",
-    "no_orders": "You can't invite others before you purchased ShipFire",
+    "no_orders": "You can't invite others before you purchased ShipStart",
     "no_affiliates": "You're not allowed to invite others, please contact us to apply for permission.",
     "table": {
       "invite_time": "Invite Time",
@@ -119,16 +119,16 @@
   },
   "feedback": {
     "title": "Feedback",
-    "description": "We'd love to hear what went well or how we can improve the ShipFire experience.",
+    "description": "We'd love to hear what went well or how we can improve the ShipStart experience.",
     "submit": "Submit",
     "loading": "Submitting...",
     "contact_tip": "Other ways to contact us",
-    "rating_tip": "How do you feel about ShipFire?",
+    "rating_tip": "How do you feel about ShipStart?",
     "placeholder": "Leave your words here..."
   },
   "share": {
     "title": "Share this website",
-    "text": "Just created this website for FREE using ShipFire! Try it yourself:",
+    "text": "Just created this website for FREE using ShipStart! Try it yourself:",
     "preparing": "Preparing for share...",
     "success": "Link copied to clipboard!",
     "failed": "Failed to copy link",
@@ -146,7 +146,7 @@
   },
   "websiteBuilder": {
     "ui": {
-      "title": "Build Your SaaS Website with ShipFire",
+      "title": "Build Your SaaS Website with ShipStart",
       "subtitle": "Launch your product in 48 hours with zero code"
     },
     "upload": {
