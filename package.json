@@ -5,7 +5,7 @@
   "author": "banner",
   "scripts": {
     "dev": "cross-env NODE_NO_WARNINGS=1 next dev --turbopack",
-    "build": "next build",
+    "build": "node scripts/load-wrangler-env.js next build",
     "cf:build": "node scripts/load-wrangler-env.js next build && npx @opennextjs/cloudflare@latest build",
     "cf:deploy": "pnpm run cf:build && npx wrangler deploy",
     "start": "NODE_NO_WARNINGS=1 next start",
