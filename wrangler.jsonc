@@ -33,7 +33,7 @@
     // 信任主机（生产环境设为true）
     "AUTH_TRUST_HOST": "true",
     // 是否启用认证（true/false）
-    "NEXT_PUBLIC_AUTH_ENABLED": "true",
+    "NEXT_PUBLIC_AUTH_ENABLED":"true",
 
     // ========== 3. Google 登录配置 ==========
     // Google OAuth 公开 Client ID（前端使用，用于 One Tap）
