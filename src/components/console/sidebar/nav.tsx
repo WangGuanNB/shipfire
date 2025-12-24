@@ -16,7 +16,6 @@ export default function ({
   items: NavItem[];
 }) {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <nav
