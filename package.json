@@ -5,6 +5,7 @@
   "author": "banner",
   "scripts": {
     "dev": "cross-env NODE_NO_WARNINGS=1 next dev --turbopack",
+    "dev:proxy": "cross-env GLOBAL_AGENT_HTTP_PROXY=http://127.0.0.1:7889 GLOBAL_AGENT_HTTPS_PROXY=http://127.0.0.1:7889 GLOBAL_AGENT_NO_PROXY=localhost,127.0.0.1 NODE_NO_WARNINGS=1 next dev --turbopack",
     "build": "node scripts/load-wrangler-env.js next build",
     "cf:build": "node scripts/load-wrangler-env.js next build && npx @opennextjs/cloudflare@latest build",
     "cf:deploy": "pnpm run cf:build && npx wrangler deploy",
@@ -88,6 +89,7 @@
     "next": "^15.5.7",
     "next-auth": "5.0.0-beta.25",
     "next-intl": "^4.1.0",
+    "undici": "7.16.0",
     "next-themes": "^0.4.4",
     "openai": "^4.78.1",
     "postgres": "^3.4.7",
@@ -121,6 +123,7 @@
     "@types/uuid": "^10.0.0",
     "cross-env": "^7.0.3",
     "drizzle-kit": "^0.31.1",
+    "global-agent": "3.0.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^4.1.4",
     "tsx": "^4.20.3",

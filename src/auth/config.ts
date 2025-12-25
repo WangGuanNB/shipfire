@@ -1,3 +1,6 @@
+// 必须在所有其他导入之前导入代理配置（如果启用了代理环境变量）
+import "@/lib/proxy";
+
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
