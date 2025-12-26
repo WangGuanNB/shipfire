@@ -16,6 +16,11 @@
           "title": "Home",
           "url": "/",
           "icon": "RiHomeLine"
+        },
+        {
+          "title": "Blog",
+          "url": "/blog",
+          "icon": "RiArticleLine"
         }
       ]
     },
@@ -157,7 +162,7 @@
         "description": "Built-in AI analyzes user behavior automatically. The AI assistant provides real-time improvement suggestions that boost conversions by up to 40%. From copywriting to layout tweaks, your site stays in peak marketing condition without hiring a team.",
         "icon": "RiDownloadLine",
         "image": {
-          "src": "/imgs/features/1.webp",
+          "src": "/imgs/features/2.webp",
           "alt": "ShipStart AI optimizing website performance"
         },
         "buttons": [
@@ -178,7 +183,7 @@
         "description": "Cloud hosting ensures 99.9% uptime. Global CDN delivers fast access for users worldwide. Automatic SSL, domain binding, and SEO optimization are all included—zero technical barrier so founders can focus fully on their product.",
         "icon": "RiDownloadLine",
         "image": {
-          "src": "/imgs/features/1.webp",
+          "src": "/imgs/features/3.webp",
           "alt": "ShipStart deploying website to production"
         },
         "buttons": [
@@ -207,7 +212,7 @@
         "description": "ShipStart is 100% free with no hidden fees. Features that cost $49–299/month elsewhere—unlimited pages, user management, payment integration, analytics dashboards—are all unlocked here. Ideal for indie developers, saving thousands in early costs so you can invest in product and marketing instead.",
         "icon": "RiStarLine",
         "image": {
-          "src": "/imgs/features/1.webp",
+          "src": "/imgs/features/4.webp",
           "alt": "ShipStart free website builder interface"
         },
         "buttons": [
@@ -240,7 +245,7 @@
         "description": "Deeply understands the needs of global-facing developers. Supports 20+ languages with auto-translation, multi-currency payments, and GDPR-compliant data handling. Integrated Google Analytics and Meta Pixel help you track overseas performance. With servers across 15 regions, users in the US and Europe experience near-local speeds.",
         "icon": "RiSpeedLine",
         "image": {
-          "src": "/imgs/features/1.webp",
+          "src": "/imgs/features/3.webp",
           "alt": "ShipStart global expansion features"
         },
         "buttons": [
@@ -348,8 +353,20 @@
         "description": "Yes, you can export full website code including HTML, CSS, and config files. You can migrate to your own server anytime. User and order data can also be exported as CSV for full data ownership."
       },
       {
-        "title": "What can ShipFire’s AI features do?",
+        "title": "What can ShipFire's AI features do?",
         "description": "The AI assistant optimizes copy, suggests layout improvements, analyzes user behavior, and predicts conversion bottlenecks. It supports SEO optimization, A/B test generation, and email content creation—trained on data from 50,000+ sites with 92% recommendation accuracy."
+      },
+      {
+        "title": "How secure is my data on ShipFire?",
+        "description": "ShipFire uses enterprise-grade security with encrypted data storage, regular backups, and GDPR compliance. All payment transactions are processed through Stripe and PayPal with PCI-DSS compliance. Your data is never shared with third parties without consent."
+      },
+      {
+        "title": "Does ShipFire support multiple languages?",
+        "description": "Yes. ShipFire supports 20+ languages with automatic translation, multi-currency payment processing, and region-specific content optimization. You can create localized versions of your site for different markets with one-click language switching."
+      },
+      {
+        "title": "What kind of support does ShipFire provide?",
+        "description": "ShipFire offers comprehensive support including detailed documentation, video tutorials, community forums, and email support. Premium users get priority support with faster response times. All users have access to the AI assistant for real-time guidance."
       }
     ]
   },
@@ -403,9 +420,25 @@
       {
         "title": "Jasmine Lee",
         "label": "Event Organizer",
-        "description": "As a developer I didn’t think I needed a builder, but ShipFire is free and surprisingly powerful. I used it to validate a new startup idea: went from concept to live MVP in 4 hours.",
+        "description": "As a developer I didn't think I needed a builder, but ShipFire is free and surprisingly powerful. I used it to validate a new startup idea: went from concept to live MVP in 4 hours.",
         "image": {
           "src": "/imgs/users/5.png"
+        }
+      },
+      {
+        "title": "Alex Chen",
+        "label": "SaaS Founder",
+        "description": "The multi-language support is a game-changer for our global expansion. We launched in 5 countries simultaneously with localized content and payment methods. Revenue increased 120% in the first quarter.",
+        "image": {
+          "src": "/imgs/users/7.png"
+        }
+      },
+      {
+        "title": "Sarah Johnson",
+        "label": "Marketing Director",
+        "description": "ShipFire's analytics dashboard helped us identify conversion bottlenecks we never noticed before. After implementing the AI recommendations, our email signup rate doubled and customer acquisition cost dropped by 45%.",
+        "image": {
+          "src": "/imgs/users/8.png"
         }
       }
     ]

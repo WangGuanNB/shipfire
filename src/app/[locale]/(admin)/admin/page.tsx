@@ -27,10 +27,10 @@ export default async function () {
       description: "User Paid Orders in total",
     },
     {
-      title: "System Posts",
+      title: "System Blog",
       label: "",
       value: (totalPosts || 0).toString(),
-      description: "Posts in total",
+      description: "Blog posts in total",
     },
     {
       title: "User Feedbacks",

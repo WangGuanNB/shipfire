@@ -1,4 +1,10 @@
-import { PostStatus, findPostBySlug, insertPost } from "@/models/post";
+import {
+  PostStatus,
+  findPostBySlug,
+  findPostByUuid,
+  insertPost,
+  updatePost,
+} from "@/models/post";
 import { localeNames, locales } from "@/i18n/locale";
 
 import Empty from "@/components/blocks/empty";
@@ -7,16 +13,25 @@ import { Form as FormSlotType } from "@/types/slots/form";
 import { Post } from "@/types/post";
 import { getIsoTimestr } from "@/lib/time";
 import { getUserInfo } from "@/services/user";
-import { getUuid } from "@/lib/hash";
 
-export default async function () {
+export default async function ({
+  params,
+}: {
+  params: Promise<{ uuid: string }>;
+}) {
+  const { uuid } = await params;
   const user = await getUserInfo();
   if (!user || !user.uuid) {
     return <Empty message="no auth" />;
   }
 
+  const post = await findPostByUuid(uuid);
+  if (!post) {
+    return <Empty message="post not found" />;
+  }
+
   const form: FormSlotType = {
-    title: "Add Post",
+    title: "Edit Post",
     crumb: {
       items: [
         {
@@ -24,7 +39,7 @@ export default async function () {
           url: "/admin/blog",
         },
         {
-          title: "Add Post",
+          title: "Edit Post",
           is_active: true,
         },
       ],
@@ -103,12 +118,22 @@ export default async function () {
         placeholder: "Post Content",
       },
     ],
+    data: post,
+    passby: {
+      user,
+      post,
+    },
     submit: {
       button: {
         title: "Submit",
       },
       handler: async (data: FormData, passby: any) => {
         "use server";
+
+        const { user, post } = passby;
+        if (!user || !post || !post.uuid) {
+          throw new Error("invalid params");
+        }
 
         const title = data.get("title") as string;
         const slug = data.get("slug") as string;
@@ -132,14 +157,13 @@ export default async function () {
         }
 
         const existPost = await findPostBySlug(slug, locale);
-        if (existPost) {
+        if (existPost && existPost.uuid !== post.uuid) {
           throw new Error("post with same slug already exists");
         }
 
-        const post = {
-          uuid: getUuid(),
-          created_at: new Date(),
-          status: status as PostStatus,
+        const updatedPost = {
+          updated_at: new Date(),
+          status,
           title,
           slug,
           locale,
@@ -151,11 +175,11 @@ export default async function () {
         };
 
         try {
-          await insertPost(post);
+          await updatePost(post.uuid, updatedPost);
 
           return {
             status: "success",
-            message: "Post added",
+            message: "Post updated",
             redirect_url: "/admin/blog",
           };
         } catch (err: any) {
@@ -167,3 +191,4 @@ export default async function () {
 
   return <FormSlot {...form} />;
 }
+

@@ -26,10 +26,6 @@ export default async function () {
         title: "Title",
       },
       {
-        name: "description",
-        title: "Description",
-      },
-      {
         name: "slug",
         title: "Slug",
       },
@@ -74,3 +70,4 @@ export default async function () {
 
   return <TableSlot {...table} />;
 }
+

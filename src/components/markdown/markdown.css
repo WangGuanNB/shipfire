@@ -13,3 +13,13 @@
   background-color: var(--background-secondary);
   color: var(--foreground);
 }
+
+/* 隐藏 Markdown 中的水平线 */
+.markdown hr {
+  display: none;
+}
+
+/* 隐藏 @uiw/react-md-editor 可能添加的底部横线 */
+.markdown::after {
+  display: none;
+}

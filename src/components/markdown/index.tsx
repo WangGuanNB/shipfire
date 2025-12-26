@@ -12,6 +12,7 @@ export default function Markdown({ content }: { content: string }) {
             {children}
           </a>
         ),
+        hr: () => null, // 隐藏水平线
       }}
     />
   );

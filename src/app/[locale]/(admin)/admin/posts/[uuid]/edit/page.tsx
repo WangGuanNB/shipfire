@@ -35,8 +35,8 @@ export default async function ({
     crumb: {
       items: [
         {
-          title: "Posts",
-          url: "/admin/posts",
+          title: "Blog",
+          url: "/admin/blog",
         },
         {
           title: "Edit Post",
@@ -180,7 +180,7 @@ export default async function ({
           return {
             status: "success",
             message: "Post updated",
-            redirect_url: "/admin/posts",
+            redirect_url: "/admin/blog",
           };
         } catch (err: any) {
           throw new Error(err.message);
