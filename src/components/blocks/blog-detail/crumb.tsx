@@ -25,7 +25,7 @@ export default function Crumb({ post }: { post: Post }) {
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink
-            href={post.locale === "en" ? "/blog" : `/${post.locale}/blog`}
+            href={post.locale === "en" ? "/posts" : `/${post.locale}/posts`}
           >
             {t("blog.title")}
           </BreadcrumbLink>

@@ -16,11 +16,6 @@
           "title": "首页",
           "url": "/",
           "icon": "RiHomeLine"
-        },
-        {
-          "title": "博客",
-          "url": "/blog",
-          "icon": "RiArticleLine"
         }
       ]
     },

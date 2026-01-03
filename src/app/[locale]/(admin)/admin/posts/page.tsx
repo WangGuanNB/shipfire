@@ -10,13 +10,13 @@ export default async function () {
   const posts = await getAllPosts();
 
   const table: TableSlotType = {
-    title: "Blog",
+    title: "Posts",
     toolbar: {
       items: [
         {
           title: "Add Post",
           icon: "RiAddLine",
-          url: "/admin/blog/add",
+          url: "/admin/posts/add",
         },
       ],
     },
@@ -54,12 +54,12 @@ export default async function () {
             {
               title: "Edit",
               icon: "RiEditLine",
-              url: `/admin/blog/${item.uuid}/edit`,
+              url: `/admin/posts/${item.uuid}/edit`,
             },
             {
               title: "View",
               icon: "RiEyeLine",
-              url: `/${item.locale}/blog/${item.slug}`,
+              url: `/${item.locale}/posts/${item.slug}`,
               target: "_blank",
             },
           ];
@@ -69,7 +69,7 @@ export default async function () {
       },
     ],
     data: posts,
-    empty_message: "No blog posts found",
+    empty_message: "No posts found",
   };
 
   return <TableSlot {...table} />;
