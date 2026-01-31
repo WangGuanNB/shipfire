@@ -11,6 +11,8 @@
   "assets": {
     "directory": ".open-next/assets"
   },
+  // 修复 OpenNext + esbuild keep_names 导致的 _name/__name 未定义错误（影响登录页等）
+  "keep_names": false,
 
   // ========================================
   // 环境变量配置（非敏感变量）
