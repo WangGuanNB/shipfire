@@ -38,7 +38,7 @@ export interface PayPalOrderResponse {
  * 获取 PayPal 客户端
  * @returns PayPal HTTP 客户端
  */
-export function getPayPalClient(): paypal.core.PayPalHttpClient {
+export function getPayPalClient() {
   const clientId = process.env.PAYPAL_CLIENT_ID;
   const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
   const environment = process.env.PAYPAL_ENVIRONMENT || "sandbox"; // sandbox | live
@@ -100,7 +100,7 @@ export async function createPayPalOrder(
     });
 
     const order = await client.execute(request);
-    const orderResult = order.result;
+    const orderResult = order.result as { id?: string; links?: Array<{ rel?: string; href?: string }> } | null;
 
     if (!orderResult || !orderResult.id) {
       throw new Error("Failed to create PayPal order");
