@@ -9,8 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/icon";
 import { Label } from "@/components/ui/label";
-import { loadStripe } from "@stripe/stripe-js";
-import { toast } from "sonner";
+import { usePayment } from "@/hooks/usePayment";
 import { useAppContext } from "@/contexts/app";
 import { useLocale } from "next-intl";
 
@@ -21,85 +20,18 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
 
   const locale = useLocale();
 
-  const { user, setShowSignModal } = useAppContext();
+  const { user } = useAppContext();
+  const { handleCheckout: handlePayment, isLoading, productId } = usePayment();
 
   const [group, setGroup] = useState(pricing.groups?.[0]?.name);
-  const [isLoading, setIsLoading] = useState(false);
-  const [productId, setProductId] = useState<string | null>(null);
 
   const handleCheckout = async (item: PricingItem, cn_pay: boolean = false) => {
-    try {
-      if (!user) {
-        setShowSignModal(true);
-        return;
-      }
-
-      const params = {
-        product_id: item.product_id,
-        product_name: item.product_name,
-        credits: item.credits,
-        interval: item.interval,
-        amount: cn_pay ? item.cn_amount : item.amount,
-        currency: cn_pay ? "cny" : item.currency,
-        valid_months: item.valid_months,
-        locale: locale || "en",
-      };
-
-      setIsLoading(true);
-      setProductId(item.product_id);
-
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(params),
-      });
-
-      if (response.status === 401) {
-        setIsLoading(false);
-        setProductId(null);
-
-        setShowSignModal(true);
-        return;
-      }
-
-      const { code, message, data } = await response.json();
-      if (code !== 0) {
-        toast.error(message);
-        return;
-      }
-
-      const { public_key, session_id } = data;
-
-      const stripe = await loadStripe(public_key);
-      if (!stripe) {
-        toast.error("checkout failed");
-        return;
-      }
-
-      const result = await stripe.redirectToCheckout({
-        sessionId: session_id,
-      });
-
-      if (result.error) {
-        toast.error(result.error.message);
-      }
-    } catch (e) {
-      console.log("checkout failed: ", e);
-
-      toast.error("checkout failed");
-    } finally {
-      setIsLoading(false);
-      setProductId(null);
-    }
+    await handlePayment(item, cn_pay);
   };
 
   useEffect(() => {
-    if (pricing.items) {
+    if (pricing.items && pricing.items.length > 0) {
       setGroup(pricing.items[0].group);
-      setProductId(pricing.items[0].product_id);
-      setIsLoading(false);
     }
   }, [pricing.items]);
 

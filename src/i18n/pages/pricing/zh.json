@@ -20,11 +20,11 @@
           "国际化支持"
         ],
         "interval": "one-time",
-        "amount": 9900,
-        "cn_amount": 69900,
+        "amount": 1,
+        "cn_amount": 1,
         "currency": "USD",
-        "price": "$99",
-        "original_price": "$199",
+        "price": "$0.01",
+        "original_price": "$99",
         "unit": "USD",
         "is_featured": false,
         "tip": "一次付费，无限项目！",
@@ -35,7 +35,7 @@
         },
         "product_id": "starter",
         "product_name": "ShipAny 模板入门版",
-        "credits": 100,
+        "credits": 1,
         "valid_months": 1
       },
       {

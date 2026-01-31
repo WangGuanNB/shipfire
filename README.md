@@ -73,12 +73,25 @@ NEXTAUTH_SECRET=your-secret-key-here
 GOOGLE_CLIENT_ID=your-google-client-id
 GOOGLE_CLIENT_SECRET=your-google-client-secret
 
-# Payments - Stripe
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+# ========== 支付方式开关配置 ==========
+# 系统会根据配置自动选择支付方式（优先级：Stripe > PayPal > Creem）
+# 至少需要启用一个支付方式
 
-# Payments - Creem (Optional)
+# Stripe 支付配置
+NEXT_PUBLIC_PAYMENT_STRIPE_ENABLED=true  # 是否启用 Stripe 支付
+STRIPE_PRIVATE_KEY=sk_test_...  # Stripe 私钥（后端使用）
+STRIPE_PUBLIC_KEY=pk_test_...  # Stripe 公钥（前端使用）
+STRIPE_WEBHOOK_SECRET=whsec_...  # Stripe Webhook 密钥
+
+# PayPal 支付配置
+NEXT_PUBLIC_PAYMENT_PAYPAL_ENABLED=true  # 是否启用 PayPal 支付
+PAYPAL_CLIENT_ID=your-paypal-client-id
+PAYPAL_CLIENT_SECRET=your-paypal-client-secret
+PAYPAL_ENVIRONMENT=sandbox  # sandbox | live
+PAYPAL_WEBHOOK_ID=your-paypal-webhook-id  # Optional, for webhook verification
+
+# Creem 支付配置
+NEXT_PUBLIC_PAYMENT_CREEM_ENABLED=false  # 是否启用 Creem 支付
 CREEM_API_KEY=your-creem-api-key
 CREEM_TEST_MODE=true  # Set to false for production
 NEXT_PUBLIC_CREEM_PRODUCT_ID=your-product-id
@@ -118,11 +131,18 @@ NEXT_PUBLIC_PAY_CANCEL_URL=/pricing
 3. Configure webhook: `https://yourdomain.com/api/checkout/creem/webhook`
 4. Set `CREEM_TEST_MODE=true` for testing
 
+**PayPal:**
+1. Get API credentials from [PayPal Developer Dashboard](https://developer.paypal.com/dashboard)
+2. Create a REST API app to get Client ID and Secret
+3. Set `PAYPAL_ENVIRONMENT=sandbox` for testing (use `live` for production)
+4. Configure webhook endpoint: `https://yourdomain.com/api/paypal-notify`
+5. Add webhook ID to `PAYPAL_WEBHOOK_ID` (optional, for webhook verification)
+
 ---
 
 ## 💳 Payment Integration
 
-ShipFire supports **Stripe** and **Creem** payment gateways.
+ShipFire supports **Stripe**, **Creem**, and **PayPal** payment gateways.
 
 ### Using Stripe
 
@@ -142,6 +162,16 @@ import { usePayment } from '@/hooks/usePayment';
 const { handleCheckout, isLoading } = usePayment();
 
 await handleCheckout(pricingItem, false, 'creem');
+```
+
+### Using PayPal
+
+```typescript
+import { usePayment } from '@/hooks/usePayment';
+
+const { handleCheckout, isLoading } = usePayment();
+
+await handleCheckout(pricingItem, false, 'paypal');
 ```
 
 ### Credit System

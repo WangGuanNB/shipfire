@@ -455,3 +455,280 @@ export async function handleCreemOrder(data: CreemPaymentData) {
     throw e;
   }
 }
+
+/**
+ * PayPal 支付数据接口
+ */
+interface PayPalPaymentData {
+  id?: string; // Capture 时为 capture ID，Order 时为 order ID
+  order_id?: string;
+  invoice_id?: string; // 自定义订单号（我们传递的 order_no），Capture 可能带此字段
+  custom_id?: string;
+  purchase_units?: Array<{
+    reference_id?: string;
+    invoice_id?: string;
+    custom_id?: string;
+    amount?: { value?: string; currency_code?: string };
+    payee?: { email_address?: string };
+  }>;
+  payer?: {
+    email_address?: string;
+    name?: { given_name?: string; surname?: string };
+  };
+  amount?: { value?: string; currency_code?: string }; // Capture 时有顶层 amount
+  status?: string;
+  payment_status?: string;
+  metadata?: {
+    order_no?: string;
+    user_email?: string;
+    user_uuid?: string;
+    credits?: string;
+  };
+  /** PAYMENT.CAPTURE.COMPLETED 的 resource 含此字段，含 PayPal Order ID */
+  supplementary_data?: {
+    related_ids?: { order_id?: string; authorization_id?: string; capture_id?: string };
+  };
+  payee?: { email_address?: string; merchant_id?: string };
+  [key: string]: any;
+}
+
+/**
+ * 处理 PayPal 支付成功回调
+ * @param data - Webhook resource（Order 或 Capture）
+ * @param eventType - 如 PAYMENT.CAPTURE.COMPLETED（resource 为 Capture）、PAYMENT.SALE.COMPLETED 等
+ */
+export async function handlePayPalOrder(
+  data: PayPalPaymentData,
+  eventType?: string
+) {
+  try {
+    const isCapture = eventType === "PAYMENT.CAPTURE.COMPLETED";
+    console.log("🔔 [handlePayPalOrder] ========== 开始处理 PayPal 订单 ==========");
+    console.log("🔔 [handlePayPalOrder] 事件类型:", eventType ?? "(未传)");
+    console.log("🔔 [handlePayPalOrder] 是否为 Capture 事件:", isCapture);
+    console.log("🔔 [handlePayPalOrder] 收到的完整数据:", JSON.stringify(data, null, 2));
+    console.log("🔔 [handlePayPalOrder] 数据的所有键:", Object.keys(data));
+
+    // 订单号：Order 来自 purchase_units / invoice_id 等；Capture 可能只有 invoice_id
+    let order_no =
+      data.invoice_id ||
+      data.custom_id ||
+      data.purchase_units?.[0]?.reference_id ||
+      data.purchase_units?.[0]?.invoice_id ||
+      data.purchase_units?.[0]?.custom_id ||
+      data.metadata?.order_no ||
+      "";
+
+    // PayPal Order ID：用于匹配 order_detail.paypal_order_id。
+    // Capture 时 data.id 是 capture ID，必须用 supplementary_data.related_ids.order_id。
+    const paypalOrderId =
+      data.supplementary_data?.related_ids?.order_id ||
+      data.order_id ||
+      (isCapture ? undefined : data.id);
+
+    console.log("🔔 [handlePayPalOrder] 尝试提取订单号:");
+    console.log("  - data.invoice_id:", data.invoice_id);
+    console.log("  - data.custom_id:", data.custom_id);
+    console.log("  - data.purchase_units?.[0]?.reference_id:", data.purchase_units?.[0]?.reference_id);
+    console.log("  - data.purchase_units?.[0]?.invoice_id:", data.purchase_units?.[0]?.invoice_id);
+    console.log("  - data.purchase_units?.[0]?.custom_id:", data.purchase_units?.[0]?.custom_id);
+    console.log("  - data.metadata?.order_no:", data.metadata?.order_no);
+    console.log("🔔 [handlePayPalOrder] 最终提取的订单号:", order_no || "(未找到)");
+    console.log("🔔 [handlePayPalOrder] PayPal Order ID（用于匹配）:", paypalOrderId || "(未找到)");
+
+    let order: Awaited<ReturnType<typeof findOrderByOrderNo>> | null = null;
+
+    // 🔥 优先通过 PayPal Order ID 匹配（更可靠），即使 order_no 已提取也要先尝试
+    if (paypalOrderId) {
+      console.log("🔔 [handlePayPalOrder] 优先通过 PayPal 订单 ID 查找订单:", paypalOrderId);
+      try {
+        const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+        const allRecentOrders = await db()
+          .select()
+          .from(orders)
+          .where(
+            and(
+              eq(orders.status, OrderStatus.Created),
+              gte(orders.created_at, twentyFourHoursAgo)
+            )
+          )
+          .orderBy(desc(orders.created_at))
+          .limit(50);
+
+        console.log("🔔 [handlePayPalOrder] 找到", allRecentOrders.length, "个待支付订单");
+
+        // 金额：Capture 用顶层 amount，Order 用 purchase_units[0].amount
+        const webhookAmount =
+          parseFloat(data.amount?.value || data.purchase_units?.[0]?.amount?.value || "0") * 100;
+        // 邮箱：Capture 无 payer，只有 payee（商户）；Order 有 payer
+        const webhookEmail =
+          data.payer?.email_address ||
+          data.purchase_units?.[0]?.payee?.email_address ||
+          "";
+
+        for (const recentOrder of allRecentOrders) {
+          if (recentOrder.order_detail) {
+            try {
+              const orderDetail = JSON.parse(recentOrder.order_detail);
+
+              // 方法1：通过 PayPal 订单 ID 匹配（最可靠）
+              if (
+                orderDetail.paypal_order_id === paypalOrderId ||
+                orderDetail.order_id === paypalOrderId
+              ) {
+                console.log("✅ [handlePayPalOrder] 通过 PayPal 订单 ID 匹配到订单:", recentOrder.order_no);
+                order_no = recentOrder.order_no; // 使用匹配到的真实 order_no
+                order = recentOrder;
+                break;
+              }
+
+              // 方法2：通过金额和邮箱匹配（Capture 通常无 payer 邮箱，可能跳过）
+              if (webhookAmount > 0 && webhookEmail) {
+                const orderAmount = orderDetail.amount || recentOrder.amount;
+                const orderEmail = orderDetail.user_email || recentOrder.user_email;
+
+                // 金额允许 ±1 的容差
+                if (
+                  Math.abs(orderAmount - webhookAmount) <= 1 &&
+                  orderEmail &&
+                  orderEmail.toLowerCase() === webhookEmail.toLowerCase()
+                ) {
+                  console.log("✅ [handlePayPalOrder] 通过金额和邮箱匹配到订单:", recentOrder.order_no);
+                  order_no = recentOrder.order_no;
+                  order = recentOrder;
+                  break;
+                }
+              }
+            } catch (e) {
+              console.warn("⚠️ [handlePayPalOrder] 解析 order_detail 失败:", e);
+            }
+          }
+        }
+      } catch (e) {
+        console.error("❌ [handlePayPalOrder] 通过 PayPal 订单 ID 查找失败:", e);
+      }
+    }
+
+    // 如果还是找不到，尝试通过邮箱和金额匹配（Capture 无 payer 邮箱，通常跳过）
+    if (!order_no && !order) {
+      const customerEmail =
+        data.payer?.email_address ||
+        data.purchase_units?.[0]?.payee?.email_address ||
+        "";
+      const amount =
+        parseFloat(data.amount?.value || data.purchase_units?.[0]?.amount?.value || "0") * 100;
+
+      console.log("🔔 [handlePayPalOrder] 尝试通过邮箱和金额匹配订单:");
+      console.log("  - 邮箱:", customerEmail);
+      console.log("  - 金额:", amount);
+
+      if (customerEmail && amount > 0) {
+        try {
+          const matchedOrder = await findOrderByEmailAndAmount(customerEmail, amount);
+          if (matchedOrder && matchedOrder.status === OrderStatus.Created) {
+            console.log("✅ [handlePayPalOrder] 通过邮箱和金额匹配到订单:", matchedOrder.order_no);
+            order_no = matchedOrder.order_no;
+            order = matchedOrder;
+          } else {
+            console.warn("⚠️ [handlePayPalOrder] 未找到匹配的订单（邮箱:", customerEmail, "金额:", amount, ")");
+          }
+        } catch (e) {
+          console.error("❌ [handlePayPalOrder] 通过邮箱和金额匹配订单失败:", e);
+        }
+      }
+    }
+
+    // 如果还是找不到，抛出错误
+    if (!order_no) {
+      console.error("❌ [handlePayPalOrder] 无法找到订单号！");
+      console.error("❌ [handlePayPalOrder] 完整数据内容:", JSON.stringify(data, null, 2));
+      throw new Error("order_no not found in PayPal payment data");
+    }
+
+    // 检查支付状态
+    const paymentStatus = data.status || data.payment_status || "";
+    console.log("🔔 [handlePayPalOrder] 支付状态:", paymentStatus);
+    if (
+      paymentStatus !== "COMPLETED" &&
+      paymentStatus !== "APPROVED" &&
+      paymentStatus !== "CAPTURED"
+    ) {
+      console.log("⚠️ [handlePayPalOrder] 支付状态不是成功状态，跳过处理:", paymentStatus);
+      return; // 不是成功状态，不处理
+    }
+
+    // 获取支付邮箱（payer 为买家；Capture 无 payer，稍后用订单 user_email 回退）
+    let paid_email =
+      data.payer?.email_address ||
+      data.metadata?.user_email ||
+      "";
+
+    const paid_detail = JSON.stringify(data);
+
+    // 查找订单（如果还没有通过匹配逻辑找到）
+    if (!order) {
+      console.log("🔔 [handlePayPalOrder] 查找订单:", order_no);
+      order = await findOrderByOrderNo(order_no);
+      if (!order) {
+        console.error("❌ [handlePayPalOrder] 订单未找到:", order_no);
+        throw new Error("invalid order: order not found");
+      }
+    }
+    if (!paid_email && order.user_email) paid_email = order.user_email;
+
+    console.log("✅ [handlePayPalOrder] 订单找到:", {
+      order_no: order.order_no,
+      status: order.status,
+      credits: order.credits,
+      user_uuid: order.user_uuid,
+    });
+
+    // 检查订单状态（防止重复处理）
+    if (order.status !== OrderStatus.Created) {
+      console.log("⚠️ [handlePayPalOrder] 订单已处理，跳过:", order_no, order.status);
+      return; // 订单已处理，直接返回
+    }
+
+    // 更新订单状态
+    const paid_at = getIsoTimestr();
+    await updateOrderStatus(
+      order_no,
+      OrderStatus.Paid,
+      paid_at,
+      paid_email,
+      paid_detail
+    );
+
+    // 发放积分
+    if (order.user_uuid) {
+      if (order.credits > 0) {
+        await updateCreditForOrder(order as unknown as Order);
+      }
+
+      // 更新推荐人收益
+      await updateAffiliateForOrder(order as unknown as Order);
+    }
+
+    // 发送订单确认邮件
+    if (paid_email) {
+      try {
+        await sendOrderConfirmationEmail({
+          order: order as unknown as Order,
+          customerEmail: paid_email,
+        });
+      } catch (e) {
+        console.log("send order confirmation email failed: ", e);
+        // 邮件发送失败不影响订单处理
+      }
+    }
+
+    console.log("✅ [handlePayPalOrder] ========== PayPal 订单处理成功 ==========");
+    console.log("✅ [handlePayPalOrder] 订单号:", order_no);
+    console.log("✅ [handlePayPalOrder] 支付时间:", paid_at);
+    console.log("✅ [handlePayPalOrder] 支付邮箱:", paid_email);
+    console.log("✅ [handlePayPalOrder] 积分:", order.credits);
+  } catch (e: any) {
+    console.error("handle paypal order failed: ", e);
+    throw e;
+  }
+}

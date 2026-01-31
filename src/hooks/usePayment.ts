@@ -49,13 +49,15 @@ export function usePayment() {
    * 处理支付流程
    * @param {PricingItem} item - 定价项目信息
    * @param {boolean} cn_pay - 是否使用中国支付方式（支付宝/微信）
-   * @param {string} paymentMethod - 支付方式: 'stripe' | 'creem'，默认为 'stripe'
    * @returns {Promise<Object>} 支付结果
+   * 
+   * @description
+   * 系统会根据配置自动选择支付方式（Stripe > PayPal > Creem）
+   * 用户无需选择支付平台，前端统一调用 /api/checkout
    */
   const handleCheckout = async (
     item: PricingItem,
-    cn_pay: boolean = false,
-    paymentMethod: "stripe" | "creem" = "stripe"
+    cn_pay: boolean = false
   ) => {
     try {
       // 检查用户登录状态
@@ -86,22 +88,17 @@ export function usePayment() {
         locale: locale || "en",
       };
 
+      // 如果使用 Creem，添加产品 ID（如果有配置）
+      if (item.creem_product_id) {
+        params.creem_product_id = item.creem_product_id;
+      }
+
       // 设置加载状态
       setIsLoading(true);
       setProductId(item.product_id);
 
-      // 根据支付方式选择对应的 API 端点
-      const apiEndpoint =
-        paymentMethod === "creem" ? "/api/checkout/creem" : "/api/checkout";
-
-      // 如果使用 Creem，添加产品 ID（如果有配置）
-      if (paymentMethod === "creem") {
-        params.creem_product_id =
-          item.creem_product_id || process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID;
-      }
-
-      // 调用后端API创建订单
-      const response = await fetch(apiEndpoint, {
+      // 统一调用 /api/checkout，系统会自动选择支付方式
+      const response = await fetch("/api/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -124,7 +121,9 @@ export function usePayment() {
         return { success: false, message };
       }
 
-      // 根据支付方式处理跳转
+      // 根据返回的支付方式处理跳转
+      const paymentMethod = data.payment_method || "stripe"; // 默认使用 stripe（向后兼容）
+
       if (paymentMethod === "creem") {
         // Creem 支付：在新标签页打开支付链接
         const { checkout_url } = data;
@@ -135,9 +134,24 @@ export function usePayment() {
           toast.error("Failed to get checkout URL");
           return { success: false, message: "Failed to get checkout URL" };
         }
+      } else if (paymentMethod === "paypal") {
+        // PayPal 支付：跳转到 PayPal 支付页面
+        const { approval_url } = data;
+        if (approval_url) {
+          window.location.href = approval_url;
+          return { success: true };
+        } else {
+          toast.error("Failed to get PayPal approval URL");
+          return { success: false, message: "Failed to get PayPal approval URL" };
+        }
       } else {
-        // Stripe 支付：使用 Stripe SDK 跳转
+        // Stripe 支付：使用 Stripe SDK 跳转（默认）
         const { public_key, session_id } = data;
+        if (!public_key || !session_id) {
+          toast.error("Invalid payment response");
+          return { success: false, message: "Invalid payment response" };
+        }
+
         const stripe = await loadStripe(public_key);
         
         if (!stripe) {
