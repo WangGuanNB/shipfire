@@ -67,7 +67,7 @@
     // 支付方式开关（优先级: Stripe > PayPal > Creem，至少启用一个）
     "NEXT_PUBLIC_PAYMENT_PAYPAL_ENABLED": "true",
     // PayPal 环境（sandbox=测试，live=生产；Client ID/Secret 请用 Secrets）
-    "PAYPAL_ENVIRONMENT": "sandbox",
+    "PAYPAL_ENVIRONMENT": "live",
 
     // ========== 6. Creem 支付配置 ==========
      // 支付方式开关（优先级: Stripe > PayPal > Creem，至少启用一个）
