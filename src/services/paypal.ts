@@ -1,10 +1,9 @@
 /**
  * @fileoverview PayPal 支付服务
- * @description 提供 PayPal 支付相关的工具函数，包括创建支付订单、捕获订单、验证 webhook 签名等
+ * @description 使用 fetch 直接调用 PayPal REST API，兼容 Cloudflare Workers（避免 SDK 的 https.request 超时）
  */
 
-import paypal from "@paypal/checkout-server-sdk";
-import crypto from "crypto";
+const PAYPAL_API_TIMEOUT_MS = 25000; // 25s，留余量避免 Workers 超时
 
 /**
  * PayPal 支付订单创建参数
@@ -34,92 +33,109 @@ export interface PayPalOrderResponse {
   approval_url: string;
 }
 
-/**
- * 获取 PayPal 客户端
- * @returns PayPal HTTP 客户端
- */
-export function getPayPalClient() {
+function getPayPalBaseUrl(): string {
+  const env = process.env.PAYPAL_ENVIRONMENT || "sandbox";
+  return env === "live"
+    ? "https://api-m.paypal.com"
+    : "https://api-m.sandbox.paypal.com";
+}
+
+async function getPayPalAccessToken(): Promise<string> {
   const clientId = process.env.PAYPAL_CLIENT_ID;
   const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
-  const environment = process.env.PAYPAL_ENVIRONMENT || "sandbox"; // sandbox | live
-
   if (!clientId || !clientSecret) {
     throw new Error("PayPal credentials not configured");
   }
 
-  const environmentClass =
-    environment === "live"
-      ? new paypal.core.LiveEnvironment(clientId, clientSecret)
-      : new paypal.core.SandboxEnvironment(clientId, clientSecret);
+  const baseUrl = getPayPalBaseUrl();
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), PAYPAL_API_TIMEOUT_MS);
 
-  return new paypal.core.PayPalHttpClient(environmentClass);
+  try {
+    const res = await fetch(`${baseUrl}/v1/oauth2/token`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+      },
+      body: "grant_type=client_credentials",
+      signal: controller.signal,
+    });
+    const data = await res.json();
+    if (!res.ok || !data.access_token) {
+      throw new Error(data.error_description || data.error || "Failed to get PayPal access token");
+    }
+    return data.access_token;
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
 
 /**
- * 创建 PayPal 支付订单
- * @param params 支付订单参数
- * @returns PayPal 订单信息
+ * 创建 PayPal 支付订单（使用 fetch，兼容 Cloudflare Workers）
  */
 export async function createPayPalOrder(
   params: PayPalOrderParams
 ): Promise<PayPalOrderResponse> {
   try {
-    const client = getPayPalClient();
-
-    // PayPal 金额需要转换为元（PayPal 使用两位小数）
+    const token = await getPayPalAccessToken();
+    const baseUrl = getPayPalBaseUrl();
     const amountValue = (params.amount / 100).toFixed(2);
 
-    const request = new paypal.orders.OrdersCreateRequest();
-    request.prefer("return=representation");
-    request.requestBody({
-      intent: "CAPTURE",
-      purchase_units: [
-        {
-          reference_id: params.order_no,
-          invoice_id: params.order_no,
-          custom_id: params.order_no,
-          description: params.product_name,
-          amount: {
-            currency_code: params.currency.toUpperCase(),
-            value: amountValue,
-          },
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), PAYPAL_API_TIMEOUT_MS);
+
+    try {
+      const res = await fetch(`${baseUrl}/v2/checkout/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          "Prefer": "return=representation",
         },
-      ],
-      application_context: {
-        brand_name:
-          process.env.NEXT_PUBLIC_PROJECT_NAME || "ShipFire",
-        landing_page: "BILLING",
-        user_action: "PAY_NOW",
-        return_url: params.success_url,
-        cancel_url: params.cancel_url,
-        // ⚠️ notification_url 在 application_context 中已弃用，PayPal 会忽略此字段
-        // Webhook URL 必须在 PayPal Developer Dashboard -> Webhooks 中配置
-        // Dashboard URL: https://developer.paypal.com/dashboard/webhooks
-        // 配置的 URL 应为: https://fast3d.online/api/paypal-notify
-      },
-    });
+        body: JSON.stringify({
+          intent: "CAPTURE",
+          purchase_units: [
+            {
+              reference_id: params.order_no,
+              invoice_id: params.order_no,
+              custom_id: params.order_no,
+              description: params.product_name,
+              amount: {
+                currency_code: params.currency.toUpperCase(),
+                value: amountValue,
+              },
+            },
+          ],
+          application_context: {
+            brand_name: process.env.NEXT_PUBLIC_PROJECT_NAME || "ShipFire",
+            landing_page: "BILLING",
+            user_action: "PAY_NOW",
+            return_url: params.success_url,
+            cancel_url: params.cancel_url,
+          },
+        }),
+        signal: controller.signal,
+      });
 
-    const order = await client.execute(request);
-    const orderResult = order.result as { id?: string; links?: Array<{ rel?: string; href?: string }> } | null;
+      const orderResult = await res.json();
+      if (!res.ok) {
+        throw new Error(orderResult.message || orderResult.details?.[0]?.description || "Failed to create PayPal order");
+      }
 
-    if (!orderResult || !orderResult.id) {
-      throw new Error("Failed to create PayPal order");
+      const approvalUrl = orderResult.links?.find((l: { rel?: string }) => l.rel === "approve")?.href;
+      if (!orderResult.id || !approvalUrl) {
+        throw new Error("Failed to get PayPal approval URL");
+      }
+
+      return { order_id: orderResult.id, approval_url: approvalUrl };
+    } finally {
+      clearTimeout(timeoutId);
     }
-
-    // 查找 approval_url
-    const approvalUrl = orderResult.links?.find(
-      (link: any) => link.rel === "approve"
-    )?.href;
-
-    if (!approvalUrl) {
-      throw new Error("Failed to get PayPal approval URL");
-    }
-
-    return {
-      order_id: orderResult.id,
-      approval_url: approvalUrl,
-    };
   } catch (error: any) {
+    if (error.name === "AbortError") {
+      throw new Error("PayPal API request timed out. Please try again.");
+    }
     console.error("Failed to create PayPal order:", error);
     throw error;
   }
@@ -127,18 +143,32 @@ export async function createPayPalOrder(
 
 /**
  * 捕获 PayPal 订单（支付成功后）
- * @param orderId PayPal 订单 ID
- * @returns 捕获结果
  */
 export async function capturePayPalOrder(orderId: string) {
   try {
-    const client = getPayPalClient();
-    const request = new paypal.orders.OrdersCaptureRequest(orderId);
-    request.requestBody({});
+    const token = await getPayPalAccessToken();
+    const baseUrl = getPayPalBaseUrl();
 
-    const capture = await client.execute(request);
-    return capture.result;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), PAYPAL_API_TIMEOUT_MS);
+    try {
+      const res = await fetch(`${baseUrl}/v2/checkout/orders/${orderId}/capture`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({}),
+        signal: controller.signal,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || data.details?.[0]?.description || "Capture failed");
+      return data;
+    } finally {
+      clearTimeout(timeoutId);
+    }
   } catch (error: any) {
+    if (error.name === "AbortError") throw new Error("PayPal capture timed out");
     console.error("Failed to capture PayPal order:", error);
     throw error;
   }
@@ -146,17 +176,27 @@ export async function capturePayPalOrder(orderId: string) {
 
 /**
  * 获取 PayPal 订单详情
- * @param orderId PayPal 订单 ID
- * @returns 订单详情
  */
 export async function getPayPalOrder(orderId: string) {
   try {
-    const client = getPayPalClient();
-    const request = new paypal.orders.OrdersGetRequest(orderId);
+    const token = await getPayPalAccessToken();
+    const baseUrl = getPayPalBaseUrl();
 
-    const order = await client.execute(request);
-    return order.result;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), PAYPAL_API_TIMEOUT_MS);
+    try {
+      const res = await fetch(`${baseUrl}/v2/checkout/orders/${orderId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        signal: controller.signal,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Get order failed");
+      return data;
+    } finally {
+      clearTimeout(timeoutId);
+    }
   } catch (error: any) {
+    if (error.name === "AbortError") throw new Error("PayPal get order timed out");
     console.error("Failed to get PayPal order:", error);
     throw error;
   }
