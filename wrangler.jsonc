@@ -39,11 +39,11 @@
 
     // ========== 3. Google 登录配置 ==========
     // Google OAuth 公开 Client ID（前端使用，用于 One Tap）
-    "NEXT_PUBLIC_AUTH_GOOGLE_ID": "",
+    "NEXT_PUBLIC_AUTH_GOOGLE_ID": "35054272068-n921mlou3np1n37ncaoasdhe16o7sjsl.apps.googleusercontent.com",
     // 是否启用 Google 登录（true/false）
     "NEXT_PUBLIC_AUTH_GOOGLE_ENABLED": "true",
     // 是否启用 Google One Tap 登录（true/false）
-    "NEXT_PUBLIC_AUTH_GOOGLE_ONE_TAP_ENABLED": "false",
+    "NEXT_PUBLIC_AUTH_GOOGLE_ONE_TAP_ENABLED": "true",
 
     // ========== 4. GitHub 登录配置 ==========
     // 是否启用 GitHub 登录（true/false）
