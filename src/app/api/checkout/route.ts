@@ -28,8 +28,9 @@ async function validateAndCreateOrder(params: {
   product_name?: string;
   valid_months?: number;
   locale: string;
+  pay_type?: string;
 }) {
-  const { credits, currency, amount, interval, product_id, product_name, valid_months, locale } = params;
+  const { credits, currency, amount, interval, product_id, product_name, valid_months, locale, pay_type } = params;
 
   // 参数验证
   if (!amount || !interval || !currency || !product_id) {
@@ -131,6 +132,7 @@ async function validateAndCreateOrder(params: {
     product_id: product_id,
     product_name: product_name,
     valid_months: valid_months,
+    pay_type: pay_type,
   };
   await insertOrder(order as typeof orders.$inferInsert);
 
@@ -398,13 +400,7 @@ async function handleCreemCheckout(params: {
 
 export async function POST(req: Request) {
   try {
-    // 1. 检查是否有可用的支付方式
-    const paymentMethod = selectPaymentMethod();
-    if (!paymentMethod) {
-      return respErr("No payment method available. Please configure at least one payment gateway.");
-    }
-
-    // 2. 解析请求参数
+    // 1. 解析请求参数
     let {
       credits,
       currency,
@@ -416,7 +412,17 @@ export async function POST(req: Request) {
       cancel_url,
       locale,
       creem_product_id, // Creem 产品 ID（可选）
+      payment_method, // 用户选择的支付方式
     } = await req.json();
+
+    // 2. 确定支付方式：优先使用用户选择的，否则自动选择
+    let paymentMethod = payment_method;
+    if (!paymentMethod) {
+      paymentMethod = selectPaymentMethod();
+      if (!paymentMethod) {
+        return respErr("No payment method available. Please configure at least one payment gateway.");
+      }
+    }
 
     // 3. 处理 cancel_url
     if (!cancel_url) {
@@ -440,6 +446,7 @@ export async function POST(req: Request) {
       product_name,
       valid_months,
       locale,
+      pay_type: paymentMethod,
     });
 
     // 5. 根据选择的支付方式处理支付

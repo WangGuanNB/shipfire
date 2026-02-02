@@ -1,7 +1,7 @@
 /**
  * @fileoverview 支付处理逻辑 Hook
  * @description 提供统一的支付处理逻辑，包括订单创建、Stripe/Creem支付跳转等功能
- * 
+ *
  * @features
  * - 支付参数验证和处理
  * - Stripe/Creem支付会话创建
@@ -9,13 +9,13 @@
  * - 支付加载状态管理
  * - 错误处理和用户提示
  * - 支付方式选择支持
- * 
+ *
  * @usage
  * ```tsx
- * const { handleCheckout, isLoading, productId } = usePayment();
- * 
+ * const { handleCheckout, isLoading, productId, showPaymentSelector, setShowPaymentSelector } = usePayment();
+ *
  * const onPayment = async () => {
- *   const result = await handleCheckout(pricingItem, false, 'stripe');
+ *   const result = await handleCheckout(pricingItem, false);
  *   if (result.success) {
  *     // 支付成功处理
  *   }
@@ -31,6 +31,7 @@ import { useLocale } from 'next-intl';
 import { loadStripe } from '@stripe/stripe-js';
 import { toast } from 'sonner';
 import { PricingItem } from '@/types/blocks/pricing';
+import { PaymentMethod } from '@/components/payment/PaymentMethodSelector';
 
 /**
  * 支付处理 Hook
@@ -38,34 +39,58 @@ import { PricingItem } from '@/types/blocks/pricing';
  * @returns {Function} handleCheckout - 处理支付的主函数
  * @returns {boolean} isLoading - 支付处理中的加载状态
  * @returns {string|null} productId - 当前正在处理的产品ID
+ * @returns {boolean} showPaymentSelector - 是否显示支付方式选择器
+ * @returns {Function} setShowPaymentSelector - 设置支付方式选择器显示状态
+ * @returns {Function} handlePaymentMethodSelect - 处理支付方式选择
  */
 export function usePayment() {
   const { user, setShowSignModal } = useAppContext();
   const locale = useLocale();
   const [isLoading, setIsLoading] = useState(false);
   const [productId, setProductId] = useState<string | null>(null);
+  const [showPaymentSelector, setShowPaymentSelector] = useState(false);
+  const [pendingPayment, setPendingPayment] = useState<{
+    item: PricingItem;
+    cn_pay: boolean;
+  } | null>(null);
 
   /**
-   * 处理支付流程
+   * 处理支付流程 - 显示支付方式选择器
    * @param {PricingItem} item - 定价项目信息
    * @param {boolean} cn_pay - 是否使用中国支付方式（支付宝/微信）
    * @returns {Promise<Object>} 支付结果
-   * 
+   *
    * @description
-   * 系统会根据配置自动选择支付方式（Stripe > PayPal > Creem）
-   * 用户无需选择支付平台，前端统一调用 /api/checkout
+   * 用户点击购买按钮后，先显示支付方式选择器
+   * 用户选择支付方式后，再调用实际的支付流程
    */
   const handleCheckout = async (
     item: PricingItem,
     cn_pay: boolean = false
   ) => {
-    try {
-      // 检查用户登录状态
-      if (!user) {
-        setShowSignModal(true);
-        return { needAuth: true };
-      }
+    // 检查用户登录状态
+    if (!user) {
+      setShowSignModal(true);
+      return { needAuth: true };
+    }
 
+    // 保存待支付信息，显示支付方式选择器
+    setPendingPayment({ item, cn_pay });
+    setShowPaymentSelector(true);
+
+    return { showingSelector: true };
+  };
+
+  /**
+   * 处理支付方式选择
+   * @param {PaymentMethod} paymentMethod - 用户选择的支付方式
+   */
+  const handlePaymentMethodSelect = async (paymentMethod: PaymentMethod) => {
+    if (!pendingPayment) return;
+
+    const { item, cn_pay } = pendingPayment;
+
+    try {
       // 构建支付参数
       const params: {
         product_id: string;
@@ -77,6 +102,7 @@ export function usePayment() {
         valid_months?: number;
         locale: string;
         creem_product_id?: string;
+        payment_method: PaymentMethod;
       } = {
         product_id: item.product_id,
         product_name: item.product_name,
@@ -86,6 +112,7 @@ export function usePayment() {
         currency: cn_pay ? "cny" : item.currency,
         valid_months: item.valid_months,
         locale: locale || "en",
+        payment_method: paymentMethod,
       };
 
       // 如果使用 Creem，添加产品 ID（如果有配置）
@@ -97,7 +124,7 @@ export function usePayment() {
       setIsLoading(true);
       setProductId(item.product_id);
 
-      // 统一调用 /api/checkout，系统会自动选择支付方式
+      // 调用 /api/checkout，传入用户选择的支付方式
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: {
@@ -122,8 +149,6 @@ export function usePayment() {
       }
 
       // 根据返回的支付方式处理跳转
-      const paymentMethod = data.payment_method || "stripe"; // 默认使用 stripe（向后兼容）
-
       if (paymentMethod === "creem") {
         // Creem 支付：在新标签页打开支付链接
         const { checkout_url } = data;
@@ -145,7 +170,7 @@ export function usePayment() {
           return { success: false, message: "Failed to get PayPal approval URL" };
         }
       } else {
-        // Stripe 支付：使用 Stripe SDK 跳转（默认）
+        // Stripe 支付：使用 Stripe SDK 跳转
         const { public_key, session_id } = data;
         if (!public_key || !session_id) {
           toast.error("Invalid payment response");
@@ -153,7 +178,7 @@ export function usePayment() {
         }
 
         const stripe = await loadStripe(public_key);
-        
+
         if (!stripe) {
           toast.error("checkout failed");
           return { success: false };
@@ -179,12 +204,16 @@ export function usePayment() {
       // 清理加载状态
       setIsLoading(false);
       setProductId(null);
+      setPendingPayment(null);
     }
   };
 
   return {
     handleCheckout,
+    handlePaymentMethodSelect,
     isLoading,
     productId,
+    showPaymentSelector,
+    setShowPaymentSelector,
   };
 }

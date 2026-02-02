@@ -76,10 +76,28 @@ export default async function ({
       console.log("✅ [PayPal Pay Success] 订单已处理（Paid）:", order_no);
       // 订单已处理，直接跳转
     } else if (order.status === OrderStatus.Created) {
-      console.log("🔔 [PayPal Pay Success] 订单状态为 Created，等待 Webhook 处理");
-      // 订单状态为 Created，说明可能还没有收到 Webhook
-      // 这里可以尝试捕获订单，但主要依赖 Webhook 处理
-      // 为了用户体验，先跳转到成功页面，Webhook 会异步处理订单
+      console.log("🔔 [PayPal Pay Success] 订单状态为 Created，尝试捕获支付");
+
+      // 🔥 关键步骤：捕获 PayPal 订单
+      // PayPal 的 order ID 存储在 stripe_session_id 字段中
+      const paypalOrderId = order.stripe_session_id;
+
+      if (paypalOrderId) {
+        try {
+          console.log("🔔 [PayPal Pay Success] 开始捕获订单:", paypalOrderId);
+          const captureResult = await capturePayPalOrder(paypalOrderId);
+          console.log("✅ [PayPal Pay Success] 订单捕获成功:", captureResult);
+
+          // 捕获成功后，webhook 会被触发，订单状态会被更新为 Paid
+          // 这里不需要手动更新订单状态，让 webhook 处理
+        } catch (captureError: any) {
+          console.error("❌ [PayPal Pay Success] 订单捕获失败:", captureError.message);
+          // 即使捕获失败，也继续跳转，让用户看到成功页面
+          // 可能是订单已经被捕获了，或者网络问题
+        }
+      } else {
+        console.warn("⚠️ [PayPal Pay Success] 未找到 PayPal Order ID");
+      }
     } else {
       console.log("⚠️ [PayPal Pay Success] 订单状态异常:", order_no, order.status);
     }

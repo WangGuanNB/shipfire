@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { usePayment } from "@/hooks/usePayment";
 import { useAppContext } from "@/contexts/app";
 import { useLocale } from "next-intl";
+import { PaymentMethodSelector } from "@/components/payment/PaymentMethodSelector";
 
 export default function Pricing({ pricing }: { pricing: PricingType }) {
   if (pricing.disabled) {
@@ -21,7 +22,14 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
   const locale = useLocale();
 
   const { user } = useAppContext();
-  const { handleCheckout: handlePayment, isLoading, productId } = usePayment();
+  const {
+    handleCheckout: handlePayment,
+    handlePaymentMethodSelect,
+    isLoading,
+    productId,
+    showPaymentSelector,
+    setShowPaymentSelector,
+  } = usePayment();
 
   const [group, setGroup] = useState(pricing.groups?.[0]?.name);
 
@@ -227,6 +235,13 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
           </div>
         </div>
       </div>
+
+      {/* 支付方式选择对话框 */}
+      <PaymentMethodSelector
+        open={showPaymentSelector}
+        onOpenChange={setShowPaymentSelector}
+        onSelect={handlePaymentMethodSelect}
+      />
     </section>
   );
 }
