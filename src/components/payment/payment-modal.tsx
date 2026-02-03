@@ -51,6 +51,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 import { usePayment } from "@/hooks/usePayment";
+import { PaymentMethodSelector } from "@/components/payment/PaymentMethodSelector";
+import type { PaymentMethod } from "@/components/payment/PaymentMethodSelector";
 import { PricingItem } from "@/types/blocks/pricing";
 import { useTranslations } from 'next-intl';
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -86,17 +88,29 @@ export default function PaymentModal({
   onSuccess,
 }: PaymentModalProps) {
   const t = useTranslations();
-  const { handleCheckout, isLoading, productId } = usePayment();
+  const {
+    handleCheckout,
+    handlePaymentMethodSelect,
+    isLoading,
+    productId,
+    showPaymentSelector,
+    setShowPaymentSelector,
+  } = usePayment();
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   /**
-   * 处理支付点击事件
-   * @param {PricingItem} item - 选中的定价项目
+   * 处理支付点击事件（会弹出支付方式选择器）
    */
   const onPayment = async (item: PricingItem) => {
-    const result = await handleCheckout(item, false); // 只使用国际支付
-    
-    if (result.success) {
+    await handleCheckout(item, false); // 只使用国际支付，会显示支付方式选择器
+  };
+
+  /**
+   * 用户选择支付方式后的处理，成功后关闭弹窗并回调
+   */
+  const onPaymentMethodSelect = async (method: PaymentMethod) => {
+    const result = await handlePaymentMethodSelect(method);
+    if (result && "success" in result && result.success) {
       onSuccess?.();
       onOpenChange(false);
     }
@@ -177,49 +191,51 @@ export default function PaymentModal({
     </div>
   );
 
-  // 桌面端显示 - 使用Dialog（自定义半透明遮罩层）
-  if (isDesktop) {
-    return (
-      <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogPortal>
-          {/* 自定义半透明遮罩层 */}
-          <DialogOverlay className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-          <DialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-4xl translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-bold">
-                {title || t('payment.modal.title')}
-              </DialogTitle>
-              {description && (
-                <DialogDescription className="text-base">
-                  {description}
-                </DialogDescription>
-              )}
-            </DialogHeader>
-            <PricingContent />
-          </DialogContent>
-        </DialogPortal>
-      </Dialog>
-    );
-  }
-
-  // 移动端显示 - 使用Drawer（添加半透明背景）
   return (
-    <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent className="max-h-[90vh] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t">
-        <DrawerHeader className="text-center">
-          <DrawerTitle className="text-2xl font-bold">
-            {title || t('payment.modal.title')}
-          </DrawerTitle>
-          {description && (
-            <DrawerDescription className="text-base">
-              {description}
-            </DrawerDescription>
-          )}
-        </DrawerHeader>
-        <div className="px-4 pb-4 overflow-y-auto">
-          <PricingContent className="grid-cols-1" />
-        </div>
-      </DrawerContent>
-    </Drawer>
+    <>
+      {isDesktop ? (
+        <Dialog open={open} onOpenChange={onOpenChange}>
+          <DialogPortal>
+            <DialogOverlay className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+            <DialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-4xl translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-bold">
+                  {title || t("payment.modal.title")}
+                </DialogTitle>
+                {description && (
+                  <DialogDescription className="text-base">
+                    {description}
+                  </DialogDescription>
+                )}
+              </DialogHeader>
+              <PricingContent />
+            </DialogContent>
+          </DialogPortal>
+        </Dialog>
+      ) : (
+        <Drawer open={open} onOpenChange={onOpenChange}>
+          <DrawerContent className="max-h-[90vh] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t">
+            <DrawerHeader className="text-center">
+              <DrawerTitle className="text-2xl font-bold">
+                {title || t("payment.modal.title")}
+              </DrawerTitle>
+              {description && (
+                <DrawerDescription className="text-base">
+                  {description}
+                </DrawerDescription>
+              )}
+            </DrawerHeader>
+            <div className="px-4 pb-4 overflow-y-auto">
+              <PricingContent className="grid-cols-1" />
+            </div>
+          </DrawerContent>
+        </Drawer>
+      )}
+      <PaymentMethodSelector
+        open={showPaymentSelector}
+        onOpenChange={setShowPaymentSelector}
+        onSelect={onPaymentMethodSelect}
+      />
+    </>
   );
 }
