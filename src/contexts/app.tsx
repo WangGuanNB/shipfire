@@ -121,6 +121,7 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
         setShowSignModal,
         user,
         setUser,
+        fetchUserInfo,
         showFeedback,
         setShowFeedback,
       }}

@@ -16,6 +16,21 @@
           "title": "首页",
           "url": "/",
           "icon": "RiHomeLine"
+        },
+        {
+          "title": "图片生成器",
+          "url": "/image-generator",
+          "icon": "RiImageLine"
+        },
+        {
+          "title": "定价",
+          "url": "/pricing",
+          "icon": "RiPriceTag3Line"
+        },
+        {
+          "title": "博客",
+          "url": "/blog",
+          "icon": "RiArticleLine"
         }
       ]
     },
@@ -179,8 +194,29 @@
         "description": "云托管确保 99.9% 的正常运行时间。全球 CDN 为全球用户提供快速访问。自动 SSL、域名绑定和 SEO 优化全部包含—零技术障碍，让创始人可以完全专注于产品。",
         "icon": "RiDownloadLine",
         "image": {
-          "src": "/imgs/features/1.webp",
-          "alt": "涂鸦生成器导出完成的作品"
+          "src": "/imgs/features/3.webp",
+          "alt": "ShipFire 一键部署到生产环境"
+        },
+        "buttons": [
+          {
+            "title": "开始创作",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "查看价格",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
+      },
+      {
+        "title": "ShipFire 50+ 专业模板",
+        "description": "50+ 针对 SaaS 优化的模板，涵盖工具、服务、社区等。每个模板都经过转化优化，支持拖拽自定义。选择模板、添加内容、一键上线—无需设计技能。",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/4.webp",
+          "alt": "ShipFire 专业模板库"
         },
         "buttons": [
           {

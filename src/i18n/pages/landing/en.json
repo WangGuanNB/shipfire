@@ -16,6 +16,21 @@
           "title": "Home",
           "url": "/",
           "icon": "RiHomeLine"
+        },
+        {
+          "title": "Image Generator",
+          "url": "/image-generator",
+          "icon": "RiImageLine"
+        },
+        {
+          "title": "Pricing",
+          "url": "/pricing",
+          "icon": "RiPriceTag3Line"
+        },
+        {
+          "title": "Blog",
+          "url": "/blog",
+          "icon": "RiArticleLine"
         }
       ]
     },
@@ -180,6 +195,27 @@
         "image": {
           "src": "/imgs/features/3.webp",
           "alt": "ShipStart deploying website to production"
+        },
+        "buttons": [
+          {
+            "title": "Start Creating",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "See Pricing",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
+      },
+      {
+        "title": "ShipStart 50+ Professional Templates",
+        "description": "Choose from 50+ SaaS-optimized templates covering tools, services, communities, and more. Each is conversion-ready with drag-and-drop customization. Pick a template, add your content, and launch—no design skills required.",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/4.webp",
+          "alt": "ShipStart professional template library"
         },
         "buttons": [
           {

@@ -1,6 +1,6 @@
 import { credits } from "@/db/schema";
 import { db } from "@/db";
-import { desc, eq, and, gte, asc } from "drizzle-orm";
+import { desc, eq, and, gte, asc, or, isNull } from "drizzle-orm";
 
 export async function insertCredit(
   data: typeof credits.$inferInsert
@@ -37,13 +37,14 @@ export async function findCreditByOrderNo(
 export async function getUserValidCredits(
   user_uuid: string
 ): Promise<(typeof credits.$inferSelect)[] | undefined> {
-  const now = new Date().toISOString();
+  const now = new Date();
   const data = await db()
     .select()
     .from(credits)
     .where(
       and(
-        gte(credits.expired_at, new Date(now)),
+        // 包含未过期的积分：expired_at 为 null（永不过期）或 expired_at >= 当前时间
+        or(isNull(credits.expired_at), gte(credits.expired_at, now)),
         eq(credits.user_uuid, user_uuid)
       )
     )

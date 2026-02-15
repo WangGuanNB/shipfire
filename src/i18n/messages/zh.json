@@ -82,7 +82,8 @@
   },
   "blog": {
     "title": "博客",
-    "description": "关于 ShipStart 的新闻、资源和更新",
+    "description": "最新文章、教程与产品更新",
+    "no_posts": "暂无文章，敬请期待",
     "read_more_text": "阅读更多",
     "tools_notice": {
       "text": "寻找实用工具？除了这些教程，还可以在我们的",
@@ -124,7 +125,7 @@
     "submit": "提交",
     "loading": "提交中...",
     "contact_tip": "其他联系方式",
-    "rating_tip": "您对 ShipStart 的看法如何？",
+    "rating_tip": "您对 {project} 的看法如何？",
     "placeholder": "在这里留下您的反馈..."
   },
   "share": {

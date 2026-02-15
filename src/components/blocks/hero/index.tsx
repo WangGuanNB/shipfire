@@ -27,11 +27,19 @@ const heroAnimationStyles = `
 }
 `;
 
-export default function Hero({ hero }: { hero: HeroType }) {
+export default function Hero({
+  hero,
+  children,
+}: {
+  hero: HeroType;
+  children?: ReactNode;
+}) {
   if (hero.disabled) return null;
 
   const content =
-    hero.variant === "compact" ? (
+    hero.variant === "tool" ? (
+      <ToolHero hero={hero}>{children}</ToolHero>
+    ) : hero.variant === "compact" ? (
       <CompactHero hero={hero} />
     ) : (
       <DefaultHero hero={hero} />
@@ -127,6 +135,44 @@ function DefaultHero({ hero }: { hero: HeroType }) {
         )}
 
         {hero.show_happy_users && <HappyUsers />}
+      </div>
+    </HeroBackdrop>
+  );
+}
+
+function ToolHero({
+  hero,
+  children,
+}: {
+  hero: HeroType;
+  children?: ReactNode;
+}) {
+  const plainDescription = hero.description
+    ? hero.description.replace(/<[^>]+>/g, "")
+    : undefined;
+
+  return (
+    <HeroBackdrop className="min-h-0 pt-20 pb-12 md:pt-28 md:pb-16" solidBackground>
+      <div className="container mx-auto max-w-3xl space-y-8 text-center">
+        <h1 className="hero-text-down text-balance text-3xl font-bold leading-tight text-foreground sm:text-4xl lg:text-5xl">
+          {hero.title}
+          {hero.highlight_text && (
+            <>
+              <br />
+              <span className="bg-gradient-to-r from-primary via-primary/70 to-primary/50 bg-clip-text text-transparent">
+                {hero.highlight_text}
+              </span>
+            </>
+          )}
+        </h1>
+
+        {plainDescription && (
+          <p className="hero-text-up mx-auto max-w-2xl text-base text-muted-foreground">
+            {plainDescription}
+          </p>
+        )}
+
+        {children}
       </div>
     </HeroBackdrop>
   );
@@ -229,23 +275,26 @@ function CompactHero({ hero }: { hero: HeroType }) {
 function HeroBackdrop({
   children,
   className,
+  solidBackground = false,
 }: {
   children: ReactNode;
   className?: string;
+  /** When true, use solid background without RetroGrid pattern (e.g. for tool hero) */
+  solidBackground?: boolean;
 }) {
   return (
     <div
       className={cn(
         "relative flex min-h-[860px] w-full items-center justify-center overflow-hidden px-4 text-foreground",
-        // 背景完全透明，继承父元素的背景色（系统主题背景色）
-        "bg-transparent",
+        solidBackground ? "bg-background" : "bg-transparent",
         className,
       )}
     >
-      {/* 只保留动态格子效果 */}
-      <div className="pointer-events-none absolute inset-0">
-        <RetroGrid className="opacity-60 dark:opacity-75" angle={60} />
-      </div>
+      {!solidBackground && (
+        <div className="pointer-events-none absolute inset-0">
+          <RetroGrid className="opacity-60 dark:opacity-75" angle={60} />
+        </div>
+      )}
 
       <div className="relative z-10 w-full">{children}</div>
     </div>

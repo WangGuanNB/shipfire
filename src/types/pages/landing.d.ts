@@ -23,6 +23,7 @@ export interface LandingPage {
 
 export interface PricingPage {
   pricing?: Pricing;
+  faq?: Section;
 }
 
 export interface ShowcasePage {
@@ -90,6 +91,23 @@ export interface AboutPage {
   footer: {
     copyright: string;
     privacy: string;
+  };
+}
+
+export interface ImageGeneratorPage extends LandingPage {
+  metadata?: {
+    title: string;
+    description: string;
+    keywords?: string[];
+  };
+  tool?: {
+    title?: string;
+    description?: string;
+    promptPlaceholder?: string;
+    styleLabel?: string;
+    styles?: { value: string; label: string }[];
+    buttonText?: string;
+    generatingText?: string;
   };
 }
 

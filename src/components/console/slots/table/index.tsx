@@ -5,9 +5,9 @@ import Toolbar from "@/components/blocks/toolbar";
 
 export default function ({ ...table }: TableSlotType) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pt-1">
       <div>
-        <h3 className="text-lg font-medium">{table.title}</h3>
+        <h3 className="text-lg font-semibold">{table.title}</h3>
         <p className="text-sm text-muted-foreground">{table.description}</p>
       </div>
       {table.tip && (

@@ -118,12 +118,12 @@ export default function Feature({ section }: { section: SectionType }) {
           )}
         </motion.div>
 
-        {/* 功能网格 - 带依次飞入动画 */}
+        {/* 功能网格 - 带圆角、阴影、背景，参照 what 组件 */}
         <motion.div
           ref={gridRef}
           initial="hidden"
           animate={gridInView ? "visible" : "hidden"}
-          className="relative mx-auto grid max-w-6xl divide-x divide-y border *:p-12 sm:grid-cols-2 lg:grid-cols-3"
+          className="relative mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {section.items?.map((item, i) => {
             // 尝试从映射中获取 lucide-react 图标，否则使用原有的 Icon 组件
@@ -135,7 +135,7 @@ export default function Feature({ section }: { section: SectionType }) {
                 custom={i}
                 variants={cardVariants}
                 style={{ willChange: "transform, opacity" }}
-                className="space-y-3 text-center"
+                className="space-y-3 rounded-2xl border bg-card/30 p-8 text-center shadow-sm backdrop-blur-sm"
               >
                 <div className="flex items-center justify-center gap-2">
                   {LucideIcon ? (

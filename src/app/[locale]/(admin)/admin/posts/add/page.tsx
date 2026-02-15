@@ -47,7 +47,7 @@ export default async function () {
         validation: {
           required: true,
         },
-        tip: "post slug should be unique, visit like: /blog/what-is-shipany",
+        tip: "post slug should be unique, visit like: /blog/your-slug",
       },
       {
         name: "locale",

@@ -1,5 +1,5 @@
 import { cache } from 'react';
-import { LandingPage, PricingPage, ShowcasePage, AboutPage } from "@/types/pages/landing";
+import { LandingPage, PricingPage, ShowcasePage, AboutPage, ImageGeneratorPage } from "@/types/pages/landing";
 import { replaceSocialMediaUrls } from "@/lib/utils";
 
 export const getLandingPage = cache(async (locale: string): Promise<LandingPage> => {
@@ -20,10 +20,14 @@ export const getAboutPage = cache(async (locale: string): Promise<AboutPage> => 
   return (await getPage("about", locale)) as AboutPage;
 });
 
+export const getImageGeneratorPage = cache(async (locale: string): Promise<ImageGeneratorPage> => {
+  return (await getPage("image-generator", locale)) as ImageGeneratorPage;
+});
+
 export async function getPage(
   name: string,
   locale: string
-): Promise<LandingPage | PricingPage | ShowcasePage | AboutPage> {
+): Promise<LandingPage | PricingPage | ShowcasePage | AboutPage | ImageGeneratorPage> {
   try {
     if (locale === "zh-CN") {
       locale = "zh";

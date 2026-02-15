@@ -51,8 +51,11 @@ export async function POST(req: Request) {
       return respErr("invalid pricing table");
     }
 
+    // 按 product_id + amount 精确匹配，支持 6 套餐
     const item = page.pricing.items.find(
-      (item: PricingItem) => item.product_id === product_id
+      (i: PricingItem) =>
+        i.product_id === product_id &&
+        (currency === "cny" ? i.cn_amount === amount : i.amount === amount)
     );
 
     let isPriceValid = false;
@@ -79,6 +82,22 @@ export async function POST(req: Request) {
     if (!["year", "month", "one-time"].includes(interval)) {
       return respErr("invalid interval");
     }
+
+    // 解析 Creem 产品 ID：creem_product_id 可为 key(starter/standard_monthly 等) 或 prod_* 实际 ID
+    const creemKeyMap: Record<string, string | undefined> = {
+      starter: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY,
+      starter_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY,
+      standard_monthly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_MONTHLY,
+      standard_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY,
+      premium_monthly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY,
+      premium_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY,
+    };
+    const rawCreemId = creem_product_id || (item as PricingItem).creem_product_id;
+    const creem_product_id_resolved =
+      (rawCreemId?.startsWith("prod_") ? rawCreemId : undefined) ||
+      (rawCreemId ? creemKeyMap[rawCreemId] : undefined) ||
+      creemKeyMap[product_id] ||
+      product_id;
 
     const is_subscription = interval === "month" || interval === "year";
 
@@ -170,7 +189,7 @@ export async function POST(req: Request) {
       try {
         console.log("🔔 [Creem Checkout] 尝试使用 API 方式创建支付会话");
         const checkoutSession = await createCreemCheckoutSession({
-          product_id: creem_product_id || product_id,
+          product_id: creem_product_id_resolved,
           product_name: product_name,
           amount: amountInCents,
           currency: currency,
@@ -197,7 +216,7 @@ export async function POST(req: Request) {
 
     // 方案 2: 如果未配置 API Key 或 API 调用失败，使用产品 ID 直接链接方式
     if (!checkout_url) {
-      if (!creem_product_id) {
+      if (!creem_product_id_resolved) {
         return respErr("Creem product ID is required when API Key is not configured");
       }
 
@@ -209,9 +228,8 @@ export async function POST(req: Request) {
         : "https://www.creem.io/payment";
       
       // 🔥 关键：将 order_no 和 email 作为 URL 参数传递
-      // 支付成功后，Creem 会重定向到 success_url，order_no 会在 URL 中
-      checkout_url = `${baseUrl}/${creem_product_id}?order_no=${encodeURIComponent(order_no)}&email=${encodeURIComponent(user_email)}`;
-      session_id = creem_product_id;
+      checkout_url = `${baseUrl}/${creem_product_id_resolved}?order_no=${encodeURIComponent(order_no)}&email=${encodeURIComponent(user_email)}`;
+      session_id = creem_product_id_resolved;
       console.log("✅ [Creem Checkout] 产品 ID 支付链接生成成功:", { checkout_url });
     }
 
@@ -225,7 +243,7 @@ export async function POST(req: Request) {
     const order_detail = JSON.stringify({
       checkout_url,
       session_id,
-      creem_product_id: creem_product_id || product_id,
+      creem_product_id: creem_product_id_resolved,
       order_no: order_no, // 保存订单号，方便 webhook 匹配
       user_email: user_email, // 保存邮箱，方便匹配
       amount: amountInCents, // 保存金额，方便匹配

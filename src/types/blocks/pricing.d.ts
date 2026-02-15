@@ -15,6 +15,7 @@ export interface PricingItem {
   original_price?: string;
   currency?: string;
   unit?: string;
+  unit_note?: string;
   features_title?: string;
   features?: string[];
   button?: Button;

@@ -81,7 +81,8 @@
   },
   "blog": {
     "title": "Blog",
-    "description": "News, resources, and updates about ShipStart",
+    "description": "Latest articles, tutorials, and product updates",
+    "no_posts": "No posts yet. Check back soon!",
     "read_more_text": "Read More",
     "tools_notice": {
       "text": "Looking for hands-on tools? Beyond these tutorials, explore our complete suite of website building tools on our",
@@ -123,7 +124,7 @@
     "submit": "Submit",
     "loading": "Submitting...",
     "contact_tip": "Other ways to contact us",
-    "rating_tip": "How do you feel about ShipStart?",
+    "rating_tip": "How do you feel about {project}?",
     "placeholder": "Leave your words here..."
   },
   "share": {

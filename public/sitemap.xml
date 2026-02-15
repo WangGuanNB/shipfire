@@ -5,22 +5,22 @@
   <!-- 当前生效：只有英文首页                        -->
   <!-- ========================================== -->
   <url>
-    <loc>https://miniatur.org/</loc>
-    <lastmod>2025-10-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
    <!-- 法律页面（合规要求） -->
   <url>
-    <loc>https://miniatur.org/privacy-policy</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/privacy-policy</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://miniatur.org/terms-of-service</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/terms-of-service</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -33,22 +33,22 @@
   <!-- 多语言版本
   ────────────────────────────────────────────────────────── -->
   <!-- <url>
-    <loc>https://miniatur.org/zh/</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/zh/</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url> -->
   
   <!-- <url>
-    <loc>https://miniatur.org/ms/</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/ms/</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url> -->
   
   <!-- <url>
-    <loc>https://miniatur.org/pt/</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/pt/</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url> -->
@@ -57,29 +57,29 @@
   <!-- 功能页面
   ────────────────────────────────────────────────────────── -->
   <!-- <url>
-    <loc>https://miniatur.org/posts/</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/posts/</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url> -->
   
   <!-- <url>
-    <loc>https://miniatur.org/about/</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/about/</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url> -->
   
   <!-- <url>
-    <loc>https://miniatur.org/pricing/</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/pricing/</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url> -->
   
   <!-- <url>
-    <loc>https://miniatur.org/showcase/</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/showcase/</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url> -->
@@ -88,15 +88,15 @@
   <!-- 法律页面
   ────────────────────────────────────────────────────────── -->
   <!-- <url>
-    <loc>https://miniatur.org/privacy-policy</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/privacy-policy</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url> -->
   
   <!-- <url>
-    <loc>https://miniatur.org/terms-of-service</loc>
-    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
+    <loc>https://shipstart.net/terms-of-service</loc>
+    <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url> -->

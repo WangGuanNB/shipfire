@@ -28,7 +28,7 @@
     // 语言检测（true/false）
     "NEXT_PUBLIC_LOCALE_DETECTION": "true",
     // 管理员邮箱（多个用逗号分隔，用于访问后台管理）
-    "ADMIN_EMAILS": "",
+    "ADMIN_EMAILS": "banner520521@gmail.com",
 
     // ========== 2. 认证配置 ==========
     // NextAuth 认证 URL（开发环境: http://localhost:3000/api/auth）
@@ -41,6 +41,7 @@
     // ========== 3. Google 登录配置 ==========
     // Google OAuth 公开 Client ID（前端使用，用于 One Tap）
     "NEXT_PUBLIC_AUTH_GOOGLE_ID": "35054272068-n921mlou3np1n37ncaoasdhe16o7sjsl.apps.googleusercontent.com",
+    "AUTH_GOOGLE_ID":"35054272068-n921mlou3np1n37ncaoasdhe16o7sjsl.apps.googleusercontent.com",
     // 是否启用 Google 登录（true/false）
     "NEXT_PUBLIC_AUTH_GOOGLE_ENABLED": "true",
     // 是否启用 Google One Tap 登录（true/false）
@@ -70,20 +71,31 @@
     "PAYPAL_ENVIRONMENT": "live",
 
     // ========== 6. Creem 支付配置 ==========
-     // 支付方式开关（优先级: Stripe > PayPal > Creem，至少启用一个）
+    // 支付方式开关（优先级: Stripe > PayPal > Creem，至少启用一个）
     "NEXT_PUBLIC_PAYMENT_CREEM_ENABLED": "false",
-    // 测试模式（true=测试环境，false=生产环境）
+    // Creem 测试模式（true=测试环境，false=生产环境）
     "CREEM_TEST_MODE": "true",
     // Creem API 地址（可选，默认: https://api.creem.io）
     "CREEM_API_URL": "https://api.creem.io",
-    // Creem 产品 ID（Webhook Secret、API Key 请用 Secrets）
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID": "prod_BaBpnwt4WyhxN3UCOXMHD",
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD": "prod_BaBpnwt4WyhxN3UC0XMHD",
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PROFESSIONAL": "prod_26eehLG4JAvQCSIkb79yrE",
+    // Creem 产品 ID（6 套餐，从 Creem Dashboard 创建产品后获取 prod_xxx）
+    // --- 月付：入门版、标准版、高级版 ---
+    // Starter 入门版-月付
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY": "prod_1LXdXxSyRyUB0wAEctaixp",
+    // Standard 标准版-月付
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_MONTHLY": "prod_6VYZJU7R1l9DlT3g6vduuF",
+    // Premium 高级版-月付
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY": "prod_2WcXEPQKzsGK16yWBuFN71",
+    // --- 年付：入门版、标准版、高级版 ---
+    // Starter 入门版-年付
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY": "prod_2uN3KJeOyGN5Hw7J1YV6A8",
+    // Standard 标准版-年付
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY": "prod_1JCIlQHaHA5GwHvaOZIC51",
+    // Premium 高级版-年付
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY": "prod_4DNSPn2ZJmwDPinYvyGt9M",
 
     // ========== 7. 积分系统配置 ==========
-    // 新用户注册时赠送的积分（默认: 1000）
-    "NEW_USER_CREDITS": "1000",
+    // 新用户注册时赠送的积分（默认: 20）
+    "NEW_USER_CREDITS": "20",
     // 每次 AI 聊天消耗的积分（默认: 10）
     "AI_CHAT_CREDIT_COST": "10",
 

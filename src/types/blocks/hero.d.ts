@@ -21,6 +21,6 @@ export interface Hero {
   show_happy_users?: boolean;
   show_badge?: boolean;
   layout?: string;
-  variant?: "default" | "compact";
+  variant?: "default" | "compact" | "tool";
   metrics?: string[];
 }

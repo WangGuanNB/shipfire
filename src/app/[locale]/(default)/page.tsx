@@ -6,8 +6,7 @@ import Feature3 from "@/components/blocks/feature3";
 import Hero from "@/components/blocks/hero";
 import FeatureWhatTwo from "@/components/blocks/feature-what-two";
 import Testimonial from "@/components/blocks/testimonial";
-import Pricing from "@/components/blocks/pricing";
-import { getLandingPage, getPricingPage } from "@/services/page";
+import { getLandingPage } from "@/services/page";
 import { getCanonicalUrl } from "@/lib/utils";
 
 // 启用 ISR（增量静态再生）：24小时重新生成一次，降低 CPU 消耗
@@ -43,7 +42,6 @@ export default async function LandingPage({
 }) {
   const { locale } = await params;
   const page = await getLandingPage(locale);
-  const pricingPage = await getPricingPage(locale);
 
   return (
     <>
@@ -61,9 +59,6 @@ export default async function LandingPage({
 
       {/* How to Use [Tool Name]：用3个步骤说明使用流程------------ */}
       {page.usage && <Feature3 section={page.usage} />}
-
-      {/* Pricing Section：价格模块 */}
-      {pricingPage.pricing && <Pricing pricing={pricingPage.pricing} />}
 
       {/*image.png Testimonials / People Love：展示2~3条用户好评或社会信任信息 */}  
       {page.testimonial && <Testimonial section={page.testimonial} />}

@@ -50,8 +50,11 @@ export async function POST(req: Request) {
       return respErr("invalid pricing table");
     }
 
+    // 按 product_id + amount 精确匹配，支持 6 套餐
     const item = page.pricing.items.find(
-      (item: PricingItem) => item.product_id === product_id
+      (i: PricingItem) =>
+        i.product_id === product_id &&
+        (currency === "cny" ? i.cn_amount === amount : i.amount === amount)
     );
 
     let isPriceValid = false;

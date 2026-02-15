@@ -5,7 +5,7 @@
 
 /**
  * 获取新用户注册时赠送的积分数量
- * @returns 积分数量（默认：1000）
+ * @returns 积分数量（默认：20）
  */
 export function getNewUserCredits(): number {
   const credits = process.env.NEW_USER_CREDITS;
@@ -15,7 +15,7 @@ export function getNewUserCredits(): number {
       return parsed;
     }
   }
-  return 1000; // 默认 1000 积分
+  return 20; // 默认 20 积分
 }
 
 /**

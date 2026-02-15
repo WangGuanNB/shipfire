@@ -15,6 +15,7 @@ export enum CreditsTransType {
   OrderPay = "order_pay", // user pay for credits
   SystemAdd = "system_add", // system add credits
   Ping = "ping", // cost for ping api
+  ImageGen = "image_gen", // cost for image generation
 }
 
 export enum CreditsAmount {

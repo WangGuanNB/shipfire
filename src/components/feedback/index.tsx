@@ -119,7 +119,10 @@ export default function Feedback({
 
           <div className="mt-4 flex flex-col items-start gap-2">
             <p className="text-sm text-muted-foreground">
-              {t("feedback.rating_tip")}
+              {t("feedback.rating_tip", {
+                project:
+                  process.env.NEXT_PUBLIC_PROJECT_NAME || "us",
+              })}
             </p>
             <div className="flex flex-row gap-2">
               {ratings.map((item) => (

@@ -41,11 +41,15 @@ export async function POST(req: Request) {
         const ratingText =
           rating === 1 ? "Negative" : rating === 5 ? "Positive" : "Neutral";
 
+        const projectName =
+          process.env.NEXT_PUBLIC_PROJECT_NAME || "ShipFire";
+        const messageWithProject = `${content}\n\n@By${projectName}`;
+
         await sendContactFormEmail({
           name: feedbackName,
           email: feedbackEmail,
           subject: `Feedback from User - ${ratingText} (${ratingEmoji})`,
-          message: `Rating: ${rating}/10 ${ratingEmoji}\n\nFeedback:\n${content}`,
+          message: `Rating: ${rating}/10 ${ratingEmoji}\n\nFeedback:\n${messageWithProject}`,
         });
       } catch (e) {
         console.log("send feedback email failed: ", e);

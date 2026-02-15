@@ -59,7 +59,7 @@ export default async function () {
             {
               title: "View",
               icon: "RiEyeLine",
-              url: `/${item.locale}/posts/${item.slug}`,
+              url: item.locale === "en" ? `/blog/${item.slug}` : `/${item.locale}/blog/${item.slug}`,
               target: "_blank",
             },
           ];

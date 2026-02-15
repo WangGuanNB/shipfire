@@ -43,8 +43,11 @@ async function validateAndCreateOrder(params: {
     throw new Error("invalid pricing table");
   }
 
+  // 按 product_id + amount 精确匹配，支持 6 套餐（含 monthly/yearly 同 product_id 不同金额）
   const item = page.pricing.items.find(
-    (item: PricingItem) => item.product_id === product_id
+    (i: PricingItem) =>
+      i.product_id === product_id &&
+      (currency === "cny" ? i.cn_amount === amount : i.amount === amount)
   );
 
   let isPriceValid = false;
@@ -310,22 +313,21 @@ async function handleCreemCheckout(params: {
 }) {
   const { order_no, user_uuid, user_email, product_name, amount, currency, credits, product_id, locale, cancel_url, creem_product_id } = params;
 
-  // 🔥 根据 product_id 映射到对应的 Creem 产品 ID
-  // 支持多个套餐：standard, professional 等
+  // 🔥 6 套餐 Creem 产品 ID 映射
   const creemProductIdMap: Record<string, string | undefined> = {
-    "standard": process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD,
-    "professional": process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PROFESSIONAL,
+    starter: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY,
+    starter_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY,
+    standard_monthly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_MONTHLY,
+    standard_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY,
+    premium_monthly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY,
+    premium_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY,
   };
 
-  // 优先级：
-  // 1. 如果请求中提供了 creem_product_id，直接使用
-  // 2. 如果 product_id 在映射表中，使用映射的 Creem 产品 ID
-  // 3. 否则使用默认的 NEXT_PUBLIC_CREEM_PRODUCT_ID
-  // 4. 最后回退到 product_id 本身
+  // 优先级：creem_product_id(prod_* 直接用) > creem_product_id(key 查表) > product_id 查表 > 默认 > product_id
   const finalCreemProductId =
-    creem_product_id ||
+    (creem_product_id?.startsWith("prod_") ? creem_product_id : undefined) ||
+    (creem_product_id ? creemProductIdMap[creem_product_id] : undefined) ||
     creemProductIdMap[product_id] ||
-    process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID ||
     product_id;
 
   const success_url = `${process.env.NEXT_PUBLIC_WEB_URL}/${locale}/pay-success/creem`;

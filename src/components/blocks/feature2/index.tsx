@@ -118,14 +118,14 @@ export default function Feature2({ section }: { section: SectionType }) {
           )}
         </motion.div>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-stretch">
+        <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-start">
           <motion.div
             ref={leftRef}
             initial="hidden"
             animate={leftInView ? "visible" : "hidden"}
             variants={slideLeftVariants}
             style={{ willChange: "transform, opacity" }}
-            className="flex h-full flex-col"
+            className="flex flex-col"
           >
             <Accordion
               type="single"
@@ -214,7 +214,7 @@ export default function Feature2({ section }: { section: SectionType }) {
             animate={rightInView ? "visible" : "hidden"}
             variants={slideRightVariants}
             style={{ willChange: "transform, opacity" }}
-            className="flex h-full items-center rounded-3xl border border-border/60 bg-background/90 p-3 shadow-sm"
+            className="flex items-start rounded-3xl border border-border/60 bg-background/90 p-3 shadow-sm"
           >
             <Carousel
               opts={{
@@ -226,7 +226,7 @@ export default function Feature2({ section }: { section: SectionType }) {
               <CarouselContent>
                 {section.items?.map((item, i) => (
                   <CarouselItem key={i}>
-                    <div className="h-full min-h-[320px] overflow-hidden rounded-2xl lg:min-h-[420px]">
+                    <div className="h-full min-h-[320px] w-full overflow-hidden rounded-2xl lg:min-h-[420px]">
                       <img
                         src={item.image?.src}
                         alt={item.image?.alt || item.title}

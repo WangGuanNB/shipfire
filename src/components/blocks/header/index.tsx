@@ -49,6 +49,7 @@ export default function Header({ header }: { header: HeaderType }) {
                 href={(header.brand?.url as any) || "/"}
                 className="flex items-center gap-2"
                 aria-label="home"
+                onClick={() => setMenuState(false)}
               >
                 {header.brand?.logo?.src && (
                   <img
@@ -131,6 +132,7 @@ export default function Header({ header }: { header: HeaderType }) {
                       href={item.url as any}
                       target={item.target}
                       className="text-foreground/90 hover:text-foreground block py-2 text-base font-medium transition-colors duration-150"
+                      onClick={() => setMenuState(false)}
                     >
                       {item.icon && (
                         <Icon
@@ -184,6 +186,7 @@ export default function Header({ header }: { header: HeaderType }) {
                           href={item.url as any}
                           target={item.target || ""}
                           className="flex items-center justify-center gap-2"
+                          onClick={() => setMenuState(false)}
                         >
                           {item.icon && (
                             <Icon name={item.icon} className="size-4 shrink-0" />
@@ -198,7 +201,7 @@ export default function Header({ header }: { header: HeaderType }) {
 
               {/* 登录/注册按钮 */}
               {header.show_sign && (
-                <div className="pt-2 flex justify-center">
+                <div className="pt-2 flex justify-start">
                   <SignToggle />
                 </div>
               )}

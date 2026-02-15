@@ -1,4 +1,5 @@
 import Pricing from "@/components/blocks/pricing";
+import FAQ from "@/components/blocks/faq";
 import { getPricingPage } from "@/services/page";
 
 export default async function PricingPage({
@@ -9,5 +10,10 @@ export default async function PricingPage({
   const { locale } = await params;
   const page = await getPricingPage(locale);
 
-  return <>{page.pricing && <Pricing pricing={page.pricing} />}</>;
+  return (
+    <>
+      {page.pricing && <Pricing pricing={page.pricing} />}
+      {page.faq && <FAQ section={page.faq} layout="stacked" />}
+    </>
+  );
 }
