@@ -33,9 +33,11 @@ export async function POST(req: Request) {
       paypalWebhookId
     );
 
-    if (!isValid && paypalWebhookId) {
-      console.warn("⚠️ [PayPal Webhook] 签名验证失败，但继续处理（开发环境）");
-      // 生产环境应该严格验证，这里为了开发方便暂时允许
+    if (paypalWebhookId && !isValid) {
+      throw new Error("invalid webhook signature");
+    }
+    if (!paypalWebhookId) {
+      console.warn("⚠️ [PayPal Webhook] PAYPAL_WEBHOOK_ID 未配置，跳过签名验证（仅开发环境适用）");
     }
 
     // 解析事件数据

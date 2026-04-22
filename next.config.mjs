@@ -1,6 +1,10 @@
 import bundleAnalyzer from "@next/bundle-analyzer";
 import createNextIntlPlugin from "next-intl/plugin";
 import { createMDX } from "fumadocs-mdx/next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+// 本地 `next dev` 时启用 Cloudflare 平台代理（让 getCloudflareContext 能访问 D1）
+initOpenNextCloudflareForDev();
 
 const withMDX = createMDX();
 

@@ -28,19 +28,38 @@ export async function saveUser(user: User) {
 
       console.log("user to be inserted:", user);
 
-      const dbUser = await insertUser(user as typeof users.$inferInsert);
+      try {
+        const dbUser = await insertUser(user as typeof users.$inferInsert);
 
-      // increase credits for new user, expire in one year
-      await increaseCredits({
-        user_uuid: user.uuid,
-        trans_type: CreditsTransType.NewUser,
-        credits: getNewUserCredits(), // 从配置读取新用户积分（默认 1000）
-        expired_at: getOneYearLaterTimestr(),
-      });
+        // increase credits for new user, expire in one year
+        await increaseCredits({
+          user_uuid: user.uuid,
+          trans_type: CreditsTransType.NewUser,
+          credits: getNewUserCredits(), // 从配置读取新用户积分（默认 1000）
+          expired_at: getOneYearLaterTimestr(),
+        });
 
-      user = {
-        ...(dbUser as unknown as User),
-      };
+        user = {
+          ...(dbUser as unknown as User),
+        };
+      } catch (insertErr: any) {
+        // 并发请求（如 Next-Auth 多次触发 JWT callback）可能导致两个请求同时通过
+        // existUser 检查，然后都尝试插入，第二个会触发唯一约束冲突
+        // 这里捕获该错误并回退查询已存在的用户
+        const isUniqueConflict =
+          insertErr?.message?.includes("UNIQUE constraint failed") ||
+          insertErr?.cause?.message?.includes("UNIQUE constraint failed");
+        if (isUniqueConflict) {
+          const conflictUser = await findUserByEmail(user.email);
+          if (conflictUser) {
+            user = { ...(conflictUser as unknown as User) };
+          } else {
+            throw insertErr;
+          }
+        } else {
+          throw insertErr;
+        }
+      }
     } else {
       // user exist, return user info in db
       user = {

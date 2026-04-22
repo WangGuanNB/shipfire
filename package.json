@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_NO_WARNINGS=1 next dev --turbopack",
     "dev:proxy": "cross-env GLOBAL_AGENT_HTTP_PROXY=http://127.0.0.1:7889 GLOBAL_AGENT_HTTPS_PROXY=http://127.0.0.1:7889 GLOBAL_AGENT_NO_PROXY=localhost,127.0.0.1 NODE_NO_WARNINGS=1 next dev --turbopack",
+    "dev:remote": "pnpm run cf:build && ./node_modules/.bin/wrangler dev --remote",
     "build": "node scripts/load-wrangler-env.js next build",
     "cf:build": "node scripts/load-wrangler-env.js next build && npx @opennextjs/cloudflare@latest build",
     "cf:deploy": "pnpm run cf:build && npx wrangler deploy",
@@ -38,6 +39,7 @@
     "@next/env": "^15.5.7",
     "@next/mdx": "^15.5.7",
     "@next/third-parties": "^15.5.7",
+    "@opennextjs/cloudflare": "^1.19.0",
     "@openpanel/nextjs": "^1.0.7",
     "@openrouter/ai-sdk-provider": "^0.0.6",
     "@paypal/checkout-server-sdk": "^1.0.3",
@@ -69,6 +71,7 @@
     "@uiw/react-md-editor": "^4.0.5",
     "ai": "^4.1.64",
     "aws4fetch": "^1.0.20",
+    "better-sqlite3": "^12.8.0",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -116,6 +119,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^15.5.7",
     "@tailwindcss/postcss": "^4.1.4",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^20.17.10",
     "@types/react": "^18.3.18",
@@ -129,7 +133,8 @@
     "tailwindcss": "^4.1.4",
     "tsx": "^4.20.3",
     "typescript": "^5.7.2",
-    "vercel": "39.1.1"
+    "vercel": "39.1.1",
+    "wrangler": "^4.83.0"
   },
   "packageManager": "pnpm@9.12.1+sha512.e5a7e52a4183a02d5931057f7a0dbff9d5e9ce3161e33fa68ae392125b79282a8a8a470a51dfc8a0ed86221442eb2fb57019b0990ed24fab519bf0e1bc5ccfc4"
 }

@@ -148,5 +148,17 @@
     "NEXT_PUBLIC_GITHUB_URL": "",
     // Discord 社区服务器
     "NEXT_PUBLIC_DISCORD_URL": ""
-  }
+  },
+
+  // ========================================
+  // D1 数据库绑定
+  // 创建数据库：pnpm wrangler d1 create shipfire-db
+  // 将输出的 database_id 填入下方
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "shipfire-db",
+      "database_id": "ad72dedb-9c09-44ea-8798-f202789c9103"
+    }
+  ]
 }

@@ -50,3 +50,7 @@ CONFIG.md
 SOCIAL_CONFIG.env
 *.env.local
 *.env.example
+
+# Cursor IDE
+.cursor
+.cursorrules

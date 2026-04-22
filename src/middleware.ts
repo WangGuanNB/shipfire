@@ -9,7 +9,6 @@ export default function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
   const isBlocked =
-    pathname === "/zh" ||
     pathname === "/docs" ||
     pathname.startsWith("/docs/");
 

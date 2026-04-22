@@ -1,34 +1,29 @@
 import {
-  pgTable,
-  serial,
-  varchar,
+  sqliteTable,
   text,
-  boolean,
   integer,
-  timestamp,
-  unique,
   uniqueIndex,
-} from "drizzle-orm/pg-core";
+} from "drizzle-orm/sqlite-core";
 
 // Users table
-export const users = pgTable(
+export const users = sqliteTable(
   "users_shipfire",
   {
-    id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    uuid: varchar({ length: 255 }).notNull().unique(),
-    email: varchar({ length: 255 }).notNull(),
-    created_at: timestamp({ withTimezone: true }),
-    nickname: varchar({ length: 255 }),
-    avatar_url: varchar({ length: 255 }),
-    locale: varchar({ length: 50 }),
-    signin_type: varchar({ length: 50 }),
-    signin_ip: varchar({ length: 255 }),
-    signin_provider: varchar({ length: 50 }),
-    signin_openid: varchar({ length: 255 }),
-    invite_code: varchar({ length: 255 }).notNull().default(""),
-    updated_at: timestamp({ withTimezone: true }),
-    invited_by: varchar({ length: 255 }).notNull().default(""),
-    is_affiliate: boolean().notNull().default(false),
+    id: integer().primaryKey({ autoIncrement: true }),
+    uuid: text().notNull().unique(),
+    email: text().notNull(),
+    created_at: integer({ mode: "timestamp" }),
+    nickname: text(),
+    avatar_url: text(),
+    locale: text(),
+    signin_type: text(),
+    signin_ip: text(),
+    signin_provider: text(),
+    signin_openid: text(),
+    invite_code: text().notNull().default(""),
+    updated_at: integer({ mode: "timestamp" }),
+    invited_by: text().notNull().default(""),
+    is_affiliate: integer({ mode: "boolean" }).notNull().default(false),
   },
   (table) => [
     uniqueIndex("email_shipfire_provider_unique_idx").on(
@@ -39,93 +34,93 @@ export const users = pgTable(
 );
 
 // Orders table
-export const orders = pgTable("orders_shipfire", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  order_no: varchar({ length: 255 }).notNull().unique(),
-  created_at: timestamp({ withTimezone: true }),
-  user_uuid: varchar({ length: 255 }).notNull().default(""),
-  user_email: varchar({ length: 255 }).notNull().default(""),
+export const orders = sqliteTable("orders_shipfire", {
+  id: integer().primaryKey({ autoIncrement: true }),
+  order_no: text().notNull().unique(),
+  created_at: integer({ mode: "timestamp" }),
+  user_uuid: text().notNull().default(""),
+  user_email: text().notNull().default(""),
   amount: integer().notNull(),
-  interval: varchar({ length: 50 }),
-  expired_at: timestamp({ withTimezone: true }),
-  status: varchar({ length: 50 }).notNull(),
-  stripe_session_id: varchar({ length: 255 }),
+  interval: text(),
+  expired_at: integer({ mode: "timestamp" }),
+  status: text().notNull(),
+  stripe_session_id: text(),
   credits: integer().notNull(),
-  currency: varchar({ length: 50 }),
-  sub_id: varchar({ length: 255 }),
+  currency: text(),
+  sub_id: text(),
   sub_interval_count: integer(),
   sub_cycle_anchor: integer(),
   sub_period_end: integer(),
   sub_period_start: integer(),
   sub_times: integer(),
-  product_id: varchar({ length: 255 }),
-  product_name: varchar({ length: 255 }),
+  product_id: text(),
+  product_name: text(),
   valid_months: integer(),
   order_detail: text(),
-  paid_at: timestamp({ withTimezone: true }),
-  paid_email: varchar({ length: 255 }),
+  paid_at: integer({ mode: "timestamp" }),
+  paid_email: text(),
   paid_detail: text(),
-  pay_type: varchar({ length: 50 }),
+  pay_type: text(),
 });
 
 // API Keys table
-export const apikeys = pgTable("apikeys_shipfire", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  api_key: varchar({ length: 255 }).notNull().unique(),
-  title: varchar({ length: 100 }),
-  user_uuid: varchar({ length: 255 }).notNull(),
-  created_at: timestamp({ withTimezone: true }),
-  status: varchar({ length: 50 }),
+export const apikeys = sqliteTable("apikeys_shipfire", {
+  id: integer().primaryKey({ autoIncrement: true }),
+  api_key: text().notNull().unique(),
+  title: text(),
+  user_uuid: text().notNull(),
+  created_at: integer({ mode: "timestamp" }),
+  status: text(),
 });
 
 // Credits table
-export const credits = pgTable("credits_shipfire", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  trans_no: varchar({ length: 255 }).notNull().unique(),
-  created_at: timestamp({ withTimezone: true }),
-  user_uuid: varchar({ length: 255 }).notNull(),
-  trans_type: varchar({ length: 50 }).notNull(),
+export const credits = sqliteTable("credits_shipfire", {
+  id: integer().primaryKey({ autoIncrement: true }),
+  trans_no: text().notNull().unique(),
+  created_at: integer({ mode: "timestamp" }),
+  user_uuid: text().notNull(),
+  trans_type: text().notNull(),
   credits: integer().notNull(),
-  order_no: varchar({ length: 255 }),
-  expired_at: timestamp({ withTimezone: true }),
+  order_no: text(),
+  expired_at: integer({ mode: "timestamp" }),
 });
 
 // Posts table
-export const posts = pgTable("posts_shipfire", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  uuid: varchar({ length: 255 }).notNull().unique(),
-  slug: varchar({ length: 255 }),
-  title: varchar({ length: 255 }),
+export const posts = sqliteTable("posts_shipfire", {
+  id: integer().primaryKey({ autoIncrement: true }),
+  uuid: text().notNull().unique(),
+  slug: text(),
+  title: text(),
   description: text(),
   content: text(),
-  created_at: timestamp({ withTimezone: true }),
-  updated_at: timestamp({ withTimezone: true }),
-  status: varchar({ length: 50 }),
-  cover_url: varchar({ length: 255 }),
-  author_name: varchar({ length: 255 }),
-  author_avatar_url: varchar({ length: 255 }),
-  locale: varchar({ length: 50 }),
+  created_at: integer({ mode: "timestamp" }),
+  updated_at: integer({ mode: "timestamp" }),
+  status: text(),
+  cover_url: text(),
+  author_name: text(),
+  author_avatar_url: text(),
+  locale: text(),
 });
 
 // Affiliates table
-export const affiliates = pgTable("affiliates_shipfire", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  user_uuid: varchar({ length: 255 }).notNull(),
-  created_at: timestamp({ withTimezone: true }),
-  status: varchar({ length: 50 }).notNull().default(""),
-  invited_by: varchar({ length: 255 }).notNull(),
-  paid_order_no: varchar({ length: 255 }).notNull().default(""),
+export const affiliates = sqliteTable("affiliates_shipfire", {
+  id: integer().primaryKey({ autoIncrement: true }),
+  user_uuid: text().notNull(),
+  created_at: integer({ mode: "timestamp" }),
+  status: text().notNull().default(""),
+  invited_by: text().notNull(),
+  paid_order_no: text().notNull().default(""),
   paid_amount: integer().notNull().default(0),
   reward_percent: integer().notNull().default(0),
   reward_amount: integer().notNull().default(0),
 });
 
 // Feedbacks table
-export const feedbacks = pgTable("feedbacks_shipfire", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  created_at: timestamp({ withTimezone: true }),
-  status: varchar({ length: 50 }),
-  user_uuid: varchar({ length: 255 }),
+export const feedbacks = sqliteTable("feedbacks_shipfire", {
+  id: integer().primaryKey({ autoIncrement: true }),
+  created_at: integer({ mode: "timestamp" }),
+  status: text(),
+  user_uuid: text(),
   content: text(),
   rating: integer(),
 });

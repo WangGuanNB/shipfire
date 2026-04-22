@@ -8,6 +8,13 @@ import { getIsoTimestr } from "@/lib/time";
 import { getSnowId } from "@/lib/hash";
 import { Order } from "@/types/order";
 import { UserCredits } from "@/types/user";
+
+export class InsufficientCreditsError extends Error {
+  constructor(public available: number, public required: number) {
+    super("insufficient credits");
+    this.name = "InsufficientCreditsError";
+  }
+}
 import { getFirstPaidOrderByUserUuid } from "@/models/order";
 
 export enum CreditsTransType {
@@ -87,10 +94,14 @@ export async function decreaseCredits({
       }
     }
 
+    if (left_credits < credits) {
+      throw new InsufficientCreditsError(left_credits, credits);
+    }
+
     const new_credit: typeof creditsTable.$inferInsert = {
       trans_no: getSnowId(),
       created_at: new Date(getIsoTimestr()),
-      expired_at: new Date(expired_at),
+      expired_at: expired_at ? new Date(expired_at) : null,
       user_uuid: user_uuid,
       trans_type: trans_type,
       credits: 0 - credits,
