@@ -269,6 +269,8 @@ Full documentation: [shipfire.cn/docs](https://shipfire.cn/docs)
 </td>
 <td align="center">
 <a href="https://astrocarto.org/" target="_blank">
+  <a href="https://paper-banana.app" target="_blank">
+    <a href="https://fireredimage.org" target="_blank">
 <strong>AstroCarto</strong><br/>
 <sub>Astrology mapping</sub>
 </a>
