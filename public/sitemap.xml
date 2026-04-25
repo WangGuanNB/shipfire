@@ -1,16 +1,12 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
-  <!-- ========================================== -->
-  <!-- 当前生效：只有英文首页                        -->
-  <!-- ========================================== -->
   <url>
     <loc>https://shipstart.net/</loc>
     <lastmod>2025-02-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-   <!-- 法律页面（合规要求） -->
   <url>
     <loc>https://shipstart.net/privacy-policy</loc>
     <lastmod>2025-02-15T00:00:00+00:00</lastmod>
@@ -24,14 +20,8 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  
  
-  <!-- ═══════════════════════════════════════════════════════════
-  待开放页面 - 完成后删除注释标记即可开放 Google 收录
-  ═══════════════════════════════════════════════════════════ -->
-  
-  <!-- 多语言版本
-  ────────────────────────────────────────────────────────── -->
+
   <!-- <url>
     <loc>https://shipstart.net/zh/</loc>
     <lastmod>2025-02-15T00:00:00+00:00</lastmod>
@@ -54,8 +44,6 @@
   </url> -->
   
   
-  <!-- 功能页面
-  ────────────────────────────────────────────────────────── -->
   <!-- <url>
     <loc>https://shipstart.net/posts/</loc>
     <lastmod>2025-02-15T00:00:00+00:00</lastmod>
@@ -85,8 +73,6 @@
   </url> -->
   
   
-  <!-- 法律页面
-  ────────────────────────────────────────────────────────── -->
   <!-- <url>
     <loc>https://shipstart.net/privacy-policy</loc>
     <lastmod>2025-02-15T00:00:00+00:00</lastmod>
