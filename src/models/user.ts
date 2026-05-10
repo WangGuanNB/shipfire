@@ -1,6 +1,6 @@
 import { users } from "@/db/schema";
 import { db } from "@/db";
-import { desc, eq, gte, inArray } from "drizzle-orm";
+import { desc, eq, gte, inArray, like } from "drizzle-orm";
 
 export async function insertUser(
   data: typeof users.$inferInsert
@@ -36,16 +36,26 @@ export async function findUserByUuid(
 
 export async function getUsers(
   page: number = 1,
-  limit: number = 50
+  limit: number = 50,
+  email?: string
 ): Promise<(typeof users.$inferSelect)[] | undefined> {
   const offset = (page - 1) * limit;
+  const trimmed = email?.trim();
 
-  const data = await db()
-    .select()
-    .from(users)
-    .orderBy(desc(users.created_at))
-    .limit(limit)
-    .offset(offset);
+  const data = trimmed
+    ? await db()
+        .select()
+        .from(users)
+        .where(like(users.email, `%${trimmed}%`))
+        .orderBy(desc(users.created_at))
+        .limit(limit)
+        .offset(offset)
+    : await db()
+        .select()
+        .from(users)
+        .orderBy(desc(users.created_at))
+        .limit(limit)
+        .offset(offset);
 
   return data;
 }

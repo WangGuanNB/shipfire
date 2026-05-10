@@ -2,11 +2,15 @@ import {
   CreditsTransType,
   increaseCredits,
   updateCreditForOrder,
+  resetCreditsForRenewal,
 } from "./credit";
 import {
   findOrderByOrderNo,
+  findOrderBySubId,
+  renewSubscriptionOrder,
   OrderStatus,
   updateOrderStatus,
+  updateOrderSubscription,
   findOrderByEmailAndAmount,
 } from "@/models/order";
 import { getIsoTimestr } from "@/lib/time";
@@ -432,6 +436,37 @@ export async function handleCreemOrder(data: CreemPaymentData) {
       await updateAffiliateForOrder(order as unknown as Order);
     }
 
+    // 订阅型订单：保存 Creem sub_id，供续费 webhook 匹配
+    if (order.interval && order.interval !== "one-time") {
+      const creem_sub_id =
+        (data as any).subscription_id ||
+        (data as any).object?.subscription?.id ||
+        (data as any).object?.order?.subscription_id ||
+        "";
+      if (creem_sub_id) {
+        try {
+          await updateOrderSubscription(
+            order.order_no,
+            creem_sub_id,
+            1,
+            Math.floor(Date.now() / 1000),
+            Math.floor(new Date(order.expired_at || "").getTime() / 1000),
+            Math.floor(Date.now() / 1000),
+            OrderStatus.Paid,
+            paid_at,
+            1,
+            paid_email,
+            paid_detail
+          );
+          console.log("✅ [handleCreemOrder] sub_id 已保存:", creem_sub_id);
+        } catch (e) {
+          console.error("⚠️ [handleCreemOrder] 保存 sub_id 失败（不影响主流程）:", e);
+        }
+      } else {
+        console.warn("⚠️ [handleCreemOrder] 订阅型订单未收到 sub_id，续费匹配将不可用");
+      }
+    }
+
     // 发送订单确认邮件
     if (paid_email) {
       try {
@@ -452,6 +487,155 @@ export async function handleCreemOrder(data: CreemPaymentData) {
     console.log("✅ [handleCreemOrder] 积分:", order.credits);
   } catch (e: any) {
     console.error("handle creem order failed: ", e);
+    throw e;
+  }
+}
+
+/**
+ * 处理 Creem subscription.paid webhook
+ *
+ * Creem 的 subscription.paid 在首次付款和每次续费都会触发。
+ * 通过比较 current_period_end_date 与 order.expired_at 来区分：
+ *   - 若 periodEnd <= expired_at + 1天  → 首次付款已由 checkout.completed 处理，跳过
+ *   - 若 periodEnd >  expired_at + 1天  → 真正的续费，延长权限并重置积分
+ */
+export async function handleCreemSubscriptionRenewal(data: any) {
+  try {
+    console.log("🔔 [CreemRenewal] ========== 开始处理 subscription.paid ==========");
+    console.log("🔔 [CreemRenewal] 收到数据:", JSON.stringify(data, null, 2));
+
+    // subscription.paid 的 data.object 就是 subscription 对象
+    const sub_id =
+      (data.object?.object === "subscription" ? data.object?.id : null) ||
+      data.subscription_id ||
+      data.object?.subscription?.id ||
+      data.object?.subscription_id ||
+      data.sub_id ||
+      "";
+
+    if (!sub_id) {
+      console.warn("⚠️ [CreemRenewal] 无法提取 sub_id，忽略此事件");
+      return;
+    }
+
+    console.log("🔔 [CreemRenewal] sub_id:", sub_id);
+
+    const order = await findOrderBySubId(sub_id);
+    if (!order) {
+      // 首次 subscription.paid 和 checkout.completed 几乎同时到达
+      // 若 checkout.completed 还没保存 sub_id，这里会找不到订单 → 正常，跳过
+      console.log("ℹ️ [CreemRenewal] 未找到 sub_id 对应的订单（可能是首次付款中），跳过");
+      return;
+    }
+
+    if (order.status !== OrderStatus.Paid) {
+      console.log("ℹ️ [CreemRenewal] 订单尚未激活（status:", order.status, "），跳过");
+      return;
+    }
+
+    // 区分「首次 subscription.paid」与「续费 subscription.paid」
+    // 用 Creem 返回的 current_period_end_date 与数据库中的 expired_at 对比
+    const periodEndStr: string | undefined = data.object?.current_period_end_date;
+    if (periodEndStr && order.expired_at) {
+      const periodEnd = new Date(periodEndStr);
+      const currentExpiry = new Date(order.expired_at);
+      const oneDayMs = 24 * 60 * 60 * 1000;
+      if (periodEnd.getTime() <= currentExpiry.getTime() + oneDayMs) {
+        console.log(
+          "ℹ️ [CreemRenewal] 首次付款已由 checkout.completed 处理，periodEnd 未超出 expired_at，跳过"
+        );
+        console.log("  periodEnd:", periodEndStr, " expired_at:", order.expired_at);
+        return;
+      }
+    }
+
+    // ✅ 确认是续费
+    // 优先使用 Creem 提供的 current_period_end_date，比自行计算更准确
+    let new_expired_at: Date;
+    if (periodEndStr) {
+      new_expired_at = new Date(periodEndStr);
+    } else {
+      const valid_months = order.valid_months || 1;
+      new_expired_at = new Date();
+      new_expired_at.setMonth(new_expired_at.getMonth() + valid_months);
+    }
+
+    const now = new Date();
+    const sub_times = (order.sub_times || 0) + 1;
+
+    await renewSubscriptionOrder(
+      order.order_no,
+      new_expired_at,
+      Math.floor(new_expired_at.getTime() / 1000),
+      Math.floor(now.getTime() / 1000),
+      sub_times,
+      JSON.stringify(data)
+    );
+
+    if (order.user_uuid && order.credits > 0) {
+      await resetCreditsForRenewal({
+        user_uuid: order.user_uuid,
+        credits: order.credits,
+        expired_at: new_expired_at.toISOString(),
+        order_no: order.order_no,
+      });
+    }
+
+    console.log("✅ [CreemRenewal] ========== 续费处理成功 ==========");
+    console.log("✅ [CreemRenewal] 订单号:", order.order_no);
+    console.log("✅ [CreemRenewal] 新到期时间:", new_expired_at.toISOString());
+    console.log("✅ [CreemRenewal] 第", sub_times, "期");
+  } catch (e: any) {
+    console.error("❌ [CreemRenewal] 续费处理失败:", e);
+    throw e;
+  }
+}
+
+/**
+ * 处理 Creem subscription.canceled webhook
+ * 将 expired_at 设为当前付费周期末，服务在周期内仍有效，到期自动失效
+ */
+export async function handleCreemSubscriptionCanceled(data: any) {
+  try {
+    console.log("🔔 [CreemCanceled] ========== 处理订阅取消 ==========");
+    console.log("🔔 [CreemCanceled] 收到数据:", JSON.stringify(data, null, 2));
+
+    const sub_id =
+      (data.object?.object === "subscription" ? data.object?.id : null) ||
+      data.subscription_id ||
+      data.sub_id ||
+      "";
+
+    if (!sub_id) {
+      console.warn("⚠️ [CreemCanceled] 无法提取 sub_id，忽略此事件");
+      return;
+    }
+
+    const order = await findOrderBySubId(sub_id);
+    if (!order) {
+      console.log("ℹ️ [CreemCanceled] 未找到对应订单，sub_id:", sub_id);
+      return;
+    }
+
+    // 服务有效至当前付费周期末（用 Creem 提供的 current_period_end_date 最准确）
+    const periodEndStr: string | undefined = data.object?.current_period_end_date;
+    const expire_at = periodEndStr ? new Date(periodEndStr) : new Date(order.expired_at || Date.now());
+
+    // 更新 expired_at 为周期末，sub_times 保持不变（未续费，不计新周期）
+    await renewSubscriptionOrder(
+      order.order_no,
+      expire_at,
+      Math.floor(expire_at.getTime() / 1000),
+      Math.floor(Date.now() / 1000),
+      order.sub_times || 1,
+      JSON.stringify(data)
+    );
+
+    console.log("✅ [CreemCanceled] 订阅取消处理完成");
+    console.log("✅ [CreemCanceled] 服务有效至:", expire_at.toISOString());
+    console.log("✅ [CreemCanceled] 订单号:", order.order_no);
+  } catch (e: any) {
+    console.error("❌ [CreemCanceled] 处理失败:", e);
     throw e;
   }
 }

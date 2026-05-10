@@ -85,12 +85,16 @@ export async function POST(req: Request) {
 
     // 解析 Creem 产品 ID：creem_product_id 可为 key(starter/standard_monthly 等) 或 prod_* 实际 ID
     const creemKeyMap: Record<string, string | undefined> = {
-      starter: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY,
-      starter_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY,
+      starter:          process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY,
+      starter_monthly:  process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY,
+      starter_yearly:   process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY,
+      starter_onetime:  process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_ONETIME,
       standard_monthly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_MONTHLY,
-      standard_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY,
-      premium_monthly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY,
-      premium_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY,
+      standard_yearly:  process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY,
+      standard_onetime: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_ONETIME,
+      premium_monthly:  process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY,
+      premium_yearly:   process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY,
+      premium_onetime:  process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_ONETIME,
     };
     const rawCreemId = creem_product_id || (item as PricingItem).creem_product_id;
     const creem_product_id_resolved =

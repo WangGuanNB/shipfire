@@ -18,16 +18,62 @@ export class InsufficientCreditsError extends Error {
 import { getFirstPaidOrderByUserUuid } from "@/models/order";
 
 export enum CreditsTransType {
-  NewUser = "new_user", // initial credits for new user
-  OrderPay = "order_pay", // user pay for credits
-  SystemAdd = "system_add", // system add credits
-  Ping = "ping", // cost for ping api
-  ImageGen = "image_gen", // cost for image generation
+  NewUser = "new_user",
+  OrderPay = "order_pay",
+  SystemAdd = "system_add",
+  Ping = "ping",
+  ImageGen = "image_gen",
+  SubscriptionRenew = "subscription_renew", // 订阅自动续费发放积分
+  /** 管理员按目标余额调整（单条流水，delta 可正可负，允许余额为负） */
+  AdminAdjust = "admin_adjust",
 }
 
 export enum CreditsAmount {
   NewUserGet = 10,
   PingCost = 1,
+}
+
+/** 未过期流水之和（不钳位，可为负） */
+export async function getUserRawLeftCredits(user_uuid: string): Promise<number> {
+  let sum = 0;
+  const rows = await getUserValidCredits(user_uuid);
+  if (rows) {
+    for (const r of rows) {
+      sum += r.credits ?? 0;
+    }
+  }
+  return sum;
+}
+
+/**
+ * 将用户「当前未过期积分之和」调整到 target（插入一条 admin_adjust 流水；允许结果为负）。
+ */
+export async function adminAdjustCreditsToTarget(
+  user_uuid: string,
+  target: number
+): Promise<{ previous: number; delta: number; newBalance: number }> {
+  const t = Math.round(Number(target));
+  if (!Number.isFinite(t)) {
+    throw new Error("invalid target");
+  }
+  const previous = await getUserRawLeftCredits(user_uuid);
+  const delta = t - previous;
+  if (delta === 0) {
+    return { previous, delta: 0, newBalance: previous };
+  }
+
+  const new_credit: typeof creditsTable.$inferInsert = {
+    trans_no: getSnowId(),
+    created_at: new Date(getIsoTimestr()),
+    user_uuid,
+    trans_type: CreditsTransType.AdminAdjust,
+    credits: delta,
+    order_no: "",
+    expired_at: null,
+  };
+  await insertCredit(new_credit);
+
+  return { previous, delta, newBalance: previous + delta };
 }
 
 export async function getUserCredits(user_uuid: string): Promise<UserCredits> {
@@ -142,6 +188,31 @@ export async function increaseCredits({
     console.log("increase credits failed: ", e);
     throw e;
   }
+}
+
+/**
+ * 订阅续费时发放新周期积分
+ * 旧积分通过 expired_at 自然过期，无需手动清零；
+ * 本函数只需插入新一期的积分记录即可实现"重置"语义。
+ */
+export async function resetCreditsForRenewal({
+  user_uuid,
+  credits,
+  expired_at,
+  order_no,
+}: {
+  user_uuid: string;
+  credits: number;
+  expired_at: string;
+  order_no: string;
+}) {
+  await increaseCredits({
+    user_uuid,
+    trans_type: CreditsTransType.SubscriptionRenew,
+    credits,
+    expired_at,
+    order_no,
+  });
 }
 
 export async function updateCreditForOrder(order: Order) {

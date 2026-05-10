@@ -92,12 +92,8 @@ export async function createCreemCheckoutSession(
       };
     }
 
-    // 如果是订阅，添加订阅参数（如果支持）
-    if (params.is_subscription) {
-      requestBody.subscription = {
-        interval: params.interval || "month",
-      };
-    }
+    // 订阅周期由 Creem 后台「产品」本身配置（recurring / billing_period）。
+    // test-api / v1/checkouts 会返回 400：property subscription should not exist — 不要传 subscription 对象。
 
     // 🔥 根据 Creem 文档，API 端点是 /v1/checkouts（不是 /v1/checkout/sessions）
     // 测试模式使用 test-api.creem.io，生产模式使用 api.creem.io

@@ -32,13 +32,14 @@ import { loadStripe } from '@stripe/stripe-js';
 import { toast } from 'sonner';
 import { PricingItem } from '@/types/blocks/pricing';
 import { PaymentMethod } from '@/components/payment/PaymentMethodSelector';
+import { getEnabledPaymentMethods } from '@/services/payment-selector';
 
 /**
  * 支付处理 Hook
  * @returns {Object} 支付相关的状态和方法
  * @returns {Function} handleCheckout - 处理支付的主函数
  * @returns {boolean} isLoading - 支付处理中的加载状态
- * @returns {string|null} productId - 当前正在处理的产品ID
+ * @returns {string|null} productId - 当前 checkout 的键，格式 `product_id|group`（例如 `starter|monthly`），用于区分同一 product 不同计费周期
  * @returns {boolean} showPaymentSelector - 是否显示支付方式选择器
  * @returns {Function} setShowPaymentSelector - 设置支付方式选择器显示状态
  * @returns {Function} handlePaymentMethodSelect - 处理支付方式选择
@@ -55,43 +56,14 @@ export function usePayment() {
   } | null>(null);
 
   /**
-   * 处理支付流程 - 显示支付方式选择器
-   * @param {PricingItem} item - 定价项目信息
-   * @param {boolean} cn_pay - 是否使用中国支付方式（支付宝/微信）
-   * @returns {Promise<Object>} 支付结果
-   *
-   * @description
-   * 用户点击购买按钮后，先显示支付方式选择器
-   * 用户选择支付方式后，再调用实际的支付流程
+   * 发起 checkout（弹窗选择后或仅一种支付方式时直接调用）
    */
-  const handleCheckout = async (
+  const runCheckout = async (
     item: PricingItem,
-    cn_pay: boolean = false
+    cn_pay: boolean,
+    paymentMethod: PaymentMethod
   ) => {
-    // 检查用户登录状态
-    if (!user) {
-      setShowSignModal(true);
-      return { needAuth: true };
-    }
-
-    // 保存待支付信息，显示支付方式选择器
-    setPendingPayment({ item, cn_pay });
-    setShowPaymentSelector(true);
-
-    return { showingSelector: true };
-  };
-
-  /**
-   * 处理支付方式选择
-   * @param {PaymentMethod} paymentMethod - 用户选择的支付方式
-   */
-  const handlePaymentMethodSelect = async (paymentMethod: PaymentMethod) => {
-    if (!pendingPayment) return;
-
-    const { item, cn_pay } = pendingPayment;
-
     try {
-      // 构建支付参数
       const params: {
         product_id: string;
         product_name?: string;
@@ -115,16 +87,13 @@ export function usePayment() {
         payment_method: paymentMethod,
       };
 
-      // 如果使用 Creem，添加产品 ID（如果有配置）
       if (item.creem_product_id) {
         params.creem_product_id = item.creem_product_id;
       }
 
-      // 设置加载状态
       setIsLoading(true);
-      setProductId(item.product_id);
+      setProductId(`${item.product_id}|${item.group ?? ""}`);
 
-      // 调用 /api/checkout，传入用户选择的支付方式
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: {
@@ -133,79 +102,106 @@ export function usePayment() {
         body: JSON.stringify(params),
       });
 
-      // 处理未授权状态
       if (response.status === 401) {
-        setIsLoading(false);
-        setProductId(null);
         setShowSignModal(true);
         return { needAuth: true };
       }
 
-      // 解析响应数据
       const { code, message, data } = await response.json();
       if (code !== 0) {
         toast.error(message);
         return { success: false, message };
       }
 
-      // 根据返回的支付方式处理跳转
       if (paymentMethod === "creem") {
-        // Creem 支付：在新标签页打开支付链接
         const { checkout_url } = data;
         if (checkout_url) {
-          window.open(checkout_url, '_blank', 'noopener,noreferrer');
+          window.open(checkout_url, "_blank", "noopener,noreferrer");
           return { success: true };
-        } else {
-          toast.error("Failed to get checkout URL");
-          return { success: false, message: "Failed to get checkout URL" };
         }
-      } else if (paymentMethod === "paypal") {
-        // PayPal 支付：跳转到 PayPal 支付页面
+        toast.error("Failed to get checkout URL");
+        return { success: false, message: "Failed to get checkout URL" };
+      }
+
+      if (paymentMethod === "paypal") {
         const { approval_url } = data;
         if (approval_url) {
           window.location.href = approval_url;
           return { success: true };
-        } else {
-          toast.error("Failed to get PayPal approval URL");
-          return { success: false, message: "Failed to get PayPal approval URL" };
         }
-      } else {
-        // Stripe 支付：使用 Stripe SDK 跳转
-        const { public_key, session_id } = data;
-        if (!public_key || !session_id) {
-          toast.error("Invalid payment response");
-          return { success: false, message: "Invalid payment response" };
-        }
-
-        const stripe = await loadStripe(public_key);
-
-        if (!stripe) {
-          toast.error("checkout failed");
-          return { success: false };
-        }
-
-        // 跳转到Stripe支付页面
-        const result = await stripe.redirectToCheckout({
-          sessionId: session_id,
-        });
-
-        if (result.error) {
-          toast.error(result.error.message);
-          return { success: false, message: result.error.message };
-        }
-
-        return { success: true };
+        toast.error("Failed to get PayPal approval URL");
+        return { success: false, message: "Failed to get PayPal approval URL" };
       }
+
+      const { public_key, session_id } = data;
+      if (!public_key || !session_id) {
+        toast.error("Invalid payment response");
+        return { success: false, message: "Invalid payment response" };
+      }
+
+      const stripe = await loadStripe(public_key);
+      if (!stripe) {
+        toast.error("checkout failed");
+        return { success: false };
+      }
+
+      const result = await stripe.redirectToCheckout({
+        sessionId: session_id,
+      });
+
+      if (result.error) {
+        toast.error(result.error.message);
+        return { success: false, message: result.error.message };
+      }
+
+      return { success: true };
     } catch (e) {
       console.log("checkout failed: ", e);
       toast.error("checkout failed");
       return { success: false };
     } finally {
-      // 清理加载状态
       setIsLoading(false);
       setProductId(null);
       setPendingPayment(null);
     }
+  };
+
+  /**
+   * 处理支付流程：多种已启用支付方式时弹窗；仅一种时直接进入该渠道。
+   */
+  const handleCheckout = async (
+    item: PricingItem,
+    cn_pay: boolean = false
+  ) => {
+    if (!user) {
+      setShowSignModal(true);
+      return { needAuth: true };
+    }
+
+    const enabled = getEnabledPaymentMethods();
+    if (enabled.length === 0) {
+      toast.error("No payment method is enabled");
+      return { success: false, message: "No payment method" };
+    }
+
+    if (enabled.length === 1) {
+      setShowPaymentSelector(false);
+      return runCheckout(item, cn_pay, enabled[0]);
+    }
+
+    setPendingPayment({ item, cn_pay });
+    setShowPaymentSelector(true);
+    return { showingSelector: true };
+  };
+
+  /**
+   * 处理支付方式选择（弹窗内）
+   */
+  const handlePaymentMethodSelect = async (paymentMethod: PaymentMethod) => {
+    if (!pendingPayment) return;
+    const { item, cn_pay } = pendingPayment;
+    setShowPaymentSelector(false);
+    return runCheckout(item, cn_pay, paymentMethod);
   };
 
   return {

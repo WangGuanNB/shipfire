@@ -52,9 +52,13 @@
     "NEXT_PUBLIC_AUTH_GITHUB_ENABLED": "false",
 
     // ========== 5. 支付配置 ==========
+
+     // 定价页 monthly,yearly,one-time（全显示）| monthly,yearly（只月+年）| one-time（仅一次性）
+     "NEXT_PUBLIC_PRICING_VISIBLE_TABS": "one-time",
+
+    
     // 支付方式开关（优先级: Stripe > PayPal > Creem，至少启用一个）
     "NEXT_PUBLIC_PAYMENT_STRIPE_ENABLED": "false",
-    
     // Stripe 公开密钥（前端使用，pk_test_... 或 pk_live_...，敏感信息请用 Secrets）
     "STRIPE_PUBLIC_KEY": "",
     // 支付成功跳转 URL
@@ -66,7 +70,7 @@
 
     // ========== 5.1 PayPal 支付配置 ==========
     // 支付方式开关（优先级: Stripe > PayPal > Creem，至少启用一个）
-    "NEXT_PUBLIC_PAYMENT_PAYPAL_ENABLED": "true",
+    "NEXT_PUBLIC_PAYMENT_PAYPAL_ENABLED": "false",
     // PayPal 环境（sandbox=测试，live=生产；Client ID/Secret 请用 Secrets）
     "PAYPAL_ENVIRONMENT": "live",
 
@@ -78,20 +82,19 @@
     // Creem API 地址（可选，默认: https://api.creem.io）
     "CREEM_API_URL": "https://api.creem.io",
     // Creem 产品 ID（6 套餐，从 Creem Dashboard 创建产品后获取 prod_xxx）
-    // --- 月付：入门版、标准版、高级版 ---
-    // Starter 入门版-月付
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY": "prod_1LXdXxSyRyUB0wAEctaixp",
-    // Standard 标准版-月付
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_MONTHLY": "prod_6VYZJU7R1l9DlT3g6vduuF",
-    // Premium 高级版-月付
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY": "prod_2WcXEPQKzsGK16yWBuFN71",
-    // --- 年付：入门版、标准版、高级版 ---
-    // Starter 入门版-年付
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY": "prod_2uN3KJeOyGN5Hw7J1YV6A8",
-    // Standard 标准版-年付
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY": "prod_1JCIlQHaHA5GwHvaOZIC51",
-    // Premium 高级版-年付
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY": "prod_4DNSPn2ZJmwDPinYvyGt9M",
+    //  ---- 月订阅：Starter / Standard / Premium ----
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY": "",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_MONTHLY": "",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY": "",
+    // ---- 年订阅：Starter / Standard / Premium ----
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY": "",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY": "",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY": "",
+    // ---- 一次性：从 Creem Dashboard 创建产品后填入 prod_xxx ----
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_ONETIME": "",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_ONETIME": "",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_ONETIME": "",
+
 
     // ========== 7. 积分系统配置 ==========
     // 新用户注册时赠送的积分（默认: 20）

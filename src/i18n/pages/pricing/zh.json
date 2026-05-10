@@ -2,33 +2,89 @@
   "pricing": {
     "name": "pricing",
     "label": "定价",
-    "title": "选择您的方案",
-    "description": "获取 ShipAny 的所有功能，快速启动您的 AI SaaS 创业项目。",
+    "title": "选择您的套餐",
+    "description": "获取 ShipAny 的全部功能，快速启动您的 AI SaaS 项目。",
     "groups": [
-      {"name": "monthly", "title": "月度"},
-      {"name": "yearly", "title": "年度", "label": "省50%"}
+      {"name": "monthly", "title": "按月"},
+      {"name": "yearly", "title": "按年", "label": "省 50%"},
+      {"name": "one-time", "title": "一次性"}
     ],
+    "comparison_title": "功能对比",
+    "comparison_features_by_group": {
+      "monthly": [
+        {"text": "每月 300 积分", "starter": false, "standard": false, "premium": true, "visible_for": ["premium"]},
+        {"text": "每月 200 积分", "starter": false, "standard": true, "premium": false, "visible_for": ["standard"]},
+        {"text": "每月 100 积分", "starter": true, "standard": false, "premium": false, "visible_for": ["starter"]},
+        {"text": "NextJS 模板", "starter": true, "standard": true, "premium": true},
+        {"text": "SEO 友好结构", "starter": true, "standard": true, "premium": true},
+        {"text": "Creem 支付", "starter": true, "standard": true, "premium": true},
+        {"text": "D1 数据存储", "starter": true, "standard": true, "premium": true},
+        {"text": "Google OAuth 和一键登录", "starter": true, "standard": true, "premium": true},
+        {"text": "国际化支持", "starter": true, "standard": true, "premium": true},
+        {"text": "Vercel 或 Cloudflare 部署", "starter": false, "standard": true, "premium": true},
+        {"text": "隐私和条款生成", "starter": false, "standard": true, "premium": true},
+        {"text": "Google Analytics 集成", "starter": false, "standard": true, "premium": true},
+        {"text": "Google Search Console 集成", "starter": false, "standard": true, "premium": true},
+        {"text": "Discord 社区", "starter": false, "standard": true, "premium": true},
+        {"text": "首次发布技术支持", "starter": false, "standard": true, "premium": true},
+        {"text": "AI 业务功能", "starter": false, "standard": false, "premium": true},
+        {"text": "用户中心", "starter": false, "standard": false, "premium": true},
+        {"text": "积分系统", "starter": false, "standard": false, "premium": true},
+        {"text": "SaaS API 销售", "starter": false, "standard": false, "premium": true},
+        {"text": "管理系统", "starter": false, "standard": false, "premium": true},
+        {"text": "优先技术支持", "starter": false, "standard": false, "premium": true}
+      ],
+      "one-time": [
+        {"text": "300 积分，有效期 1 年", "starter": false, "standard": false, "premium": true, "visible_for": ["premium"]},
+        {"text": "200 积分，有效期 3 个月", "starter": false, "standard": true, "premium": false, "visible_for": ["standard"]},
+        {"text": "100 积分，有效期 1 个月", "starter": true, "standard": false, "premium": false, "visible_for": ["starter"]},
+        {"text": "NextJS 模板", "starter": true, "standard": true, "premium": true},
+        {"text": "SEO 友好结构", "starter": true, "standard": true, "premium": true},
+        {"text": "Creem 支付", "starter": true, "standard": true, "premium": true},
+        {"text": "D1 数据存储", "starter": true, "standard": true, "premium": true},
+        {"text": "Google OAuth 和一键登录", "starter": true, "standard": true, "premium": true},
+        {"text": "国际化支持", "starter": true, "standard": true, "premium": true},
+        {"text": "Vercel 或 Cloudflare 部署", "starter": false, "standard": true, "premium": true},
+        {"text": "隐私和条款生成", "starter": false, "standard": true, "premium": true},
+        {"text": "Google Analytics 集成", "starter": false, "standard": true, "premium": true},
+        {"text": "Google Search Console 集成", "starter": false, "standard": true, "premium": true},
+        {"text": "Discord 社区", "starter": false, "standard": true, "premium": true},
+        {"text": "首次发布技术支持", "starter": false, "standard": true, "premium": true},
+        {"text": "AI 业务功能", "starter": false, "standard": false, "premium": true},
+        {"text": "用户中心", "starter": false, "standard": false, "premium": true},
+        {"text": "积分系统", "starter": false, "standard": false, "premium": true},
+        {"text": "SaaS API 销售", "starter": false, "standard": false, "premium": true},
+        {"text": "管理系统", "starter": false, "standard": false, "premium": true},
+        {"text": "优先技术支持", "starter": false, "standard": false, "premium": true},
+        {"text": "终身更新", "starter": false, "standard": true, "premium": true}
+      ]
+    },
     "items": [
-      {"title":"入门版","description":"开始您的第一个 SaaS 创业项目。","features_title":"包含","features":["100 积分，有效期 1 个月","NextJS 模板","SEO 友好结构","Stripe 支付","Supabase 数据存储","Google OAuth 和一键登录","国际化支持"],"interval":"one-time","amount":199,"cn_amount":1430,"currency":"USD","price":"$1.99","original_price":"$99","unit":"USD","is_featured":false,"tip":"","button":{"title":"升级","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"starter","creem_product_id":"starter","product_name":"ShipAny 模板入门版","credits":100,"valid_months":1,"group":"monthly"},
-      {"title":"标准版","description":"快速启动您的 SaaS 创业项目。","label":"热门","features_title":"包含入门版所有功能，另加","features":["200 积分，有效期 3 个月","Vercel 或 Cloudflare 部署","隐私和条款生成","Google Analytics 集成","Google Search Console 集成","Discord 社区","首次发布技术支持","终身更新"],"interval":"one-time","amount":599,"cn_amount":4310,"currency":"USD","price":"$5.99","original_price":"$299","unit":"USD","is_featured":true,"tip":"","button":{"title":"升级","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"standard","creem_product_id":"standard_monthly","product_name":"ShipAny 模板标准版","credits":200,"valid_months":3,"group":"monthly"},
-      {"title":"高级版","description":"构建任何 AI SaaS 创业项目。","features_title":"包含标准版所有功能，另加","features":["300 积分，有效期 1 年","AI 业务功能","用户中心","积分系统","SaaS API 销售","管理系统","优先技术支持"],"interval":"one-time","amount":1999,"cn_amount":14400,"currency":"USD","price":"$19.99","original_price":"$399","unit":"USD","is_featured":false,"tip":"","button":{"title":"升级","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"premium","creem_product_id":"premium_monthly","product_name":"ShipAny 模板高级版","credits":300,"valid_months":12,"group":"monthly"},
-      {"title":"入门版","description":"开始您的第一个 SaaS 创业项目。","features_title":"包含","features":["100 积分，有效期 1 年","NextJS 模板","SEO 友好结构","Stripe 支付","Supabase 数据存储","Google OAuth 和一键登录","国际化支持"],"interval":"one-time","amount":1200,"cn_amount":8640,"currency":"USD","price":"$12","original_price":"$99","unit":"USD","unit_note":"按年计费","is_featured":false,"tip":"","button":{"title":"升级","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"starter","creem_product_id":"starter_yearly","product_name":"ShipAny 模板入门版","credits":100,"valid_months":12,"group":"yearly"},
-      {"title":"标准版","description":"快速启动您的 SaaS 创业项目。","label":"热门","features_title":"包含入门版所有功能，另加","features":["200 积分，有效期 1 年","Vercel 或 Cloudflare 部署","隐私和条款生成","Google Analytics 集成","Google Search Console 集成","Discord 社区","首次发布技术支持","终身更新"],"interval":"one-time","amount":19900,"cn_amount":143300,"currency":"USD","price":"$199","original_price":"$299","unit":"USD","unit_note":"按年计费","is_featured":true,"tip":"","button":{"title":"升级","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"standard","creem_product_id":"standard_yearly","product_name":"ShipAny 模板标准版","credits":200,"valid_months":12,"group":"yearly"},
-      {"title":"高级版","description":"构建任何 AI SaaS 创业项目。","features_title":"包含标准版所有功能，另加","features":["300 积分，有效期 1 年","AI 业务功能","用户中心","积分系统","SaaS API 销售","管理系统","优先技术支持"],"interval":"one-time","amount":39999,"cn_amount":288000,"currency":"USD","price":"$399.99","original_price":"$499","unit":"USD","unit_note":"按年计费","is_featured":false,"tip":"","button":{"title":"升级","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"premium","creem_product_id":"premium_yearly","product_name":"ShipAny 模板高级版","credits":300,"valid_months":12,"group":"yearly"}
+      {"title":"入门版","description":"开始您的第一个 SaaS 创业项目。","features_title":"包含","features":["每月 100 积分","NextJS 模板","SEO 友好结构","Creem 支付","D1 数据存储","Google OAuth 和一键登录","国际化支持"],"interval":"month","amount":199,"cn_amount":1430,"currency":"USD","price":"$1.99","original_price":"$9.99","unit":"/月","is_featured":false,"tip":"","button":{"title":"立即购买","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"starter","creem_product_id":"starter_monthly","product_name":"入门版月订阅","credits":100,"valid_months":1,"group":"monthly"},
+      {"title":"标准版","description":"快速启动您的 SaaS 创业项目。","label":"热门","features_title":"包含入门版所有功能，另加","features":["每月 200 积分","Vercel 或 Cloudflare 部署","隐私和条款生成","Google Analytics 集成","Google Search Console 集成","Discord 社区","首次发布技术支持"],"interval":"month","amount":599,"cn_amount":4310,"currency":"USD","price":"$5.99","original_price":"$29.99","unit":"/月","is_featured":true,"tip":"","button":{"title":"立即购买","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"standard","creem_product_id":"standard_monthly","product_name":"标准版月订阅","credits":200,"valid_months":1,"group":"monthly"},
+      {"title":"高级版","description":"构建任何 AI SaaS 创业项目。","features_title":"包含标准版所有功能，另加","features":["每月 300 积分","AI 业务功能","用户中心","积分系统","SaaS API 销售","管理系统","优先技术支持"],"interval":"month","amount":1999,"cn_amount":14400,"currency":"USD","price":"$19.99","original_price":"$49.99","unit":"/月","is_featured":false,"tip":"","button":{"title":"立即购买","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"premium","creem_product_id":"premium_monthly","product_name":"高级版月订阅","credits":300,"valid_months":1,"group":"monthly"},
+
+      {"title":"入门版","description":"开始您的第一个 SaaS 创业项目。","features_title":"包含","features":["每月 100 积分","NextJS 模板","SEO 友好结构","Creem 支付","D1 数据存储","Google OAuth 和一键登录","国际化支持"],"interval":"year","amount":1200,"cn_amount":8640,"currency":"USD","price":"$12","original_price":"$23.88","unit":"/年","unit_note":"按年计费","is_featured":false,"tip":"","button":{"title":"立即购买","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"starter","creem_product_id":"starter_yearly","product_name":"入门版年订阅","credits":100,"valid_months":12,"group":"yearly"},
+      {"title":"标准版","description":"快速启动您的 SaaS 创业项目。","label":"热门","features_title":"包含入门版所有功能，另加","features":["每月 200 积分","Vercel 或 Cloudflare 部署","隐私和条款生成","Google Analytics 集成","Google Search Console 集成","Discord 社区","首次发布技术支持"],"interval":"year","amount":19900,"cn_amount":143300,"currency":"USD","price":"$199","original_price":"$359.88","unit":"/年","unit_note":"按年计费","is_featured":true,"tip":"","button":{"title":"立即购买","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"standard","creem_product_id":"standard_yearly","product_name":"标准版年订阅","credits":200,"valid_months":12,"group":"yearly"},
+      {"title":"高级版","description":"构建任何 AI SaaS 创业项目。","features_title":"包含标准版所有功能，另加","features":["每月 300 积分","AI 业务功能","用户中心","积分系统","SaaS API 销售","管理系统","优先技术支持"],"interval":"year","amount":39999,"cn_amount":288000,"currency":"USD","price":"$399.99","original_price":"$599.88","unit":"/年","unit_note":"按年计费","is_featured":false,"tip":"","button":{"title":"立即购买","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"premium","creem_product_id":"premium_yearly","product_name":"高级版年订阅","credits":300,"valid_months":12,"group":"yearly"},
+
+      {"title":"入门版","description":"开始您的第一个 SaaS 创业项目。","features_title":"包含","features":["100 积分，有效期 1 个月","NextJS 模板","SEO 友好结构","Creem 支付","D1 数据存储","Google OAuth 和一键登录","国际化支持"],"interval":"one-time","amount":299,"cn_amount":2150,"currency":"USD","price":"$2.99","original_price":"$9.99","unit":"USD","is_featured":false,"tip":"","button":{"title":"立即购买","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"starter","creem_product_id":"starter_onetime","product_name":"入门版一次性","credits":100,"valid_months":1,"group":"one-time"},
+      {"title":"标准版","description":"快速启动您的 SaaS 创业项目。","label":"热门","features_title":"包含入门版所有功能，另加","features":["200 积分，有效期 3 个月","Vercel 或 Cloudflare 部署","隐私和条款生成","Google Analytics 集成","Google Search Console 集成","Discord 社区","首次发布技术支持","终身更新"],"interval":"one-time","amount":799,"cn_amount":5760,"currency":"USD","price":"$7.99","original_price":"$29.99","unit":"USD","is_featured":true,"tip":"","button":{"title":"立即购买","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"standard","creem_product_id":"standard_onetime","product_name":"标准版一次性","credits":200,"valid_months":3,"group":"one-time"},
+      {"title":"高级版","description":"构建任何 AI SaaS 创业项目。","features_title":"包含标准版所有功能，另加","features":["300 积分，有效期 1 年","AI 业务功能","用户中心","积分系统","SaaS API 销售","管理系统","优先技术支持"],"interval":"one-time","amount":2999,"cn_amount":21600,"currency":"USD","price":"$29.99","original_price":"$99.99","unit":"USD","is_featured":false,"tip":"","button":{"title":"立即购买","url":"/pricing","icon":"RiFlashlightFill"},"product_id":"premium","creem_product_id":"premium_onetime","product_name":"高级版一次性","credits":300,"valid_months":12,"group":"one-time"}
     ]
   },
   "faq": {
     "name": "faq",
-    "label": "FAQ",
-    "title": "常见问题",
-    "description": "获取关于订阅和付费方案的常见问题答案。",
+    "label": "常见问题",
+    "title": "常见问题解答",
+    "description": "关于订阅计划的常见问题。",
     "items": [
-      {"title": "为什么选择付费版？", "description": "您的支持帮助我们持续维护和更新产品，同时您将获得：无水印输出、优先队列、更高生成速度、完全隐私保护、无广告体验等专属权益。"},
-      {"title": "可以升级或取消吗？", "description": "随时可以！您可以在账户设置页面一键升级或取消。订阅将延续到当前计费周期结束，无长期合同绑定。"},
-      {"title": "支持退款吗？", "description": "我们目前不支持退款。请在购买前确认方案详情。如有特殊情况，请联系 support@shipfire.app 咨询。"},
-      {"title": "付费版图片质量更高吗？", "description": "是的。标准版和高级版解锁更多功能与权益，包括优先队列、无水印输出、商业使用授权等，助您更高效地完成项目。"},
-      {"title": "订阅包含 API 访问吗？", "description": "当前版本暂不提供公开 API。我们计划在未来推出，欢迎通过 support@shipfire.app 告知您的具体需求。"},
-      {"title": "如何获取技术支持？", "description": "您可以通过 support@shipfire.app 联系我们。付费用户享有优先技术支持，我们会尽快回复您的问题。"}
+      {"title": "为什么要订阅？", "description": "您的支持帮助我们持续改进产品，同时您可以获得有价值的权益：无水印输出、优先队列、更快生成速度、完全隐私保护以及无广告体验。"},
+      {"title": "可以升级或取消吗？", "description": "随时可以！您可以在账户设置页面一键升级或取消订阅。订阅将在当前计费周期结束后停止，没有长期合同约束。"},
+      {"title": "可以退款吗？", "description": "我们目前不提供退款服务。请在购买前仔细查看套餐详情。如有特殊情况，请联系 support@shipfire.app。"},
+      {"title": "付费套餐质量更高吗？", "description": "是的。标准版和高级版解锁更多功能和权益，包括优先队列、无水印输出、商业使用权等。"},
+      {"title": "订阅包含 API 访问权限吗？", "description": "目前暂无公开 API，但我们计划在未来推出。如有需求，请联系 support@shipfire.app。"},
+      {"title": "可以获得使用帮助吗？", "description": "当然！请联系 support@shipfire.app。付费用户享有优先技术支持，我们会尽快回复。"}
     ]
   }
 }

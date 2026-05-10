@@ -1,7 +1,6 @@
 import { orders } from "@/db/schema";
 import { db } from "@/db";
-import { asc, desc, eq, gte, lte, or } from "drizzle-orm";
-import { and } from "drizzle-orm";
+import { and, asc, desc, eq, gte, like, lte, or, type SQL } from "drizzle-orm";
 
 export enum OrderStatus {
   Created = "created",
@@ -231,6 +230,101 @@ export async function getPaiedOrders(
   return data;
 }
 
+export type AdminOrderFilters = {
+  email?: string;
+  status?: string;
+  pay_type?: string;
+  product_name?: string;
+  /** Inclusive start, `YYYY-MM-DD` (UTC midnight). */
+  created_from?: string;
+  /** Inclusive end, `YYYY-MM-DD` (UTC end of day). */
+  created_to?: string;
+};
+
+export function hasAdminOrderFilters(f: AdminOrderFilters): boolean {
+  return !!(
+    f.email?.trim() ||
+    f.status?.trim() ||
+    f.pay_type?.trim() ||
+    f.product_name?.trim() ||
+    f.created_from?.trim() ||
+    f.created_to?.trim()
+  );
+}
+
+/**
+ * Admin: orders matching all provided filters (AND). Caller should only invoke when
+ * {@link hasAdminOrderFilters} is true; otherwise returns [] without querying.
+ */
+export async function getAdminOrdersFiltered(
+  page: number,
+  limit: number,
+  filters: AdminOrderFilters
+): Promise<(typeof orders.$inferSelect)[] | undefined> {
+  if (!hasAdminOrderFilters(filters)) {
+    return [];
+  }
+
+  const offset = (page - 1) * limit;
+  const conds: SQL[] = [];
+
+  const email = filters.email?.trim();
+  if (email) {
+    const emailCond = or(
+      like(orders.user_email, `%${email}%`),
+      like(orders.paid_email, `%${email}%`)
+    );
+    if (emailCond) {
+      conds.push(emailCond);
+    }
+  }
+
+  const status = filters.status?.trim();
+  if (status) {
+    conds.push(eq(orders.status, status));
+  }
+
+  const payType = filters.pay_type?.trim();
+  if (payType) {
+    conds.push(like(orders.pay_type, `%${payType}%`));
+  }
+
+  const productName = filters.product_name?.trim();
+  if (productName) {
+    conds.push(like(orders.product_name, `%${productName}%`));
+  }
+
+  const createdFrom = filters.created_from?.trim();
+  if (createdFrom) {
+    const from = new Date(`${createdFrom}T00:00:00.000Z`);
+    if (!Number.isNaN(from.getTime())) {
+      conds.push(gte(orders.created_at, from));
+    }
+  }
+
+  const createdTo = filters.created_to?.trim();
+  if (createdTo) {
+    const to = new Date(`${createdTo}T23:59:59.999Z`);
+    if (!Number.isNaN(to.getTime())) {
+      conds.push(lte(orders.created_at, to));
+    }
+  }
+
+  if (conds.length === 0) {
+    return [];
+  }
+
+  const data = await db()
+    .select()
+    .from(orders)
+    .where(and(...conds))
+    .orderBy(desc(orders.created_at))
+    .limit(limit)
+    .offset(offset);
+
+  return data;
+}
+
 export async function getPaidOrdersTotal(): Promise<number | undefined> {
   try {
     const total = await db()
@@ -273,6 +367,45 @@ export async function getOrderCountByDate(
     console.log("getOrderCountByDate failed: ", e);
     return undefined;
   }
+}
+
+/**
+ * 通过 sub_id 查找订阅订单（用于续费时匹配原始订单）
+ */
+export async function findOrderBySubId(
+  sub_id: string
+): Promise<typeof orders.$inferSelect | undefined> {
+  const [order] = await db()
+    .select()
+    .from(orders)
+    .where(eq(orders.sub_id, sub_id))
+    .limit(1);
+  return order;
+}
+
+/**
+ * 订阅续费：延长 expired_at 并更新周期信息
+ */
+export async function renewSubscriptionOrder(
+  order_no: string,
+  new_expired_at: Date,
+  sub_period_end: number,
+  sub_period_start: number,
+  sub_times: number,
+  paid_detail: string
+) {
+  const [order] = await db()
+    .update(orders)
+    .set({
+      expired_at: new_expired_at,
+      sub_period_end,
+      sub_period_start,
+      sub_times,
+      paid_detail,
+    })
+    .where(eq(orders.order_no, order_no))
+    .returning();
+  return order;
 }
 
 /**

@@ -307,28 +307,35 @@ async function handleCreemCheckout(params: {
   currency: string;
   credits?: number;
   product_id: string;
+  interval: string;
   locale: string;
   cancel_url: string;
   creem_product_id?: string;
 }) {
-  const { order_no, user_uuid, user_email, product_name, amount, currency, credits, product_id, locale, cancel_url, creem_product_id } = params;
+  const { order_no, user_uuid, user_email, product_name, amount, currency, credits, product_id, interval, locale, cancel_url, creem_product_id } = params;
 
-  // 🔥 6 套餐 Creem 产品 ID 映射
+  // Creem 产品 ID 映射（9 套餐：月订阅 + 年订阅 + 一次性）
   const creemProductIdMap: Record<string, string | undefined> = {
-    starter: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY,
-    starter_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY,
+    starter:          process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY,
+    starter_monthly:  process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY,
+    starter_yearly:   process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY,
+    starter_onetime:  process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_ONETIME,
     standard_monthly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_MONTHLY,
-    standard_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY,
-    premium_monthly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY,
-    premium_yearly: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY,
+    standard_yearly:  process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY,
+    standard_onetime: process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_ONETIME,
+    premium_monthly:  process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY,
+    premium_yearly:   process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY,
+    premium_onetime:  process.env.NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_ONETIME,
   };
 
-  // 优先级：creem_product_id(prod_* 直接用) > creem_product_id(key 查表) > product_id 查表 > 默认 > product_id
+  // 优先级：creem_product_id(prod_* 直接用) > creem_product_id(key 查表) > product_id 查表 > product_id
   const finalCreemProductId =
     (creem_product_id?.startsWith("prod_") ? creem_product_id : undefined) ||
     (creem_product_id ? creemProductIdMap[creem_product_id] : undefined) ||
     creemProductIdMap[product_id] ||
     product_id;
+
+  const is_subscription = interval === "month" || interval === "year";
 
   const success_url = `${process.env.NEXT_PUBLIC_WEB_URL}/${locale}/pay-success/creem`;
   const amountInCents = Math.round(amount);
@@ -352,7 +359,8 @@ async function handleCreemCheckout(params: {
         locale: locale,
         success_url: success_url,
         cancel_url: cancel_url,
-        is_subscription: false,
+        is_subscription,
+        interval: interval === "year" ? "year" : "month",
       });
 
       checkout_url = checkoutSession.checkout_url;
@@ -495,6 +503,7 @@ export async function POST(req: Request) {
           currency: currency,
           credits: credits,
           product_id: product_id,
+          interval: interval,
           locale: locale,
           cancel_url: cancel_url,
           creem_product_id: creem_product_id,

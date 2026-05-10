@@ -52,6 +52,11 @@ export default async function AdminLayout({
           url: "/admin/orders",
         },
         {
+          title: "积分流水",
+          icon: "RiFundsLine",
+          url: "/admin/credits-consumption",
+        },
+        {
           title: "Posts",
           url: "/admin/posts",
           icon: "RiArticleLine",

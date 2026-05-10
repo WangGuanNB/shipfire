@@ -10,6 +10,7 @@ export default function ({ ...table }: TableSlotType) {
       <Header crumb={table.crumb} />
       <div className="w-full px-4 md:px-8 py-8">
         <h1 className="text-2xl font-medium mb-8">{table.title}</h1>
+        {table.filters}
         {table.description && (
           <p className="text-sm text-muted-foreground mb-8">
             {table.description}

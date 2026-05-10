@@ -1,6 +1,19 @@
-import { credits } from "@/db/schema";
+import { credits, users } from "@/db/schema";
 import { db } from "@/db";
-import { desc, eq, and, gte, asc, or, isNull } from "drizzle-orm";
+import { desc, eq, and, gte, asc, or, isNull, like } from "drizzle-orm";
+
+/** Admin credits ledger row (matches DB columns + joined email). */
+export type AdminCreditLedgerRow = {
+  id: number;
+  trans_no: string;
+  created_at: Date | null;
+  trans_type: string;
+  credits: number;
+  order_no: string | null;
+  user_uuid: string;
+  user_email: string | null;
+  expired_at: Date | null;
+};
 
 export async function insertCredit(
   data: typeof credits.$inferInsert
@@ -65,6 +78,44 @@ export async function getCreditsByUserUuid(
     .orderBy(desc(credits.created_at))
     .limit(limit)
     .offset((page - 1) * limit);
+
+  return data;
+}
+
+/**
+ * Admin: full credits ledger for Studio-like listing (all trans types, any sign).
+ * Requires non-empty email (substring match on users.email); caller should skip when empty.
+ */
+export async function getAdminCreditLedgerByEmail(
+  page: number = 1,
+  limit: number = 500,
+  email: string
+): Promise<AdminCreditLedgerRow[] | undefined> {
+  const trimmed = email.trim();
+  if (!trimmed) {
+    return [];
+  }
+
+  const offset = (page - 1) * limit;
+
+  const data = await db()
+    .select({
+      id: credits.id,
+      trans_no: credits.trans_no,
+      created_at: credits.created_at,
+      trans_type: credits.trans_type,
+      credits: credits.credits,
+      order_no: credits.order_no,
+      user_uuid: credits.user_uuid,
+      user_email: users.email,
+      expired_at: credits.expired_at,
+    })
+    .from(credits)
+    .leftJoin(users, eq(credits.user_uuid, users.uuid))
+    .where(like(users.email, `%${trimmed}%`))
+    .orderBy(desc(credits.created_at))
+    .limit(limit)
+    .offset(offset);
 
   return data;
 }

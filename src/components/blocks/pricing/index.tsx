@@ -1,7 +1,11 @@
 "use client";
 
-import { Check, Loader } from "lucide-react";
-import { PricingItem, Pricing as PricingType } from "@/types/blocks/pricing";
+import { Check, Loader, X } from "lucide-react";
+import {
+  PricingItem,
+  Pricing as PricingType,
+  PricingComparisonRow,
+} from "@/types/blocks/pricing";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useEffect, useState } from "react";
 
@@ -13,6 +17,29 @@ import { usePayment } from "@/hooks/usePayment";
 import { useAppContext } from "@/contexts/app";
 import { useLocale } from "next-intl";
 import { PaymentMethodSelector } from "@/components/payment/PaymentMethodSelector";
+
+/** Pricing `amount` is minor units (e.g. USD cents). */
+function minorToMajorUsd(minor: number): number {
+  return minor / 100;
+}
+
+/** Parse display strings like "$23.88" into a USD number. */
+function parseDisplayUsd(s: string | undefined): number | null {
+  if (!s?.trim()) return null;
+  const cleaned = s.replace(/,/g, "").replace(/^\$/, "").trim();
+  const n = Number.parseFloat(cleaned);
+  return Number.isFinite(n) ? n : null;
+}
+
+function formatUsd(amount: number, locale: string): string {
+  const intlLocale = locale === "zh" ? "zh-CN" : "en-US";
+  return new Intl.NumberFormat(intlLocale, {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  }).format(amount);
+}
 
 interface PricingProps {
   pricing: PricingType;
@@ -39,13 +66,19 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
     setShowPaymentSelector,
   } = usePayment();
 
-  const [group, setGroup] = useState(
-    pricing.groups?.[0]?.name ?? pricing.items?.[0]?.group ?? ""
-  );
+  // 优先选 monthly，没有则 yearly，没有则第一个可用 group
+  const defaultGroup =
+    pricing.groups?.find((g) => g.name === "monthly")?.name ??
+    pricing.groups?.[0]?.name ??
+    pricing.items?.[0]?.group ??
+    "";
+
+  const [group, setGroup] = useState(defaultGroup);
 
   // 当前组下可见的 items，用于计算默认选中
+  const effectiveGroupName = showGroups && pricing.groups?.length ? group : (pricing.groups?.[0]?.name ?? "");
   const visibleItems = pricing.items?.filter(
-    (i) => !i.group || i.group === (showGroups && pricing.groups?.length ? group : pricing.groups?.[0]?.name ?? "")
+    (i) => !i.group || i.group === effectiveGroupName
   ) ?? [];
   const defaultSelectedKey = visibleItems.find((i) => i.is_featured) ?? visibleItems[0];
   const getItemKey = (item: PricingItem) => `${item.product_id}-${item.group ?? ""}`;
@@ -55,8 +88,9 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
   );
 
   useEffect(() => {
+    const eff = showGroups && pricing.groups?.length ? group : (pricing.groups?.[0]?.name ?? "");
     const items = pricing.items?.filter(
-      (i) => !i.group || i.group === (showGroups && pricing.groups?.length ? group : pricing.groups?.[0]?.name ?? "")
+      (i) => !i.group || i.group === eff
     ) ?? [];
     const next = items.find((i) => i.is_featured) ?? items[0];
     setSelectedKey(next ? `${next.product_id}-${next.group ?? ""}` : "");
@@ -68,13 +102,27 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
 
   useEffect(() => {
     if (pricing.groups?.length) {
-      setGroup(pricing.groups[0].name ?? "");
+      // 重新计算默认 group：优先 monthly，否则第一个
+      const preferred =
+        pricing.groups.find((g) => g.name === "monthly") ?? pricing.groups[0];
+      setGroup(preferred.name ?? "");
     } else if (pricing.items?.length && pricing.items[0].group) {
       setGroup(pricing.items[0].group);
     }
   }, [pricing.groups, pricing.items]);
 
   const Wrapper = embed ? "div" : "section";
+
+  const comparisonRowsRaw =
+    pricing.comparison_features_by_group?.[effectiveGroupName] ??
+    (effectiveGroupName === "yearly"
+      ? pricing.comparison_features_by_group?.monthly
+      : undefined) ??
+    [];
+  const comparisonRows: PricingComparisonRow[] = embed
+    ? comparisonRowsRaw.slice(0, 4)
+    : comparisonRowsRaw;
+  const useComparison = comparisonRows.length > 0;
 
   return (
     <Wrapper id={embed ? undefined : pricing.name} className={embed ? "py-4" : "py-16"}>
@@ -90,12 +138,16 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
           </div>
         )}
         <div className="w-full flex flex-col items-center gap-2">
-          {showGroups && pricing.groups && pricing.groups.length > 0 && (
+          {/* Tab 栏：仅在 showGroups=true 且有多个 group 时显示 */}
+          {showGroups && pricing.groups && pricing.groups.length > 1 && (
             <div className={`flex h-12 items-center rounded-md bg-muted p-1 text-lg ${embed ? "mb-4" : "mb-12"}`}>
               <RadioGroup
                 value={group}
-                className={`grid h-full w-full max-w-xs mx-auto gap-1`}
-                style={{ gridTemplateColumns: `repeat(${pricing.groups.length}, 1fr)` }}
+                className={`grid h-full w-full gap-1`}
+                style={{
+                  gridTemplateColumns: `repeat(${pricing.groups.length}, 1fr)`,
+                  minWidth: `${pricing.groups.length * 120}px`,
+                }}
                 onValueChange={(value) => {
                   setGroup(value);
                 }}
@@ -113,13 +165,13 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
                       />
                       <Label
                         htmlFor={item.name}
-                        className="flex h-full cursor-pointer items-center justify-center px-7 font-semibold text-muted-foreground peer-data-[state=checked]:text-primary"
+                        className="flex h-full cursor-pointer items-center justify-center px-6 font-semibold text-muted-foreground peer-data-[state=checked]:text-primary whitespace-nowrap"
                       >
                         {item.title}
                         {item.label && (
                           <Badge
                             variant="outline"
-                            className="border-primary bg-primary px-1.5 ml-1 text-primary-foreground"
+                            className="border-primary bg-primary px-1.5 ml-1 text-primary-foreground text-xs"
                           >
                             {item.label}
                           </Badge>
@@ -133,13 +185,35 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
           )}
           <div className="w-full mt-0 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {pricing.items?.map((item, index) => {
-              const effectiveGroup = showGroups && pricing.groups?.length ? group : (pricing.groups?.[0]?.name ?? "");
-              if (item.group && item.group !== effectiveGroup) {
+              if (item.group && item.group !== effectiveGroupName) {
                 return null;
               }
 
               const itemKey = getItemKey(item);
               const isSelected = selectedKey === itemKey;
+
+              const yearlyUsd =
+                item.interval === "year" ? minorToMajorUsd(item.amount) : 0;
+              const monthlyUsd = item.interval === "year" ? yearlyUsd / 12 : 0;
+              const origYearlyUsd =
+                item.interval === "year" ? parseDisplayUsd(item.original_price) : null;
+              const monthlyOrigUsd =
+                origYearlyUsd != null ? origYearlyUsd / 12 : null;
+              const yearlyBilledCaption =
+                item.interval === "year"
+                  ? locale === "zh"
+                    ? `${formatUsd(yearlyUsd, locale)}/年，按年一次性扣款`
+                    : `${formatUsd(yearlyUsd, locale)}/year billed yearly`
+                  : "";
+
+              const tierKey =
+                item.product_id === "starter" ||
+                item.product_id === "standard" ||
+                item.product_id === "premium"
+                  ? item.product_id
+                  : null;
+
+              const checkoutBusyKey = `${item.product_id}|${item.group ?? ""}`;
 
               return (
                 <div
@@ -161,8 +235,8 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
                       : "border-muted border hover:border-muted-foreground/30"
                   }`}
                 >
-                  <div className={`flex h-full flex-col justify-between ${embed ? "gap-3" : "gap-5"}`}>
-                    <div>
+                  <div className={`flex h-full flex-col ${embed ? "gap-3" : "gap-5"}`}>
+                    <div className="flex min-h-0 flex-1 flex-col">
                       <div className={`flex items-center gap-2 ${embed ? "mb-2" : "mb-4"}`}>
                         {item.title && (
                           <h3 className={`font-semibold ${embed ? "text-lg" : "text-xl"}`}>
@@ -179,79 +253,140 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
                           </Badge>
                         )}
                       </div>
-                      <div className={`flex items-end gap-2 ${embed ? "mb-2" : "mb-4"}`}>
-                        {item.original_price && (
-                          <span className={`text-muted-foreground font-semibold line-through ${embed ? "text-base" : "text-xl"}`}>
-                            {item.original_price}
-                          </span>
-                        )}
-                        {item.price && (
-                          <span className={`font-semibold ${embed ? "text-3xl" : "text-5xl"}`}>
-                            {item.price}
-                          </span>
-                        )}
-                        {(item.unit || item.unit_note) && (
-                          <span className="block text-sm font-medium text-muted-foreground">
-                            {item.unit}
-                            {item.unit_note && ` · ${item.unit_note}`}
-                          </span>
-                        )}
-                      </div>
+                      {item.interval === "year" ? (
+                        <div className={`flex flex-col gap-1 ${embed ? "mb-2" : "mb-4"}`}>
+                          <div className="flex flex-wrap items-end gap-2">
+                            {monthlyOrigUsd != null && monthlyOrigUsd > 0 && (
+                              <span
+                                className={`text-muted-foreground font-semibold line-through ${embed ? "text-base" : "text-xl"}`}
+                              >
+                                {formatUsd(monthlyOrigUsd, locale)}
+                              </span>
+                            )}
+                            <span className={`font-semibold ${embed ? "text-3xl" : "text-5xl"}`}>
+                              {formatUsd(monthlyUsd, locale)}
+                            </span>
+                            <span className="pb-1 text-sm font-medium text-muted-foreground">
+                              {locale === "zh" ? "/月" : "/month"}
+                            </span>
+                          </div>
+                          <p className="text-sm text-muted-foreground">{yearlyBilledCaption}</p>
+                        </div>
+                      ) : (
+                        <div className={`flex items-end gap-2 ${embed ? "mb-2" : "mb-4"}`}>
+                          {item.original_price && (
+                            <span className={`text-muted-foreground font-semibold line-through ${embed ? "text-base" : "text-xl"}`}>
+                              {item.original_price}
+                            </span>
+                          )}
+                          {item.price && (
+                            <span className={`font-semibold ${embed ? "text-3xl" : "text-5xl"}`}>
+                              {item.price}
+                            </span>
+                          )}
+                          {(item.unit || item.unit_note) && (
+                            <span className="block text-sm font-medium text-muted-foreground">
+                              {item.unit}
+                              {item.unit_note && ` · ${item.unit_note}`}
+                            </span>
+                          )}
+                        </div>
+                      )}
                       {item.description && (
-                        <p className="text-muted-foreground">
+                        <p className={`text-muted-foreground ${embed ? "mb-3" : "mb-4"}`}>
                           {item.description}
                         </p>
                       )}
-                      {item.features_title && (
-                        <p className={`font-semibold ${embed ? "mb-2 mt-3" : "mb-3 mt-6"}`}>
-                          {item.features_title}
-                        </p>
-                      )}
-                      {item.features && (
-                        <ul className={`flex flex-col ${embed ? "gap-1.5" : "gap-3"}`}>
-                          {(embed ? item.features.slice(0, 4) : item.features).map((feature, fi) => {
-                            return (
-                              <li className="flex gap-2" key={`feature-${fi}`}>
-                                <Check className="mt-1 size-4 shrink-0" />
-                                {feature}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-2">
                       {item.button && (
-                        <Button
-                          className="w-full flex items-center justify-center gap-2 font-semibold"
-                          disabled={isLoading}
-                          onClick={() => {
-                            if (isLoading) {
-                              return;
-                            }
-                            handleCheckout(item);
-                          }}
+                        <div
+                          className={`flex flex-col gap-2 ${embed ? "mb-3" : "mb-5"}`}
+                          onClick={(e) => e.stopPropagation()}
+                          role="presentation"
                         >
-                          {(!isLoading ||
-                            (isLoading && productId !== item.product_id)) && (
-                            <p>{item.button.title}</p>
+                          <Button
+                            className="flex w-full items-center justify-center gap-2 font-semibold"
+                            disabled={isLoading}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (isLoading) return;
+                              handleCheckout(item);
+                            }}
+                          >
+                            {(!isLoading || (isLoading && productId !== checkoutBusyKey)) && (
+                              <p>{item.button.title}</p>
+                            )}
+                            {isLoading && productId === checkoutBusyKey && (
+                              <p>{item.button.title}</p>
+                            )}
+                            {isLoading && productId === checkoutBusyKey && (
+                              <Loader className="mr-2 h-4 w-4 animate-spin" />
+                            )}
+                            {item.button.icon && (
+                              <Icon name={item.button.icon} className="size-4" />
+                            )}
+                          </Button>
+                          {item.tip && (
+                            <p className="mt-1 text-sm text-muted-foreground">{item.tip}</p>
                           )}
-
-                          {isLoading && productId === item.product_id && (
-                            <p>{item.button.title}</p>
-                          )}
-                          {isLoading && productId === item.product_id && (
-                            <Loader className="mr-2 h-4 w-4 animate-spin" />
-                          )}
-                          {item.button.icon && (
-                            <Icon name={item.button.icon} className="size-4" />
-                          )}
-                        </Button>
+                        </div>
                       )}
-                      {item.tip && (
-                        <p className="text-muted-foreground text-sm mt-2">
-                          {item.tip}
-                        </p>
+                      {useComparison && tierKey ? (
+                        <>
+                          {pricing.comparison_title && (
+                            <p className={`font-semibold ${embed ? "mb-2" : "mb-3"}`}>
+                              {pricing.comparison_title}
+                            </p>
+                          )}
+                          <ul className={`flex flex-col ${embed ? "gap-1.5" : "gap-2.5"}`}>
+                            {comparisonRows
+                              .filter(
+                                (row) =>
+                                  !row.visible_for?.length ||
+                                  (tierKey != null && row.visible_for.includes(tierKey))
+                              )
+                              .map((row, fi) => {
+                              const included = row[tierKey];
+                              return (
+                                <li className="flex gap-2" key={`cmp-${fi}`}>
+                                  {included ? (
+                                    <Check className="mt-0.5 size-4 shrink-0 text-primary" />
+                                  ) : (
+                                    <X className="mt-0.5 size-4 shrink-0 text-muted-foreground opacity-70" />
+                                  )}
+                                  <span
+                                    className={
+                                      included
+                                        ? "text-foreground"
+                                        : "text-muted-foreground line-through"
+                                    }
+                                  >
+                                    {row.text}
+                                  </span>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </>
+                      ) : (
+                        <>
+                          {item.features_title && (
+                            <p className={`font-semibold ${embed ? "mb-2 mt-1" : "mb-3 mt-1"}`}>
+                              {item.features_title}
+                            </p>
+                          )}
+                          {item.features && (
+                            <ul className={`flex flex-col ${embed ? "gap-1.5" : "gap-3"}`}>
+                              {(embed ? item.features.slice(0, 4) : item.features).map((feature, fi) => {
+                                return (
+                                  <li className="flex gap-2" key={`feature-${fi}`}>
+                                    <Check className="mt-1 size-4 shrink-0" />
+                                    {feature}
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          )}
+                        </>
                       )}
                     </div>
                   </div>
