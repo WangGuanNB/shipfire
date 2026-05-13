@@ -1,0 +1,19 @@
+CREATE INDEX `affiliates_user_uuid_idx` ON `affiliates_shipfire` (`user_uuid`);--> statement-breakpoint
+CREATE INDEX `affiliates_invited_by_idx` ON `affiliates_shipfire` (`invited_by`);--> statement-breakpoint
+CREATE INDEX `affiliates_paid_order_no_idx` ON `affiliates_shipfire` (`paid_order_no`);--> statement-breakpoint
+CREATE INDEX `apikeys_user_uuid_idx` ON `apikeys_shipfire` (`user_uuid`);--> statement-breakpoint
+CREATE INDEX `apikeys_status_idx` ON `apikeys_shipfire` (`status`);--> statement-breakpoint
+CREATE INDEX `credits_user_uuid_idx` ON `credits_shipfire` (`user_uuid`);--> statement-breakpoint
+CREATE INDEX `credits_order_no_idx` ON `credits_shipfire` (`order_no`);--> statement-breakpoint
+CREATE INDEX `credits_expired_at_idx` ON `credits_shipfire` (`expired_at`);--> statement-breakpoint
+CREATE INDEX `credits_created_at_idx` ON `credits_shipfire` (`created_at`);--> statement-breakpoint
+CREATE INDEX `orders_user_uuid_idx` ON `orders_shipfire` (`user_uuid`);--> statement-breakpoint
+CREATE INDEX `orders_user_email_idx` ON `orders_shipfire` (`user_email`);--> statement-breakpoint
+CREATE INDEX `orders_paid_email_idx` ON `orders_shipfire` (`paid_email`);--> statement-breakpoint
+CREATE INDEX `orders_status_idx` ON `orders_shipfire` (`status`);--> statement-breakpoint
+CREATE INDEX `orders_sub_id_idx` ON `orders_shipfire` (`sub_id`);--> statement-breakpoint
+CREATE INDEX `orders_created_at_idx` ON `orders_shipfire` (`created_at`);--> statement-breakpoint
+CREATE INDEX `orders_user_status_idx` ON `orders_shipfire` (`user_uuid`,`status`);--> statement-breakpoint
+CREATE INDEX `orders_email_status_idx` ON `orders_shipfire` (`user_email`,`status`);--> statement-breakpoint
+CREATE INDEX `users_invite_code_idx` ON `users_shipfire` (`invite_code`);--> statement-breakpoint
+CREATE INDEX `users_created_at_idx` ON `users_shipfire` (`created_at`);

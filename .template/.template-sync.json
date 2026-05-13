@@ -1,0 +1,21 @@
+{
+  "templateRepo": "shipfire",
+  "templateVersion": "2.6.0",
+  "lastSync": "2025-01-20",
+  "appliedUpdates": [
+    {
+      "id": "2025-01-15-supabase-to-d1-migration",
+      "appliedAt": "2025-01-16",
+      "status": "success",
+      "notes": "完整迁移到 D1，数据已迁移"
+    },
+    {
+      "id": "2025-01-20-subscription-payment",
+      "appliedAt": "2025-01-21",
+      "status": "success",
+      "notes": "已启用订阅支付，配置了 Creem 产品"
+    }
+  ],
+  "skippedUpdates": [],
+  "projectSpecificNotes": "这是一个示例文件，克隆项目应该复制并修改此文件来追踪同步状态"
+}

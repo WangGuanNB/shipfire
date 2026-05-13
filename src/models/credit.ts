@@ -18,7 +18,15 @@ export type AdminCreditLedgerRow = {
 export async function insertCredit(
   data: typeof credits.$inferInsert
 ): Promise<typeof credits.$inferSelect | undefined> {
-  const [credit] = await db().insert(credits).values(data).returning();
+  // 🔥 D1 不支持 .returning()，需要先插入再查询
+  const result = await db().insert(credits).values(data);
+
+  // 使用 lastInsertRowid 查询刚插入的记录
+  const [credit] = await db()
+    .select()
+    .from(credits)
+    .where(eq(credits.id, result.lastInsertRowid))
+    .limit(1);
 
   return credit;
 }

@@ -142,37 +142,29 @@ NEXT_PUBLIC_PAY_CANCEL_URL=/pricing
 
 ## 💳 Payment Integration
 
-ShipFire supports **Stripe**, **Creem**, and **PayPal** payment gateways.
+ShipFire supports **Stripe**, **Creem**, and **PayPal** payment gateways with both **one-time** and **subscription** payments.
 
-### Using Stripe
+### Quick Start
 
 ```typescript
 import { usePayment } from '@/hooks/usePayment';
 
 const { handleCheckout, isLoading } = usePayment();
 
+// One-time payment
 await handleCheckout(pricingItem, false, 'stripe');
+
+// Subscription payment (monthly/yearly)
+await handleCheckout(subscriptionItem, false, 'creem');
 ```
 
-### Using Creem
+### Payment Features
 
-```typescript
-import { usePayment } from '@/hooks/usePayment';
-
-const { handleCheckout, isLoading } = usePayment();
-
-await handleCheckout(pricingItem, false, 'creem');
-```
-
-### Using PayPal
-
-```typescript
-import { usePayment } from '@/hooks/usePayment';
-
-const { handleCheckout, isLoading } = usePayment();
-
-await handleCheckout(pricingItem, false, 'paypal');
-```
+- ✅ One-time purchases
+- ✅ Monthly subscriptions
+- ✅ Yearly subscriptions
+- ✅ Automatic renewal
+- ✅ Credit system with expiration
 
 ### Credit System
 
@@ -184,7 +176,10 @@ Configure credit amounts via environment variables:
 Credits are automatically granted on:
 - User registration
 - Successful payment
+- Subscription renewal
 - Referral rewards
+
+📖 **Detailed Documentation**: See [PAYMENT_INTEGRATION_GUIDE.md](./PAYMENT_INTEGRATION_GUIDE.md)
 
 ---
 
@@ -247,6 +242,15 @@ docker run -p 3000:3000 shipfire:latest
 
 ## 📖 Documentation
 
+### Core Documentation
+- [README.md](./README.md) - Project overview and quick start
+- [PAYMENT_INTEGRATION_GUIDE.md](./PAYMENT_INTEGRATION_GUIDE.md) - Complete payment integration guide
+
+### Template Updates
+- [.template/updates/](./.template/updates/) - Template update documents for cloned projects
+- [.template/docs/](./.template/docs/) - Detailed technical documentation
+
+### Deployment
 Full documentation: [shipfire.cn/docs](https://shipfire.cn/docs)
 
 ---

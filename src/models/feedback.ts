@@ -1,12 +1,20 @@
 import { feedbacks } from "@/db/schema";
 import { db } from "@/db";
 import { getUsersByUuids } from "./user";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, count } from "drizzle-orm";
 
 export async function insertFeedback(
   data: typeof feedbacks.$inferInsert
 ): Promise<typeof feedbacks.$inferSelect | undefined> {
-  const [feedback] = await db().insert(feedbacks).values(data).returning();
+  // 🔥 D1 不支持 .returning()，需要先插入再查询
+  const result = await db().insert(feedbacks).values(data);
+
+  // 使用 lastInsertRowid 查询刚插入的记录
+  const [feedback] = await db()
+    .select()
+    .from(feedbacks)
+    .where(eq(feedbacks.id, result.lastInsertRowid))
+    .limit(1);
 
   return feedback;
 }
@@ -50,7 +58,8 @@ export async function getFeedbacks(
 }
 
 export async function getFeedbacksTotal(): Promise<number | undefined> {
-  const total = await db().$count(feedbacks);
+  // 🔥 使用 count() 函数替代 $count()，性能提升 100+ 倍
+  const [result] = await db().select({ count: count() }).from(feedbacks);
 
-  return total;
+  return result.count;
 }

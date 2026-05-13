@@ -1,5 +1,10 @@
 # 多支付平台集成开发文档
 
+> **📚 相关文档**
+> - [订阅支付详细文档](./.template/docs/SUBSCRIPTION_PAYMENT.md) - 订阅支付完整开发指南
+> - [PayPal 配置指南](./.template/docs/PAYPAL_SETUP.md) - PayPal 支付配置步骤
+> - [PayPal Webhook 调试](./.template/docs/PAYPAL_WEBHOOK_SETUP.md) - PayPal Webhook 本地开发配置
+
 ## 架构概览
 
 支持 Stripe、PayPal、Creem 三种支付方式，通过统一的 `/api/checkout` 接口自动选择或手动指定支付方式。

@@ -11,7 +11,15 @@ export enum ApikeyStatus {
 export async function insertApikey(
   data: typeof apikeys.$inferInsert
 ): Promise<typeof apikeys.$inferSelect | undefined> {
-  const [apikey] = await db().insert(apikeys).values(data).returning();
+  // 🔥 D1 不支持 .returning()，需要先插入再查询
+  const result = await db().insert(apikeys).values(data);
+
+  // 使用 lastInsertRowid 查询刚插入的记录
+  const [apikey] = await db()
+    .select()
+    .from(apikeys)
+    .where(eq(apikeys.id, result.lastInsertRowid))
+    .limit(1);
 
   return apikey;
 }

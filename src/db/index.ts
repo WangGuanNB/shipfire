@@ -1,6 +1,10 @@
 import { drizzle } from "drizzle-orm/d1";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 
+// 🔥 使用单例模式缓存数据库实例，避免重复创建连接
+let cachedDb: ReturnType<typeof drizzle> | null = null;
+let cachedD1Client: D1Database | null = null;
+
 /**
  * 用 Cloudflare D1 REST API 构造一个兼容 D1Database binding 接口的对象
  * 允许在 next dev 本地环境中直接连接远端 D1，无需 wrangler dev
@@ -10,26 +14,47 @@ function createD1HttpClient(
   databaseId: string,
   token: string
 ): D1Database {
+  // 🔥 如果已经创建过，直接返回缓存的实例
+  if (cachedD1Client) {
+    return cachedD1Client;
+  }
+
   const baseUrl = `https://api.cloudflare.com/client/v4/accounts/${accountId}/d1/database/${databaseId}/query`;
 
   async function query(sql: string, params?: unknown[]) {
-    const res = await fetch(baseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ sql, params: params ?? [] }),
-    });
-    if (!res.ok) {
-      const err = await res.text();
-      throw new Error(`D1 HTTP error ${res.status}: ${err}`);
+    // 🔥 添加 10 秒超时控制，防止慢查询堆积
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+    try {
+      const res = await fetch(baseUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ sql, params: params ?? [] }),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`D1 HTTP error ${res.status}: ${err}`);
+      }
+      const json = (await res.json()) as any;
+      if (!json.success) {
+        throw new Error(`D1 query failed: ${JSON.stringify(json.errors)}`);
+      }
+      return json.result[0];
+    } catch (error: any) {
+      clearTimeout(timeoutId);
+      if (error.name === "AbortError") {
+        throw new Error("Database query timeout (10s)");
+      }
+      throw error;
     }
-    const json = (await res.json()) as any;
-    if (!json.success) {
-      throw new Error(`D1 query failed: ${JSON.stringify(json.errors)}`);
-    }
-    return json.result[0];
   }
 
   function makeStatement(sql: string, params: unknown[] = []): D1PreparedStatement {
@@ -67,7 +92,7 @@ function createD1HttpClient(
     };
   }
 
-  return {
+  const client: D1Database = {
     prepare(sql: string) {
       return makeStatement(sql);
     },
@@ -86,24 +111,59 @@ function createD1HttpClient(
       };
     },
   };
+
+  // 🔥 缓存客户端实例，避免重复创建
+  cachedD1Client = client;
+  return client;
 }
 
 /**
- * 获取 Drizzle D1 数据库实例
+ * 获取 Drizzle D1 数据库实例（单例模式）
  * - 本地开发（next dev）：检测到 CLOUDFLARE_D1_TOKEN 时，通过 REST API 直连远端 D1
  * - 生产环境（Cloudflare Workers）：直接通过 binding 访问 D1
  */
 export function db() {
+  // 🔥 如果已经创建过，直接返回缓存的实例
+  if (cachedDb) {
+    return cachedDb;
+  }
+
   const token = process.env.CLOUDFLARE_D1_TOKEN;
   const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
   const databaseId = process.env.CLOUDFLARE_D1_DATABASE_ID;
 
   if (token && accountId && databaseId) {
     // 本地开发：通过 REST API 连接远端 D1
-    return drizzle(createD1HttpClient(accountId, databaseId, token));
+    cachedDb = drizzle(createD1HttpClient(accountId, databaseId, token));
+    return cachedDb;
   }
 
   // 生产环境：通过 Workers binding 访问 D1
   const { env } = getCloudflareContext();
-  return drizzle(env.DB);
+  cachedDb = drizzle(env.DB);
+  return cachedDb;
+}
+
+/**
+ * 🔥 清除缓存（仅用于测试或热重载）
+ */
+export function clearDbCache() {
+  cachedDb = null;
+  cachedD1Client = null;
+}
+
+/**
+ * 🔥 数据库健康检查
+ */
+export async function healthCheck(): Promise<boolean> {
+  try {
+    const result = await db()
+      .select()
+      .from({ dummy: { id: 1 } })
+      .limit(1);
+    return true;
+  } catch (e) {
+    console.error("Database health check failed:", e);
+    return false;
+  }
 }

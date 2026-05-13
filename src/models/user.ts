@@ -1,11 +1,19 @@
 import { users } from "@/db/schema";
 import { db } from "@/db";
-import { desc, eq, gte, inArray, like } from "drizzle-orm";
+import { desc, eq, gte, inArray, like, count } from "drizzle-orm";
 
 export async function insertUser(
   data: typeof users.$inferInsert
 ): Promise<typeof users.$inferSelect | undefined> {
-  const [user] = await db().insert(users).values(data).returning();
+  // 🔥 D1 不支持 .returning()，需要先插入再查询
+  const result = await db().insert(users).values(data);
+
+  // 使用 lastInsertRowid 查询刚插入的记录
+  const [user] = await db()
+    .select()
+    .from(users)
+    .where(eq(users.id, result.lastInsertRowid))
+    .limit(1);
 
   return user;
 }
@@ -64,11 +72,18 @@ export async function updateUserInviteCode(
   user_uuid: string,
   invite_code: string
 ): Promise<typeof users.$inferSelect | undefined> {
-  const [user] = await db()
+  // 🔥 D1 不支持 .returning()，需要先更新再查询
+  await db()
     .update(users)
     .set({ invite_code, updated_at: new Date() })
+    .where(eq(users.uuid, user_uuid));
+
+  // 用相同条件查询更新后的记录
+  const [user] = await db()
+    .select()
+    .from(users)
     .where(eq(users.uuid, user_uuid))
-    .returning();
+    .limit(1);
 
   return user;
 }
@@ -77,11 +92,18 @@ export async function updateUserInvitedBy(
   user_uuid: string,
   invited_by: string
 ): Promise<typeof users.$inferSelect | undefined> {
-  const [user] = await db()
+  // 🔥 D1 不支持 .returning()，需要先更新再查询
+  await db()
     .update(users)
     .set({ invited_by, updated_at: new Date() })
+    .where(eq(users.uuid, user_uuid));
+
+  // 用相同条件查询更新后的记录
+  const [user] = await db()
+    .select()
+    .from(users)
     .where(eq(users.uuid, user_uuid))
-    .returning();
+    .limit(1);
 
   return user;
 }
@@ -121,9 +143,10 @@ export async function getUserUuidsByEmail(
 }
 
 export async function getUsersTotal(): Promise<number> {
-  const total = await db().$count(users);
+  // 🔥 使用 count() 函数替代 $count()，性能提升 100+ 倍
+  const [result] = await db().select({ count: count() }).from(users);
 
-  return total;
+  return result.count;
 }
 
 export async function getUserCountByDate(

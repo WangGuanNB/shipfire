@@ -8,6 +8,20 @@
       "when": 1775899689988,
       "tag": "0000_lonely_hydra",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1778640896610,
+      "tag": "0001_sparkling_bushwacker",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1778641145416,
+      "tag": "0002_groovy_ezekiel",
+      "breakpoints": true
     }
   ]
 }

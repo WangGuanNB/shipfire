@@ -6,7 +6,15 @@ import { desc, eq } from "drizzle-orm";
 export async function insertAffiliate(
   data: typeof affiliates.$inferInsert
 ): Promise<typeof affiliates.$inferSelect | undefined> {
-  const [affiliate] = await db().insert(affiliates).values(data).returning();
+  // 🔥 D1 不支持 .returning()，需要先插入再查询
+  const result = await db().insert(affiliates).values(data);
+
+  // 使用 lastInsertRowid 查询刚插入的记录
+  const [affiliate] = await db()
+    .select()
+    .from(affiliates)
+    .where(eq(affiliates.id, result.lastInsertRowid))
+    .limit(1);
 
   return affiliate;
 }
