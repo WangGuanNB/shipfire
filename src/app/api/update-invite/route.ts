@@ -12,12 +12,19 @@ import { respData, respErr } from "@/lib/resp";
 
 import { getIsoTimestr } from "@/lib/time";
 import { insertAffiliate } from "@/models/affiliate";
+import { getUserUuid } from "@/services/user";
 
 export async function POST(req: Request) {
   try {
-    const { invite_code, user_uuid } = await req.json();
-    if (!invite_code || !user_uuid) {
+    const { invite_code } = await req.json();
+    if (!invite_code) {
       return respErr("invalid params");
+    }
+
+    // 🔒 获取当前登录用户的 UUID
+    const user_uuid = await getUserUuid();
+    if (!user_uuid) {
+      return respErr("no auth");
     }
 
     // check invite user
@@ -56,7 +63,19 @@ export async function POST(req: Request) {
       reward_amount: AffiliateRewardAmount.Invited,
     });
 
-    return respData(user);
+    // 🔒 只返回必要的用户字段，避免泄露敏感信息
+    const safeUser = {
+      uuid: user.uuid,
+      email: user.email,
+      nickname: user.nickname,
+      avatar_url: user.avatar_url,
+      locale: user.locale,
+      invite_code: user.invite_code,
+      invited_by: user.invited_by,
+      is_affiliate: user.is_affiliate,
+    };
+
+    return respData(safeUser);
   } catch (e) {
     console.error("update invited by failed: ", e);
     return respErr("update invited by failed");

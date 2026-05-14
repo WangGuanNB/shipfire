@@ -2,6 +2,16 @@
 
 记录所有重要更新。
 
+## [2.8.0] - 2025-01-20
+
+### 🚨 紧急安全修复
+- 删除无认证保护的 Demo API（防止 API Key 被滥用）
+- 修复图片上传 API 认证检查
+- 修复 Update Invite API 权限验证
+- 修复 Get User Info API 信息泄露
+- 加强 Track Share API 输入验证
+- 📄 [修复报告](./SECURITY-FIXES-APPLIED.md)
+
 ## [2.7.0] - 2025-01-20
 
 ### 技术 SEO 架构优化

@@ -22,6 +22,21 @@ export async function POST(request: NextRequest) {
     const body: ShareTrackingRequest = await request.json();
     const { platform, imageUrl } = body;
 
+    // 🔒 基本的输入验证和速率限制保护
+    if (!platform || typeof platform !== 'string' || platform.length > 50) {
+      return NextResponse.json({
+        success: false,
+        error: 'Invalid platform specified'
+      } as ShareTrackingResponse, { status: 400 });
+    }
+
+    if (imageUrl && (typeof imageUrl !== 'string' || imageUrl.length > 2000)) {
+      return NextResponse.json({
+        success: false,
+        error: 'Invalid image URL'
+      } as ShareTrackingResponse, { status: 400 });
+    }
+
     // 验证平台参数
     const validPlatforms = [
       'twitter', 'facebook', 'linkedin', 'pinterest', 

@@ -19,8 +19,16 @@ export async function POST(req: Request) {
 
     const userCredits = await getUserCredits(user_uuid);
 
+    // 🔒 只返回必要的用户字段，避免泄露敏感信息
     const user = {
-      ...(dbUser as unknown as User),
+      uuid: dbUser.uuid,
+      email: dbUser.email,
+      nickname: dbUser.nickname,
+      avatar_url: dbUser.avatar_url,
+      locale: dbUser.locale,
+      invite_code: dbUser.invite_code,
+      created_at: dbUser.created_at,
+      is_affiliate: dbUser.is_affiliate,
       credits: userCredits,
     };
 

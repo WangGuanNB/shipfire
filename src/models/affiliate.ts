@@ -9,11 +9,17 @@ export async function insertAffiliate(
   // 🔥 D1 不支持 .returning()，需要先插入再查询
   const result = await db().insert(affiliates).values(data);
 
-  // 使用 lastInsertRowid 查询刚插入的记录
+  // 🔥 修复：使用类型断言处理 lastInsertRowid
+  const insertId = (result as any).lastInsertRowid as number;
+  if (!insertId) {
+    throw new Error("Failed to get insert ID");
+  }
+
+  // 使用 insertId 查询刚插入的记录
   const [affiliate] = await db()
     .select()
     .from(affiliates)
-    .where(eq(affiliates.id, result.lastInsertRowid))
+    .where(eq(affiliates.id, insertId))
     .limit(1);
 
   return affiliate;

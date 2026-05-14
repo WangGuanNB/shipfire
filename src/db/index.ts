@@ -1,4 +1,5 @@
 import { drizzle } from "drizzle-orm/d1";
+import { sql } from "drizzle-orm";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 // 🔥 使用单例模式缓存数据库实例，避免重复创建连接
@@ -157,10 +158,8 @@ export function clearDbCache() {
  */
 export async function healthCheck(): Promise<boolean> {
   try {
-    const result = await db()
-      .select()
-      .from({ dummy: { id: 1 } })
-      .limit(1);
+    // 使用 SQL 语句进行简单的健康检查
+    const result = await db().run(sql`SELECT 1 as health_check`);
     return true;
   } catch (e) {
     console.error("Database health check failed:", e);

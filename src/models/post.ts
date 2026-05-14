@@ -15,11 +15,14 @@ export async function insertPost(
   // 🔥 D1 不支持 .returning()，需要先插入再查询
   const result = await db().insert(posts).values(data);
 
-  // 使用 lastInsertRowid 查询刚插入的记录
+  // 🔥 修复：使用类型断言处理 lastInsertRowid
+  const insertId = (result as any).lastInsertRowid as number;
+
+  // 使用 insertId 查询刚插入的记录
   const [post] = await db()
     .select()
     .from(posts)
-    .where(eq(posts.id, result.lastInsertRowid))
+    .where(eq(posts.id, insertId))
     .limit(1);
 
   return post;

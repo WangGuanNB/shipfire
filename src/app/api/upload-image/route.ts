@@ -19,8 +19,14 @@ export interface ImageUploadResponse {
 
 export async function POST(request: NextRequest) {
   try {
-    // 可选的用户认证检查
+    // 🔒 必须的用户认证检查
     const session = await auth();
+    if (!session?.user?.email) {
+      return NextResponse.json({
+        success: false,
+        error: 'Authentication required'
+      } as ImageUploadResponse, { status: 401 });
+    }
     
     const body: ImageUploadRequest = await request.json();
     const { imageData, mimeType, fileName } = body;
