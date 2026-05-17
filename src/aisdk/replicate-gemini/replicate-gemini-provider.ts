@@ -1,9 +1,8 @@
 import { replicate } from "@ai-sdk/replicate";
 import { experimental_generateImage as generateImage } from "ai";
 import type { GeminiImageConfig, GeneratedGeminiImage } from "./replicate-gemini-types";
+import type { ImageConfig, GeneratedImage } from '../image-provider';
 import Replicate from 'replicate';
-import { newStorage } from '@/lib/storage';
-import { getUuid } from '@/lib/hash';
 import { Buffer } from 'buffer';
 
 export interface ReplicateGeminiSettings {
@@ -31,7 +30,25 @@ export class ReplicateGeminiProvider {
     }
   }
 
+  // 实现统一的 ImageProvider 接口
   async generateImages(
+    prompt: string,
+    config?: ImageConfig
+  ): Promise<GeneratedImage[]> {
+    // 转换为内部配置格式（向后兼容）
+    const internalConfig: GeminiImageConfig = {
+      aspect_ratio: config?.aspect_ratio,
+      output_format: config?.output_format,
+      output_quality: config?.output_quality,
+      seed: config?.seed,
+      reference_images: config?.reference_images,
+    };
+    
+    return this.generateImagesInternal(prompt, internalConfig);
+  }
+
+  // 内部实现方法（保持原有逻辑）
+  private async generateImagesInternal(
     prompt: string,
     config?: GeminiImageConfig
   ): Promise<GeneratedGeminiImage[]> {

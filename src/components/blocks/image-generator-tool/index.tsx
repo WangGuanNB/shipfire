@@ -75,6 +75,8 @@ export default function ImageGeneratorTool({
   const [aspectRatio, setAspectRatio] = useState<string>("auto");
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [progressMessage, setProgressMessage] = useState("");
 
   const leftCredits = user?.credits?.left_credits ?? 0;
 
@@ -105,22 +107,51 @@ export default function ImageGeneratorTool({
 
     setIsGenerating(true);
     setGeneratedImage(null);
+    setProgress(0);
+    setProgressMessage("Initializing...");
 
     try {
-      // 3. 调用消耗积分 API
-      const resp = await fetch("/api/consume-image-credits", {
+      // 模拟进度更新
+      const progressInterval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 90) return prev;
+          return prev + Math.random() * 10;
+        });
+      }, 1000);
+
+      // 更新进度消息
+      setTimeout(() => setProgressMessage("Connecting to AI provider..."), 500);
+      setTimeout(() => setProgressMessage("Generating image..."), 2000);
+      setTimeout(() => setProgressMessage("Processing..."), 10000);
+      setTimeout(() => setProgressMessage("Almost done..."), 30000);
+
+      // 3. 调用真实的图片生成 API
+      const resp = await fetch("/api/generate-image", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: prompt.trim(),
+          aspect_ratio: aspectRatio,
+          resolution: resolution,
+          output_format: "png",
+          locale: document.documentElement.lang || "en",
+        }),
       });
+
+      clearInterval(progressInterval);
+      setProgress(95);
+      setProgressMessage("Finalizing...");
 
       const res = await resp.json();
 
+      // 处理未登录
       if (res.code === -2) {
         setShowSignModal(true);
         setIsGenerating(false);
         return;
       }
 
+      // 处理积分不足
       if (res.code === -3 && res.data?.insufficient) {
         if (pricing && !pricing.disabled) {
           setPricingModalOpen(true);
@@ -131,23 +162,41 @@ export default function ImageGeneratorTool({
         return;
       }
 
+      // 处理其他错误
       if (res.code !== 0) {
-        toast.error(res.message ?? "Failed to consume credits");
+        toast.error(res.message ?? "Failed to generate image");
         setIsGenerating(false);
         return;
       }
 
-      // 4. 积分已扣除，模拟生成（2–3 秒）
-      await new Promise((r) => setTimeout(r, 2000 + Math.random() * 1000));
-      setGeneratedImage(PLACEHOLDER_IMAGE);
+      // 4. 生成成功，显示图片
+      if (res.data?.url) {
+        setProgress(100);
+        setProgressMessage("Complete!");
+        setGeneratedImage(res.data.url);
+        
+        // 显示成功提示（可选：显示使用的 provider）
+        if (res.data.fallbackUsed) {
+          toast.success(`Image generated successfully (using fallback provider: ${res.data.provider})`);
+        } else {
+          toast.success(`Image generated successfully (provider: ${res.data.provider})`);
+        }
+      } else {
+        toast.error("No image URL returned");
+      }
 
       // 5. 异步刷新用户积分
       fetchUserInfo?.();
     } catch (e) {
       console.error("Generate failed:", e);
-      toast.error("Generate failed");
+      toast.error("Generate failed. Please try again.");
     } finally {
       setIsGenerating(false);
+      // 重置进度
+      setTimeout(() => {
+        setProgress(0);
+        setProgressMessage("");
+      }, 2000);
     }
   };
 
@@ -239,22 +288,22 @@ export default function ImageGeneratorTool({
 
       {/* Aspect Ratio */}
       <div className="space-y-2">
-        <Label className="text-sm font-medium">Aspect Ratio</Label>
-        <div className="grid grid-cols-4 gap-2 sm:grid-cols-5">
+        <Label htmlFor="aspect-ratio" className="text-sm font-medium">
+          Aspect Ratio
+        </Label>
+        <select
+          id="aspect-ratio"
+          value={aspectRatio}
+          onChange={(e) => setAspectRatio(e.target.value)}
+          disabled={isGenerating}
+          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        >
           {ASPECT_RATIOS.map(({ value, label }) => (
-            <Button
-              key={value}
-              type="button"
-              variant={aspectRatio === value ? "default" : "outline"}
-              size="sm"
-              className="text-xs"
-              onClick={() => setAspectRatio(value)}
-              disabled={isGenerating}
-            >
+            <option key={value} value={value}>
               {label}
-            </Button>
+            </option>
           ))}
-        </div>
+        </select>
       </div>
 
       {/* Generate Button */}
@@ -293,13 +342,66 @@ export default function ImageGeneratorTool({
   );
 
   const previewPanel = (
-    <div className="flex min-h-[400px] items-center justify-center overflow-hidden rounded-xl border bg-muted/50 lg:min-h-[520px]">
-      {generatedImage ? (
-        <img
-          src={generatedImage}
-          alt="Generated result"
-          className="h-full w-full object-cover"
-        />
+    <div className="flex min-h-[400px] flex-col items-center justify-center overflow-hidden rounded-xl border bg-muted/50 lg:min-h-[520px]">
+      {isGenerating ? (
+        // 生成中显示进度条
+        <div className="flex w-full flex-col items-center justify-center gap-6 px-8">
+          <div className="flex size-20 items-center justify-center rounded-full bg-primary/10">
+            <Icon name="RiLoader4Line" className="size-10 animate-spin text-primary" />
+          </div>
+          <div className="w-full max-w-md space-y-3">
+            <div className="flex items-center justify-between text-sm">
+              <span className="font-medium">{progressMessage}</span>
+              <span className="text-muted-foreground">{Math.round(progress)}%</span>
+            </div>
+            <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
+              <div
+                className="h-full bg-primary transition-all duration-500 ease-out"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            <p className="text-center text-xs text-muted-foreground">
+              This may take 30-90 seconds depending on the complexity
+            </p>
+          </div>
+        </div>
+      ) : generatedImage ? (
+        <div className="relative h-full w-full">
+          <img
+            src={generatedImage}
+            alt="Generated result"
+            className="h-full w-full object-cover"
+          />
+          {/* Action buttons overlay */}
+          <div className="absolute bottom-4 right-4 flex gap-2">
+            <Button
+              size="sm"
+              variant="secondary"
+              className="shadow-lg"
+              onClick={() => {
+                const link = document.createElement("a");
+                link.href = generatedImage;
+                link.download = `generated-${Date.now()}.png`;
+                link.click();
+              }}
+            >
+              <Icon name="RiDownloadLine" className="mr-1 size-4" />
+              Download
+            </Button>
+            <Button
+              size="sm"
+              variant="secondary"
+              className="shadow-lg"
+              onClick={() => {
+                navigator.clipboard.writeText(generatedImage);
+                toast.success("Image URL copied to clipboard");
+              }}
+            >
+              <Icon name="RiShareLine" className="mr-1 size-4" />
+              Share
+            </Button>
+          </div>
+        </div>
       ) : (
         <div className="flex flex-col items-center gap-3 px-6 text-center">
           <div className="flex size-16 items-center justify-center rounded-full bg-primary/10">

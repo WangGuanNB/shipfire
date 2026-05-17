@@ -20,9 +20,9 @@
   "vars": {
     // ========== 1. 基础配置 ==========
     // 网站公开 URL（用于生成链接、邮件等）
-    "NEXT_PUBLIC_WEB_URL": "https://shipstart.net",
+    "NEXT_PUBLIC_WEB_URL": "https://fast3d.online",
     // 项目名称（用于显示、邮件等）
-    "NEXT_PUBLIC_PROJECT_NAME": "shipstart",
+    "NEXT_PUBLIC_PROJECT_NAME": "fast3d",
     // 默认主题（system/light/dark）
     "NEXT_PUBLIC_DEFAULT_THEME": "system",
     // 语言检测（true/false）
@@ -120,17 +120,29 @@
 
     // ========== 10. 存储配置 - Cloudflare R2 ==========
     // R2 账户 ID
-    "R2_ACCOUNT_ID": "",
+    "R2_ACCOUNT_ID": "4b42bdee50348916c19344c2aea39d94",
     // R2 存储桶名称
-    "R2_BUCKET_NAME": "",
+    "R2_BUCKET_NAME": "fire-ship",
     // R2 公开访问 URL
-    "R2_PUBLIC_URL": "",
+    "R2_PUBLIC_URL": "https://cdn.shipstart.net",
 
-    // ========== 11. AI 服务配置 ==========
+    // ========== 11. AI 图像生成配置（多 provider 容错机制）==========
+    // 主力 Provider（可选：kie, fal, replicate）
+    "PRIMARY_PROVIDER": "kie",
+    // 备用 Provider（可选：kie, fal, replicate）
+    "FALLBACK_PROVIDER": "fal",
+    // kie.ai 模型（默认：nano-banana-2）
+    "KIE_MODEL": "nano-banana-2",
+    // fal.ai 模型（默认：fal-ai/nano-banana-2）
+    "FAL_MODEL": "fal-ai/nano-banana-2",
+    // Replicate 模型（默认：google/nano-banana）
+    "REPLICATE_MODEL": "google/nano-banana",
+
+    // ========== 12. AI 服务配置 ==========
     // SiliconFlow API 地址
     "SILICONFLOW_BASE_URL": "",
 
-    // ========== 12. 分析统计配置 ==========
+    // ========== 13. 分析统计配置 ==========
     // Google Analytics ID
     "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID": "",
     // OpenPanel Client ID
@@ -140,11 +152,11 @@
     // Plausible 脚本 URL
     "NEXT_PUBLIC_PLAUSIBLE_SCRIPT_URL": "",
 
-    // ========== 13. 广告配置 ==========
+    // ========== 14. 广告配置 ==========
     // Google AdSense 广告代码
     "NEXT_PUBLIC_GOOGLE_ADCODE": "",
 
-    // ========== 14. 社交媒体和联系方式配置 ==========
+    // ========== 15. 社交媒体和联系方式配置 ==========
     // Twitter/X 社交账号
     "NEXT_PUBLIC_TWITTER_URL": "",
     // GitHub 开源仓库

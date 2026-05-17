@@ -2,6 +2,33 @@
 
 记录所有重要更新。
 
+## [2.10.0] - 2025-01-20
+
+### 🔧 图像生成 API Provider 升级
+- 实现统一 Provider 接口（ImageProvider）
+- 三重容错机制（kie.ai + fal.ai + replicate）
+- 自动 fallback 和智能重试策略
+- 多语言错误处理（中英文）
+- 优化积分扣费逻辑（仅在成功后扣费）
+- 添加 kie.ai provider（$0.09/张）
+- 添加 fal.ai provider（$0.039/张，最便宜）
+- 升级 replicate provider（实现统一接口）
+- 统计监控功能（成功率、容错率）
+- 📄 [完整更新文档](./updates/2025-01-20-api-provider-upgrade.md)
+
+## [2.9.0] - 2025-01-20
+
+### 🎨 图片生成器完整升级
+- 将 `/image-generator` 从模拟调用升级为真实 API 调用
+- 集成 `/api/generate-image` 后端 API（kie.ai、fal.ai、replicate）
+- 自动容错机制（主力失败时自动切换备用）
+- 新增实时进度条（0-100% 进度显示 + 进度消息）
+- 新增下载和分享功能
+- 显示 provider 信息和容错状态
+- UI 优化：宽高比从按钮网格改为下拉选择
+- 配置 Cloudflare R2 存储
+- 📄 [完整更新文档](./updates/2025-01-20-image-generator-upgrade.md)
+
 ## [2.8.0] - 2025-01-20
 
 ### 🚨 紧急安全修复
