@@ -280,6 +280,7 @@ Full documentation: [shipfire.cn/docs](https://shipfire.cn/docs)
 <strong>AstroCarto</strong><br/>
 <sub>Astrology mapping</sub>
 </a>
+         <a href="[https://landscapedesignai.net](https://annorasky.com)"></a>
 </td>
 </tr>
 </table>
