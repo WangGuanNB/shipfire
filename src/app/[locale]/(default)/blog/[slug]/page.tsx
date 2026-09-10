@@ -5,6 +5,8 @@ import { Post } from "@/types/post";
 import { getCanonicalUrl } from "@/lib/utils";
 import BlogDetail from "@/components/blocks/blog-detail";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { generateArticleSchema } from "@/lib/schema";
 
 export async function generateMetadata({
   params,
@@ -74,6 +76,23 @@ export default async function BlogSlugPage({
     locale: post.locale || undefined,
   };
 
-  return <BlogDetail post={postData} />;
+  // 生成 Article Schema
+  const articleSchema = generateArticleSchema({
+    headline: post.title || "",
+    description: post.description || undefined,
+    image: post.cover_url || undefined,
+    datePublished: post.created_at?.toISOString(),
+    dateModified: post.updated_at?.toISOString(),
+    authorName: post.author_name || undefined,
+    authorImage: post.author_avatar_url || undefined,
+    url: getCanonicalUrl(locale, `/blog/${slug}`),
+  });
+
+  return (
+    <>
+      <JsonLd data={articleSchema} />
+      <BlogDetail post={postData} />
+    </>
+  );
 }
 

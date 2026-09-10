@@ -13,9 +13,10 @@ export default async function DefaultLayout({
 }) {
   const { locale } = await params;
   const page = await getLandingPage(locale);
+  const templateTheme = page.theme_id || "saas-minimal";
 
   return (
-    <>
+    <div data-template-theme={templateTheme} data-layout-preset={page.layout_preset}>
       {/* 头部导航栏*/}
       {page.header && <Header header={page.header} />}
       {/* 中间内容页*/}
@@ -24,6 +25,6 @@ export default async function DefaultLayout({
       {page.footer && <Footer footer={page.footer} />}
       {/* 右下角联系我/反馈按钮 */}
       <Feedback socialLinks={page.footer?.social?.items} />
-    </>
+    </div>
   );
 }

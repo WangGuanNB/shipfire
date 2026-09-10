@@ -1,12 +1,131 @@
 "use client";
 
-import * as Ri from "react-icons/ri"; // Remix icons
-import { ReactNode } from "react";
+import {
+  RiAddLine,
+  RiAppsLine,
+  RiArticleLine,
+  RiBankCardLine,
+  RiBookLine,
+  RiCheckLine,
+  RiCloudLine,
+  RiCopperCoinLine,
+  RiCpuLine,
+  RiDashboardLine,
+  RiDiscordFill,
+  RiDiscordLine,
+  RiDownloadLine,
+  RiEditLine,
+  RiEmotionSadFill,
+  RiEyeLine,
+  RiFileCopy2Line,
+  RiFileTextLine,
+  RiFingerprintLine,
+  RiFlashlightFill,
+  RiFlashlightLine,
+  RiFundsLine,
+  RiGiftLine,
+  RiGithubFill,
+  RiGithubLine,
+  RiHdLine,
+  RiHeartLine,
+  RiHomeLine,
+  RiImageAddLine,
+  RiImageLine,
+  RiKey2Line,
+  RiLayoutLine,
+  RiLightbulbLine,
+  RiLoader4Line,
+  RiMagicLine,
+  RiMailLine,
+  RiMessage2Line,
+  RiMoneyCnyCircleFill,
+  RiMoneyDollarBoxLine,
+  RiOrderPlayLine,
+  RiPaletteLine,
+  RiPencilLine,
+  RiPinterestLine,
+  RiRedditLine,
+  RiSearchEyeLine,
+  RiSearchLine,
+  RiSettings3Line,
+  RiSettingsLine,
+  RiShareLine,
+  RiShoppingBagLine,
+  RiSparklingLine,
+  RiSpeedLine,
+  RiStackLine,
+  RiStarLine,
+  RiStarSLine,
+  RiTelegramLine,
+  RiThumbUpLine,
+  RiTwitterLine,
+  RiTwitterXFill,
+  RiUserLine,
+} from "react-icons/ri";
 
-// Map of prefixes to icon packages
-const iconPackages: { [key: string]: any } = {
-  Ri,
-};
+/** Explicit map so unused Remix icons stay out of the client bundle. */
+const icons = {
+  RiAddLine,
+  RiAppsLine,
+  RiArticleLine,
+  RiBankCardLine,
+  RiBookLine,
+  RiCheckLine,
+  RiCloudLine,
+  RiCopperCoinLine,
+  RiCopy2Line: RiFileCopy2Line,
+  RiCpuLine,
+  RiDashboardLine,
+  RiDiscordFill,
+  RiDiscordLine,
+  RiDownloadLine,
+  RiEditLine,
+  RiEmotionSadFill,
+  RiEyeLine,
+  RiFileTextLine,
+  RiFingerprintLine,
+  RiFlashlightFill,
+  RiFundsLine,
+  RiGiftLine,
+  RiGithubFill,
+  RiGithubLine,
+  RiHdLine,
+  RiHeartLine,
+  RiHomeLine,
+  RiImageAddLine,
+  RiImageLine,
+  RiKey2Line,
+  RiLayersLine: RiStackLine,
+  RiLayoutLine,
+  RiLightbulbLine,
+  RiLoader4Line,
+  RiMagicLine,
+  RiMailLine,
+  RiMessage2Line,
+  RiMoneyCnyCircleFill,
+  RiMoneyDollarBoxLine,
+  RiOrderPlayLine,
+  RiPaletteLine,
+  RiPencilLine,
+  RiPinterestLine,
+  RiRedditLine,
+  RiSearchEyeLine,
+  RiSearchLine,
+  RiSettings3Line,
+  RiSettingsLine,
+  RiShareLine,
+  RiShoppingBagLine,
+  RiSparklingLine,
+  RiSpeedLine,
+  RiStarLine,
+  RiStarSLine,
+  RiTelegramLine,
+  RiThumbUpLine,
+  RiTwitterLine,
+  RiTwitterXFill,
+  RiUserLine,
+  RiZapLine: RiFlashlightLine,
+} as const;
 
 export default function Icon({
   name,
@@ -17,31 +136,19 @@ export default function Icon({
   className?: string;
   onClick?: () => void;
 }) {
-  function getIcon(name: string): ReactNode {
-    // Extract prefix (first two characters)
-    const prefix = name.slice(0, 2);
+  const IconComponent = icons[name as keyof typeof icons] as
+    | React.ElementType
+    | undefined;
 
-    // Get the corresponding icon package
-    const iconPackage = iconPackages[prefix];
-    if (iconPackage) {
-      const iconName = name as keyof typeof iconPackage;
-      return iconPackage[iconName] || null;
-    }
-
-    return null;
-  }
-
-  const IconComponent = getIcon(name) as React.ElementType;
-
-  // Return null if no icon is found
   if (!IconComponent) return null;
 
-  // Render the icon component instead of returning it directly
   return (
     <IconComponent
-      className={`${className} cursor-pointer`}
+      className={`${className ?? ""} ${onClick ? "cursor-pointer" : ""}`.trim()}
       onClick={onClick}
       style={{ cursor: onClick ? "pointer" : "default" }}
     />
   );
 }
+
+export type IconName = keyof typeof icons;

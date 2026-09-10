@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Section as SectionType } from "@/types/blocks/section";
 import { Link } from "@/i18n/navigation";
+import { ExampleAction } from "@/components/landing/interactions";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -21,16 +22,16 @@ export default function FeatureWhatTwo({
     <section id={section.name} className="py-12 md:py-20">
       <div className="container max-w-7xl">
         {/* 主内容区域 */}
-        <div className="rounded-3xl bg-card/30 p-8 shadow-sm backdrop-blur-sm lg:p-12">
+        <div className="p-8 lg:p-12">
           {/* 顶部标题区域 */}
           <header className="mx-auto mb-16 max-w-3xl text-center lg:mb-20">
             {section.label && (
-              <span className="mb-4 inline-flex items-center rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
+              <span className="landing-eyebrow mb-4 text-primary">
                 {section.label}
               </span>
             )}
             {section.title && (
-              <h2 className="mb-4 text-balance text-4xl font-medium lg:text-5xl">
+              <h2 className="landing-section-title mb-4">
                 {section.title}
               </h2>
             )}
@@ -43,10 +44,19 @@ export default function FeatureWhatTwo({
 
           {/* 功能区块列表 */}
           <div className="space-y-24 lg:space-y-32">
-          {section.items?.map((item, index) => {
+          {section.items?.map((item, index) => <FeatureItem key={index} item={item} index={index} />)}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeatureItem({ item, index }: { item: NonNullable<SectionType["items"]>[number]; index: number }) {
             const hasImage = Boolean(item.image?.src);
             const isReversed = index % 2 === 1;
             const hasButtons = item.buttons && item.buttons.length > 0;
+            const hasAction = Boolean(item.action?.label && item.action?.tool && item.action?.values);
             
             // 动画配置：奇数从左侧飞入，偶数从右侧飞入
             const imageDirection = isReversed ? "right" : "left";
@@ -124,6 +134,8 @@ export default function FeatureWhatTwo({
                       <img
                         src={item.image?.src}
                         alt={item.image?.alt || item.title}
+                        loading="lazy"
+                        decoding="async"
                         className="absolute inset-0 h-full w-full object-cover"
                       />
                     </div>
@@ -183,9 +195,16 @@ export default function FeatureWhatTwo({
                     )}
                   </div>
 
-                  {/* CTA 按钮组 - 固定在底部 */}
-                  {hasButtons && (
+                  {/* CTA：示例填入 或 普通链接按钮 */}
+                  {(hasAction || hasButtons) && (
                     <div className="mt-6 flex flex-wrap items-center gap-3">
+                      {hasAction && item.action && (
+                        <ExampleAction
+                          label={item.action.label}
+                          tool={item.action.tool}
+                          values={item.action.values}
+                        />
+                      )}
                       {item.buttons?.map((button, btnIndex) => (
                         <Link
                           key={btnIndex}
@@ -193,37 +212,26 @@ export default function FeatureWhatTwo({
                           target={button.target || undefined}
                           className="flex items-center"
                         >
-                          {btnIndex === 0 ? (
-                            // 主按钮：实心样式
-                            <Button
-                              size="lg"
-                              variant={button.variant || "default"}
-                              className="rounded-md px-4 py-2.5 text-sm font-semibold shadow-sm"
-                            >
-                              {button.icon && (
-                                <Icon
-                                  name={button.icon}
-                                  className="mr-2 size-4"
-                                />
-                              )}
-                              {button.title}
-                            </Button>
-                          ) : (
-                            // 次按钮：边框样式
-                            <Button
-                              size="lg"
-                              variant="outline"
-                              className="rounded-md border-2 px-4 py-2.5 text-sm font-semibold"
-                            >
-                              {button.icon && (
-                                <Icon
-                                  name={button.icon}
-                                  className="mr-2 size-4"
-                                />
-                              )}
-                              {button.title}
-                            </Button>
-                          )}
+                          <Button
+                            size="lg"
+                            variant={
+                              button.variant ||
+                              (btnIndex === 0 && !hasAction ? "default" : "outline")
+                            }
+                            className={
+                              btnIndex === 0 && !hasAction
+                                ? "rounded-md px-4 py-2.5 text-sm font-semibold shadow-sm"
+                                : "rounded-md border-2 px-4 py-2.5 text-sm font-semibold"
+                            }
+                          >
+                            {button.icon && (
+                              <Icon
+                                name={button.icon}
+                                className="mr-2 size-4"
+                              />
+                            )}
+                            {button.title}
+                          </Button>
                         </Link>
                       ))}
                     </div>
@@ -231,11 +239,5 @@ export default function FeatureWhatTwo({
                 </motion.div>
               </article>
             );
-          })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
+}

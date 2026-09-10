@@ -1,11 +1,14 @@
 {
-  "template": "shipany-template-one",
+  "template": "shipfire-saas-v2",
   "theme": "light",
+  "theme_id": "saas-minimal",
+  "layout_preset": "centered",
+  "copy_profile": "outcome-led",
   "header": {
     "brand": {
-      "title": "ShipStart",
+      "title": "ShipFire",
       "logo": {
-        "src": "/logo.png",
+        "src": "/logo-mark.webp",
         "alt": "ShipFire"
       },
       "url": "/"
@@ -13,24 +16,24 @@
     "nav": {
       "items": [
         {
-          "title": "Home",
-          "url": "/",
-          "icon": "RiHomeLine"
+          "title": "Tool",
+          "url": "/#hero-tool"
         },
         {
-          "title": "Image Generator",
-          "url": "/image-generator",
-          "icon": "RiImageLine"
+          "title": "Examples",
+          "url": "/#examples"
+        },
+        {
+          "title": "Features",
+          "url": "/#introduce"
+        },
+        {
+          "title": "How it works",
+          "url": "/#usage"
         },
         {
           "title": "Pricing",
-          "url": "/pricing",
-          "icon": "RiPriceTag3Line"
-        },
-        {
-          "title": "Blog",
-          "url": "/blog",
-          "icon": "RiArticleLine"
+          "url": "/pricing/"
         }
       ]
     },
@@ -40,62 +43,19 @@
     "show_locale": true
   },
   "hero": {
-    "title": "ShipStart: Build Your SaaS Website in 3 Minutes",
-    "highlight_text": "Lightning Fast",
-    "description": "A free website builder designed for global indie developers. Launch your product in 48 hours with zero code and built-in AI optimization tools.",
-    "announcement": {
-      "label": "Limited Time",
-      "title": "Free Forever",
-      "url": "/#features"
-    },
-    "images": [
-      {
-        "src": "/imgs/features/1.webp",
-        "alt": "ShipFire Website Builder Example 1",
-        "title": "Build Your SaaS Website"
-      },
-      {
-        "src": "/imgs/features/1.webp",
-        "alt": "ShipStart Website Templates Example 2",
-        "title": "50+ Professional Templates"
-      }
-    ],
-    "layout": "left-image-right-content",
-    "variant": "compact",
-    "enable_carousel": true,
-    "buttons": [
-      {
-        "title": "Build Saas Free Now",
-        "icon": "RiMagicLine",
-        "url": "/#generator",
-        "target": "_self",
-        "variant": "default"
-      },
-      {
-        "title": "Explore Features",
-        "url": "/#feature",
-        "target": "_self",
-        "variant": "secondary"
-      }
-    ],
+    "name": "hero",
+    "variant": "tool",
+    "title": "Turn your ideas into images",
+    "highlight_text": "AI Image Generator",
+    "description": "Describe the subject, style and composition. Choose an aspect ratio and target resolution, or start with one of the prompt examples below.",
     "metrics": [
-      "FREE",
-      "Trusted by 50,000+ developers"
+      "Sign in to generate",
+      "Credit-based generation",
+      "Multiple aspect ratios"
     ],
-    "stats": [
-      {
-        "value": "50,000+",
-        "label": "Active Developers",
-        "icon": "RiUserLine"
-      },
-      {
-        "value": "200,000+",
-        "label": "Websites Built",
-        "icon": "RiImageLine"
-      }
-    ],
-    "show_happy_users": true,
-    "show_badge": true
+    "buttons": [],
+    "show_happy_users": false,
+    "show_badge": false
   },
   "branding": {
     "title": "Powered by cutting-edge AI technology",
@@ -135,97 +95,109 @@
           "alt": "Cloud Processing"
         }
       }
-    ]
+    ],
+    "disabled": true
   },
   "introduce": {
     "name": "introduce",
-    "title": "What is ShipStart",
-    "label": "OVERVIEW",
-    "description": "A SaaS website-building platform tailored for global-facing developers to help your product reach users worldwide instantly.",
-    "image": {
-      "src": "/imgs/features/1.webp"
-    },
+    "label": "FEATURES",
+    "title": "Built for turning prompts into usable images",
+    "description": "Core capabilities you can try in the tool above—without rebuilding a new workflow for every idea.",
     "items": [
       {
-        "title": "ShipStart Free Website Builder",
-        "description": "A completely free online building system—no coding required. It integrates key modules such as payment systems, user management, and analytics. The drag-and-drop interface lets you focus on your product while we handle the tech. Go live in just 3 minutes.",
-        "icon": "RiDownloadLine",
+        "title": "Text-to-image generation",
+        "label": "Create",
+        "description": "Describe the subject, setting, lighting and style. Start from a blank prompt or load an example, then generate when you are ready.",
+        "icon": "RiMagicLine",
         "image": {
           "src": "/imgs/features/1.webp",
-          "alt": "Core Resources Library"
+          "alt": "Text to image generation workflow"
         },
+        "list": [
+          "Prompt-based creation",
+          "Editable examples",
+          "Review before download"
+        ],
         "buttons": [
           {
-            "title": "Start Creating",
-            "url": "/#generator",
+            "title": "Try the tool",
+            "url": "/#hero-tool",
             "variant": "default"
           },
           {
-            "title": "See Pricing",
-            "url": "/#pricing",
+            "title": "View pricing",
+            "url": "/pricing/",
             "variant": "outline"
           }
         ]
       },
       {
-        "title": "ShipStart AI Optimization Engine",
-        "description": "Built-in AI analyzes user behavior automatically. The AI assistant provides real-time improvement suggestions that boost conversions by up to 40%. From copywriting to layout tweaks, your site stays in peak marketing condition without hiring a team.",
-        "icon": "RiDownloadLine",
+        "title": "Aspect ratio control",
+        "label": "Compose",
+        "description": "Choose square, portrait or landscape formats so the composition matches social posts, articles or product shots.",
+        "icon": "RiLayoutLine",
         "image": {
           "src": "/imgs/features/2.webp",
-          "alt": "ShipStart AI optimizing website performance"
+          "alt": "Aspect ratio options for generated images"
         },
+        "list": [
+          "Square, portrait, landscape",
+          "Auto option available",
+          "Match the channel layout"
+        ],
         "buttons": [
           {
-            "title": "Start Creating",
-            "url": "/#generator",
+            "title": "Choose a ratio",
+            "url": "/#hero-tool",
             "variant": "default"
-          },
-          {
-            "title": "View Pricing",
-            "url": "/#pricing",
-            "variant": "outline"
           }
         ]
       },
       {
-        "title": "ShipStart Online One-Click Deployment",
-        "description": "Cloud hosting ensures 99.9% uptime. Global CDN delivers fast access for users worldwide. Automatic SSL, domain binding, and SEO optimization are all included—zero technical barrier so founders can focus fully on their product.",
-        "icon": "RiDownloadLine",
+        "title": "Resolution targets",
+        "label": "Output",
+        "description": "Pick 1K, 2K or 4K as the target resolution. Actual output depends on the generation service—always review the result.",
+        "icon": "RiImageLine",
         "image": {
           "src": "/imgs/features/3.webp",
-          "alt": "ShipStart deploying website to production"
+          "alt": "Resolution options for image output"
         },
+        "list": [
+          "1K / 2K / 4K targets",
+          "Download when ready",
+          "Copy image link"
+        ],
         "buttons": [
           {
-            "title": "Start Creating",
-            "url": "/#generator",
+            "title": "Set resolution",
+            "url": "/#hero-tool",
             "variant": "default"
-          },
-          {
-            "title": "See Pricing",
-            "url": "/#pricing",
-            "variant": "outline"
           }
         ]
       },
       {
-        "title": "ShipStart 50+ Professional Templates",
-        "description": "Choose from 50+ SaaS-optimized templates covering tools, services, communities, and more. Each is conversion-ready with drag-and-drop customization. Pick a template, add your content, and launch—no design skills required.",
-        "icon": "RiDownloadLine",
+        "title": "Credits you can see",
+        "label": "Clarity",
+        "description": "Sign in to generate. The tool shows credits per run and your balance, so pricing is visible before you continue.",
+        "icon": "RiCopperCoinLine",
         "image": {
           "src": "/imgs/features/4.webp",
-          "alt": "ShipStart professional template library"
+          "alt": "Credit cost shown before generating"
         },
+        "list": [
+          "Sign in required",
+          "Cost shown near the button",
+          "Packages when balance is low"
+        ],
         "buttons": [
           {
-            "title": "Start Creating",
-            "url": "/#generator",
+            "title": "Check pricing",
+            "url": "/pricing/",
             "variant": "default"
           },
           {
-            "title": "See Pricing",
-            "url": "/#pricing",
+            "title": "Back to tool",
+            "url": "/#hero-tool",
             "variant": "outline"
           }
         ]
@@ -234,55 +206,54 @@
   },
   "benefit": {
     "name": "benefit",
-    "title": "Why Developers Choose ShipStart",
-    "label": "Core Benefits",
-    "description": "Zero-cost startup with professional-grade features so your SaaS wins from day one.",
+    "label": "USE CASES",
+    "title": "Where this image tool fits",
+    "description": "Concrete tasks—not vague advantages. Pick a scenario close to your work.",
     "items": [
       {
-        "title": "Truly Zero Cost",
-        "description": "ShipStart is 100% free with no hidden fees. Features that cost $49–299/month elsewhere—unlimited pages, user management, payment integration, analytics dashboards—are all unlocked here. Ideal for indie developers, saving thousands in early costs so you can invest in product and marketing instead.",
-        "icon": "RiStarLine",
-        "image": {
-          "src": "/imgs/features/4.webp",
-          "alt": "ShipStart free website builder interface"
-        },
-        "buttons": [
-          {
-            "title": "Create Free",
-            "url": "/#generator",
-            "variant": "default"
-          }
-          
-        ]
-      },
-      {
-        "title": "Lightning Fast",
-        "description": "From creating an account to publishing your website takes only 3 minutes. Choose from 50+ templates optimized for SaaS, customize, and publish. Compared to the 2–4 weeks required for traditional development, ShipStart helps you enter the market a month earlier. Automated workflows handle updates and backups so you can focus on growth.",
-        "icon": "RiGiftLine",
+        "title": "Content illustrations",
+        "description": "Explore visual directions for articles, presentations and social posts before you commission or finalize artwork.",
+        "icon": "RiArticleLine",
         "image": {
           "src": "/imgs/features/1.webp",
-          "alt": "ShipStart lightning fast deployment"
+          "alt": "Content illustration use case"
         },
         "buttons": [
           {
-            "title": "Create Free",
-            "url": "/#generator",
+            "title": "Start from a prompt",
+            "url": "/#hero-tool",
             "variant": "default"
           }
         ]
       },
       {
-        "title": "Optimized for Global Expansion",
-        "description": "Deeply understands the needs of global-facing developers. Supports 20+ languages with auto-translation, multi-currency payments, and GDPR-compliant data handling. Integrated Google Analytics and Meta Pixel help you track overseas performance. With servers across 15 regions, users in the US and Europe experience near-local speeds.",
-        "icon": "RiSpeedLine",
+        "title": "Creative exploration",
+        "description": "Turn scene and composition ideas into drafts you can discuss with a team or client.",
+        "icon": "RiLightbulbLine",
         "image": {
-          "src": "/imgs/features/3.webp",
-          "alt": "ShipStart global expansion features"
+          "src": "/imgs/features/2.webp",
+          "alt": "Creative exploration use case"
         },
         "buttons": [
           {
-            "title": "Create Free",
-            "url": "/#generator",
+            "title": "Explore ideas",
+            "url": "/#hero-tool",
+            "variant": "default"
+          }
+        ]
+      },
+      {
+        "title": "Product concepts",
+        "description": "Try settings and color combinations for product-style shots. Check accuracy and rights before publishing.",
+        "icon": "RiShoppingBagLine",
+        "image": {
+          "src": "/imgs/features/3.webp",
+          "alt": "Product concept use case"
+        },
+        "buttons": [
+          {
+            "title": "Try a product prompt",
+            "url": "/#examples",
             "variant": "default"
           }
         ]
@@ -291,200 +262,142 @@
   },
   "usage": {
     "name": "usage",
-    "label": "HOW TO USE",
-    "title": "How to Build a ShipStart Website",
-    "description": "Create a professional website in three steps—fully online in just 180 seconds.",
+    "label": "HOW IT WORKS",
+    "title": "From a description to an image",
     "items": [
       {
-        "title": "Select Template",
-        "description": "Browse 50+ carefully crafted SaaS templates covering tools, services, communities, and more. Each is optimized for conversions—just pick and start customizing.",
-        "icon": "RiEditLine"
+        "title": "Describe your image",
+        "description": "Include the subject, style, setting and light, or start with an example above."
       },
       {
-        "title": "Customize Your Content",
-        "description": "Use the ShipStart Online Editor to modify text, images, and colors. The AI assistant suggests copy and layout based on your product type. Preview changes instantly.",
-        "icon": "RiPaletteLine"
+        "title": "Choose your settings",
+        "description": "Set the aspect ratio and target resolution, then check the credit cost."
       },
       {
-        "title": "Publish with One Click",
-        "description": "Click Publish to automatically configure domain binding, SSL certificates, and CDN deployment. Your website goes live instantly and updates are equally effortless.",
-        "icon": "RiSettings3Line"
+        "title": "Generate and review",
+        "description": "Sign in to generate. Review the result, then download it or refine your prompt."
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "label": "FEATURES",
-    "title": "ShipStart Core Features Overview",
-    "description": "Enterprise-level capabilities made simple for indie developers, powering your product’s growth.",
+    "title": "What you can do, and what to check",
+    "description": "Choose the settings you need and allow time to review and refine the result.",
     "items": [
       {
-        "title": "Visual Editor",
-        "description": "Drag-and-drop interface with real-time preview. A library of 50+ components allows you to create custom layouts without design skills.",
-        "icon": "RiEyeLine"
+        "title": "Text to image",
+        "description": "Describe a scene, then refine your prompt based on the result.",
+        "icon": "RiZapLine"
       },
       {
-        "title": "User Authentication System",
-        "description": "Supports email, Google, GitHub, and more. Automatically manages permissions and subscription tiers. Built-in trial and upgrade flows boost retention by 35%.",
-        "icon": "RiHdLine"
-      },
-      {
-        "title": "Payment Integration",
-        "description": "Integrated with Stripe and PayPal. Handles subscription billing, invoices, refunds, and more—freeing you from backend complexity.",
+        "title": "Choose an aspect ratio",
+        "description": "Select a square, portrait or landscape format for your composition.",
         "icon": "RiLayoutLine"
       },
       {
-        "title": "Analytics Dashboard",
-        "description": "Track user behavior, funnels, and revenue trends in real time. Clear visual charts help you discover growth opportunities and boost ROI by up to 50%.",
-        "icon": "RiStarSLine"
+        "title": "Set a target resolution",
+        "description": "Choose 1K, 2K or 4K. Actual output depends on the generation service.",
+        "icon": "RiImageLine"
       },
       {
-        "title": "Automatic SEO Optimization",
-        "description": "Generates titles, descriptions, and schema markup automatically. Auto-submits to search engines and optimizes loading speed for higher Google rankings.",
-        "icon": "RiCloudLine"
+        "title": "Download or copy a link",
+        "description": "Download the generated image or copy its image URL.",
+        "icon": "RiDownloadLine"
       },
       {
-        "title": "Email Marketing Tools",
-        "description": "Built-in email sending for welcome messages, product updates, campaigns, and more. A/B testing helps you discover high-performing copy, increasing open rates by 45%.",
-        "icon": "RiShareLine"
+        "title": "See the credit cost",
+        "description": "The tool shows the credits needed per generation and your available balance.",
+        "icon": "RiCopperCoinLine"
+      },
+      {
+        "title": "Review your result",
+        "description": "Text, details and composition may need another attempt. Check the output before using it.",
+        "icon": "RiSearchEyeLine"
       }
     ]
   },
   "faq": {
     "name": "faq",
-    "label": "FAQ",
-    "title": "Frequently Asked Questions",
-    "description": "Can't find the answer to your question? Contact us for help.",
-    "buttons": [
-      {
-        "title": "Contact Us",
-        "url": "/#contact",
-        "variant": "default"
-      }
-    ],
+    "title": "Frequently asked questions",
     "items": [
       {
-        "title": "Is ShipStart free?",
-        "description": "Yes. ShipStart offers a permanently free plan with unlimited pages, user management, payment integration, analytics, and more. No credit card required and no hidden fees. Full commercial use is allowed."
+        "title": "Does loading an example use credits?",
+        "description": "No. Example buttons only fill in the prompt and settings. Generation starts when you press the generate button."
       },
       {
-        "title": "Which platforms does ShipFire Online support?",
-        "description": "Supports custom domains, Vercel, Netlify, and other major hosting platforms. A free *.shipfire.app subdomain is available for testing. SSL and CDN are configured automatically for global performance."
+        "title": "Do I need to sign in?",
+        "description": "Yes. Sign in before generating. The tool displays your account credit balance."
       },
       {
-        "title": "Can I use ShipFire without technical experience?",
-        "description": "Absolutely. ShipFire is designed for non-technical users with a drag-and-drop editor, tutorials, and an AI assistant that provides real-time guidance. Thousands of beginners have built websites with an average learning time under 30 minutes."
+        "title": "Which aspect ratios are supported?",
+        "description": "Choose square, portrait or landscape formats from the current aspect-ratio menu in the tool."
       },
       {
-        "title": "Can I use ShipFire websites for commercial purposes?",
-        "description": "Yes. Websites built with ShipFire are fully commercial-ready, including selling products, subscriptions, and ads. There are no licensing restrictions or revenue sharing."
+        "title": "What if the result is not what I expected?",
+        "description": "Specify the subject, composition, lighting and style more clearly, and remove conflicting instructions. Another generation may require credits."
       },
       {
-        "title": "Can I export or migrate my ShipFire website?",
-        "description": "Yes, you can export full website code including HTML, CSS, and config files. You can migrate to your own server anytime. User and order data can also be exported as CSV for full data ownership."
-      },
-      {
-        "title": "What can ShipFire's AI features do?",
-        "description": "The AI assistant optimizes copy, suggests layout improvements, analyzes user behavior, and predicts conversion bottlenecks. It supports SEO optimization, A/B test generation, and email content creation—trained on data from 50,000+ sites with 92% recommendation accuracy."
-      },
-      {
-        "title": "How secure is my data on ShipFire?",
-        "description": "ShipFire uses enterprise-grade security with encrypted data storage, regular backups, and GDPR compliance. All payment transactions are processed through Stripe and PayPal with PCI-DSS compliance. Your data is never shared with third parties without consent."
-      },
-      {
-        "title": "Does ShipFire support multiple languages?",
-        "description": "Yes. ShipFire supports 20+ languages with automatic translation, multi-currency payment processing, and region-specific content optimization. You can create localized versions of your site for different markets with one-click language switching."
-      },
-      {
-        "title": "What kind of support does ShipFire provide?",
-        "description": "ShipFire offers comprehensive support including detailed documentation, video tutorials, community forums, and email support. Premium users get priority support with faster response times. All users have access to the AI assistant for real-time guidance."
+        "title": "Can I publish the result immediately?",
+        "description": "Check image details, factual accuracy and relevant rights before publishing. See the terms of service for applicable conditions."
       }
     ]
   },
   "testimonial": {
     "name": "testimonial",
-    "label": "Testimonials",
-    "title": "What Developers Say About ShipFire",
-    "description": "See how global developers are using ShipFire to accelerate their business.",
+    "label": "IN THEIR WORDS",
+    "title": "Creators who need images without a full design cycle",
+    "description": "Template sample quotes—replace with your real user feedback before launch.",
     "icon": "RiThumbUpLine",
     "items": [
       {
-        "title": "Leo",
-        "label": "Streetwear Brand Owner",
-        "description": "I used to spend three weeks building a site, only to get less than 2% conversion. With ShipFire Free, I rebuilt everything in 3 hours and hit 8.5%. Now all my time goes to product development.",
+        "title": "Sarah M.",
+        "label": "Content Creator",
+        "description": "I needed blog images fast. Loading a prompt example, adjusting the ratio, then generating saved me a stock-photo hunt.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "Mei",
-        "label": "Social Media Manager",
-        "description": "Our team has no front-end devs and Webflow was too expensive. Switching to ShipFire saved us $3,600 a year and the AI optimization identified 5 issues that boosted our MRR by 38%.",
+        "title": "James K.",
+        "label": "Marketing Manager",
+        "description": "We use it for draft social visuals. Credits are clear, so the team knows when to continue or upgrade.",
         "image": {
           "src": "/imgs/users/2.png"
         }
       },
       {
-        "title": "Robin",
-        "label": "Visual Design Instructor",
-        "description": "The AI suggestions are my favorite. Last week it recommended a pricing page tweak—after applying it our paid conversion jumped from 4% to 6.2%, generating an extra $2,000/month.",
+        "title": "Lisa T.",
+        "label": "Small Business Owner",
+        "description": "I am not a designer. Describing the scene and iterating on the prompt is enough for campaign drafts.",
         "image": {
           "src": "/imgs/users/3.png"
         }
       },
       {
-        "title": "Emma Taylor",
-        "label": "Content Creator",
-        "description": "I built 12 landing pages for clients using ShipFire, each in about 20 minutes. The built-in A/B testing and analytics simplified optimization—client ROI improved by 55%.",
+        "title": "Alex C.",
+        "label": "Indie Founder",
+        "description": "The prompt examples help me start. I refine one detail at a time instead of staring at an empty box.",
         "image": {
           "src": "/imgs/users/6.png"
-        }
-      },
-      {
-        "title": "Carlos Martinez",
-        "label": "T-Shirt Designer",
-        "description": "I sell online courses and WordPress plugins always caused conflicts. ShipFire tripled my site speed and made checkout smoother. Refunds dropped by 70%—students love the experience.",
-        "image": {
-          "src": "/imgs/users/4.png"
-        }
-      },
-      {
-        "title": "Jasmine Lee",
-        "label": "Event Organizer",
-        "description": "As a developer I didn't think I needed a builder, but ShipFire is free and surprisingly powerful. I used it to validate a new startup idea: went from concept to live MVP in 4 hours.",
-        "image": {
-          "src": "/imgs/users/5.png"
-        }
-      },
-      {
-        "title": "Alex Chen",
-        "label": "SaaS Founder",
-        "description": "The multi-language support is a game-changer for our global expansion. We launched in 5 countries simultaneously with localized content and payment methods. Revenue increased 120% in the first quarter.",
-        "image": {
-          "src": "/imgs/users/7.png"
-        }
-      },
-      {
-        "title": "Sarah Johnson",
-        "label": "Marketing Director",
-        "description": "ShipFire's analytics dashboard helped us identify conversion bottlenecks we never noticed before. After implementing the AI recommendations, our email signup rate doubled and customer acquisition cost dropped by 45%.",
-        "image": {
-          "src": "/imgs/users/8.png"
         }
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "Start Building with ShipFire Today",
-    "description": "No credit card needed. No technical skills required. Build a professional site in 3 minutes. Join 50,000+ global developers and reach users worldwide. All core features are free forever.",
+    "title": "Ready to create your next image?",
+    "description": "Return to the tool, load a prompt example, or review credit packages before you generate.",
     "buttons": [
       {
-        "title": "Start Creating Now",
-        "icon": "RiGiftLine",
-        "url": "/#generator",
-        "target": "_self",
-        "variant": "default"
+        "title": "Back to the tool",
+        "url": "#hero-tool",
+        "variant": "default",
+        "icon": "RiMagicLine"
+      },
+      {
+        "title": "View pricing",
+        "url": "/pricing/",
+        "variant": "outline"
       }
     ]
   },
@@ -492,9 +405,9 @@
     "name": "footer",
     "brand": {
       "title": "ShipFire",
-      "description": "ShipFire is dedicated to helping global indie developers quickly build professional SaaS websites with zero code, providing free, high-quality website building solutions with built-in AI optimization tools.",
+      "description": "Describe your ideas and explore image creation with AI.",
       "logo": {
-        "src": "/logo.png",
+        "src": "/logo-mark.webp",
         "alt": "ShipFire"
       },
       "url": "/"
@@ -503,21 +416,21 @@
     "nav": {
       "items": [
         {
-          "title": "Product",
-          "children": []
-        },
-        {
-          "title": "Resources",
+          "title": "Explore",
           "children": [
+            {
+              "title": "Tool",
+              "url": "/#hero-tool"
+            },
             {
               "title": "FAQ",
               "url": "/#faq"
+            },
+            {
+              "title": "Pricing",
+              "url": "/pricing/"
             }
           ]
-        },
-        {
-          "title": "Community",
-          "children": []
         }
       ]
     },
@@ -559,6 +472,171 @@
         {
           "title": "Terms of Service",
           "url": "/terms-of-service"
+        }
+      ]
+    }
+  },
+  "page_type": "tool",
+  "modules": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "source": "hero",
+      "tool": "primary",
+      "surface": "default"
+    },
+    {
+      "id": "examples",
+      "type": "examples",
+      "source": "examples",
+      "surface": "alt"
+    },
+    {
+      "id": "introduce",
+      "type": "intro",
+      "source": "introduce",
+      "surface": "default"
+    },
+    {
+      "id": "usage",
+      "type": "steps",
+      "source": "usage",
+      "surface": "alt"
+    },
+    {
+      "id": "feature",
+      "type": "features",
+      "source": "feature",
+      "surface": "default"
+    },
+    {
+      "id": "benefit",
+      "type": "benefits",
+      "source": "benefit",
+      "surface": "alt"
+    },
+    {
+      "id": "testimonial",
+      "type": "testimonials",
+      "source": "testimonial",
+      "surface": "default"
+    },
+    {
+      "id": "cost",
+      "type": "content",
+      "source": "cost",
+      "surface": "alt"
+    },
+    {
+      "id": "faq",
+      "type": "faq",
+      "source": "faq",
+      "surface": "default"
+    },
+    {
+      "id": "cta",
+      "type": "cta",
+      "source": "cta",
+      "surface": "emphasis"
+    }
+  ],
+  "metadata": {
+    "title": "AI Image Generator — Create Images from Text | ShipFire",
+    "description": "Describe an image, choose its aspect ratio and resolution, then generate. Start with a prompt example; sign in and use credits to create your image."
+  },
+  "tools": {
+    "primary": {
+      "type": "image-generator",
+      "config": {
+        "promptLabel": "Your prompt",
+        "promptPlaceholder": "Describe the subject, setting, lighting and style…",
+        "resolutionLabel": "Target resolution",
+        "aspectRatioLabel": "Aspect ratio",
+        "autoLabel": "Auto",
+        "buttonText": "Generate image",
+        "generatingText": "Generating…",
+        "creditsRequired": "Credits per generation",
+        "creditsAvailable": "Your credits",
+        "emptyTitle": "Your image will appear here",
+        "emptyDescription": "Write a prompt or choose an example below to get started.",
+        "downloadLabel": "Download",
+        "shareLabel": "Copy image link",
+        "insufficientTitle": "More credits needed",
+        "insufficientDescription": "Choose a credit package to continue generating images."
+      }
+    }
+  },
+  "sections": {
+    "examples": {
+      "name": "examples",
+      "label": "RESULTS",
+      "title": "Real generation results",
+      "description": "Three sample outputs. Use a prompt to fill the tool above—generation starts only when you press Generate.",
+      "items": [
+        {
+          "title": "Product still life",
+          "description": "Matte ceramic mug, soft window light, minimal product photography.",
+          "image": {
+            "src": "/imgs/features/1.webp",
+            "alt": "Sample product still-life generation result"
+          },
+          "action": {
+            "label": "Use this prompt",
+            "tool": "primary",
+            "values": {
+              "prompt": "A matte ceramic mug on a warm beige table, soft window light from the left, minimal composition, realistic product photography.",
+              "aspect_ratio": "1:1",
+              "resolution": "2K"
+            }
+          }
+        },
+        {
+          "title": "Editorial illustration",
+          "description": "Observatory at dusk, deep blue and warm orange, wide composition.",
+          "image": {
+            "src": "/imgs/features/2.webp",
+            "alt": "Sample editorial illustration generation result"
+          },
+          "action": {
+            "label": "Use this prompt",
+            "tool": "primary",
+            "values": {
+              "prompt": "An editorial illustration of a small observatory on a hill at dusk, deep blue and warm orange palette, clean geometric shapes, wide composition.",
+              "aspect_ratio": "16:9",
+              "resolution": "2K"
+            }
+          }
+        },
+        {
+          "title": "Soft portrait light",
+          "description": "Golden-hour portrait, soft rim light, shallow depth of field.",
+          "image": {
+            "src": "/imgs/features/3.webp",
+            "alt": "Sample portrait lighting generation result"
+          },
+          "action": {
+            "label": "Use this prompt",
+            "tool": "primary",
+            "values": {
+              "prompt": "A calm portrait of a young adult outdoors at golden hour, soft rim light, shallow depth of field, natural skin tones, photographic style.",
+              "aspect_ratio": "3:4",
+              "resolution": "2K"
+            }
+          }
+        }
+      ]
+    },
+    "cost": {
+      "title": "Generation costs and your balance",
+      "paragraphs": [
+        "Generation requires an account and credits. The current cost and your available balance are shown beneath the generate button.",
+        "If your balance is insufficient, you can view the available packages. Loading an example prompt does not start a paid generation."
+      ],
+      "buttons": [
+        {
+          "title": "View pricing",
+          "url": "/pricing/",
+          "variant": "outline"
         }
       ]
     }

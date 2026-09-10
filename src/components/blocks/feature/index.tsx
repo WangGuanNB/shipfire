@@ -38,9 +38,6 @@ const iconMap: Record<string, ComponentType<{ className?: string }>> = {
 };
 
 export default function Feature({ section }: { section: SectionType }) {
-  if (section.disabled) {
-    return null;
-  }
 
   // 标题区域动画 ref
   const headerRef = useRef(null);
@@ -91,8 +88,12 @@ export default function Feature({ section }: { section: SectionType }) {
     }),
   };
 
+  if (section.disabled) {
+    return null;
+  }
+
   return (
-    <section id={section.name} className="py-12 md:py-20">
+    <section id={section.name} className="landing-section">
       <div className="container space-y-8 md:space-y-16">
         {/* 标题区域 - 带从上往下飞入动画 */}
         <motion.div
@@ -104,11 +105,11 @@ export default function Feature({ section }: { section: SectionType }) {
           className="relative z-10 mx-auto max-w-4xl space-y-6 text-center md:space-y-12"
         >
           {section.label && (
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="outline" className="landing-eyebrow mb-4">
               {section.label}
             </Badge>
           )}
-          <h2 className="text-balance text-4xl font-medium lg:text-5xl">
+          <h2 className="landing-section-title">
             {section.title}
           </h2>
           {section.description && (
@@ -135,7 +136,7 @@ export default function Feature({ section }: { section: SectionType }) {
                 custom={i}
                 variants={cardVariants}
                 style={{ willChange: "transform, opacity" }}
-                className="space-y-3 rounded-2xl border bg-card/30 p-8 text-center shadow-sm backdrop-blur-sm"
+                className="landing-surface space-y-3 p-8 text-center"
               >
                 <div className="flex items-center justify-center gap-2">
                   {LucideIcon ? (

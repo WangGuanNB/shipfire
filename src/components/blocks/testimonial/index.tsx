@@ -13,11 +13,10 @@ import Icon from "@/components/icon";
 import { Section as SectionType } from "@/types/blocks/section";
 import { Star } from "lucide-react";
 import { useRef } from "react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { generateProductWithReviewsSchema } from "@/lib/schema";
 
 export default function Testimonial({ section }: { section: SectionType }) {
-  if (section.disabled) {
-    return null;
-  }
 
   const plugin = useRef(
     AutoScroll({
@@ -26,74 +25,92 @@ export default function Testimonial({ section }: { section: SectionType }) {
     })
   );
 
+  // 生成 Product + AggregateRating Schema
+  const ratedItems = (section.items ?? []).filter(item => typeof item.rating === "number" && item.rating >= 1 && item.rating <= 5);
+  const reviewSchema = section.review_schema && ratedItems.length > 0
+    ? generateProductWithReviewsSchema({
+        productName: section.review_schema.product_name,
+        description: section.review_schema.description || section.description,
+        testimonials: ratedItems,
+        ratingValue: ratedItems.reduce((sum, item) => sum + item.rating!, 0) / ratedItems.length,
+      })
+    : null;
+
+  if (section.disabled) {
+    return null;
+  }
+
   return (
-    <section id={section.name} className="py-12 md:py-20">
-      <div className="flex flex-col items-center gap-4">
-        {section.label && (
-          <div className="flex items-center gap-1 text-sm font-semibold text-primary">
-            {section.icon && (
-              <Icon name={section.icon} className="h-6 w-auto border-primary" />
-            )}
-            {section.label}
-          </div>
-        )}
-        <h2 className="text-balance text-4xl font-medium lg:text-5xl">
-          {section.title}
-        </h2>
-        <p className="mx-auto max-w-3xl text-muted-foreground lg:text-lg">
-          {section.description}
-        </p>
-      </div>
-      <div className="container">
-        <div className="mt-16 space-y-4">
-          <div className="relative -mx-4 px-4 before:absolute before:bottom-0 before:left-0 before:top-0 before:z-10 before:w-36 before:bg-gradient-to-r before:from-background before:to-transparent after:absolute after:bottom-0 after:right-0 after:top-0 after:z-10 after:w-36 after:bg-gradient-to-l after:from-background after:to-transparent">
-            <Carousel
-              opts={{
-                loop: true,
-              }}
-              plugins={[plugin.current]}
-              onMouseLeave={() => plugin.current.play()}
-              className="relative"
-            >
-            <CarouselContent>
-              {section.items?.map((item, index) => (
-                <CarouselItem key={index} className="basis-auto">
-                  <Card className="max-w-96 h-[280px] flex flex-col select-none p-6">
-                    <div className="flex justify-between">
-                      <div className="mb-4 flex gap-4">
-                        <Avatar className="size-14 rounded-full ring-1 ring-input">
-                          <AvatarImage
-                            src={item.image?.src}
-                            alt={item.image?.alt || item.title}
-                          />
-                        </Avatar>
-                        <div>
-                          <p className="font-medium">{item.title}</p>
-                          <p className="text-sm text-muted-foreground">
-                            {item.label}
-                          </p>
+    <>
+      {reviewSchema && <JsonLd data={reviewSchema} />}
+      <section id={section.name} className="py-12 md:py-20">
+        <div className="flex flex-col items-center gap-4">
+          {section.label && (
+            <div className="flex items-center gap-1 text-sm font-semibold text-primary">
+              {section.icon && (
+                <Icon name={section.icon} className="h-6 w-auto border-primary" />
+              )}
+              {section.label}
+            </div>
+          )}
+          <h2 className="text-balance text-4xl font-medium lg:text-5xl">
+            {section.title}
+          </h2>
+          <p className="mx-auto max-w-3xl text-muted-foreground lg:text-lg">
+            {section.description}
+          </p>
+        </div>
+        <div className="container">
+          <div className="mt-16 space-y-4">
+            <div className="relative -mx-4 px-4 before:absolute before:bottom-0 before:left-0 before:top-0 before:z-10 before:w-36 before:bg-gradient-to-r before:from-background before:to-transparent after:absolute after:bottom-0 after:right-0 after:top-0 after:z-10 after:w-36 after:bg-gradient-to-l after:from-background after:to-transparent">
+              <Carousel
+                opts={{
+                  loop: true,
+                }}
+                plugins={[plugin.current]}
+                onMouseLeave={() => plugin.current.play()}
+                className="relative"
+              >
+              <CarouselContent>
+                {section.items?.map((item, index) => (
+                  <CarouselItem key={index} className="basis-auto">
+                    <Card className="max-w-96 h-[280px] flex flex-col select-none p-6">
+                      <div className="flex justify-between">
+                        <div className="mb-4 flex gap-4">
+                          <Avatar className="size-14 rounded-full ring-1 ring-input">
+                            <AvatarImage
+                              src={item.image?.src}
+                              alt={item.image?.alt || item.title}
+                            />
+                          </Avatar>
+                          <div>
+                            <p className="font-medium">{item.title}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {item.label}
+                            </p>
+                          </div>
                         </div>
+                        {typeof item.rating === "number" && item.rating >= 1 && item.rating <= 5 && <div className="flex gap-1" aria-label={`${item.rating}/5`}>
+                          {Array.from({ length: Math.round(item.rating) }).map((_, i) => (
+                            <Star
+                              key={i}
+                              className="size-5 fill-amber-500 text-amber-500"
+                            />
+                          ))}
+                        </div>}
                       </div>
-                      <div className="flex gap-1">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                          <Star
-                            key={i}
-                            className="size-5 fill-amber-500 text-amber-500"
-                          />
-                        ))}
-                      </div>
-                    </div>
-                    <q className="leading-7 text-muted-foreground line-clamp-4 flex-1">
-                      {item.description}
-                    </q>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+                      <q className="leading-7 text-muted-foreground line-clamp-4 flex-1">
+                        {item.description}
+                      </q>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

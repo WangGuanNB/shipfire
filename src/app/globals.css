@@ -13,7 +13,8 @@
 }
 
 .container {
-  @apply mx-auto max-w-7xl px-4 md:px-8;
+  @apply mx-auto w-full px-4 md:px-8;
+  max-width: var(--page-max-width);
 }
 
 input,
@@ -28,6 +29,55 @@ button {
 
 pre {
   @apply px-4;
+}
+
+@layer components {
+  .landing-section {
+    padding-block: var(--section-space);
+  }
+
+  .landing-section-compact {
+    padding-block: var(--section-space-compact);
+  }
+
+  .landing-module-surface {
+    background-color: var(--section-surface);
+  }
+
+  .landing-module-surface[data-surface="alt"] {
+    background-color: var(--section-surface-alt);
+  }
+
+  .landing-module-surface[data-surface="emphasis"] {
+    background-color: var(--section-surface-emphasis);
+  }
+
+  .landing-eyebrow {
+    @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground;
+    border-color: var(--surface-border);
+    background: color-mix(in oklch, var(--card) 84%, transparent);
+  }
+
+  .landing-surface {
+    @apply border bg-card;
+    border-color: var(--surface-border);
+    border-radius: calc(var(--radius) * 1.5);
+    box-shadow: var(--surface-shadow);
+  }
+
+  .landing-section-title {
+    @apply text-balance font-semibold tracking-[-0.035em] text-foreground;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.08;
+  }
+
+  .landing-cta-mask {
+    background-image: url("/imgs/masks/circle.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.55;
+  }
 }
 
 /* ShipAny 风格动态背景动画 - 更明显版本 */
@@ -74,5 +124,29 @@ pre {
 
   .animate-grid {
     animation: retro-grid 15s linear infinite;
+  }
+
+  /* Footer partner badges: 2-row viewport, vertical marquee (links stay in DOM) */
+  @keyframes footer-badge-marquee {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  .footer-badge-marquee__track {
+    animation: footer-badge-marquee 32s linear infinite;
+  }
+
+  .footer-badge-marquee:hover .footer-badge-marquee__track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-badge-marquee__track {
+      animation: none;
+    }
   }
 }

@@ -42,6 +42,9 @@ const ASPECT_RATIOS = [
 ] as const;
 
 interface ImageGeneratorToolProps {
+  id?: string;
+  /** Supplied by an example action; never starts generation. */
+  example?: { values: Record<string, string>; revision: number };
   /** When true, render form only (no section/header) for embedding in Hero */
   embed?: boolean;
   /** Credits required per generation (from AI_CHAT_CREDIT_COST) */
@@ -49,6 +52,7 @@ interface ImageGeneratorToolProps {
   /** Full pricing data for insufficient credits modal (same as /pricing page) */
   pricing?: PricingType | null;
   tool?: {
+    [key: string]: unknown;
     title?: string;
     description?: string;
     promptPlaceholder?: string;
@@ -57,10 +61,9 @@ interface ImageGeneratorToolProps {
   };
 }
 
-// Placeholder image for demo (use project asset)
-const PLACEHOLDER_IMAGE = "/imgs/features/1.webp";
-
 export default function ImageGeneratorTool({
+  id = "generator",
+  example,
   tool,
   embed = false,
   creditCost = 10,
@@ -77,6 +80,15 @@ export default function ImageGeneratorTool({
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
   const [progressMessage, setProgressMessage] = useState("");
+  const copy = (key: string, fallback: string): string => typeof tool?.[key] === "string" ? tool[key] as string : fallback;
+
+  useEffect(() => {
+    if (!example) return;
+    if (typeof example.values.prompt === "string") setPrompt(example.values.prompt.slice(0, PROMPT_MAX_LENGTH));
+    const nextResolution = RESOLUTIONS.find(value => value === example.values.resolution);
+    if (nextResolution) setResolution(nextResolution);
+    if (ASPECT_RATIOS.some(value => value.value === example.values.aspect_ratio)) setAspectRatio(example.values.aspect_ratio);
+  }, [example]);
 
   const leftCredits = user?.credits?.left_credits ?? 0;
 
@@ -245,13 +257,13 @@ export default function ImageGeneratorTool({
     <div className="flex flex-col gap-6">
       {/* Prompt */}
       <div className="space-y-2">
-        <Label htmlFor="prompt" className="text-sm font-medium">
-          Prompt
+        <Label htmlFor={`${id}-prompt`} className="text-sm font-medium">
+          {copy("promptLabel", "Prompt")}
         </Label>
         <div className="relative">
           <Textarea
-            id="prompt"
-            placeholder="Describe the image you want to create in detail..."
+            id={`${id}-prompt`}
+            placeholder={copy("promptPlaceholder", "Describe the image you want to create in detail...")}
             value={prompt}
             onChange={(e) =>
               setPrompt(e.target.value.slice(0, PROMPT_MAX_LENGTH))
@@ -268,7 +280,7 @@ export default function ImageGeneratorTool({
 
       {/* Resolution */}
       <div className="space-y-2">
-        <Label className="text-sm font-medium">Resolution</Label>
+        <Label className="text-sm font-medium">{copy("resolutionLabel", "Resolution")}</Label>
         <div className="flex gap-2">
           {RESOLUTIONS.map((r) => (
             <Button
@@ -288,11 +300,11 @@ export default function ImageGeneratorTool({
 
       {/* Aspect Ratio */}
       <div className="space-y-2">
-        <Label htmlFor="aspect-ratio" className="text-sm font-medium">
-          Aspect Ratio
+        <Label htmlFor={`${id}-aspect-ratio`} className="text-sm font-medium">
+          {copy("aspectRatioLabel", "Aspect Ratio")}
         </Label>
         <select
-          id="aspect-ratio"
+          id={`${id}-aspect-ratio`}
           value={aspectRatio}
           onChange={(e) => setAspectRatio(e.target.value)}
           disabled={isGenerating}
@@ -300,7 +312,7 @@ export default function ImageGeneratorTool({
         >
           {ASPECT_RATIOS.map(({ value, label }) => (
             <option key={value} value={value}>
-              {label}
+              {value === "auto" ? copy("autoLabel", label) : label}
             </option>
           ))}
         </select>
@@ -329,20 +341,20 @@ export default function ImageGeneratorTool({
         )}
       </Button>
 
-      <div className="flex items-center gap-3 text-sm text-muted-foreground">
+      <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
         <span>
-          Credits required: <strong className="font-semibold text-foreground">{creditCost}</strong>
+          {copy("creditsRequired", "Credits required")}: <strong className="font-semibold text-foreground">{creditCost}</strong>
         </span>
         <span className="text-muted-foreground/60">|</span>
         <span>
-          Available Credits: <strong className="font-semibold text-foreground">{user?.credits?.left_credits ?? 0}</strong>
+          {copy("creditsAvailable", "Available Credits")}: <strong className="font-semibold text-foreground">{user?.credits?.left_credits ?? 0}</strong>
         </span>
       </div>
     </div>
   );
 
   const previewPanel = (
-    <div className="flex min-h-[400px] flex-col items-center justify-center overflow-hidden rounded-xl border bg-muted/50 lg:min-h-[520px]">
+    <div className="flex min-h-[220px] flex-col items-center justify-center overflow-hidden rounded-xl border bg-muted/50 lg:min-h-[440px]">
       {isGenerating ? (
         // 生成中显示进度条
         <div className="flex w-full flex-col items-center justify-center gap-6 px-8">
@@ -386,7 +398,7 @@ export default function ImageGeneratorTool({
               }}
             >
               <Icon name="RiDownloadLine" className="mr-1 size-4" />
-              Download
+              {copy("downloadLabel", "Download")}
             </Button>
             <Button
               size="sm"
@@ -398,7 +410,7 @@ export default function ImageGeneratorTool({
               }}
             >
               <Icon name="RiShareLine" className="mr-1 size-4" />
-              Share
+              {copy("shareLabel", "Share")}
             </Button>
           </div>
         </div>
@@ -407,9 +419,9 @@ export default function ImageGeneratorTool({
           <div className="flex size-16 items-center justify-center rounded-full bg-primary/10">
             <Icon name="RiPaletteLine" className="size-8 text-primary" />
           </div>
-          <p className="font-semibold">Ready to Create</p>
+          <p className="font-semibold">{copy("emptyTitle", "Ready to Create")}</p>
           <p className="text-sm text-muted-foreground">
-            Describe the image you want to create and we&apos;ll generate it for you.
+            {copy("emptyDescription", "Describe the image you want to create and we'll generate it for you.")}
           </p>
         </div>
       )}
@@ -425,7 +437,7 @@ export default function ImageGeneratorTool({
 
   if (embed) {
     return (
-      <div id="generator" className="w-full">
+      <div id={id} className="w-full scroll-mt-24">
         <div className="rounded-2xl border bg-card p-6 shadow-sm md:p-8">
           {toolContent}
         </div>
@@ -435,7 +447,7 @@ export default function ImageGeneratorTool({
   }
 
   return (
-    <section id="generator" className="py-12 md:py-20">
+    <section id={id} className="scroll-mt-24 py-12 md:py-20">
       <div className="container">
         <div className="mx-auto max-w-5xl">
           <div className="rounded-2xl border bg-card p-6 shadow-sm md:p-8">

@@ -1,14 +1,5 @@
-import CTA from "@/components/blocks/cta";
-import FAQ from "@/components/blocks/faq";
-import { getAIChatCreditCost } from "@/services/config";
-import { getPricingPage } from "@/services/page";
-import Feature from "@/components/blocks/feature";
-import Feature2 from "@/components/blocks/feature2";
-import Feature3 from "@/components/blocks/feature3";
-import Hero from "@/components/blocks/hero";
-import FeatureWhatTwo from "@/components/blocks/feature-what-two";
-import Testimonial from "@/components/blocks/testimonial";
-import ImageGeneratorTool from "@/components/blocks/image-generator-tool";
+import LandingRenderer from "@/components/landing/renderer";
+import { landingToolRegistry } from "@/components/landing/tools";
 import { getImageGeneratorPage } from "@/services/page";
 import { getCanonicalUrl } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -59,32 +50,13 @@ export default async function ImageGeneratorPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const [page, pricingPage] = await Promise.all([
-    getImageGeneratorPage(locale),
-    getPricingPage(locale),
-  ]);
+  const page = await getImageGeneratorPage(locale);
 
   return (
-    <>
-      {page.hero && (
-        <Hero hero={page.hero}>
-          {page.tool && (
-            <ImageGeneratorTool
-              tool={page.tool}
-              embed
-              creditCost={getAIChatCreditCost()}
-              pricing={pricingPage.pricing ?? null}
-            />
-          )}
-        </Hero>
-      )}
-      {page.introduce && <FeatureWhatTwo section={page.introduce} />}
-      {page.feature && <Feature section={page.feature} />}
-      {page.benefit && <Feature2 section={page.benefit} />}
-      {page.usage && <Feature3 section={page.usage} />}
-      {page.testimonial && <Testimonial section={page.testimonial} />}
-      {page.faq && <FAQ section={page.faq} />}
-      {page.cta && <CTA section={page.cta} />}
-    </>
+    <LandingRenderer
+      page={page}
+      locale={locale}
+      tools={landingToolRegistry}
+    />
   );
 }

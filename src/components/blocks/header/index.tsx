@@ -55,7 +55,10 @@ export default function Header({ header }: { header: HeaderType }) {
                   <img
                     src={header.brand.logo.src}
                     alt={header.brand.logo.alt || header.brand.title}
-                    className="w-6"
+                    width={24}
+                    height={24}
+                    decoding="async"
+                    className="h-6 w-6"
                   />
                 )}
                 {header.brand?.title && (

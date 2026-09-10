@@ -1,290 +1,490 @@
 {
+  "page_type": "tool",
   "metadata": {
-    "title": "Free AI Image Generator | Create Stunning Images from Text Online",
-    "description": "Create stunning images in seconds with our free AI image generator. No design skills needed. Type a description, choose a style, and generate professional visuals for social media, blogs, and marketing.",
-    "keywords": ["image generator", "AI image generator", "free image generator", "text to image generator", "create images from text", "online image generator"]
+    "title": "AI Image Generator — Create Images from Text | ShipFire",
+    "description": "Describe an image, choose aspect ratio and resolution, then generate. Sign in and use credits to create. Start with a prompt example below.",
+    "keywords": [
+      "AI image generator",
+      "text to image",
+      "image generator",
+      "create images from text"
+    ]
   },
+  "modules": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "source": "hero",
+      "tool": "primary",
+      "surface": "default"
+    },
+    {
+      "id": "examples",
+      "type": "examples",
+      "source": "examples",
+      "surface": "alt"
+    },
+    {
+      "id": "introduce",
+      "type": "intro",
+      "source": "introduce",
+      "surface": "default"
+    },
+    {
+      "id": "usage",
+      "type": "steps",
+      "source": "usage",
+      "surface": "alt"
+    },
+    {
+      "id": "feature",
+      "type": "features",
+      "source": "feature",
+      "surface": "default"
+    },
+    {
+      "id": "benefit",
+      "type": "benefits",
+      "source": "benefit",
+      "surface": "alt"
+    },
+    {
+      "id": "testimonial",
+      "type": "testimonials",
+      "source": "testimonial",
+      "surface": "default"
+    },
+    {
+      "id": "cost",
+      "type": "content",
+      "source": "cost",
+      "surface": "alt"
+    },
+    {
+      "id": "faq",
+      "type": "faq",
+      "source": "faq",
+      "surface": "default"
+    },
+    {
+      "id": "cta",
+      "type": "cta",
+      "source": "cta",
+      "surface": "emphasis"
+    }
+  ],
   "hero": {
+    "name": "hero",
     "variant": "tool",
-    "title": "Free AI Image Generator – Create Stunning Images from Text",
-    "highlight_text": "in Seconds",
-    "description": "Turn your ideas into visuals instantly. Our free image generator uses AI to create professional images from simple text descriptions—no design experience required.",
-    "buttons": [
-      {
-        "title": "Try Image Generator Free",
-        "icon": "RiMagicLine",
-        "url": "/#generator",
-        "target": "_self",
-        "variant": "default"
-      }
+    "title": "Turn your ideas into images",
+    "highlight_text": "AI Image Generator",
+    "description": "Describe the subject, style and composition. Choose an aspect ratio and target resolution, or start with one of the prompt examples below.",
+    "metrics": [
+      "Sign in to generate",
+      "Credit-based generation",
+      "Multiple aspect ratios"
     ],
-    "metrics": ["FREE", "No signup required"],
+    "buttons": [],
+    "show_happy_users": false,
     "show_badge": false
   },
-  "tool": {
-    "title": "Create Your Image Now",
-    "description": "Describe what you want to see. Our AI image generator turns your words into beautiful visuals.",
-    "promptPlaceholder": "e.g., A serene mountain landscape at sunset with golden light",
-    "styleLabel": "Art Style",
-    "styles": [
-      { "value": "realistic", "label": "Realistic" },
-      { "value": "illustration", "label": "Illustration" },
-      { "value": "artistic", "label": "Artistic" },
-      { "value": "minimal", "label": "Minimal" }
-    ],
-    "buttonText": "Generate Image",
-    "generatingText": "Creating your image..."
-  },
-  "introduce": {
-    "name": "introduce",
-    "title": "What Is an AI Image Generator?",
-    "label": "OVERVIEW",
-    "description": "An AI image generator turns your text into visuals in seconds—no design skills required.",
+  "usage": {
+    "name": "usage",
+    "label": "HOW IT WORKS",
+    "title": "From a description to an image",
     "items": [
       {
-        "title": "Text-to-Image in Seconds",
-        "description": "Our image generator converts your text prompts into high-quality images. Whether you need social media graphics, blog illustrations, or marketing visuals, simply describe what you want and let the AI do the work. No Photoshop, no stock photo subscriptions—just type and create.",
-        "icon": "RiMagicLine",
-        "image": {
-          "src": "/imgs/features/1.webp",
-          "alt": "AI Image Generator - text to image creation"
-        },
-        "buttons": [
-          {
-            "title": "Start Creating",
-            "url": "/#generator",
-            "variant": "default"
-          }
-        ]
+        "title": "Describe your image",
+        "description": "Include the subject, style, setting and light, or start with an example above."
       },
       {
-        "title": "Multiple Art Styles",
-        "description": "Choose from realistic, illustrated, artistic, or minimal styles. One prompt can yield completely different looks to match your brand or project needs. Whether you need photorealistic product shots, whimsical illustrations for a children's book, or minimalist icons for a presentation, our free image generator adapts to your creative vision with a single click.",
-        "icon": "RiPaletteLine",
-        "image": {
-          "src": "/imgs/features/2.webp",
-          "alt": "AI Image Generator - multiple art styles"
-        },
-        "buttons": [
-          {
-            "title": "Start Creating",
-            "url": "/#generator",
-            "variant": "default"
-          }
-        ]
+        "title": "Choose your settings",
+        "description": "Set the aspect ratio and target resolution, then check the credit cost."
       },
       {
-        "title": "High-Resolution Export",
-        "description": "Download images suitable for web, print, and social media. Our image generator delivers crisp, high-resolution results for professional use—no watermarks, no size limits on the free tier. Use your creations for Instagram posts, blog headers, product packaging mockups, or even large-format prints without worrying about pixelation.",
-        "icon": "RiImageLine",
-        "image": {
-          "src": "/imgs/features/3.webp",
-          "alt": "AI Image Generator - high-resolution export"
-        },
-        "buttons": [
-          {
-            "title": "Start Creating",
-            "url": "/#generator",
-            "variant": "default"
-          }
-        ]
-      },
-      {
-        "title": "No Design Skills Required",
-        "description": "Anyone can use our free image generator. If you can describe an idea in words, you can create a visual—no tutorials, no design background, no Photoshop expertise needed. Perfect for marketers who need quick social graphics, content creators building their brand, and small businesses that want professional visuals without hiring a designer.",
-        "icon": "RiUserLine",
-        "image": {
-          "src": "/imgs/features/4.webp",
-          "alt": "AI Image Generator - easy to use"
-        },
-        "buttons": [
-          {
-            "title": "Start Creating",
-            "url": "/#generator",
-            "variant": "default"
-          }
-        ]
+        "title": "Generate and review",
+        "description": "Sign in to generate. Review the result, then download it or refine your prompt."
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "label": "FEATURES",
-    "title": "Key Features of Our Image Generator",
-    "description": "Everything you need to create professional images quickly and easily.",
+    "title": "What you can do, and what to check",
+    "description": "Choose the settings you need and allow time to review and refine the result.",
     "items": [
       {
-        "title": "Text-to-Image in Seconds",
-        "description": "Type a description and get a finished image in under 30 seconds. Our image generator understands natural language and produces relevant, high-quality visuals.",
+        "title": "Text to image",
+        "description": "Describe a scene, then refine your prompt based on the result.",
         "icon": "RiZapLine"
       },
       {
-        "title": "Multiple Art Styles",
-        "description": "Choose from realistic, illustrated, artistic, or minimal styles. One prompt can yield different looks to match your brand or project needs.",
-        "icon": "RiPaletteLine"
+        "title": "Choose an aspect ratio",
+        "description": "Select a square, portrait or landscape format for your composition.",
+        "icon": "RiLayoutLine"
       },
       {
-        "title": "High-Resolution Export",
-        "description": "Download images suitable for web, print, and social media. Our image generator delivers crisp results for professional use.",
+        "title": "Set a target resolution",
+        "description": "Choose 1K, 2K or 4K. Actual output depends on the generation service.",
         "icon": "RiImageLine"
       },
       {
-        "title": "No Design Skills Required",
-        "description": "Anyone can use our free image generator. If you can describe an idea in words, you can create a visual—no tutorials or design background needed.",
-        "icon": "RiUserLine"
-      },
-      {
-        "title": "Free & No Signup",
-        "description": "Use our image generator without creating an account. Start creating in seconds with zero barriers—no credit card, no email required.",
-        "icon": "RiGiftLine"
-      },
-      {
-        "title": "Commercial Use Allowed",
-        "description": "Generated images are yours to use for marketing, social media, and products. No watermarks or usage restrictions—create with confidence.",
-        "icon": "RiShieldLine"
-      }
-    ]
-  },
-  "benefit": {
-    "name": "benefit",
-    "title": "Why Choose Our Free Image Generator?",
-    "label": "CORE BENEFITS",
-    "description": "Stand out with an image generator built for speed, quality, and ease of use.",
-    "items": [
-      {
-        "title": "100% Free to Use",
-        "description": "Our image generator is completely free with no hidden fees. No credit card, no subscription, no daily limits—create as many images as you need without paying a cent. Unlike paid tools that charge $10–50/month for similar features, you get professional-grade text-to-image generation at zero cost. Perfect for testing ideas, small projects, bloggers, and marketers who need visuals without the budget.",
-        "icon": "RiGiftLine",
-        "image": { "src": "/imgs/features/1.webp", "alt": "Free image generator interface" },
-        "buttons": [
-          { "title": "Start Creating", "url": "/#generator", "variant": "default" }
-        ]
-      },
-      {
-        "title": "Create Images from Text Instantly",
-        "description": "Other tools require learning complex prompt formulas or waiting in queues. Our image generator gives you results in seconds—type a simple description and get a finished image. No steep learning curve, no hours of experimentation. Whether you need social media graphics, blog illustrations, or product mockups, describe it and get it. That simple.",
-        "icon": "RiSpeedLine",
-        "image": { "src": "/imgs/features/2.webp", "alt": "Fast text to image generation" },
-        "buttons": [
-          { "title": "Start Creating", "url": "/#generator", "variant": "default" }
-        ]
-      },
-      {
-        "title": "Privacy-First",
-        "description": "Your prompts and generated images stay private. We don't train on your content, sell your data, or share it with third parties. Create with complete confidence—whether for personal projects or sensitive business visuals. Our secure image generator processes your requests without storing or repurposing your ideas.",
-        "icon": "RiShieldLine",
-        "image": { "src": "/imgs/features/3.webp", "alt": "Secure AI image generator" },
-        "buttons": [
-          { "title": "Start Creating", "url": "/#generator", "variant": "default" }
-        ]
-      }
-    ]
-  },
-  "usage": {
-    "name": "usage",
-    "label": "HOW TO USE",
-    "title": "How to Use the Image Generator",
-    "description": "Create your first image in three simple steps.",
-    "items": [
-      {
-        "title": "Describe Your Image",
-        "description": "Type a clear description of what you want. Be specific: include colors, composition, mood, and style. The better your prompt, the better the result from our image generator.",
-        "icon": "RiEditLine"
-      },
-      {
-        "title": "Choose a Style",
-        "description": "Select an art style that fits your project—realistic for photos, illustration for branding, artistic for creative work. Our image generator adapts to your choice.",
-        "icon": "RiPaletteLine"
-      },
-      {
-        "title": "Generate and Download",
-        "description": "Click Generate and wait a few seconds. Review your image, make adjustments if needed, and download when you're satisfied. That's how easy our free image generator is.",
+        "title": "Download or copy a link",
+        "description": "Download the generated image or copy its image URL.",
         "icon": "RiDownloadLine"
-      }
-    ]
-  },
-  "testimonial": {
-    "name": "testimonial",
-    "label": "TESTIMONIALS",
-    "title": "What Users Say About Our Image Generator",
-    "description": "See how creators use our free image generator for their projects.",
-    "icon": "RiThumbUpLine",
-    "items": [
-      {
-        "title": "Sarah M.",
-        "label": "Content Creator",
-        "description": "I needed blog images fast. This image generator saved me hours. I type what I want, get a great visual, and move on. No stock photo hunting anymore.",
-        "image": { "src": "/imgs/users/1.png" }
       },
       {
-        "title": "James K.",
-        "label": "Marketing Manager",
-        "description": "We use this AI image generator for social posts and ads. It's free, quick, and the quality holds up. Game changer for our small team.",
-        "image": { "src": "/imgs/users/2.png" }
+        "title": "See the credit cost",
+        "description": "The tool shows the credits needed per generation and your available balance.",
+        "icon": "RiCopperCoinLine"
       },
       {
-        "title": "Lisa T.",
-        "label": "Small Business Owner",
-        "description": "I have zero design skills. This free image generator lets me create product visuals and promotional graphics myself. Simple and effective.",
-        "image": { "src": "/imgs/users/3.png" }
+        "title": "Review your result",
+        "description": "Text, details and composition may need another attempt. Check the output before using it.",
+        "icon": "RiSearchEyeLine"
       }
     ]
   },
   "faq": {
     "name": "faq",
-    "label": "FAQ",
-    "title": "Frequently Asked Questions",
-    "description": "Common questions about our free AI image generator.",
+    "title": "Frequently asked questions",
     "items": [
       {
-        "title": "Is this image generator really free?",
-        "description": "Yes. Our image generator is completely free to use with no signup or credit card required. You can create images from text as often as you need without paying a cent. Unlike many tools that offer only a few free credits before asking for payment, we believe everyone should have access to AI-powered image creation. Perfect for trying out the tool, testing ideas, or producing visuals for personal and small business projects."
+        "title": "Does loading an example use credits?",
+        "description": "No. Example buttons only fill in the prompt and settings. Generation starts when you press the generate button."
       },
       {
-        "title": "How does the AI image generator work?",
-        "description": "You simply enter a text description of the image you want—a scene, a character, a product, or any visual idea. Our image generator uses advanced AI to interpret your prompt and create a matching visual in seconds. The more specific your description, the better the result. You can also choose an art style (realistic, illustration, artistic, or minimal) to fine-tune the output. No technical knowledge or prompt engineering required."
+        "title": "Do I need to sign in?",
+        "description": "Yes. Sign in before generating. The tool displays your account credit balance."
       },
       {
-        "title": "Can I use generated images commercially?",
-        "description": "Generated images from our free image generator are cleared for both personal and commercial use. You can use them for social media posts, blog graphics, marketing materials, product mockups, and more. We do not add watermarks or restrict how you use your creations. For complete licensing terms and any edge cases, please refer to our full terms of service."
+        "title": "Which aspect ratios are supported?",
+        "description": "Choose square, portrait or landscape formats from the current aspect-ratio menu in the tool."
       },
       {
-        "title": "Do I need design experience to use the image generator?",
-        "description": "No design experience is needed. Our image generator is built for everyone—marketers, bloggers, small business owners, and anyone who needs visuals. Just describe your idea in plain English and the AI creates the image for you. No Photoshop, no design courses, no learning curve. If you can type a sentence, you can create a professional-looking image."
+        "title": "What if the result is not what I expected?",
+        "description": "Specify the subject, composition, lighting and style more clearly, and remove conflicting instructions. Another generation may require credits."
       },
       {
-        "title": "What's the difference between this and other image generators?",
-        "description": "Our image generator stands out for being free, fast, and easy. No account or signup needed to start creating. While other tools often require complex prompt syntax or have long wait times, we focus on simplicity—just type what you want and get results in seconds. No learning curve, no subscription tiers, and no hidden fees. We prioritize accessibility so anyone can create images from text."
+        "title": "Can I publish the result immediately?",
+        "description": "Check image details, factual accuracy and relevant rights before publishing. See the terms of service for applicable conditions."
+      }
+    ]
+  },
+  "tools": {
+    "primary": {
+      "type": "image-generator",
+      "config": {
+        "promptLabel": "Your prompt",
+        "promptPlaceholder": "Describe the subject, setting, lighting and style…",
+        "resolutionLabel": "Target resolution",
+        "aspectRatioLabel": "Aspect ratio",
+        "autoLabel": "Auto",
+        "buttonText": "Generate image",
+        "generatingText": "Generating…",
+        "creditsRequired": "Credits per generation",
+        "creditsAvailable": "Your credits",
+        "emptyTitle": "Your image will appear here",
+        "emptyDescription": "Write a prompt or choose an example below to get started.",
+        "downloadLabel": "Download",
+        "shareLabel": "Copy image link",
+        "insufficientTitle": "More credits needed",
+        "insufficientDescription": "Choose a credit package to continue generating images."
+      }
+    }
+  },
+  "sections": {
+    "examples": {
+      "name": "examples",
+      "label": "RESULTS",
+      "title": "Real generation results",
+      "description": "Three sample outputs. Use a prompt to fill the tool above—generation starts only when you press Generate.",
+      "items": [
+        {
+          "title": "Product still life",
+          "description": "Matte ceramic mug, soft window light, minimal product photography.",
+          "image": {
+            "src": "/imgs/features/1.webp",
+            "alt": "Sample product still-life generation result"
+          },
+          "action": {
+            "label": "Use this prompt",
+            "tool": "primary",
+            "values": {
+              "prompt": "A matte ceramic mug on a warm beige table, soft window light from the left, minimal composition, realistic product photography.",
+              "aspect_ratio": "1:1",
+              "resolution": "2K"
+            }
+          }
+        },
+        {
+          "title": "Editorial illustration",
+          "description": "Observatory at dusk, deep blue and warm orange, wide composition.",
+          "image": {
+            "src": "/imgs/features/2.webp",
+            "alt": "Sample editorial illustration generation result"
+          },
+          "action": {
+            "label": "Use this prompt",
+            "tool": "primary",
+            "values": {
+              "prompt": "An editorial illustration of a small observatory on a hill at dusk, deep blue and warm orange palette, clean geometric shapes, wide composition.",
+              "aspect_ratio": "16:9",
+              "resolution": "2K"
+            }
+          }
+        },
+        {
+          "title": "Soft portrait light",
+          "description": "Golden-hour portrait, soft rim light, shallow depth of field.",
+          "image": {
+            "src": "/imgs/features/3.webp",
+            "alt": "Sample portrait lighting generation result"
+          },
+          "action": {
+            "label": "Use this prompt",
+            "tool": "primary",
+            "values": {
+              "prompt": "A calm portrait of a young adult outdoors at golden hour, soft rim light, shallow depth of field, natural skin tones, photographic style.",
+              "aspect_ratio": "3:4",
+              "resolution": "2K"
+            }
+          }
+        }
+      ]
+    },
+    "cost": {
+      "title": "Generation costs and your balance",
+      "paragraphs": [
+        "Generation requires an account and credits. The current cost and your available balance are shown beneath the generate button.",
+        "If your balance is insufficient, you can view the available packages. Loading an example prompt does not start a paid generation."
+      ],
+      "buttons": [
+        {
+          "title": "View pricing",
+          "url": "/pricing/",
+          "variant": "outline"
+        }
+      ]
+    }
+  },
+  "introduce": {
+    "name": "introduce",
+    "label": "FEATURES",
+    "title": "Built for turning prompts into usable images",
+    "description": "Core capabilities you can try in the tool above—without rebuilding a new workflow for every idea.",
+    "items": [
+      {
+        "title": "Text-to-image generation",
+        "label": "Create",
+        "description": "Describe the subject, setting, lighting and style. Start from a blank prompt or load an example, then generate when you are ready.",
+        "icon": "RiMagicLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Text to image generation workflow"
+        },
+        "list": [
+          "Prompt-based creation",
+          "Editable examples",
+          "Review before download"
+        ],
+        "buttons": [
+          {
+            "title": "Try the tool",
+            "url": "/#hero-tool",
+            "variant": "default"
+          },
+          {
+            "title": "View pricing",
+            "url": "/pricing/",
+            "variant": "outline"
+          }
+        ]
       },
       {
-        "title": "What image formats can I download?",
-        "description": "Our image generator supports common image formats suitable for web, print, and social media. You can download your creations in high resolution, so they look crisp on screens and in print. Whether you need images for Instagram, a blog header, a presentation slide, or product packaging, the exported files are ready to use across platforms and projects without quality loss."
+        "title": "Aspect ratio control",
+        "label": "Compose",
+        "description": "Choose square, portrait or landscape formats so the composition matches social posts, articles or product shots.",
+        "icon": "RiLayoutLine",
+        "image": {
+          "src": "/imgs/features/2.webp",
+          "alt": "Aspect ratio options for generated images"
+        },
+        "list": [
+          "Square, portrait, landscape",
+          "Auto option available",
+          "Match the channel layout"
+        ],
+        "buttons": [
+          {
+            "title": "Choose a ratio",
+            "url": "/#hero-tool",
+            "variant": "default"
+          }
+        ]
       },
       {
-        "title": "How many images can I generate for free?",
-        "description": "Our free tier lets you create images as often as you need. There are no daily caps, no monthly limits, and no hidden restrictions. Generate as many visuals as your projects require—whether that's a handful for a blog post or dozens for a marketing campaign. We want you to focus on creating, not counting credits."
+        "title": "Resolution targets",
+        "label": "Output",
+        "description": "Pick 1K, 2K or 4K as the target resolution. Actual output depends on the generation service—always review the result.",
+        "icon": "RiImageLine",
+        "image": {
+          "src": "/imgs/features/3.webp",
+          "alt": "Resolution options for image output"
+        },
+        "list": [
+          "1K / 2K / 4K targets",
+          "Download when ready",
+          "Copy image link"
+        ],
+        "buttons": [
+          {
+            "title": "Set resolution",
+            "url": "/#hero-tool",
+            "variant": "default"
+          }
+        ]
       },
       {
-        "title": "Is my prompt data kept private?",
-        "description": "Yes. We do not store your prompts or use them to train AI models. Your ideas, descriptions, and generated images remain private and secure when you use our image generator. We do not sell or share your data with third parties. You can create freely, including for sensitive or confidential projects, with confidence that your content stays yours."
+        "title": "Credits you can see",
+        "label": "Clarity",
+        "description": "Sign in to generate. The tool shows credits per run and your balance, so pricing is visible before you continue.",
+        "icon": "RiCopperCoinLine",
+        "image": {
+          "src": "/imgs/features/4.webp",
+          "alt": "Credit cost shown before generating"
+        },
+        "list": [
+          "Sign in required",
+          "Cost shown near the button",
+          "Packages when balance is low"
+        ],
+        "buttons": [
+          {
+            "title": "Check pricing",
+            "url": "/pricing/",
+            "variant": "default"
+          },
+          {
+            "title": "Back to tool",
+            "url": "/#hero-tool",
+            "variant": "outline"
+          }
+        ]
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "label": "USE CASES",
+    "title": "Where this image tool fits",
+    "description": "Concrete tasks—not vague advantages. Pick a scenario close to your work.",
+    "items": [
+      {
+        "title": "Content illustrations",
+        "description": "Explore visual directions for articles, presentations and social posts before you commission or finalize artwork.",
+        "icon": "RiArticleLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Content illustration use case"
+        },
+        "buttons": [
+          {
+            "title": "Start from a prompt",
+            "url": "/#hero-tool",
+            "variant": "default"
+          }
+        ]
       },
       {
-        "title": "Can I use the image generator on mobile?",
-        "description": "Yes. Our image generator works on any device with a web browser—desktop, tablet, or phone. The interface is responsive and optimized for touch screens, so you can create images from text wherever you are. Whether you're at your desk, on the go, or brainstorming from your phone, the same powerful AI image generation is just a few taps away."
+        "title": "Creative exploration",
+        "description": "Turn scene and composition ideas into drafts you can discuss with a team or client.",
+        "icon": "RiLightbulbLine",
+        "image": {
+          "src": "/imgs/features/2.webp",
+          "alt": "Creative exploration use case"
+        },
+        "buttons": [
+          {
+            "title": "Explore ideas",
+            "url": "/#hero-tool",
+            "variant": "default"
+          }
+        ]
+      },
+      {
+        "title": "Product concepts",
+        "description": "Try settings and color combinations for product-style shots. Check accuracy and rights before publishing.",
+        "icon": "RiShoppingBagLine",
+        "image": {
+          "src": "/imgs/features/3.webp",
+          "alt": "Product concept use case"
+        },
+        "buttons": [
+          {
+            "title": "Try a product prompt",
+            "url": "/#examples",
+            "variant": "default"
+          }
+        ]
+      }
+    ]
+  },
+  "testimonial": {
+    "name": "testimonial",
+    "label": "IN THEIR WORDS",
+    "title": "Creators who need images without a full design cycle",
+    "description": "Template sample quotes—replace with your real user feedback before launch.",
+    "icon": "RiThumbUpLine",
+    "items": [
+      {
+        "title": "Sarah M.",
+        "label": "Content Creator",
+        "description": "I needed blog images fast. Loading a prompt example, adjusting the ratio, then generating saved me a stock-photo hunt.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "James K.",
+        "label": "Marketing Manager",
+        "description": "We use it for draft social visuals. Credits are clear, so the team knows when to continue or upgrade.",
+        "image": {
+          "src": "/imgs/users/2.png"
+        }
+      },
+      {
+        "title": "Lisa T.",
+        "label": "Small Business Owner",
+        "description": "I am not a designer. Describing the scene and iterating on the prompt is enough for campaign drafts.",
+        "image": {
+          "src": "/imgs/users/3.png"
+        }
+      },
+      {
+        "title": "Alex C.",
+        "label": "Indie Founder",
+        "description": "The prompt examples help me start. I refine one detail at a time instead of staring at an empty box.",
+        "image": {
+          "src": "/imgs/users/6.png"
+        }
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "Create Your First Image Free",
-    "description": "No signup. No credit card. Just type a description and let our image generator do the rest. Try it now.",
+    "title": "Ready to create your next image?",
+    "description": "Return to the tool, load a prompt example, or review credit packages before you generate.",
     "buttons": [
       {
-        "title": "Generate Image Now",
-        "icon": "RiMagicLine",
-        "url": "/#generator",
-        "target": "_self",
-        "variant": "default"
+        "title": "Back to the tool",
+        "url": "#hero-tool",
+        "variant": "default",
+        "icon": "RiMagicLine"
+      },
+      {
+        "title": "View pricing",
+        "url": "/pricing/",
+        "variant": "outline"
       }
     ]
   }

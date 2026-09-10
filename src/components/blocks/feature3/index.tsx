@@ -55,8 +55,8 @@ const StepCard: React.FC<StepCardProps> = ({ icon, title, description, index }) 
         delay: index * 0.1,
       }}
       className={cn(
-        "relative rounded-2xl border bg-card p-6 text-card-foreground transition-all duration-300 ease-in-out",
-        "hover:scale-105 hover:shadow-lg hover:border-primary/50 hover:bg-muted"
+        "landing-surface relative p-6 text-card-foreground transition-all duration-300 ease-in-out",
+        "hover:-translate-y-1 hover:border-primary/50"
       )}
     >
       {/* Icon - 简洁模式，无圆圈背景 */}
@@ -74,9 +74,6 @@ const StepCard: React.FC<StepCardProps> = ({ icon, title, description, index }) 
 };
 
 export default function Feature3({ section }: { section: SectionType }) {
-  if (section.disabled) {
-    return null;
-  }
 
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, {
@@ -91,8 +88,12 @@ export default function Feature3({ section }: { section: SectionType }) {
   const lineWidth = "66.6667%";
   const lineLeft = "16.6667%";
 
+  if (section.disabled) {
+    return null;
+  }
+
   return (
-    <section id={section.name} className="py-12 md:py-20">
+    <section id={section.name} className="landing-section">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -106,11 +107,11 @@ export default function Feature3({ section }: { section: SectionType }) {
           className="relative z-10 mx-auto max-w-4xl space-y-8 pb-8 text-center md:space-y-10 md:pb-12"
         >
           {section.label && (
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="outline" className="landing-eyebrow mb-4">
               {section.label}
             </Badge>
           )}
-          <h2 className="text-balance text-4xl font-medium lg:text-5xl">
+          <h2 className="landing-section-title">
             {section.title}
           </h2>
           {section.description && (

@@ -28,6 +28,7 @@ export interface Button {
 export interface Image {
   src?: string;
   alt?: string;
+  title?: string;
   width?: number;
   height?: number;
   className?: string;

@@ -1,0 +1,564 @@
+{
+  "template": "shipfire-saas-v2",
+  "theme": "light",
+  "theme_id": "saas-minimal",
+  "layout_preset": "centered",
+  "copy_profile": "outcome-led",
+  "header": {
+    "brand": {
+      "title": "ShipFire",
+      "logo": {
+        "src": "/logo-mark.webp",
+        "alt": "ShipFire"
+      },
+      "url": "/"
+    },
+    "nav": {
+      "items": [
+        {
+          "title": "工具",
+          "url": "/image-generator/"
+        },
+        {
+          "title": "教程",
+          "url": "/#answer"
+        },
+        {
+          "title": "套餐",
+          "url": "/pricing/"
+        }
+      ]
+    },
+    "buttons": [],
+    "show_sign": true,
+    "show_theme": true,
+    "show_locale": true
+  },
+  "hero": {
+    "variant": "compact",
+    "title": "如何写好 AI 图片提示词？",
+    "description": "先明确主体，再补充场景、光线、风格和构图。用具体的画面描述代替笼统的“好看”，每次只调整一个关键因素。",
+    "buttons": [
+      {
+        "title": "打开图片工具",
+        "url": "/image-generator/"
+      }
+    ]
+  },
+  "branding": {
+    "title": "由尖端AI技术驱动",
+    "items": [
+      {
+        "title": "OpenAI",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "OpenAI"
+        }
+      },
+      {
+        "title": "计算机视觉",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "计算机视觉"
+        }
+      },
+      {
+        "title": "神经网络",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "神经网络"
+        }
+      },
+      {
+        "title": "机器学习",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "机器学习"
+        }
+      },
+      {
+        "title": "云端处理",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "云端处理"
+        }
+      }
+    ],
+    "disabled": true
+  },
+  "introduce": {
+    "name": "introduce",
+    "title": "从空白仓库，到用户真正能试用的产品。",
+    "label": "产品基础",
+    "description": "ShipFire 为独立开发者准备好可组合的 SaaS 起点，让你不用每次都重建同一套基础设施，就能构建、验证并持续迭代产品。",
+    "image": {
+      "src": "/imgs/features/1.webp"
+    },
+    "items": [
+      {
+        "title": "ShipFire 免费网站构建器",
+        "description": "完全免费的在线构建系统—无需编码。它集成了关键模块，如支付系统、用户管理和分析。拖放界面让您专注于产品，而我们处理技术。只需3分钟即可上线。",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "核心资源库"
+        },
+        "buttons": [
+          {
+            "title": "开始创作",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "查看价格",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
+      },
+      {
+        "title": "ShipFire AI 优化引擎",
+        "description": "内置 AI 自动分析用户行为。AI 助手提供实时改进建议，将转化率提升高达 40%。从文案到布局调整，您的网站始终保持最佳营销状态，无需雇佣团队。",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "涂鸦生成器 AI 优化街头艺术"
+        },
+        "buttons": [
+          {
+            "title": "开始创作",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "查看价格",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
+      },
+      {
+        "title": "ShipFire 在线一键部署",
+        "description": "云托管确保 99.9% 的正常运行时间。全球 CDN 为全球用户提供快速访问。自动 SSL、域名绑定和 SEO 优化全部包含—零技术障碍，让创始人可以完全专注于产品。",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/3.webp",
+          "alt": "ShipFire 一键部署到生产环境"
+        },
+        "buttons": [
+          {
+            "title": "开始创作",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "查看价格",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
+      },
+      {
+        "title": "ShipFire 50+ 专业模板",
+        "description": "50+ 针对 SaaS 优化的模板，涵盖工具、服务、社区等。每个模板都经过转化优化，支持拖拽自定义。选择模板、添加内容、一键上线—无需设计技能。",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/4.webp",
+          "alt": "ShipFire 专业模板库"
+        },
+        "buttons": [
+          {
+            "title": "开始创作",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "查看价格",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
+      }
+    ],
+    "disabled": true
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "让基础工作退到幕后。",
+    "label": "它为什么有用",
+    "description": "零成本启动，具备专业级功能，让您的 SaaS 从第一天起就获胜。",
+    "items": [
+      {
+        "title": "真正零成本",
+        "description": "ShipFire 100% 免费，无隐藏费用。在其他地方需要 $49–299/月的功能—无限页面、用户管理、支付集成、分析仪表板—在这里全部解锁。非常适合独立开发者，节省数千早期成本，让您可以投资于产品和营销。",
+        "icon": "RiStarLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "真实的涂鸦生成器街头艺术预览"
+        },
+        "buttons": [
+          {
+            "title": "免费创建",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
+      },
+      {
+        "title": "闪电般快速",
+        "description": "从创建账户到发布网站只需 3 分钟。从 50+ 个针对 SaaS 优化的模板中选择，自定义并发布。相比传统开发所需的 2–4 周，ShipFire 帮助您提前一个月进入市场。自动化工作流程处理更新和备份，让您可以专注于增长。",
+        "icon": "RiGiftLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "涂鸦生成器免费访问界面"
+        },
+        "buttons": [
+          {
+            "title": "免费创建",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
+      },
+      {
+        "title": "为全球扩张优化",
+        "description": "深刻理解面向全球的开发者的需求。支持 20+ 种语言，具有自动翻译、多币种支付和符合 GDPR 的数据处理。集成的 Google Analytics 和 Meta Pixel 帮助您跟踪海外表现。在 15 个地区拥有服务器，美国和欧洲的用户体验接近本地速度。",
+        "icon": "RiSpeedLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "涂鸦生成器简单工作流程截图"
+        },
+        "buttons": [
+          {
+            "title": "免费创建",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
+      }
+    ],
+    "disabled": true
+  },
+  "usage": {
+    "name": "usage",
+    "label": "使用方法",
+    "title": "从描述到图片，三个步骤",
+    "items": [
+      {
+        "title": "描述画面",
+        "description": "写清主体、风格、背景和光线，也可以直接使用上面的示例。"
+      },
+      {
+        "title": "选择参数",
+        "description": "设置图片比例与目标分辨率，查看积分费用。"
+      },
+      {
+        "title": "生成并检查",
+        "description": "登录后生成图片，检查结果，再下载或调整提示词重试。"
+      }
+    ]
+  },
+  "feature": {
+    "name": "feature",
+    "title": "能力与使用边界",
+    "description": "了解工具支持的选项，也为结果留出检查和调整的时间。",
+    "items": [
+      {
+        "title": "文字生成图片",
+        "description": "描述你想要的画面，再根据结果调整提示词。"
+      },
+      {
+        "title": "选择图片比例",
+        "description": "提供方形、竖版与横版等比例选项。"
+      },
+      {
+        "title": "选择目标分辨率",
+        "description": "可选 1K、2K 和 4K；实际结果以生成服务返回为准。"
+      },
+      {
+        "title": "下载与复制链接",
+        "description": "生成完成后下载图片，或复制图片地址。"
+      },
+      {
+        "title": "查看使用费用",
+        "description": "操作区显示每次生成所需积分和账户剩余积分。"
+      },
+      {
+        "title": "检查生成结果",
+        "description": "文字、细节与构图可能需要重试；使用前请检查结果。"
+      }
+    ]
+  },
+  "stats": {
+    "name": "stats",
+    "label": "统计",
+    "title": "开发者信赖 ShipFire",
+    "description": "在全球范围内获得专业品质的网站构建和闪电般快速的部署。",
+    "icon": "RiHeartLine",
+    "items": [
+      {
+        "title": "信赖用户",
+        "label": "12,847+",
+        "description": "创作者"
+      },
+      {
+        "title": "生成图像",
+        "label": "89,432+",
+        "description": "微缩作品"
+      },
+      {
+        "title": "处理速度",
+        "label": "<10",
+        "description": "秒"
+      }
+    ],
+    "disabled": true
+  },
+  "testimonial": {
+    "name": "testimonial",
+    "label": "他们的感受",
+    "title": "献给更愿意发布产品，而不是拼接工具的创始人。",
+    "description": "最接近产品工作的使用者，分享一套从容基础能带来什么改变。",
+    "icon": "RiThumbUpLine",
+    "items": [
+      {
+        "title": "Leo",
+        "label": "街头服饰品牌主",
+        "description": "我曾经花三周时间构建一个网站，只获得了不到 2% 的转化率。使用 ShipFire 免费版，我在 3 小时内重建了一切，达到了 8.5%。现在我的所有时间都用于产品开发。",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Mei",
+        "label": "社交媒体经理",
+        "description": "我们的团队没有前端开发人员，Webflow 太贵了。改用 ShipFire 每年为我们节省了 $3,600，AI 优化识别了 5 个问题，使我们的 MRR 提升了 38%。",
+        "image": {
+          "src": "/imgs/users/2.png"
+        }
+      },
+      {
+        "title": "Robin",
+        "label": "视觉设计讲师",
+        "description": "AI 建议是我的最爱。上周它推荐了一个定价页面调整—应用后，我们的付费转化率从 4% 跃升至 6.2%，每月额外产生 $2,000。",
+        "image": {
+          "src": "/imgs/users/3.png"
+        }
+      },
+      {
+        "title": "艾玛·泰勒",
+        "label": "内容创作者",
+        "description": "我使用 ShipFire 为客户构建了 12 个落地页，每个大约 20 分钟。内置的 A/B 测试和分析简化了优化—客户 ROI 提高了 55%。",
+        "image": {
+          "src": "/imgs/users/6.png"
+        }
+      },
+      {
+        "title": "卡洛斯·马丁内斯",
+        "label": "T恤设计师",
+        "description": "我销售在线课程，WordPress 插件总是导致冲突。ShipFire 使我的网站速度提高了三倍，并使结账更加顺畅。退款下降了 70%—学生们喜欢这种体验。",
+        "image": {
+          "src": "/imgs/users/4.png"
+        }
+      },
+      {
+        "title": "Jasmine Lee",
+        "label": "活动组织者",
+        "description": "作为开发者，我不认为需要构建器，但 ShipFire 是免费的且功能强大。我用它验证了一个新的创业想法：从概念到上线 MVP 仅用了 4 小时。",
+        "image": {
+          "src": "/imgs/users/5.png"
+        }
+      }
+    ],
+    "disabled": true
+  },
+  "faq": {
+    "title": "提示词常见问题",
+    "items": [
+      {
+        "title": "提示词越长越好吗？",
+        "description": "不一定。先写清重要元素，再添加有助于控制画面的细节；删去重复或冲突的要求。"
+      }
+    ]
+  },
+  "cta": {
+    "disabled": true,
+    "name": "cta",
+    "title": "准备好开始了吗？",
+    "buttons": [
+      {
+        "title": "返回工具",
+        "url": "#hero-tool"
+      }
+    ]
+  },
+  "footer": {
+    "name": "footer",
+    "brand": {
+      "title": "ShipFire",
+      "description": "描述你的想法，使用 AI 探索图片创作。",
+      "logo": {
+        "src": "/logo-mark.webp",
+        "alt": "ShipFire"
+      },
+      "url": "/"
+    },
+    "copyright": "© 2025 • ShipFire. 版权所有。",
+    "nav": {
+      "items": [
+        {
+          "title": "探索",
+          "children": [
+            {
+              "title": "工具",
+              "url": "/image-generator/"
+            },
+            {
+              "title": "教程",
+              "url": "/#answer"
+            }
+          ]
+        }
+      ]
+    },
+    "social": {
+      "items": [
+        {
+          "title": "X",
+          "icon": "RiTwitterXFill",
+          "url": "https://x.com/shipfire",
+          "target": "_blank"
+        },
+        {
+          "title": "Github",
+          "icon": "RiGithubFill",
+          "url": "https://github.com/shipfire",
+          "target": "_blank"
+        },
+        {
+          "title": "Discord",
+          "icon": "RiDiscordFill",
+          "url": "https://discord.gg/shipfire",
+          "target": "_blank"
+        },
+        {
+          "title": "邮箱",
+          "icon": "RiMailLine",
+          "url": "mailto:support@shipfire.com",
+          "target": "_self"
+        }
+      ]
+    },
+    "badges": [],
+    "agreement": {
+      "items": [
+        {
+          "title": "隐私政策",
+          "url": "/privacy-policy"
+        },
+        {
+          "title": "服务条款",
+          "url": "/terms-of-service"
+        }
+      ]
+    }
+  },
+  "page_type": "introduction",
+  "modules": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "source": "hero"
+    },
+    {
+      "id": "contents",
+      "type": "toc",
+      "source": "toc"
+    },
+    {
+      "id": "answer",
+      "type": "content",
+      "source": "answer"
+    },
+    {
+      "id": "examples",
+      "type": "examples",
+      "source": "examples"
+    },
+    {
+      "id": "limits",
+      "type": "content",
+      "source": "limits"
+    },
+    {
+      "id": "faq",
+      "type": "faq",
+      "source": "faq"
+    },
+    {
+      "id": "related",
+      "type": "related",
+      "source": "related"
+    }
+  ],
+  "metadata": {
+    "title": "如何写好 AI 图片提示词 | ShipFire",
+    "description": "从主体、场景、光线和构图入手，写出更清晰的图片提示词，并通过示例了解如何逐步调整。"
+  },
+  "sections": {
+    "toc": {
+      "title": "本文内容"
+    },
+    "answer": {
+      "title": "把提示词拆成明确的要素",
+      "items": [
+        {
+          "title": "主体与场景",
+          "description": "说明画面里有什么、在哪里，以及主体正在做什么。"
+        },
+        {
+          "title": "光线、风格与构图",
+          "description": "补充光源、视觉风格和主体的位置，避免堆叠互相矛盾的要求。"
+        },
+        {
+          "title": "观察结果，再逐步调整",
+          "description": "先检查结果与目标的差异，再调整一个关键条件。生成结果存在变化，同一个提示词也可能得到不同图片。"
+        }
+      ]
+    },
+    "examples": {
+      "title": "从模糊描述到具体画面",
+      "description": "下面对比的是提示词写法，不是对生成效果的保证。",
+      "items": [
+        {
+          "title": "杯子的产品照片",
+          "input": {
+            "label": "原始描述",
+            "text": "A nice photo of a mug."
+          },
+          "output": {
+            "label": "更具体的描述",
+            "text": "A matte ceramic mug on a warm beige table, soft window light from the left, minimal composition, realistic product photography."
+          }
+        }
+      ]
+    },
+    "limits": {
+      "title": "使用时注意什么？",
+      "paragraphs": [
+        "提示词可以帮助表达意图，但不能保证每个细节都准确呈现。发布前检查文字、结构和事实内容。",
+        "如果结果不理想，先简化提示词，再逐步添加细节。不同模型对同一段描述的理解也可能不同。"
+      ]
+    },
+    "related": {
+      "title": "把描述变成一次尝试",
+      "items": [
+        {
+          "title": "AI 图片生成器",
+          "description": "输入描述，选择参数并检查结果。",
+          "url": "/image-generator/"
+        }
+      ]
+    }
+  }
+}

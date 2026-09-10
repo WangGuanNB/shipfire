@@ -62,23 +62,27 @@ export default async function RootLayout({
           {`
             (function(){
               try{
-                var allowNoFollowHosts = ['startupfa.me'];
                 var anchors = document.querySelectorAll('a[href^="http"], a[target="_blank"]');
                 anchors.forEach(function(a){
                   var isExternal = a.host && a.host !== window.location.host;
                   if(isExternal){
-                    var rel = (a.getAttribute('rel') || '').split(/\s+/).filter(Boolean);
-                    var host = a.hostname || '';
+                    var rel = (a.getAttribute('rel') || '').split(/\\s+/).filter(Boolean);
                     // always keep opener/noreferrer for security
                     ['noopener','noreferrer'].forEach(function(flag){
                       if(!rel.includes(flag)) rel.push(flag);
                     });
-                    // skip adding nofollow for specific hosts
-                    if(!allowNoFollowHosts.includes(host)){
+                    var isFooterBadge = a.hasAttribute('data-footer-badge');
+                    var allowDofollow = a.hasAttribute('data-dofollow');
+                    if(isFooterBadge){
+                      // Footer badges default to nofollow unless explicitly approved
+                      if(allowDofollow){
+                        rel = rel.filter(function(flag){ return flag !== 'nofollow'; });
+                      } else if(!rel.includes('nofollow')){
+                        rel.push('nofollow');
+                      }
+                    } else {
+                      // Non-badge externals: keep shipfire prior policy (default nofollow)
                       if(!rel.includes('nofollow')) rel.push('nofollow');
-                    }else{
-                      // ensure no "nofollow" remains if previously set
-                      rel = rel.filter(function(flag){ return flag !== 'nofollow'; });
                     }
                     a.setAttribute('rel', rel.join(' ').trim());
                   }

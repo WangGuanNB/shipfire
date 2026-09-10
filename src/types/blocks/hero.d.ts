@@ -17,10 +17,11 @@ export interface Hero {
   description?: string;
   buttons?: Button[];
   image?: Image;
+  images?: Image[];
   tip?: string;
   show_happy_users?: boolean;
   show_badge?: boolean;
   layout?: string;
-  variant?: "default" | "compact" | "tool";
+  variant?: "default" | "compact" | "split" | "tool";
   metrics?: string[];
 }

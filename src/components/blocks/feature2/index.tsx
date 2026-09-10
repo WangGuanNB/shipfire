@@ -25,9 +25,6 @@ import { motion, useInView } from "framer-motion";
 const DURATION = 5000;
 
 export default function Feature2({ section }: { section: SectionType }) {
-  if (section.disabled) {
-    return null;
-  }
 
   const [api, setApi] = useState<CarouselApi>();
   const [currentAccordion, setCurrentAccordion] = useState("1");
@@ -57,12 +54,12 @@ export default function Feature2({ section }: { section: SectionType }) {
     const interval = setInterval(() => {
       setCurrentAccordion((prev) => {
         const next = parseInt(prev) + 1;
-        return next > 3 ? "1" : next.toString();
+        return next > (section.items?.length || 1) ? "1" : next.toString();
       });
     }, DURATION);
 
     return () => clearInterval(interval);
-  }, [api, currentAccordion]);
+  }, [api, currentAccordion, section.items?.length]);
 
   // 动画变体 - 优化性能
   const fadeUpVariants = {
@@ -92,8 +89,12 @@ export default function Feature2({ section }: { section: SectionType }) {
     },
   };
 
+  if (section.disabled) {
+    return null;
+  }
+
   return (
-    <section id={section.name} className="py-12 md:py-20">
+    <section id={section.name} className="landing-section">
       <div className="container">
         <motion.div
           ref={headerRef}
@@ -104,11 +105,11 @@ export default function Feature2({ section }: { section: SectionType }) {
           className="mx-auto max-w-4xl space-y-6 text-center md:space-y-12"
         >
           {section.label && (
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="outline" className="landing-eyebrow mb-4">
               {section.label}
             </Badge>
           )}
-          <h2 className="text-balance text-4xl font-medium lg:text-5xl">
+          <h2 className="landing-section-title">
             {section.title}
           </h2>
           {section.description && (
@@ -214,7 +215,7 @@ export default function Feature2({ section }: { section: SectionType }) {
             animate={rightInView ? "visible" : "hidden"}
             variants={slideRightVariants}
             style={{ willChange: "transform, opacity" }}
-            className="flex items-start rounded-3xl border border-border/60 bg-background/90 p-3 shadow-sm"
+            className="landing-surface flex items-start p-3"
           >
             <Carousel
               opts={{
@@ -230,6 +231,8 @@ export default function Feature2({ section }: { section: SectionType }) {
                       <img
                         src={item.image?.src}
                         alt={item.image?.alt || item.title}
+                        loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover"
                       />
                     </div>

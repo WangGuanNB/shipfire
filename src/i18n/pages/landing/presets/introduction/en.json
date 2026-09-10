@@ -1,0 +1,555 @@
+{
+  "template": "shipfire-saas-v2",
+  "theme": "light",
+  "theme_id": "saas-minimal",
+  "layout_preset": "centered",
+  "copy_profile": "outcome-led",
+  "header": {
+    "brand": {
+      "title": "ShipFire",
+      "logo": {
+        "src": "/logo-mark.webp",
+        "alt": "ShipFire"
+      },
+      "url": "/"
+    },
+    "nav": {
+      "items": [
+        {
+          "title": "Tool",
+          "url": "/image-generator/"
+        },
+        {
+          "title": "Guide",
+          "url": "/#answer"
+        },
+        {
+          "title": "Pricing",
+          "url": "/pricing/"
+        }
+      ]
+    },
+    "buttons": [],
+    "show_sign": true,
+    "show_theme": true,
+    "show_locale": true
+  },
+  "hero": {
+    "variant": "compact",
+    "title": "How do you write an AI image prompt?",
+    "description": "Start with the subject, then add the setting, lighting, style and composition. Describe what should be visible, and refine one important detail at a time.",
+    "buttons": [
+      {
+        "title": "Open the image tool",
+        "url": "/image-generator/"
+      }
+    ]
+  },
+  "branding": {
+    "title": "Powered by cutting-edge AI technology",
+    "items": [
+      {
+        "title": "OpenAI",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "OpenAI"
+        }
+      },
+      {
+        "title": "Computer Vision",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "Computer Vision"
+        }
+      },
+      {
+        "title": "Neural Networks",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "Neural Networks"
+        }
+      },
+      {
+        "title": "Machine Learning",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "Machine Learning"
+        }
+      },
+      {
+        "title": "Cloud Processing",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "Cloud Processing"
+        }
+      }
+    ],
+    "disabled": true
+  },
+  "introduce": {
+    "name": "introduce",
+    "title": "From blank repo to a product people can try.",
+    "label": "THE FOUNDATION",
+    "description": "ShipFire gives indie developers a composed starting point for building, validating and evolving a SaaS product without rebuilding the same foundation every time.",
+    "image": {
+      "src": "/imgs/features/1.webp"
+    },
+    "items": [
+      {
+        "title": "ShipFire Free Website Builder",
+        "description": "A completely free online building system—no coding required. It integrates key modules such as payment systems, user management, and analytics. The drag-and-drop interface lets you focus on your product while we handle the tech. Go live in just 3 minutes.",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Core Resources Library"
+        },
+        "buttons": [
+          {
+            "title": "Start Creating",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "See Pricing",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
+      },
+      {
+        "title": "ShipFire AI Optimization Engine",
+        "description": "Built-in AI analyzes user behavior automatically. The AI assistant provides real-time improvement suggestions that boost conversions by up to 40%. From copywriting to layout tweaks, your site stays in peak marketing condition without hiring a team.",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/2.webp",
+          "alt": "ShipFire AI optimizing website performance"
+        },
+        "buttons": [
+          {
+            "title": "Start Creating",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "View Pricing",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
+      },
+      {
+        "title": "ShipFire Online One-Click Deployment",
+        "description": "Cloud hosting ensures 99.9% uptime. Global CDN delivers fast access for users worldwide. Automatic SSL, domain binding, and SEO optimization are all included—zero technical barrier so founders can focus fully on their product.",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/3.webp",
+          "alt": "ShipFire deploying website to production"
+        },
+        "buttons": [
+          {
+            "title": "Start Creating",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "See Pricing",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
+      },
+      {
+        "title": "ShipFire 50+ Professional Templates",
+        "description": "Choose from 50+ SaaS-optimized templates covering tools, services, communities, and more. Each is conversion-ready with drag-and-drop customization. Pick a template, add your content, and launch—no design skills required.",
+        "icon": "RiDownloadLine",
+        "image": {
+          "src": "/imgs/features/4.webp",
+          "alt": "ShipFire professional template library"
+        },
+        "buttons": [
+          {
+            "title": "Start Creating",
+            "url": "/#generator",
+            "variant": "default"
+          },
+          {
+            "title": "See Pricing",
+            "url": "/#pricing",
+            "variant": "outline"
+          }
+        ]
+      }
+    ],
+    "disabled": true
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "Keep the groundwork out of your way.",
+    "label": "WHY IT HELPS",
+    "description": "Zero-cost startup with professional-grade features so your SaaS wins from day one.",
+    "items": [
+      {
+        "title": "Truly Zero Cost",
+        "description": "ShipFire gives you a reusable foundation instead of forcing every new product to restart from the same setup work. Adapt the parts you need, replace the rest, and keep ownership of your product decisions.",
+        "icon": "RiStarLine",
+        "image": {
+          "src": "/imgs/features/4.webp",
+          "alt": "ShipFire website builder interface"
+        },
+        "buttons": [
+          {
+            "title": "Create Free",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
+      },
+      {
+        "title": "Lightning Fast",
+        "description": "Start with a clear page structure, sensible defaults and an implementation pattern you can evolve. The goal is not a rushed launch claim; it is fewer repeated decisions before users can try the product.",
+        "icon": "RiGiftLine",
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "ShipFire deployment workflow"
+        },
+        "buttons": [
+          {
+            "title": "Create Free",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
+      },
+      {
+        "title": "Optimized for Global Expansion",
+        "description": "Deeply understands the needs of global-facing developers. Supports 20+ languages with auto-translation, multi-currency payments, and GDPR-compliant data handling. Integrated Google Analytics and Meta Pixel help you track overseas performance. With servers across 15 regions, users in the US and Europe experience near-local speeds.",
+        "icon": "RiSpeedLine",
+        "image": {
+          "src": "/imgs/features/3.webp",
+          "alt": "ShipFire global expansion features"
+        },
+        "buttons": [
+          {
+            "title": "Create Free",
+            "url": "/#generator",
+            "variant": "default"
+          }
+        ]
+      }
+    ],
+    "disabled": true
+  },
+  "usage": {
+    "name": "usage",
+    "label": "HOW IT WORKS",
+    "title": "From a description to an image",
+    "items": [
+      {
+        "title": "Describe your image",
+        "description": "Include the subject, style, setting and light, or start with an example above."
+      },
+      {
+        "title": "Choose your settings",
+        "description": "Set the aspect ratio and target resolution, then check the credit cost."
+      },
+      {
+        "title": "Generate and review",
+        "description": "Sign in to generate. Review the result, then download it or refine your prompt."
+      }
+    ]
+  },
+  "feature": {
+    "name": "feature",
+    "title": "What you can do, and what to check",
+    "description": "Choose the settings you need and allow time to review and refine the result.",
+    "items": [
+      {
+        "title": "Text to image",
+        "description": "Describe a scene, then refine your prompt based on the result."
+      },
+      {
+        "title": "Choose an aspect ratio",
+        "description": "Select a square, portrait or landscape format for your composition."
+      },
+      {
+        "title": "Set a target resolution",
+        "description": "Choose 1K, 2K or 4K. Actual output depends on the generation service."
+      },
+      {
+        "title": "Download or copy a link",
+        "description": "Download the generated image or copy its image URL."
+      },
+      {
+        "title": "See the credit cost",
+        "description": "The tool shows the credits needed per generation and your available balance."
+      },
+      {
+        "title": "Review your result",
+        "description": "Text, details and composition may need another attempt. Check the output before using it."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Image prompt questions",
+    "items": [
+      {
+        "title": "Is a longer prompt always better?",
+        "description": "Not necessarily. State the important elements first, add useful visual details, and remove repeated or conflicting instructions."
+      }
+    ]
+  },
+  "testimonial": {
+    "name": "testimonial",
+    "label": "IN THEIR WORDS",
+    "title": "Built by founders who prefer shipping to stitching tools together.",
+    "description": "The people closest to the work explain what a calmer foundation changes.",
+    "icon": "RiThumbUpLine",
+    "items": [
+      {
+        "title": "Leo",
+        "label": "Streetwear Brand Owner",
+        "description": "I used to spend three weeks building a site, only to get less than 2% conversion. With ShipFire Free, I rebuilt everything in 3 hours and hit 8.5%. Now all my time goes to product development.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Mei",
+        "label": "Social Media Manager",
+        "description": "Our team has no front-end devs and Webflow was too expensive. Switching to ShipFire saved us $3,600 a year and the AI optimization identified 5 issues that boosted our MRR by 38%.",
+        "image": {
+          "src": "/imgs/users/2.png"
+        }
+      },
+      {
+        "title": "Robin",
+        "label": "Visual Design Instructor",
+        "description": "The AI suggestions are my favorite. Last week it recommended a pricing page tweak—after applying it our paid conversion jumped from 4% to 6.2%, generating an extra $2,000/month.",
+        "image": {
+          "src": "/imgs/users/3.png"
+        }
+      },
+      {
+        "title": "Emma Taylor",
+        "label": "Content Creator",
+        "description": "I built 12 landing pages for clients using ShipFire, each in about 20 minutes. The built-in A/B testing and analytics simplified optimization—client ROI improved by 55%.",
+        "image": {
+          "src": "/imgs/users/6.png"
+        }
+      },
+      {
+        "title": "Carlos Martinez",
+        "label": "T-Shirt Designer",
+        "description": "I sell online courses and WordPress plugins always caused conflicts. ShipFire tripled my site speed and made checkout smoother. Refunds dropped by 70%—students love the experience.",
+        "image": {
+          "src": "/imgs/users/4.png"
+        }
+      },
+      {
+        "title": "Jasmine Lee",
+        "label": "Event Organizer",
+        "description": "As a developer I didn't think I needed a builder, but ShipFire is free and surprisingly powerful. I used it to validate a new startup idea: went from concept to live MVP in 4 hours.",
+        "image": {
+          "src": "/imgs/users/5.png"
+        }
+      },
+      {
+        "title": "Alex Chen",
+        "label": "SaaS Founder",
+        "description": "The multi-language support is a game-changer for our global expansion. We launched in 5 countries simultaneously with localized content and payment methods. Revenue increased 120% in the first quarter.",
+        "image": {
+          "src": "/imgs/users/7.png"
+        }
+      },
+      {
+        "title": "Sarah Johnson",
+        "label": "Marketing Director",
+        "description": "ShipFire's analytics dashboard helped us identify conversion bottlenecks we never noticed before. After implementing the AI recommendations, our email signup rate doubled and customer acquisition cost dropped by 45%.",
+        "image": {
+          "src": "/imgs/users/8.png"
+        }
+      }
+    ],
+    "disabled": true
+  },
+  "cta": {
+    "disabled": true,
+    "name": "cta",
+    "title": "Ready to create?",
+    "buttons": [
+      {
+        "title": "Back to the tool",
+        "url": "#hero-tool"
+      }
+    ]
+  },
+  "footer": {
+    "name": "footer",
+    "brand": {
+      "title": "ShipFire",
+      "description": "Describe your ideas and explore image creation with AI.",
+      "logo": {
+        "src": "/logo-mark.webp",
+        "alt": "ShipFire"
+      },
+      "url": "/"
+    },
+    "copyright": "© 2025 • ShipFire. All rights reserved.",
+    "nav": {
+      "items": [
+        {
+          "title": "Explore",
+          "children": [
+            {
+              "title": "Tool",
+              "url": "/image-generator/"
+            },
+            {
+              "title": "Guide",
+              "url": "/#answer"
+            }
+          ]
+        }
+      ]
+    },
+    "social": {
+      "items": [
+        {
+          "title": "X",
+          "icon": "RiTwitterXFill",
+          "url": "https://x.com/shipfire",
+          "target": "_blank"
+        },
+        {
+          "title": "Github",
+          "icon": "RiGithubFill",
+          "url": "https://github.com/shipfire",
+          "target": "_blank"
+        },
+        {
+          "title": "Discord",
+          "icon": "RiDiscordFill",
+          "url": "https://discord.gg/shipfire",
+          "target": "_blank"
+        },
+        {
+          "title": "Email",
+          "icon": "RiMailLine",
+          "url": "mailto:support@shipfire.com",
+          "target": "_self"
+        }
+      ]
+    },
+    "badges": [],
+    "agreement": {
+      "items": [
+        {
+          "title": "Privacy Policy",
+          "url": "/privacy-policy"
+        },
+        {
+          "title": "Terms of Service",
+          "url": "/terms-of-service"
+        }
+      ]
+    }
+  },
+  "page_type": "introduction",
+  "modules": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "source": "hero"
+    },
+    {
+      "id": "contents",
+      "type": "toc",
+      "source": "toc"
+    },
+    {
+      "id": "answer",
+      "type": "content",
+      "source": "answer"
+    },
+    {
+      "id": "examples",
+      "type": "examples",
+      "source": "examples"
+    },
+    {
+      "id": "limits",
+      "type": "content",
+      "source": "limits"
+    },
+    {
+      "id": "faq",
+      "type": "faq",
+      "source": "faq"
+    },
+    {
+      "id": "related",
+      "type": "related",
+      "source": "related"
+    }
+  ],
+  "metadata": {
+    "title": "How to Write an AI Image Prompt | ShipFire",
+    "description": "Build a clearer image prompt with a subject, setting, lighting and composition. See an example and learn how to refine one detail at a time."
+  },
+  "sections": {
+    "toc": {
+      "title": "On this page"
+    },
+    "answer": {
+      "title": "Build your prompt from clear ingredients",
+      "items": [
+        {
+          "title": "Subject and setting",
+          "description": "Say what is in the image, where it is, and what the subject is doing."
+        },
+        {
+          "title": "Light, style and composition",
+          "description": "Add the light source, visual style and placement of the subject. Avoid stacking contradictory instructions."
+        },
+        {
+          "title": "Review and refine",
+          "description": "Compare the result with your intended scene, then change one important condition. Results vary, even when you reuse the same prompt."
+        }
+      ]
+    },
+    "examples": {
+      "title": "From a vague idea to a specific scene",
+      "description": "This compares prompt wording; it does not guarantee a particular generated result.",
+      "items": [
+        {
+          "title": "A product photo of a mug",
+          "input": {
+            "label": "Starting point",
+            "text": "A nice photo of a mug."
+          },
+          "output": {
+            "label": "More specific wording",
+            "text": "A matte ceramic mug on a warm beige table, soft window light from the left, minimal composition, realistic product photography."
+          }
+        }
+      ]
+    },
+    "limits": {
+      "title": "What should you keep in mind?",
+      "paragraphs": [
+        "A prompt helps communicate intent, but it cannot guarantee every detail. Check text, structure and factual content before publishing.",
+        "If a result misses the mark, simplify the prompt and add details gradually. Different models may interpret the same description differently."
+      ]
+    },
+    "related": {
+      "title": "Put your prompt into practice",
+      "items": [
+        {
+          "title": "AI image generator",
+          "description": "Enter your prompt, choose settings and review the result.",
+          "url": "/image-generator/"
+        }
+      ]
+    }
+  }
+}

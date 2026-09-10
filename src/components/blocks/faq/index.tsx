@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/accordion";
 import { Section as SectionType } from "@/types/blocks/section";
 import { Link } from "@/i18n/navigation";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { generateFAQSchema } from "@/lib/schema";
 
 interface FAQProps {
   section: SectionType;
@@ -19,6 +21,9 @@ export default function FAQ({ section, layout = "default" }: FAQProps) {
   if (section.disabled) {
     return null;
   }
+
+  // 生成 FAQPage Schema
+  const faqSchema = generateFAQSchema(section.items);
 
   const headerBlock = (
     <div className="space-y-6">
@@ -72,48 +77,54 @@ export default function FAQ({ section, layout = "default" }: FAQProps) {
 
   if (layout === "stacked") {
     return (
-      <section id={section.name} className="py-12 md:py-20">
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center mb-12">
-            {headerBlock}
+      <>
+        {faqSchema && <JsonLd data={faqSchema} />}
+        <section id={section.name} className="py-12 md:py-20">
+          <div className="container">
+            <div className="mx-auto max-w-3xl text-center mb-12">
+              {headerBlock}
+            </div>
+            <div className="mx-auto max-w-3xl">
+              {accordionBlock}
+            </div>
           </div>
-          <div className="mx-auto max-w-3xl">
-            {accordionBlock}
-          </div>
-        </div>
-      </section>
+        </section>
+      </>
     );
   }
 
   return (
-    <section id={section.name} className="py-12 md:py-20">
-      <div className="container">
-        <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:items-start">
-          <div>{headerBlock}</div>
-          <div className="lg:pl-8">
-            <Accordion type="single" collapsible className="w-full">
-              {section.items?.map((item, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="border-0 border-b border-border last:border-b-0 py-4 first:pt-0"
-                >
-                  <AccordionTrigger className="text-left hover:no-underline py-0">
-                    <span className="text-base font-semibold pr-8">
-                      {item.title}
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-4 pb-0">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {item.description}
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+    <>
+      {faqSchema && <JsonLd data={faqSchema} />}
+      <section id={section.name} className="py-12 md:py-20">
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:items-start">
+            <div>{headerBlock}</div>
+            <div className="lg:pl-8">
+              <Accordion type="single" collapsible className="w-full">
+                {section.items?.map((item, index) => (
+                  <AccordionItem
+                    key={index}
+                    value={`item-${index}`}
+                    className="border-0 border-b border-border last:border-b-0 py-4 first:pt-0"
+                  >
+                    <AccordionTrigger className="text-left hover:no-underline py-0">
+                      <span className="text-base font-semibold pr-8">
+                        {item.title}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-4 pb-0">
+                      <p className="text-muted-foreground leading-relaxed">
+                        {item.description}
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
