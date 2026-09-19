@@ -20,9 +20,9 @@
   "vars": {
     // ========== 1. 基础配置 ==========
     // 网站公开 URL（用于生成链接、邮件等）
-    "NEXT_PUBLIC_WEB_URL": "https://fast3d.online",
+    "NEXT_PUBLIC_WEB_URL": "https://shipstart.net",
     // 项目名称（用于显示、邮件等）
-    "NEXT_PUBLIC_PROJECT_NAME": "fast3d",
+    "NEXT_PUBLIC_PROJECT_NAME": "ShipFire",
     // 默认主题（system/light/dark）
     "NEXT_PUBLIC_DEFAULT_THEME": "system",
     // 语言检测（true/false）

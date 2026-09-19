@@ -47,7 +47,7 @@
     "variant": "tool",
     "title": "Build a site from one prompt",
     "highlight_text": "Free AI Website Builder",
-    "description": "Describe your business, get an editable draft, then refine. Limited free generations—early access opening soon.",
+    "description": "Describe your business and get an editable website draft you can refine. Free AI Website Builder—early access opening soon.",
     "buttons": [],
     "show_happy_users": false,
     "show_badge": false
@@ -61,12 +61,12 @@
     "name": "introduce",
     "label": "WHAT YOU GET",
     "title": "From a short description to a site you can refine",
-    "description": "Good AI builders do more than paste filler into a template. ShipFire is built around describe → draft → edit → publish—starting free with limited generations.",
+    "description": "An AI Website Builder should do more than paste filler into a template. ShipFire follows describe → draft → edit → publish, so you start from a structured site draft instead of a blank page.",
     "items": [
       {
         "title": "Prompt to multi-page draft",
         "label": "Generate",
-        "description": "Tell ShipFire what you sell, who it is for, and the tone you want—one clear brief beats a vague slogan. When early access opens, generation turns that input into a multi-page draft with section structure and starter copy you can keep editing, instead of a single locked screenshot.",
+        "description": "Tell ShipFire what you sell, who it is for, and the tone you want—one clear brief beats a vague slogan. This AI Website Builder turns that input into a multi-page draft with section structure and starter copy you can keep editing, instead of a single locked screenshot.",
         "icon": "RiMagicLine",
         "image": {
           "src": "/imgs/features/1.webp",
@@ -103,9 +103,9 @@
         ]
       },
       {
-        "title": "Free generations with clear limits",
+        "title": "Free tier with clear limits",
         "label": "Free",
-        "description": "Start with a limited number of free generations so you can judge draft quality before you pay. Reading this page or loading examples does not use a run. When you need more drafts, a custom domain, or higher limits, upgrade with credits—and see the cost before a paid generation starts.",
+        "description": "Start free so you can judge AI Website Builder draft quality before you pay. Browsing this page or loading examples does not use a run. When you need more site drafts, a custom domain, or higher limits, upgrade with credits—and see the cost before a paid generation starts.",
         "icon": "RiCopperCoinLine",
         "image": {
           "src": "/imgs/features/3.webp",
@@ -151,7 +151,7 @@
     "items": [
       {
         "title": "Solo founders validating an idea",
-        "description": "Need a credible site this week, not a six-week design cycle. Describe the product, generate a draft when access opens, and iterate with limited free generations.",
+        "description": "Need a credible site this week, not a six-week design cycle. Describe the product, generate a website draft when access opens, and iterate with the free allowance.",
         "icon": "RiLightbulbLine",
         "image": {
           "src": "/imgs/features/1.webp",
@@ -209,19 +209,19 @@
         "description": "Share what you offer, who it is for, and the tone you want. One clear paragraph beats a vague slogan."
       },
       {
-        "title": "Generate a draft (limited free runs)",
-        "description": "When early access opens, ShipFire turns that description into a structured draft. Free generations are limited—check your remaining runs before you start."
+        "title": "Generate a website draft",
+        "description": "When early access opens, ShipFire turns that description into a structured site draft. Check your remaining free runs before you start."
       },
       {
         "title": "Edit, then prepare to publish",
-        "description": "Rewrite what needs a human voice. Upgrade with credits when you need more generations or publishing extras such as a custom domain."
+        "description": "Rewrite what needs a human voice. Upgrade with credits when you need more AI Website Builder drafts or publishing extras such as a custom domain."
       }
     ]
   },
   "feature": {
     "name": "feature",
     "title": "Capabilities and honest boundaries",
-    "description": "What ShipFire is designed to cover—and what early access does not fake.",
+    "description": "What this AI Website Builder is designed to cover—and what early access does not fake.",
     "items": [
       {
         "title": "Text-to-site drafting",
@@ -229,8 +229,8 @@
         "icon": "RiZapLine"
       },
       {
-        "title": "Limited free generations",
-        "description": "Try the product without paying first. Free runs are capped so usage stays clear.",
+        "title": "Free allowance to try",
+        "description": "Try the AI Website Builder without paying first. Free runs are capped so usage stays clear.",
         "icon": "RiCopperCoinLine"
       },
       {
@@ -240,12 +240,12 @@
       },
       {
         "title": "Credits for more drafts",
-        "description": "Buy more generations when free limits run out. Costs show before paid runs.",
+        "description": "Buy more site generations when free limits run out. Costs show before paid runs.",
         "icon": "RiBankCardLine"
       },
       {
         "title": "Early access transparency",
-        "description": "Generation and publish features ship in stages. We mark Coming soon instead of simulating a live builder.",
+        "description": "Generation and publish features ship in stages. We mark Coming soon instead of simulating a finished builder.",
         "icon": "RiEyeLine"
       },
       {
@@ -257,19 +257,19 @@
   },
   "faq": {
     "name": "faq",
-    "title": "Questions about early access and free generations",
+    "title": "Questions about early access and site drafts",
     "items": [
       {
         "title": "Is ShipFire free to start?",
-        "description": "Yes for getting started: you get a limited number of free generations. Custom domains, higher limits, and extra publish features use paid credits or plans."
+        "description": "Yes for getting started: you get a free allowance of site generations. Custom domains, higher limits, and extra publish features use paid credits or plans."
       },
       {
-        "title": "Can I generate a site today?",
-        "description": "Not fully yet. The product is early access / coming soon. Use the tool area to try the brief flow now; limited free generations open as ShipFire ships."
+        "title": "Can I generate a website today?",
+        "description": "Not fully yet. ShipFire is early access / coming soon. Use the tool area to try the brief flow now; free site generations open as we ship."
       },
       {
         "title": "What does early access include?",
-        "description": "Early access focuses on describing your business and preparing for draft generation. Editing and publish extras roll out in stages—we mark what is live versus coming soon."
+        "description": "Early access focuses on describing your business and preparing for website drafts. Editing and publish extras roll out in stages—we mark what is live versus coming soon."
       },
       {
         "title": "Can I edit the site after AI generates it?",
@@ -277,23 +277,23 @@
       },
       {
         "title": "What counts as a generation?",
-        "description": "One generation is one AI draft run from your description. Loading this page, reading examples, or filling the brief does not use a free generation."
+        "description": "One generation is one AI website draft from your description. Loading this page, reading examples, or filling the brief does not use a free run."
       },
       {
-        "title": "How many free generations do I get?",
-        "description": "The free allowance is limited and shown in your account when generation opens. Exact numbers may change during early access; paid credits unlock more runs when you need them."
+        "title": "How many free site drafts do I get?",
+        "description": "The free allowance is capped and shown in your account when generation opens. Exact numbers may change during early access; paid credits unlock more runs when you need them."
       },
       {
         "title": "Will I get a custom domain?",
-        "description": "Publishing to a custom domain is planned as a paid / upgrade path. Early access focuses on drafts and clear limits first."
+        "description": "Publishing to a custom domain is planned as a paid / upgrade path. Early access focuses on website drafts and clear limits first."
       },
       {
         "title": "Do I need to sign in?",
-        "description": "Browsing the page is open. Signing in lets us track free generations and credits when the generator is live. Sign-in requirements for each action are shown next to the tool."
+        "description": "Browsing the page is open. Signing in lets us track free runs and credits when generation is live. Sign-in requirements for each action are shown next to the tool."
       },
       {
         "title": "How is this different from a static template?",
-        "description": "Templates start from the same layout for everyone. ShipFire drafts structure and copy from your description, then lets you edit. Always review and correct the result before publishing."
+        "description": "Templates start from the same layout for everyone. An AI Website Builder drafts structure and copy from your description, then lets you edit. Always review and correct the result before publishing."
       },
       {
         "title": "Can I export the site?",
@@ -305,7 +305,7 @@
       },
       {
         "title": "Who is ShipFire for?",
-        "description": "Solo founders, small businesses, and creators who want a first site fast without a full design cycle—and still want room to edit after the draft."
+        "description": "Solo founders, small businesses, and creators who want a first website fast without a full design cycle—and still want room to edit after the draft."
       }
     ]
   },
@@ -328,7 +328,7 @@
       {
         "title": "Chris P.",
         "label": "Local service business",
-        "description": "Limited free generations matter. I want to try draft quality before I pay for credits or a custom domain.",
+        "description": "I want to try AI Website Builder draft quality before I pay for credits or a custom domain.",
         "image": {
           "src": "/imgs/users/2.png",
           "alt": "Chris P."
@@ -374,8 +374,8 @@
   },
   "cta": {
     "name": "cta",
-    "title": "Get early access to ShipFire",
-    "description": "Describe your site in the tool above when generation opens. Limited free generations first—upgrade later for more drafts or publishing extras.",
+    "title": "Get started with ShipFire",
+    "description": "Describe your site in the AI Website Builder tool above when generation opens. Start free, then upgrade for more drafts or publishing extras.",
     "buttons": [
       {
         "title": "Back to tool",
@@ -394,7 +394,7 @@
     "name": "footer",
     "brand": {
       "title": "ShipFire",
-      "description": "ShipFire helps founders draft sites with AI—early access with limited free generations.",
+      "description": "ShipFire is a free AI Website Builder for founders—early access with a capped free allowance.",
       "logo": {
         "src": "/logo-mark.webp",
         "alt": "ShipFire"
@@ -531,7 +531,7 @@
   ],
   "metadata": {
     "title": "Free AI Website Builder — Early Access | ShipFire",
-    "description": "Free AI Website Builder by ShipFire—early access. Describe your business, use limited free generations when we open, then edit and publish. Coming soon—join the waitlist."
+    "description": "Free AI Website Builder by ShipFire. Describe your business, get free site drafts in early access, then edit and publish."
   },
   "tools": {
     "primary": {
@@ -547,7 +547,7 @@
         "creditsRequired": "Credits per generation",
         "creditsAvailable": "Your credits",
         "emptyTitle": "Your site draft will appear here",
-        "emptyDescription": "Early access—describe your business above. Generation opens with limited free runs.",
+        "emptyDescription": "Describe your business above. This AI Website Builder opens with a free generation allowance.",
         "downloadLabel": "Export",
         "shareLabel": "Copy link",
         "insufficientTitle": "More credits needed",
@@ -559,8 +559,8 @@
     "examples": {
       "name": "examples",
       "label": "DIRECTIONS",
-      "title": "Site directions you will be able to describe",
-      "description": "Concept previews of site directions. Use a prompt above when generation opens—examples do not start a paid run.",
+      "title": "Site directions you can describe",
+      "description": "Concept previews of websites you can brief into this AI Website Builder. Use a prompt above when generation opens—examples do not start a paid run.",
       "items": [
         {
           "title": "Service business site",
@@ -610,10 +610,10 @@
       ]
     },
     "cost": {
-      "title": "Free generations, then credits",
+      "title": "Start free, then add credits",
       "paragraphs": [
-        "The free tier includes a limited number of generations so you can try draft quality before you pay. Reading this page or browsing concept examples does not use a generation.",
-        "When free runs are used up—or you need more drafts, custom domain publishing, or higher limits—buy credits or a plan on the pricing page. Early access may open waitlist seats before full billing is live."
+        "The free tier includes a capped number of AI Website Builder runs so you can try draft quality before you pay. Reading this page or browsing concept examples does not use a generation.",
+        "When free runs are used up—or you need more website drafts, custom domain publishing, or higher limits—buy credits or a plan on the pricing page. Early access may open seats before full billing is live."
       ],
       "buttons": [
         {

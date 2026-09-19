@@ -85,7 +85,16 @@ export default function Footer({ footer }: { footer: FooterType }) {
                 <ul className="flex items-center space-x-6 text-muted-foreground">
                   {footer.social.items?.map((item, i) => (
                     <li key={i} className="font-medium hover:text-primary">
-                      <a href={item.url} target={item.target}>
+                      <a
+                        href={item.url}
+                        target={item.target}
+                        aria-label={item.title}
+                        rel={
+                          item.target === "_blank"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                      >
                         {item.icon && (
                           <Icon name={item.icon} className="size-4" />
                         )}

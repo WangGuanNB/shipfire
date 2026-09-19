@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Free AI Website Builder — Early Access | ShipFire",
-    "description": "Free AI Website Builder by ShipFire—early access. Describe your business, use limited free generations when we open, then edit and publish. Coming soon.",
+    "description": "Free AI Website Builder by ShipFire. Describe your business, get free site drafts in early access, then edit and publish.",
     "keywords": "AI Website Builder, free AI website builder, AI website generator, create website with AI, AI site builder, ShipFire"
   },
   "user": {
@@ -129,7 +129,7 @@
   },
   "share": {
     "title": "Share this page",
-    "text": "Checking out ShipFire — a free AI website builder in early access. Limited free generations when it opens:",
+    "text": "Checking out ShipFire — a free AI Website Builder in early access:",
     "preparing": "Preparing for share...",
     "success": "Link copied to clipboard!",
     "failed": "Failed to copy link",

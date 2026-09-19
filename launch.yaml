@@ -20,7 +20,7 @@ site:
     - "AI site builder"
 
   # 线上域名（不带 www，与 wrangler / sitemap 一致）
-  url: "https://example.com"
+  url: "https://shipstart.net"
 
   # 项目/品牌名（header.brand.title、wrangler NEXT_PUBLIC_PROJECT_NAME）
   name: "ShipFire"
@@ -81,10 +81,10 @@ launch:
     - "fast3d"
 
 content:
-  word_count_min: 900
-  word_count_max: 1200
-  primary_keyword_density_min: 0.02
-  primary_keyword_density_max: 0.03
+  word_count_min: 1000
+  word_count_max: 1600
+  primary_keyword_density_min: 0.015
+  primary_keyword_density_max: 0.035
   expansion_sections:
     - faq
     - introduce
@@ -104,4 +104,4 @@ template:
   sitemap: "public/sitemap.xml"
   robots: "public/robots.txt"
 
-notes: "Landing EN written for AI Website Builder (early access). Generate tool not live; hero has no tool slot."
+notes: "Landing EN for AI Website Builder (early access). WEB_URL must stay shipstart.net."

@@ -4,6 +4,7 @@ import { getLandingPage } from "@/services/page";
 import { getCanonicalUrl } from "@/lib/utils";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { generateOrganizationSchema, generateWebSiteSchema } from "@/lib/schema";
+import type { Metadata } from "next";
 
 // 启用 ISR（增量静态再生）：24小时重新生成一次，降低 CPU 消耗
 export const revalidate = 86400;
@@ -12,21 +13,47 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}) {
+}): Promise<Metadata> {
   const { locale } = await params;
   const page = await getLandingPage(locale);
+  const meta = page.metadata;
+  const canonical = getCanonicalUrl(locale);
 
-  const metadata: any = {
-    ...(page.metadata ?? {}),
+  if (!meta) {
+    return {
+      alternates: { canonical },
+    };
+  }
+
+  const metadata: Metadata = {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      type: "website",
+      url: canonical,
+      siteName: page.header?.brand?.title || "ShipFire",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
     alternates: {
-      canonical: getCanonicalUrl(locale),
+      canonical,
     },
   };
 
   // 只在英文版本添加 Foundr 验证 meta 标签
   if (locale === "en") {
     metadata.other = {
-      "_foundr": "9a6028ae8f80618dd025c26eff1fcf8d"
+      "_foundr": "9a6028ae8f80618dd025c26eff1fcf8d",
     };
   }
 
