@@ -1,0 +1,104 @@
+# 新站落地页配置（供 my-page-build-factory 的 landing-* 模式读取）
+#
+# 从本模板克隆新站后：
+#   1. 改 site.* / product.* / monetization.* / launch.wrangler_name
+#   2. 在业务项目工作区用 landing-* 模式调用 skill
+# 字段名保持英文；说明和值可写中文。
+
+site:
+  # 种子关键词（发现词、注册域名时的起点）— 克隆后替换
+  seed_keyword: "your seed keyword"
+
+  # SEO 主关键词（Title / H1 核心，research 模式可帮你定稿）
+  primary_keyword: "Your Primary Keyword"
+
+  # 次要关键词（metadata.keywords、正文自然分布）
+  secondary_keywords:
+    - "secondary keyword one"
+    - "secondary keyword two"
+
+  # 线上域名（不带 www，与 wrangler / sitemap 一致）
+  url: "https://example.com"
+
+  # 项目/品牌名（header.brand.title、wrangler NEXT_PUBLIC_PROJECT_NAME）
+  name: "ShipFire"
+
+  # 支持邮箱（legal 页、wrangler RESEND_FROM_EMAIL）
+  support_email: "support@example.com"
+
+product:
+  # 一句话定位（hero + introduce 核心）— 克隆后替换
+  one_line_pitch: "Clone this ShipFire template and replace with your product one-liner."
+
+  # 免费层做什么
+  free_tier: "Describe what users get without paying"
+
+  # 付费/AI 层做什么
+  paid_tier: "Describe what credits or paid plans unlock"
+
+  # 和竞品差异化的 1～3 点（research 后可更新）
+  differentiation:
+    - "Replace with your real differentiator"
+    - "Replace with another differentiator"
+
+  # 目标用户
+  target_users:
+    - "Primary user segment — replace after clone"
+    - "Secondary user segment — replace after clone"
+
+monetization:
+  model: "freemium-credits"   # free-basic-ai-paid | free-only | freemium-credits
+  auth_enabled: true
+  payment_enabled: true
+
+launch:
+  # v1 实际上线的 locale（须与 src/i18n/locale.ts 一致或子集）
+  locales:
+    - "en"
+    - "zh"
+
+  # v1 实际上线页面（用于 sitemap / preflight）
+  pages_v1:
+    - landing
+    - privacy-policy
+    - terms-of-service
+
+  # landing JSON 里 UI 开关
+  show_sign: true
+  show_theme: true
+
+  # Cloudflare wrangler 项目名（name 字段）— 克隆后替换
+  wrangler_name: "shipfire"
+
+  # 模板残留扫描额外黑名单（克隆后按新产品改）
+  residue_blocklist:
+    - "ShipStart"
+    - "shipstart.net"
+    - "Wplace Pixel"
+    - "fast3d"
+
+content:
+  word_count_min: 900
+  word_count_max: 1200
+  primary_keyword_density_min: 0.02
+  primary_keyword_density_max: 0.03
+  expansion_sections:
+    - faq
+    - introduce
+    - benefit
+  disable_sections: []
+
+template:
+  type: "shipfire-saas-v2"
+  theme_id: "saas-minimal"
+  layout_preset: "centered"
+  copy_profile: "outcome-led"
+  landing_en: "src/i18n/pages/landing/en.json"
+  messages_en: "src/i18n/messages/en.json"
+  privacy_policy: "src/app/(legal)/privacy-policy/page.mdx"
+  terms_of_service: "src/app/(legal)/terms-of-service/page.mdx"
+  wrangler: "wrangler.jsonc"
+  sitemap: "public/sitemap.xml"
+  robots: "public/robots.txt"
+
+notes: "Template placeholder. Replace site/product fields before landing-write-en."

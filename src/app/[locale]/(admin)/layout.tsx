@@ -76,18 +76,6 @@ export default async function AdminLayout({
           target: "_blank",
           icon: "RiFileTextLine",
         },
-        {
-          title: "Blocks",
-          url: "/about",
-          target: "_blank",
-          icon: "RiDashboardLine",
-        },
-        {
-          title: "Showcases",
-          url: "/showcase",
-          target: "_blank",
-          icon: "RiAppsLine",
-        },
       ],
     },
     social: {

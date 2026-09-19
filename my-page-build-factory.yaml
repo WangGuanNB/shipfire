@@ -1,0 +1,281 @@
+# ShipFire 模板项目 — my-page-build-factory 运行时配置
+# 从本模板克隆新站后，请修改：site.* / seo.* / assets.product_slug / style_brief
+
+site:
+  name: "ShipFire"
+  url: "https://example.com"
+  default_locale: "en"
+
+  # 必须与 src/i18n/locale.ts 中的 locales 保持一致
+  locales:
+    - "en"
+    - "zh"
+
+  # 若有从右到左语言，填在这里（与 locale.ts 的 rtlLocales 一致）
+  rtl_locales: []
+
+  # 一句话产品定位（克隆后改成真实产品）
+  one_line_pitch: "ShipFire SaaS 模板站 — 克隆后请改成你的产品一句话介绍。"
+
+  target_users:
+    - "用本模板快速上线落地页与工具页的独立开发者"
+
+  core_use_cases:
+    - "快速上线关键词落地页与 SEO 内页"
+
+  conversion_goals:
+    - "免费试用核心工具"
+    - "登录"
+    - "购买积分或升级"
+
+seo:
+  # 克隆后改成真实产品的主推词与相邻长尾
+  preferred_topics:
+    - "克隆后替换为产品核心关键词"
+
+  forbidden_topics:
+    - "偏离品牌、有法律风险或无关的主题"
+    - "与产品无关的泛 AI 绘图类词"
+    - "与 content_inventory 中已有主意图重复的页面"
+
+  competitors: []
+
+  existing_content_notes: |
+    模板现有路由：/、/image-generator/、/pricing/、/blog/。
+    克隆后请按真实产品与扫描到的路由重写页面库存。
+
+# 已发布页面库存；build 完成后把新页面追加到这里，供查重使用
+content_inventory:
+  pages:
+    - path: "/"
+      locale: "en"
+      page_type: "feature-landing"
+      primary_keyword: "shipfire template placeholder"
+      secondary_keywords: []
+      topic_cluster: "core product"
+      status: "published"
+      template_reference: "/"
+      json_page_key: "landing"
+      differentiation_notes: "首页；不要为同一意图再建近似重复的工具页。"
+
+    - path: "/image-generator/"
+      locale: "en"
+      page_type: "tool"
+      primary_keyword: "image generator"
+      secondary_keywords: []
+      localized_locales: []
+      topic_cluster: "demo tool"
+      status: "published"
+      template_reference: "/image-generator/"
+      json_page_key: "image-generator"
+      route_file: "src/app/[locale]/(default)/image-generator/page.tsx"
+      differentiation_notes: "模板演示工具页；克隆真实产品时请替换。"
+
+page_strategy:
+  # 允许的页面类型（枚举值保持英文）
+  allowed_page_types:
+    - "tool"
+    - "feature-landing"
+    - "blog"
+    - "docs"
+    - "hub"
+    - "comparison"
+    - "glossary"
+
+  default_cta: "Start now"
+
+  nav_policy: |
+    仅核心产品工具可进顶部导航（见落地页 header JSON）。
+    长尾 SEO 页通过相关工具页、FAQ、页脚做内链，不必进主导航。
+
+  blog_policy: |
+    信息型意图（教程、指南、对比文章）用博客。
+    SERP 以工具为主且产品能交付交互流程时，用工具页。
+
+  # 本模板站实际存在的克隆参考页
+  default_template_pages:
+    tool: "/image-generator/"
+    feature-landing: "/"
+    hub: "/showcase/"
+    comparison: ""
+    blog: "/blog/"
+    docs: "/docs/"
+    glossary: ""
+
+  # 通用 skill 会从这里取得项目自己的布局契约；不可把任何其他项目的设计规则写进模板。
+  layout_governance:
+    require_layout_contract: true
+    require_visual_acceptance: true
+    dedicated_tool_may_replace_only: "tool slot"
+    visual_checks:
+      - "desktop first viewport and section order"
+      - "mobile overflow and heading hierarchy"
+      - "whitespace and media/card density"
+
+  # ShipFire JSON 页面区块结构（build 时克隆，只改文案）
+  page_patterns:
+    homepage_landing:
+      description: "主落地页 src/i18n/pages/landing/{locale}.json"
+      route: "src/app/[locale]/(default)/page.tsx"
+      json_sections:
+        - header
+        - hero
+        - generator
+        - branding
+        - introduce
+        - benefit
+        - usage
+        - feature
+        - faq
+        - testimonial
+        - cta
+        - footer
+      components:
+        - Hero
+        - GeneratorSection
+        - FeatureWhatTwo
+        - Feature
+        - Feature2
+        - Feature3
+        - FAQ
+        - CTA
+
+    tool_inner_page:
+      description: "SEO 工具内页标准结构（克隆 image-generator）"
+      route_template: "src/app/[locale]/(default)/{slug}/page.tsx"
+      json_template: "src/i18n/pages/{slug}/{locale}.json"
+      json_sections:
+        - metadata
+        - hero
+        - tool
+        - introduce
+        - feature
+        - benefit
+        - usage
+        - faq
+        - cta
+      components:
+        - Hero_or_custom_hero
+        - ImageGeneratorTool_or_domain_tool
+        - FeatureWhatTwo
+        - Feature
+        - Feature2
+        - Feature3
+        - FAQ
+        - CTA
+      component_data_requirements:
+        FeatureWhatTwo:
+          required_when_used:
+            - "Every intended alternating media row has image.src and image.alt."
+          fallback_if_missing: "Use a text/card feature block when media is unavailable; do not render incomplete image-led rows."
+        Feature:
+          required_when_used:
+            - "Each intended card has icon, title, and useful description."
+          fallback_if_missing: "Render only complete cards or use a simpler text section."
+      allowed_deviations:
+        - "A dedicated domain tool may replace ImageGeneratorTool_or_domain_tool only."
+      visual_acceptance_reference: "/image-generator/"
+      metadata_required:
+        - title
+        - description
+        - keywords
+      hero_variant: "tool"
+      structured_data:
+        - SoftwareApplication
+        - BreadcrumbList
+
+  # 英文工具页 build 后通常要改的文件
+  build_file_checklist:
+    - "src/app/[locale]/(default)/{slug}/page.tsx"
+    - "src/i18n/pages/{slug}/en.json"
+    - "src/services/page.ts"
+    - "public/sitemap.xml"
+    - "src/i18n/pages/landing/en.json"
+
+implementation:
+  framework: "nextjs"
+  template: "shipfire"
+  trailing_slash: true
+  locale_prefix: "as-needed"
+  locale_file: "src/i18n/locale.ts"
+  page_content_dir: "src/i18n/pages"
+  app_routes_dir: "src/app/[locale]"
+  default_public_routes_dir: "src/app/[locale]/(default)"
+  sitemap_path: "public/sitemap.xml"
+  messages_dir: "src/i18n/messages"
+  page_service_file: "src/services/page.ts"
+  page_types_file: "src/types/pages/landing.d.ts"
+  canonical_helper: "getCanonicalUrl"
+  revalidate_seconds: 86400
+  build_command: "pnpm build"
+  lint_command: "pnpm lint"
+  dev_command: "pnpm dev"
+
+localization:
+  # 多语言前必须做当地 SEO 关键词调研
+  local_keyword_required: true
+  # 当地意图弱的语种可跳过
+  skip_weak_locale_intent: true
+  # 路径策略：en-slug | localized-slug
+  slug_policy: "en-slug"
+  slug_style:
+    en: "英文短横线小写（kebab-case）"
+    zh: "优先短英文产品 slug；除非项目已在用中文路径"
+  locale_build_priority:
+    - "en"
+    - "zh"
+
+# 配图说明：
+# - 读：当前工作区内容 + 下方 assets.*
+# - 计划写入：工厂 DB/{product_slug}/output/asset-plans/
+# - 落图：本站 public/imgs/（见 persist）
+# - kie 密钥与模型：工厂 .env.local，不要写进本文件
+assets:
+  provider: "kie.ai"
+  # 对应工厂仓库 DB/shipfire/
+  product_slug: "shipfire"
+  # 业务侧提示用；实际生成以工厂 .env.local 的 KIE_DEFAULT_MODEL 为准
+  default_model: "nano-banana-2"
+  resolution: "2K"
+  output_format: "webp"
+  # 本模块不生成、不改写 hero
+  skip_hero: true
+  budget:
+    max_images_per_page: 3
+    # 需用户确认配图计划后再调 kie
+    require_confirm: true
+  persist:
+    # public = 写到本站 public/；r2 = 上传 CDN（需本站 R2_*）
+    mode: "public"
+    # 文件路径：public/imgs/generated/{年}/{月}/{slug}-{slot}.webp
+    # 站点引用：/imgs/generated/...
+    public_dir: "imgs"
+  # 可选：已托管的参考封面 URL，供 kie image_input
+  reference_images: []
+  blog:
+    # 与 src/db/schema.ts 中 posts 表一致
+    cover_field: "cover_url"
+    table: "posts_shipfire"
+  # 全站配图风格（会写入生图 prompt）
+  style_brief: |
+    干净的商业 SaaS 网页配图，单一清晰隐喻。
+    柔和自然光；贴近品牌，避免常见紫色霓虹 AI 网图风。
+    适合博客列表缩略图与 Open Graph 小尺寸展示。
+  # 生图禁忌词（英文更利于模型理解，保持英文关键词）
+  negative_prompt: |
+    watermark, other brand logos, unreadable gibberish text, fake UI chrome,
+    fake awards, fake user photos, medical diagnostic imagery, gore, NSFW,
+    purple neon glow cliché, crowded collage, tiny unreadable chart numbers
+
+keyword_filter:
+  blocked_exact: []
+  blocked_contains: []
+  reject_navigational: false
+  synonym_groups: []
+  review_policies:
+    - "主题拒绝（forbidden_topics / 偏离品牌 / 无关泛 AI 图）→ reject；不要仅因缺少 Volume 就降为 review。"
+    - "数据兜底仅在主题契合度模糊时使用；主题已明确拒绝时不适用。"
+    - "跨语言：若关键词语种在 site.locales 内，评估本地化契合；近重复仅在同语言内判断。"
+    - "竞品品牌拼写错误或商标仿冒 → reject。"
+    - "缺搜索量且主题模糊 → needs-human-review，不要自动 accept。"
+    - "content_inventory 已有相同主意图时，不要再建新页面。"

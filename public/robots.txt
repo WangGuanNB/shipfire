@@ -19,11 +19,7 @@ Disallow: /pt
 Disallow: /ms
 Disallow: /en
 Disallow: /posts
-Disallow: /about
 Disallow: /pricing
-Disallow: /showcase
-Disallow: /converter
-Disallow: /color
 Disallow: /docs
 Disallow: /admin
 Disallow: /api-keys
