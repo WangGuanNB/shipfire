@@ -24,16 +24,16 @@
           "url": "/#examples"
         },
         {
-          "title": "Features",
-          "url": "/#introduce"
-        },
-        {
           "title": "How it works",
           "url": "/#usage"
         },
         {
           "title": "Pricing",
           "url": "/pricing/"
+        },
+        {
+          "title": "FAQ",
+          "url": "/#faq"
         }
       ]
     },
@@ -45,79 +45,33 @@
   "hero": {
     "name": "hero",
     "variant": "tool",
-    "title": "Turn your ideas into images",
-    "highlight_text": "AI Image Generator",
-    "description": "Describe the subject, style and composition. Choose an aspect ratio and target resolution, or start with one of the prompt examples below.",
-    "metrics": [
-      "Sign in to generate",
-      "Credit-based generation",
-      "Multiple aspect ratios"
-    ],
+    "title": "Build a site from one prompt",
+    "highlight_text": "Free AI Website Builder",
+    "description": "Describe your business, get an editable draft, then refine. Limited free generations—early access opening soon.",
     "buttons": [],
     "show_happy_users": false,
     "show_badge": false
   },
   "branding": {
-    "title": "Powered by cutting-edge AI technology",
-    "items": [
-      {
-        "title": "OpenAI",
-        "image": {
-          "src": "/imgs/logos/nextjs.svg",
-          "alt": "OpenAI"
-        }
-      },
-      {
-        "title": "Computer Vision",
-        "image": {
-          "src": "/imgs/logos/react.svg",
-          "alt": "Computer Vision"
-        }
-      },
-      {
-        "title": "Neural Networks",
-        "image": {
-          "src": "/imgs/logos/tailwindcss.svg",
-          "alt": "Neural Networks"
-        }
-      },
-      {
-        "title": "Machine Learning",
-        "image": {
-          "src": "/imgs/logos/shadcn.svg",
-          "alt": "Machine Learning"
-        }
-      },
-      {
-        "title": "Cloud Processing",
-        "image": {
-          "src": "/imgs/logos/vercel.svg",
-          "alt": "Cloud Processing"
-        }
-      }
-    ],
+    "title": "Powered by modern web infrastructure",
+    "items": [],
     "disabled": true
   },
   "introduce": {
     "name": "introduce",
-    "label": "FEATURES",
-    "title": "Built for turning prompts into usable images",
-    "description": "Core capabilities you can try in the tool above—without rebuilding a new workflow for every idea.",
+    "label": "WHAT YOU GET",
+    "title": "From a short description to a site you can refine",
+    "description": "Good AI builders do more than paste filler into a template. ShipFire is built around describe → draft → edit → publish—starting free with limited generations.",
     "items": [
       {
-        "title": "Text-to-image generation",
-        "label": "Create",
-        "description": "Describe the subject, setting, lighting and style. Start from a blank prompt or load an example, then generate when you are ready.",
+        "title": "Prompt to multi-page draft",
+        "label": "Generate",
+        "description": "Tell ShipFire what you sell, who it is for, and the tone you want—one clear brief beats a vague slogan. When early access opens, generation turns that input into a multi-page draft with section structure and starter copy you can keep editing, instead of a single locked screenshot.",
         "icon": "RiMagicLine",
         "image": {
           "src": "/imgs/features/1.webp",
-          "alt": "Text to image generation workflow"
+          "alt": "Concept preview of prompt to website draft"
         },
-        "list": [
-          "Prompt-based creation",
-          "Editable examples",
-          "Review before download"
-        ],
         "buttons": [
           {
             "title": "Try the tool",
@@ -132,67 +86,52 @@
         ]
       },
       {
-        "title": "Aspect ratio control",
-        "label": "Compose",
-        "description": "Choose square, portrait or landscape formats so the composition matches social posts, articles or product shots.",
+        "title": "Edit after AI generates",
+        "label": "Refine",
+        "description": "A first draft is a starting point, not the final site. Keep the sections that work, rewrite headlines in your voice, swap blocks, and tune branding so the page matches your real offer. You are not stuck with a one-shot layout you cannot change.",
         "icon": "RiLayoutLine",
         "image": {
           "src": "/imgs/features/2.webp",
-          "alt": "Aspect ratio options for generated images"
+          "alt": "Concept preview of editing a site after AI generation"
         },
-        "list": [
-          "Square, portrait, landscape",
-          "Auto option available",
-          "Match the channel layout"
-        ],
         "buttons": [
           {
-            "title": "Choose a ratio",
-            "url": "/#hero-tool",
+            "title": "See the flow",
+            "url": "/#usage",
             "variant": "default"
           }
         ]
       },
       {
-        "title": "Resolution targets",
-        "label": "Output",
-        "description": "Pick 1K, 2K or 4K as the target resolution. Actual output depends on the generation service—always review the result.",
-        "icon": "RiImageLine",
-        "image": {
-          "src": "/imgs/features/3.webp",
-          "alt": "Resolution options for image output"
-        },
-        "list": [
-          "1K / 2K / 4K targets",
-          "Download when ready",
-          "Copy image link"
-        ],
-        "buttons": [
-          {
-            "title": "Set resolution",
-            "url": "/#hero-tool",
-            "variant": "default"
-          }
-        ]
-      },
-      {
-        "title": "Credits you can see",
-        "label": "Clarity",
-        "description": "Sign in to generate. The tool shows credits per run and your balance, so pricing is visible before you continue.",
+        "title": "Free generations with clear limits",
+        "label": "Free",
+        "description": "Start with a limited number of free generations so you can judge draft quality before you pay. Reading this page or loading examples does not use a run. When you need more drafts, a custom domain, or higher limits, upgrade with credits—and see the cost before a paid generation starts.",
         "icon": "RiCopperCoinLine",
         "image": {
-          "src": "/imgs/features/4.webp",
-          "alt": "Credit cost shown before generating"
+          "src": "/imgs/features/3.webp",
+          "alt": "Concept preview of free generation limits"
         },
-        "list": [
-          "Sign in required",
-          "Cost shown near the button",
-          "Packages when balance is low"
-        ],
         "buttons": [
           {
             "title": "Check pricing",
             "url": "/pricing/",
+            "variant": "default"
+          }
+        ]
+      },
+      {
+        "title": "Built to go live later",
+        "label": "Publish",
+        "description": "Early access focuses on getting a usable draft you can refine, not on pretending every publish feature is live today. Custom domains, hosting extras, and deeper integrations roll out as ShipFire ships. We mark coming-soon steps clearly so you always know what works now versus what is next.",
+        "icon": "RiSparklingLine",
+        "image": {
+          "src": "/imgs/features/4.webp",
+          "alt": "Concept preview of publishing a generated site"
+        },
+        "buttons": [
+          {
+            "title": "Read FAQ",
+            "url": "/#faq",
             "variant": "default"
           },
           {
@@ -206,54 +145,54 @@
   },
   "benefit": {
     "name": "benefit",
-    "label": "USE CASES",
-    "title": "Where this image tool fits",
-    "description": "Concrete tasks—not vague advantages. Pick a scenario close to your work.",
+    "label": "WHO IT IS FOR",
+    "title": "When a fast first site is enough to start",
+    "description": "Use ShipFire when speed matters more than a blank design file—and you still want room to edit after the draft.",
     "items": [
       {
-        "title": "Content illustrations",
-        "description": "Explore visual directions for articles, presentations and social posts before you commission or finalize artwork.",
-        "icon": "RiArticleLine",
-        "image": {
-          "src": "/imgs/features/1.webp",
-          "alt": "Content illustration use case"
-        },
-        "buttons": [
-          {
-            "title": "Start from a prompt",
-            "url": "/#hero-tool",
-            "variant": "default"
-          }
-        ]
-      },
-      {
-        "title": "Creative exploration",
-        "description": "Turn scene and composition ideas into drafts you can discuss with a team or client.",
+        "title": "Solo founders validating an idea",
+        "description": "Need a credible site this week, not a six-week design cycle. Describe the product, generate a draft when access opens, and iterate with limited free generations.",
         "icon": "RiLightbulbLine",
         "image": {
-          "src": "/imgs/features/2.webp",
-          "alt": "Creative exploration use case"
+          "src": "/imgs/features/1.webp",
+          "alt": "Solo founder launching a first site concept"
         },
         "buttons": [
           {
-            "title": "Explore ideas",
-            "url": "/#hero-tool",
+            "title": "Join early access",
+            "url": "/#cta",
             "variant": "default"
           }
         ]
       },
       {
-        "title": "Product concepts",
-        "description": "Try settings and color combinations for product-style shots. Check accuracy and rights before publishing.",
+        "title": "Small businesses without a designer",
+        "description": "Services, local shops, and consultants who want pages, FAQs, and clear offers without hiring an agency for the first version.",
         "icon": "RiShoppingBagLine",
         "image": {
-          "src": "/imgs/features/3.webp",
-          "alt": "Product concept use case"
+          "src": "/imgs/features/2.webp",
+          "alt": "Small business site concept preview"
         },
         "buttons": [
           {
-            "title": "Try a product prompt",
+            "title": "See example directions",
             "url": "/#examples",
+            "variant": "default"
+          }
+        ]
+      },
+      {
+        "title": "Creators launching a simple offer",
+        "description": "Landing pages for a course, newsletter, or portfolio where copy and structure matter more than custom code on day one.",
+        "icon": "RiArticleLine",
+        "image": {
+          "src": "/imgs/features/3.webp",
+          "alt": "Creator landing page concept preview"
+        },
+        "buttons": [
+          {
+            "title": "How it works",
+            "url": "/#usage",
             "variant": "default"
           }
         ]
@@ -263,136 +202,186 @@
   "usage": {
     "name": "usage",
     "label": "HOW IT WORKS",
-    "title": "From a description to an image",
+    "title": "Describe, generate, refine, then publish",
     "items": [
       {
-        "title": "Describe your image",
-        "description": "Include the subject, style, setting and light, or start with an example above."
+        "title": "Describe your site",
+        "description": "Share what you offer, who it is for, and the tone you want. One clear paragraph beats a vague slogan."
       },
       {
-        "title": "Choose your settings",
-        "description": "Set the aspect ratio and target resolution, then check the credit cost."
+        "title": "Generate a draft (limited free runs)",
+        "description": "When early access opens, ShipFire turns that description into a structured draft. Free generations are limited—check your remaining runs before you start."
       },
       {
-        "title": "Generate and review",
-        "description": "Sign in to generate. Review the result, then download it or refine your prompt."
+        "title": "Edit, then prepare to publish",
+        "description": "Rewrite what needs a human voice. Upgrade with credits when you need more generations or publishing extras such as a custom domain."
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "title": "What you can do, and what to check",
-    "description": "Choose the settings you need and allow time to review and refine the result.",
+    "title": "Capabilities and honest boundaries",
+    "description": "What ShipFire is designed to cover—and what early access does not fake.",
     "items": [
       {
-        "title": "Text to image",
-        "description": "Describe a scene, then refine your prompt based on the result.",
+        "title": "Text-to-site drafting",
+        "description": "Turn a business description into pages and section structure you can keep editing.",
         "icon": "RiZapLine"
       },
       {
-        "title": "Choose an aspect ratio",
-        "description": "Select a square, portrait or landscape format for your composition.",
-        "icon": "RiLayoutLine"
-      },
-      {
-        "title": "Set a target resolution",
-        "description": "Choose 1K, 2K or 4K. Actual output depends on the generation service.",
-        "icon": "RiImageLine"
-      },
-      {
-        "title": "Download or copy a link",
-        "description": "Download the generated image or copy its image URL.",
-        "icon": "RiDownloadLine"
-      },
-      {
-        "title": "See the credit cost",
-        "description": "The tool shows the credits needed per generation and your available balance.",
+        "title": "Limited free generations",
+        "description": "Try the product without paying first. Free runs are capped so usage stays clear.",
         "icon": "RiCopperCoinLine"
       },
       {
-        "title": "Review your result",
-        "description": "Text, details and composition may need another attempt. Check the output before using it.",
+        "title": "Post-generation editing",
+        "description": "Adjust copy, sections, and layout after the AI draft—your site is not a one-shot screenshot.",
+        "icon": "RiEditLine"
+      },
+      {
+        "title": "Credits for more drafts",
+        "description": "Buy more generations when free limits run out. Costs show before paid runs.",
+        "icon": "RiBankCardLine"
+      },
+      {
+        "title": "Early access transparency",
+        "description": "Generation and publish features ship in stages. We mark Coming soon instead of simulating a live builder.",
+        "icon": "RiEyeLine"
+      },
+      {
+        "title": "Review before you go live",
+        "description": "Always check facts, offers, and legal claims in AI-written copy before publishing.",
         "icon": "RiSearchEyeLine"
       }
     ]
   },
   "faq": {
     "name": "faq",
-    "title": "Frequently asked questions",
+    "title": "Questions about early access and free generations",
     "items": [
       {
-        "title": "Does loading an example use credits?",
-        "description": "No. Example buttons only fill in the prompt and settings. Generation starts when you press the generate button."
+        "title": "Is ShipFire free to start?",
+        "description": "Yes for getting started: you get a limited number of free generations. Custom domains, higher limits, and extra publish features use paid credits or plans."
+      },
+      {
+        "title": "Can I generate a site today?",
+        "description": "Not fully yet. The product is early access / coming soon. Use the tool area to try the brief flow now; limited free generations open as ShipFire ships."
+      },
+      {
+        "title": "What does early access include?",
+        "description": "Early access focuses on describing your business and preparing for draft generation. Editing and publish extras roll out in stages—we mark what is live versus coming soon."
+      },
+      {
+        "title": "Can I edit the site after AI generates it?",
+        "description": "That is the intended flow: generate a draft, then refine copy and structure yourself. Editing tools ship with the product—we will not claim live controls that are not ready."
+      },
+      {
+        "title": "What counts as a generation?",
+        "description": "One generation is one AI draft run from your description. Loading this page, reading examples, or filling the brief does not use a free generation."
+      },
+      {
+        "title": "How many free generations do I get?",
+        "description": "The free allowance is limited and shown in your account when generation opens. Exact numbers may change during early access; paid credits unlock more runs when you need them."
+      },
+      {
+        "title": "Will I get a custom domain?",
+        "description": "Publishing to a custom domain is planned as a paid / upgrade path. Early access focuses on drafts and clear limits first."
       },
       {
         "title": "Do I need to sign in?",
-        "description": "Yes. Sign in before generating. The tool displays your account credit balance."
+        "description": "Browsing the page is open. Signing in lets us track free generations and credits when the generator is live. Sign-in requirements for each action are shown next to the tool."
       },
       {
-        "title": "Which aspect ratios are supported?",
-        "description": "Choose square, portrait or landscape formats from the current aspect-ratio menu in the tool."
+        "title": "How is this different from a static template?",
+        "description": "Templates start from the same layout for everyone. ShipFire drafts structure and copy from your description, then lets you edit. Always review and correct the result before publishing."
       },
       {
-        "title": "What if the result is not what I expected?",
-        "description": "Specify the subject, composition, lighting and style more clearly, and remove conflicting instructions. Another generation may require credits."
+        "title": "Can I export the site?",
+        "description": "Export options are on the roadmap with publishing. Until then, treat drafts as editable starting points inside ShipFire—not a guaranteed downloadable code package."
       },
       {
-        "title": "Can I publish the result immediately?",
-        "description": "Check image details, factual accuracy and relevant rights before publishing. See the terms of service for applicable conditions."
+        "title": "What if the AI draft is wrong?",
+        "description": "Expect to rewrite facts, pricing, and legal claims yourself. AI fills structure and starter copy; you remain responsible for accuracy before anything goes live."
+      },
+      {
+        "title": "Who is ShipFire for?",
+        "description": "Solo founders, small businesses, and creators who want a first site fast without a full design cycle—and still want room to edit after the draft."
       }
     ]
   },
   "testimonial": {
     "name": "testimonial",
-    "label": "IN THEIR WORDS",
-    "title": "Creators who need images without a full design cycle",
-    "description": "Template sample quotes—replace with your real user feedback before launch.",
+    "label": "EARLY FEEDBACK",
+    "title": "What founders want from a free AI Website Builder",
+    "description": "Sample early-access quotes for layout—replace with real ShipFire user feedback before you treat them as proof.",
     "icon": "RiThumbUpLine",
     "items": [
       {
-        "title": "Sarah M.",
-        "label": "Content Creator",
-        "description": "I needed blog images fast. Loading a prompt example, adjusting the ratio, then generating saved me a stock-photo hunt.",
+        "title": "Maya R.",
+        "label": "Solo founder",
+        "description": "I do not need another locked template. I want to describe the product once, get a draft, then rewrite the parts that sound generic.",
         "image": {
-          "src": "/imgs/users/1.png"
+          "src": "/imgs/users/1.png",
+          "alt": "Maya R."
         }
       },
       {
-        "title": "James K.",
-        "label": "Marketing Manager",
-        "description": "We use it for draft social visuals. Credits are clear, so the team knows when to continue or upgrade.",
+        "title": "Chris P.",
+        "label": "Local service business",
+        "description": "Limited free generations matter. I want to try draft quality before I pay for credits or a custom domain.",
         "image": {
-          "src": "/imgs/users/2.png"
+          "src": "/imgs/users/2.png",
+          "alt": "Chris P."
         }
       },
       {
-        "title": "Lisa T.",
-        "label": "Small Business Owner",
-        "description": "I am not a designer. Describing the scene and iterating on the prompt is enough for campaign drafts.",
+        "title": "Nina K.",
+        "label": "Creator",
+        "description": "A portfolio and offer page in one pass would save me a weekend—as long as I can still edit headlines and sections myself.",
         "image": {
-          "src": "/imgs/users/3.png"
+          "src": "/imgs/users/3.png",
+          "alt": "Nina K."
         }
       },
       {
-        "title": "Alex C.",
-        "label": "Indie Founder",
-        "description": "The prompt examples help me start. I refine one detail at a time instead of staring at an empty box.",
+        "title": "Omar S.",
+        "label": "Indie maker",
+        "description": "Early access is fine if the page is honest about what works today. I care more about a clear free limit than a fake live demo.",
         "image": {
-          "src": "/imgs/users/6.png"
+          "src": "/imgs/users/6.png",
+          "alt": "Omar S."
+        }
+      },
+      {
+        "title": "Elena V.",
+        "label": "Consultant",
+        "description": "Clients ask for a simple site fast. Prompt to multi-page draft, then refine, is the workflow I would actually use.",
+        "image": {
+          "src": "/imgs/users/5.png",
+          "alt": "Elena V."
+        }
+      },
+      {
+        "title": "Jordan L.",
+        "label": "Small shop owner",
+        "description": "I am not a designer. If AI gives me structure and I can fix the offer and contact details, that is enough to start.",
+        "image": {
+          "src": "/imgs/users/4.png",
+          "alt": "Jordan L."
         }
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "Ready to create your next image?",
-    "description": "Return to the tool, load a prompt example, or review credit packages before you generate.",
+    "title": "Get early access to ShipFire",
+    "description": "Describe your site in the tool above when generation opens. Limited free generations first—upgrade later for more drafts or publishing extras.",
     "buttons": [
       {
-        "title": "Back to the tool",
-        "url": "#hero-tool",
+        "title": "Back to tool",
+        "url": "/#hero-tool",
         "variant": "default",
-        "icon": "RiMagicLine"
+        "icon": "RiSparklingLine"
       },
       {
         "title": "View pricing",
@@ -405,14 +394,14 @@
     "name": "footer",
     "brand": {
       "title": "ShipFire",
-      "description": "Describe your ideas and explore image creation with AI.",
+      "description": "ShipFire helps founders draft sites with AI—early access with limited free generations.",
       "logo": {
         "src": "/logo-mark.webp",
         "alt": "ShipFire"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • ShipFire. All rights reserved.",
+    "copyright": "© 2026 • ShipFire. All rights reserved.",
     "nav": {
       "items": [
         {
@@ -541,102 +530,101 @@
     }
   ],
   "metadata": {
-    "title": "AI Image Generator — Create Images from Text | ShipFire",
-    "description": "Describe an image, choose its aspect ratio and resolution, then generate. Start with a prompt example; sign in and use credits to create your image."
+    "title": "Free AI Website Builder — Early Access | ShipFire",
+    "description": "Free AI Website Builder by ShipFire—early access. Describe your business, use limited free generations when we open, then edit and publish. Coming soon—join the waitlist."
   },
   "tools": {
     "primary": {
       "type": "image-generator",
       "config": {
-        "promptLabel": "Your prompt",
-        "promptPlaceholder": "Describe the subject, setting, lighting and style…",
-        "resolutionLabel": "Target resolution",
-        "aspectRatioLabel": "Aspect ratio",
+        "promptLabel": "Describe your website",
+        "promptPlaceholder": "What you offer, who it is for, and the tone you want…",
+        "resolutionLabel": "Draft detail",
+        "aspectRatioLabel": "Layout preference",
         "autoLabel": "Auto",
-        "buttonText": "Generate image",
+        "buttonText": "Generate site draft",
         "generatingText": "Generating…",
         "creditsRequired": "Credits per generation",
         "creditsAvailable": "Your credits",
-        "emptyTitle": "Your image will appear here",
-        "emptyDescription": "Write a prompt or choose an example below to get started.",
-        "downloadLabel": "Download",
-        "shareLabel": "Copy image link",
+        "emptyTitle": "Your site draft will appear here",
+        "emptyDescription": "Early access—describe your business above. Generation opens with limited free runs.",
+        "downloadLabel": "Export",
+        "shareLabel": "Copy link",
         "insufficientTitle": "More credits needed",
-        "insufficientDescription": "Choose a credit package to continue generating images."
+        "insufficientDescription": "Choose a credit package to continue generating site drafts."
       }
     }
   },
   "sections": {
     "examples": {
       "name": "examples",
-      "label": "RESULTS",
-      "title": "Real generation results",
-      "description": "Three sample outputs. Use a prompt to fill the tool above—generation starts only when you press Generate.",
+      "label": "DIRECTIONS",
+      "title": "Site directions you will be able to describe",
+      "description": "Concept previews of site directions. Use a prompt above when generation opens—examples do not start a paid run.",
       "items": [
         {
-          "title": "Product still life",
-          "description": "Matte ceramic mug, soft window light, minimal product photography.",
+          "title": "Service business site",
+          "description": "Offer, proof points, FAQ, and a contact CTA for a local or online service.",
           "image": {
             "src": "/imgs/features/1.webp",
-            "alt": "Sample product still-life generation result"
+            "alt": "Concept preview: service business site"
           },
           "action": {
-            "label": "Use this prompt",
+            "label": "Use this brief",
             "tool": "primary",
             "values": {
-              "prompt": "A matte ceramic mug on a warm beige table, soft window light from the left, minimal composition, realistic product photography.",
-              "aspect_ratio": "1:1",
-              "resolution": "2K"
+              "prompt": "A clean service business website for a local plumbing company. Include services, pricing teaser, FAQ, and a contact CTA. Tone: trustworthy and straightforward."
             }
           }
         },
         {
-          "title": "Editorial illustration",
-          "description": "Observatory at dusk, deep blue and warm orange, wide composition.",
+          "title": "Indie product landing",
+          "description": "Problem, product story, feature list, and pricing teaser for a solo SaaS launch.",
           "image": {
             "src": "/imgs/features/2.webp",
-            "alt": "Sample editorial illustration generation result"
+            "alt": "Concept preview: indie product landing"
           },
           "action": {
-            "label": "Use this prompt",
+            "label": "Use this brief",
             "tool": "primary",
             "values": {
-              "prompt": "An editorial illustration of a small observatory on a hill at dusk, deep blue and warm orange palette, clean geometric shapes, wide composition.",
-              "aspect_ratio": "16:9",
-              "resolution": "2K"
+              "prompt": "A landing page for an indie SaaS that helps freelancers track invoices. Hero, problem, features, pricing teaser, and signup CTA. Tone: modern and concise."
             }
           }
         },
         {
-          "title": "Soft portrait light",
-          "description": "Golden-hour portrait, soft rim light, shallow depth of field.",
+          "title": "Creator / portfolio page",
+          "description": "Bio, selected work, and a simple offer or newsletter signup.",
           "image": {
             "src": "/imgs/features/3.webp",
-            "alt": "Sample portrait lighting generation result"
+            "alt": "Concept preview: creator portfolio page"
           },
           "action": {
-            "label": "Use this prompt",
+            "label": "Use this brief",
             "tool": "primary",
             "values": {
-              "prompt": "A calm portrait of a young adult outdoors at golden hour, soft rim light, shallow depth of field, natural skin tones, photographic style.",
-              "aspect_ratio": "3:4",
-              "resolution": "2K"
+              "prompt": "A portfolio site for a freelance photographer. Bio, selected work grid, about, and a contact or newsletter signup. Tone: visual and minimal."
             }
           }
         }
       ]
     },
     "cost": {
-      "title": "Generation costs and your balance",
+      "title": "Free generations, then credits",
       "paragraphs": [
-        "Generation requires an account and credits. The current cost and your available balance are shown beneath the generate button.",
-        "If your balance is insufficient, you can view the available packages. Loading an example prompt does not start a paid generation."
+        "The free tier includes a limited number of generations so you can try draft quality before you pay. Reading this page or browsing concept examples does not use a generation.",
+        "When free runs are used up—or you need more drafts, custom domain publishing, or higher limits—buy credits or a plan on the pricing page. Early access may open waitlist seats before full billing is live."
       ],
       "buttons": [
         {
           "title": "View pricing",
           "url": "/pricing/",
           "variant": "outline"
+        },
+        {
+          "title": "Join early access",
+          "url": "/#cta",
+          "variant": "default"
         }
       ]
     }

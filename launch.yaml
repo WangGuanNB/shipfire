@@ -7,15 +7,17 @@
 
 site:
   # 种子关键词（发现词、注册域名时的起点）— 克隆后替换
-  seed_keyword: "your seed keyword"
+  seed_keyword: "AI Website Builder"
 
   # SEO 主关键词（Title / H1 核心，research 模式可帮你定稿）
-  primary_keyword: "Your Primary Keyword"
+  primary_keyword: "AI Website Builder"
 
   # 次要关键词（metadata.keywords、正文自然分布）
   secondary_keywords:
-    - "secondary keyword one"
-    - "secondary keyword two"
+    - "free AI website builder"
+    - "AI website generator"
+    - "create website with AI"
+    - "AI site builder"
 
   # 线上域名（不带 www，与 wrangler / sitemap 一致）
   url: "https://example.com"
@@ -28,23 +30,24 @@ site:
 
 product:
   # 一句话定位（hero + introduce 核心）— 克隆后替换
-  one_line_pitch: "Clone this ShipFire template and replace with your product one-liner."
+  one_line_pitch: "Describe your site once—AI builds an editable draft. Start free with limited generations, then refine and publish."
 
   # 免费层做什么
-  free_tier: "Describe what users get without paying"
+  free_tier: "Limited free generations (early access / coming soon)"
 
   # 付费/AI 层做什么
-  paid_tier: "Describe what credits or paid plans unlock"
+  paid_tier: "More generations, custom domain, and publishing extras via credits or plans"
 
   # 和竞品差异化的 1～3 点（research 后可更新）
   differentiation:
-    - "Replace with your real differentiator"
-    - "Replace with another differentiator"
+    - "Free to start with limited generations"
+    - "Edit after AI generates"
+    - "Honest early-access status until generate ships"
 
   # 目标用户
   target_users:
-    - "Primary user segment — replace after clone"
-    - "Secondary user segment — replace after clone"
+    - "Solo founders who need a site fast"
+    - "Small businesses without a designer"
 
 monetization:
   model: "freemium-credits"   # free-basic-ai-paid | free-only | freemium-credits
@@ -101,4 +104,4 @@ template:
   sitemap: "public/sitemap.xml"
   robots: "public/robots.txt"
 
-notes: "Template placeholder. Replace site/product fields before landing-write-en."
+notes: "Landing EN written for AI Website Builder (early access). Generate tool not live; hero has no tool slot."
