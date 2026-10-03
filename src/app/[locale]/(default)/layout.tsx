@@ -22,7 +22,7 @@ export default async function DefaultLayout({
       {/* 中间内容页*/}
       <main className="overflow-x-hidden bg-background">{children}</main>
       {/* 底部导航栏*/}
-      {page.footer && <Footer footer={page.footer} />}
+      {page.footer && <Footer footer={page.footer} locale={locale} />}
       {/* 右下角联系我/反馈按钮 */}
       <Feedback socialLinks={page.footer?.social?.items} />
     </div>

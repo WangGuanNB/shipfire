@@ -1,52 +1,115 @@
-import { Footer as FooterType, Badge } from "@/types/blocks/footer";
+"use client";
+
+import type { CSSProperties } from "react";
+import Link from "next/link";
+import { Badge, Footer as FooterType } from "@/types/blocks/footer";
 import Icon from "@/components/icon";
 
-function BadgeLink({
+function badgeRel(badge: Badge): string {
+  return badge.dofollow
+    ? "noopener noreferrer"
+    : "noopener noreferrer nofollow";
+}
+
+function isTaaftBadge(badge: Badge): boolean {
+  return badge.url.includes("theresanaiforthat.com");
+}
+
+function BadgeItem({
   badge,
-  inert = false,
+  tabIndex,
+  withTaaftId,
 }: {
   badge: Badge;
-  /** Duplicate marquee copy: skip tab stops, keep href for seamless loop only */
-  inert?: boolean;
+  tabIndex?: number;
+  withTaaftId?: boolean;
 }) {
-  return (
-    <a
-      href={badge.url}
-      target={badge.target || "_blank"}
-      data-footer-badge=""
-      {...(badge.dofollow ? { "data-dofollow": "" } : {})}
-      rel={
-        badge.dofollow
-          ? "noopener noreferrer"
-          : "noopener noreferrer nofollow"
-      }
-      title={badge.title}
-      tabIndex={inert ? -1 : undefined}
-      className="block truncate text-sm font-medium underline underline-offset-2 hover:text-primary hover:opacity-100"
-    >
-      {badge.image?.src ? (
+  const showImage = Boolean(badge.image?.src);
+  const common = {
+    href: badge.url,
+    target: badge.target || "_blank",
+    rel: badgeRel(badge),
+    title: badge.title,
+    "data-footer-badge": "" as const,
+    ...(badge.dofollow ? { "data-dofollow": "" as const } : {}),
+    ...(withTaaftId && isTaaftBadge(badge) ? { id: "taaft-verify" } : {}),
+    tabIndex,
+  };
+
+  if (showImage && badge.image) {
+    const width = badge.image.width || 200;
+    const height = badge.image.height || 54;
+    return (
+      <a
+        {...common}
+        className="inline-flex h-10 shrink-0 items-center px-3 opacity-80 transition-opacity hover:opacity-100"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element -- partner crawlers may require exact remote badge URLs */}
         <img
           src={badge.image.src}
           alt={badge.image.alt || badge.title}
-          width={Math.round((badge.image.width || 171) * 0.8)}
-          height={Math.round((badge.image.height || 54) * 0.8)}
-          className="h-auto max-h-8"
+          width={width}
+          height={height}
           loading="lazy"
           decoding="async"
+          className="h-8 w-auto max-h-8 object-contain"
         />
-      ) : (
-        badge.title
-      )}
+      </a>
+    );
+  }
+
+  return (
+    <a
+      {...common}
+      className="inline-flex h-10 shrink-0 items-center whitespace-nowrap px-4 text-sm text-muted-foreground transition-colors hover:text-primary"
+    >
+      {badge.title}
     </a>
   );
 }
 
-export default function Footer({ footer }: { footer: FooterType }) {
+function BadgeTrack({
+  badges,
+  ariaHidden,
+}: {
+  badges: Badge[];
+  ariaHidden?: boolean;
+}) {
+  return (
+    <ul
+      className="flex shrink-0 items-center"
+      aria-hidden={ariaHidden ? true : undefined}
+    >
+      {badges.map((badge, i) => (
+        <li key={`${ariaHidden ? "b" : "a"}-${i}`} className="shrink-0">
+          <BadgeItem
+            badge={badge}
+            tabIndex={ariaHidden ? -1 : undefined}
+            withTaaftId={!ariaHidden}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function Footer({
+  footer,
+  locale,
+}: {
+  footer: FooterType;
+  locale?: string;
+}) {
   if (footer.disabled) {
     return null;
   }
 
-  const badges = footer.badges?.length ? footer.badges : null;
+  const badges = footer.badges?.filter((b) => b?.title && b?.url) ?? [];
+  const showBadgeMarquee = badges.length > 0;
+  const scrollSeconds = Math.max(28, badges.length * 6);
+  const brandHomeHref =
+    footer.brand?.url ||
+    (locale && locale !== "en" ? `/${locale}` : "/");
 
   return (
     <section id={footer.name} className="py-16">
@@ -56,7 +119,15 @@ export default function Footer({ footer }: { footer: FooterType }) {
             <div className="flex w-full max-w-96 shrink flex-col items-center justify-between gap-6 lg:items-start">
               {footer.brand && (
                 <div>
-                  <div className="flex items-center justify-center gap-2 lg:justify-start">
+                  <Link
+                    href={brandHomeHref}
+                    className="flex items-center justify-center gap-2 lg:justify-start hover:opacity-90 transition-opacity"
+                    aria-label={
+                      footer.brand.title
+                        ? `${footer.brand.title} home`
+                        : "Home"
+                    }
+                  >
                     {footer.brand.logo && (
                       <img
                         src={footer.brand.logo.src}
@@ -73,7 +144,7 @@ export default function Footer({ footer }: { footer: FooterType }) {
                         {footer.brand.title}
                       </p>
                     )}
-                  </div>
+                  </Link>
                   {footer.brand.description && (
                     <p className="mt-6 text-md text-muted-foreground">
                       {footer.brand.description}
@@ -121,69 +192,9 @@ export default function Footer({ footer }: { footer: FooterType }) {
               ))}
             </div>
           </div>
-          <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:text-left">
-            {footer.copyright && (
-              <p className="shrink-0 lg:max-w-56">{footer.copyright}</p>
-            )}
 
-            {/* Partner badges: SSR links + 2-row vertical marquee */}
-            {badges && (
-              <div
-                className="footer-badge-marquee w-full max-w-xs shrink-0 opacity-70 hover:opacity-100 transition-opacity"
-                aria-label="Partner listings"
-              >
-                <div className="h-11 overflow-hidden">
-                  <div className="footer-badge-marquee__track flex flex-col gap-1">
-                    <ul className="flex flex-col gap-1">
-                      {badges.map((badge, i) => (
-                        <li key={`badge-${i}`} className="h-5 leading-5">
-                          <BadgeLink badge={badge} />
-                        </li>
-                      ))}
-                    </ul>
-                    {/* Visual clone for seamless loop; primary list above remains crawlable */}
-                    <ul className="flex flex-col gap-1" aria-hidden="true">
-                      {badges.map((badge, i) => (
-                        <li key={`badge-clone-${i}`} className="h-5 leading-5">
-                          <BadgeLink badge={badge} inert />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Legacy single badge (image only) */}
-            {!badges && footer.badge?.image?.src && (
-              <div className="opacity-60 hover:opacity-80 transition-opacity">
-                <a
-                  href={footer.badge.url}
-                  target={footer.badge.target || "_blank"}
-                  data-footer-badge=""
-                  {...(footer.badge.dofollow
-                    ? { "data-dofollow": "" }
-                    : {})}
-                  rel={
-                    footer.badge.dofollow
-                      ? "noopener noreferrer"
-                      : "noopener noreferrer nofollow"
-                  }
-                  title={footer.badge.title}
-                  className="inline-block"
-                >
-                  <img
-                    src={footer.badge.image.src}
-                    alt={footer.badge.image.alt || footer.badge.title}
-                    width={Math.round((footer.badge.image.width || 200) * 0.8)}
-                    height={Math.round((footer.badge.image.height || 54) * 0.8)}
-                    className="h-auto max-h-10"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </a>
-              </div>
-            )}
+          <div className="mt-8 flex flex-col justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
+            {footer.copyright && <p className="shrink-0">{footer.copyright}</p>}
 
             {footer.agreement && (
               <ul className="flex shrink-0 justify-center gap-4 lg:justify-start">
@@ -197,6 +208,28 @@ export default function Footer({ footer }: { footer: FooterType }) {
               </ul>
             )}
           </div>
+
+          {showBadgeMarquee && (
+            <div
+              className="footer-badge-marquee-x mt-6 overflow-hidden border-t pt-6"
+              style={
+                {
+                  ["--footer-badge-duration"]: `${scrollSeconds}s`,
+                } as CSSProperties
+              }
+            >
+              <div className="footer-badge-track-x">
+                <BadgeTrack badges={badges} />
+                <BadgeTrack badges={badges} ariaHidden />
+              </div>
+            </div>
+          )}
+
+          {!footer.badges && footer.badge?.url && (
+            <div className="mt-6 flex justify-center opacity-60 hover:opacity-80 transition-opacity">
+              <BadgeItem badge={footer.badge} withTaaftId />
+            </div>
+          )}
         </footer>
       </div>
     </section>
