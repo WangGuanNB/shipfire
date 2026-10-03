@@ -13,6 +13,22 @@
 
 ---
 
+## 📋 产品文档
+
+产品与升级规划文档均在 [`docs/`](./docs/) 目录（一层结构，全中文文件名）。
+
+| 文档 | 说明 |
+|------|------|
+| [docs/产品说明.md](./docs/产品说明.md) | 产品总览、版本一览与当前状态 |
+| [docs/文档维护说明.md](./docs/文档维护说明.md) | AI / 人类如何阅读与维护这些文档 |
+| [docs/版本0-早期访问.md](./docs/版本0-早期访问.md) | 当前执行中版本的阶段详情 |
+| [docs/落地页说明.md](./docs/落地页说明.md) | 落地页模块设计与 SEO 意图 |
+| [docs/支付集成指南.md](./docs/支付集成指南.md) | Stripe / PayPal / Creem 集成 |
+
+**AI 协作建议阅读顺序：** `README.md` → `docs/产品说明.md` → 当前执行中的版本 MD → `docs/文档维护说明.md`
+
+---
+
 ## ✨ Features
 
 - ⚡ **Next.js 15** - App Router, React 19, TypeScript
@@ -179,7 +195,7 @@ Credits are automatically granted on:
 - Subscription renewal
 - Referral rewards
 
-📖 **Detailed Documentation**: See [PAYMENT_INTEGRATION_GUIDE.md](./PAYMENT_INTEGRATION_GUIDE.md)
+📖 **Detailed Documentation**: See [docs/支付集成指南.md](./docs/支付集成指南.md)
 
 ---
 
@@ -244,7 +260,10 @@ docker run -p 3000:3000 shipfire:latest
 
 ### Core Documentation
 - [README.md](./README.md) - Project overview and quick start
-- [PAYMENT_INTEGRATION_GUIDE.md](./PAYMENT_INTEGRATION_GUIDE.md) - Complete payment integration guide
+- [docs/产品说明.md](./docs/产品说明.md) - Product overview and version roadmap (中文)
+- [docs/文档维护说明.md](./docs/文档维护说明.md) - How to read and maintain docs with AI (中文)
+- [docs/落地页说明.md](./docs/落地页说明.md) - Landing page module playbook (中文)
+- [docs/支付集成指南.md](./docs/支付集成指南.md) - Complete payment integration guide
 
 ### Template Updates
 - [.template/updates/](./.template/updates/) - Template update documents for cloned projects
