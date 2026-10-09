@@ -277,6 +277,7 @@ Full documentation: [shipfire.cn/docs](https://shipfire.cn/docs)
     <a href="https://fireredimage.org" target="_blank">
        <a href="https://matrix-destiny.net" target="_blank">
                 <a href="https://landscapedesignai.net" target="_blank">
+                       <a href="https://landscapedesignai.net" target="_blank">AI Video Maker</a>
 <strong>AstroCarto</strong><br/>
 <sub>Astrology mapping</sub>
 </a>
