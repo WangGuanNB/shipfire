@@ -265,9 +265,9 @@ docker run -p 3000:3000 shipfire:latest
 - [docs/落地页说明.md](./docs/落地页说明.md) - Landing page module playbook (中文)
 - [docs/支付集成指南.md](./docs/支付集成指南.md) - Complete payment integration guide
 
-### Template Updates
-- [.template/updates/](./.template/updates/) - Template update documents for cloned projects
-- [.template/docs/](./.template/docs/) - Detailed technical documentation
+### Product & Project Docs (中文)
+- [docs/产品说明.md](./docs/产品说明.md) - Product roadmap and version status
+- [docs/文档维护说明.md](./docs/文档维护说明.md) - How to maintain docs with AI
 
 ### Deployment
 Full documentation: [shipfire.cn/docs](https://shipfire.cn/docs)

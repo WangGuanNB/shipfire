@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     const { imageData, mimeType, fileName } = body;
 
     // 验证必要字段
-    if (!imageData || !mimeType) {
+    if (typeof imageData !== 'string' || imageData.length > 14 * 1024 * 1024 || !['image/png','image/jpeg','image/webp'].includes(mimeType)) {
       return NextResponse.json({
         success: false,
         error: 'Image data and mime type are required'
@@ -42,10 +42,16 @@ export async function POST(request: NextRequest) {
     // 解码base64图片数据
     const base64Data = imageData.replace(/^data:image\/[a-z]+;base64,/, '');
     const imageBuffer = Buffer.from(base64Data, 'base64');
+    const isPng = imageBuffer.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]));
+    const isJpeg = imageBuffer[0] === 255 && imageBuffer[1] === 216 && imageBuffer[2] === 255;
+    const isWebp = imageBuffer.toString('ascii',0,4) === 'RIFF' && imageBuffer.toString('ascii',8,12) === 'WEBP';
+    if (imageBuffer.length > 10 * 1024 * 1024 || !({ 'image/png': isPng, 'image/jpeg': isJpeg, 'image/webp': isWebp }[mimeType])) {
+      return NextResponse.json({ error: 'Invalid image, maximum size is 10MB' }, { status: 400 });
+    }
 
     // 生成唯一的文件名
     const fileExtension = mimeType.split('/')[1] || 'png';
-    const uniqueFileName = fileName || `miniature-${getUuid()}.${fileExtension}`;
+    const uniqueFileName = `${getUuid()}.${fileExtension}`;
     const storageKey = `generated/${new Date().getFullYear()}/${new Date().getMonth() + 1}/${uniqueFileName}`;
 
     // 初始化存储客户端

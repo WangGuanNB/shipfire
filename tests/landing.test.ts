@@ -71,18 +71,22 @@ for (const locale of ["en", "zh"]) {
       `src/i18n/pages/landing/${locale}.json`,
       `src/i18n/pages/landing/presets/introduction/${locale}.json`,
       `src/i18n/pages/image-generator/${locale}.json`,
+      `src/i18n/pages/video-generator/${locale}.json`,
     ]) {
       const page = read(path);
       const modules = getLandingModules(page);
       if (page.page_type === "introduction") {
         assert.equal(modules.length, 7);
       } else {
+        const isVideoGenerator = path.includes("/video-generator/");
         assert.ok(modules.length >= 8, `${path} expected >= 8 modules, got ${modules.length}`);
         assert.equal(page.page_type, "tool");
         assert.ok(modules.some(module => module.id === "hero" && module.tool === "primary"));
-        assert.ok(modules.some(module => module.id === "examples"));
+        if (!isVideoGenerator) {
+          assert.ok(modules.some(module => module.id === "examples"));
+          assert.ok(modules.some(module => module.id === "testimonial"));
+        }
         assert.ok(modules.some(module => module.id === "introduce"));
-        assert.ok(modules.some(module => module.id === "testimonial"));
         assert.ok(modules.some(module => module.id === "cta"));
       }
       assert.equal(modules.filter(module => module.type === "hero").length, 1);

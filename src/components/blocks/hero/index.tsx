@@ -230,14 +230,25 @@ function ToolHero({
     : undefined;
 
   return (
-    <HeroBackdrop className="min-h-0 pt-20 pb-12 md:pt-28 md:pb-16" solidBackground>
-      <div className="container mx-auto max-w-6xl space-y-6 text-center">
-        <h1 className="hero-text-down mx-auto max-w-4xl text-balance text-3xl font-bold leading-tight text-foreground sm:text-4xl lg:text-5xl">
+    <HeroBackdrop className="min-h-0 pt-20 pb-10 md:pt-24 md:pb-14" solidBackground>
+      <div className="container mx-auto max-w-6xl space-y-4 text-center md:space-y-5">
+        {hero.announcement?.title && (
+          <div className="hero-text-down flex justify-center">
+            <Badge variant="outline" className="landing-eyebrow max-w-full flex-wrap justify-center gap-2 whitespace-normal px-3 py-1 text-center font-normal leading-5">
+              {hero.announcement.label && (
+                <span className="font-medium text-primary">{hero.announcement.label}</span>
+              )}
+              <span className="text-muted-foreground">{hero.announcement.title}</span>
+            </Badge>
+          </div>
+        )}
+
+        <h1 className="hero-text-down mx-auto max-w-4xl text-balance text-3xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
           {hero.title}
           {hero.highlight_text && (
             <>
               <br />
-              <span className="bg-gradient-to-r from-primary via-primary/70 to-primary/50 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/55 bg-clip-text text-transparent">
                 {hero.highlight_text}
               </span>
             </>
@@ -245,14 +256,18 @@ function ToolHero({
         </h1>
 
         {plainDescription && (
-          <p className="hero-text-up mx-auto max-w-2xl text-base text-muted-foreground">
+          <p className="hero-text-up mx-auto max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
             {plainDescription}
           </p>
         )}
 
-        {hero.metrics?.length ? <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">{hero.metrics.map((metric, index) => <li key={index}>{metric}</li>)}</ul> : null}
+        {hero.metrics?.length ? (
+          <p className="hero-text-up text-xs text-muted-foreground sm:text-sm">
+            {hero.metrics.join(" · ")}
+          </p>
+        ) : null}
         {hero.tip && <p className="text-sm text-muted-foreground">{hero.tip}</p>}
-        {children && <div className="text-left">{children}</div>}
+        {children && <div className="hero-text-up pt-1 text-left">{children}</div>}
         {hero.buttons?.length ? <div className="flex flex-wrap justify-center gap-3">{hero.buttons.filter(button => button.url).map((button, index) => <Button asChild key={index} variant={button.variant || "outline"}><Link href={button.url!} target={button.target}>{button.title}</Link></Button>)}</div> : null}
       </div>
     </HeroBackdrop>

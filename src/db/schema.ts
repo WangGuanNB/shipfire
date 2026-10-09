@@ -67,6 +67,9 @@ export const orders = sqliteTable(
     paid_email: text(),
     paid_detail: text(),
     pay_type: text(),
+    billing_snapshot: text(),
+    stripe_customer_id: text(),
+    subscription_status: text(),
   },
   (table) => [
     // 🔥 性能优化：添加常用查询字段的索引
@@ -110,6 +113,7 @@ export const credits = sqliteTable(
     user_uuid: text().notNull(),
     trans_type: text().notNull(),
     credits: integer().notNull(),
+    available_at: integer({ mode: "timestamp" }),
     order_no: text(),
     expired_at: integer({ mode: "timestamp" }),
   },
@@ -121,6 +125,29 @@ export const credits = sqliteTable(
     index("credits_created_at_idx").on(table.created_at),
   ]
 );
+
+/** Vendor-independent task records. Money-related transitions are guarded by SQL triggers. */
+export const aiTasks = sqliteTable("ai_tasks_shipfire", {
+  id: text().primaryKey(),
+  user_id: text().notNull(),
+  request_key: text().notNull(),
+  tool_id: text().notNull(),
+  model_id: text().notNull(),
+  model_snapshot: text().notNull(),
+  input: text().notNull(),
+  status: text().notNull().default("queued"),
+  credits: integer().notNull(),
+  provider_task_id: text(),
+  artifacts: text(),
+  error: text(),
+  created_at: integer().notNull(),
+  updated_at: integer().notNull(),
+  next_poll_at: integer().notNull().default(0),
+}, table => [
+  uniqueIndex("ai_tasks_request_idx").on(table.user_id, table.request_key),
+  index("ai_tasks_user_created_idx").on(table.user_id, table.created_at),
+  index("ai_tasks_status_poll_idx").on(table.status, table.next_poll_at),
+]);
 
 // Posts table
 export const posts = sqliteTable(

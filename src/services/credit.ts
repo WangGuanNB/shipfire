@@ -8,6 +8,9 @@ import { getIsoTimestr } from "@/lib/time";
 import { getSnowId } from "@/lib/hash";
 import { Order } from "@/types/order";
 import { UserCredits } from "@/types/user";
+import { db } from "@/db";
+import { sql } from "drizzle-orm";
+import { debitCreditsSql } from "@/lib/credits-sql";
 
 export class InsufficientCreditsError extends Error {
   constructor(public available: number, public required: number) {
@@ -109,55 +112,15 @@ export async function getUserCredits(user_uuid: string): Promise<UserCredits> {
   }
 }
 
-export async function decreaseCredits({
-  user_uuid,
-  trans_type,
-  credits,
-}: {
-  user_uuid: string;
-  trans_type: CreditsTransType;
-  credits: number;
+export async function decreaseCredits({ user_uuid, trans_type, credits }: {
+  user_uuid: string; trans_type: CreditsTransType; credits: number;
 }) {
-  try {
-    let order_no = "";
-    let expired_at = "";
-    let left_credits = 0;
-
-    const userCredits = await getUserValidCredits(user_uuid);
-    if (userCredits) {
-      for (let i = 0, l = userCredits.length; i < l; i++) {
-        const credit = userCredits[i];
-        left_credits += credit.credits;
-
-        // credit enough for cost
-        if (left_credits >= credits) {
-          order_no = credit.order_no || "";
-          expired_at = credit.expired_at?.toISOString() || "";
-          break;
-        }
-
-        // look for next credit
-      }
-    }
-
-    if (left_credits < credits) {
-      throw new InsufficientCreditsError(left_credits, credits);
-    }
-
-    const new_credit: typeof creditsTable.$inferInsert = {
-      trans_no: getSnowId(),
-      created_at: new Date(getIsoTimestr()),
-      expired_at: expired_at ? new Date(expired_at) : null,
-      user_uuid: user_uuid,
-      trans_type: trans_type,
-      credits: 0 - credits,
-      order_no: order_no,
-    };
-    await insertCredit(new_credit);
-  } catch (e) {
-    console.log("decrease credits failed: ", e);
-    throw e;
-  }
+  if (!Number.isSafeInteger(credits) || credits < 0) throw new Error("Invalid debit amount");
+  if (credits === 0) return;
+  const key = getSnowId();
+  await db().run(debitCreditsSql(user_uuid, credits, key, trans_type));
+  const rows = await db().select().from(creditsTable).where(sql`substr(${creditsTable.trans_no},1,${key.length + 1})=${key + ":"}`).limit(1);
+  if (!rows.length) throw new InsufficientCreditsError(await getUserRawLeftCredits(user_uuid), credits);
 }
 
 export async function increaseCredits({

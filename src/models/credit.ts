@@ -1,6 +1,6 @@
 import { credits, users } from "@/db/schema";
 import { db } from "@/db";
-import { desc, eq, and, gte, asc, or, isNull, like } from "drizzle-orm";
+import { desc, eq, and, gte, gt, lte, asc, or, isNull, like } from "drizzle-orm";
 
 /** Admin credits ledger row (matches DB columns + joined email). */
 export type AdminCreditLedgerRow = {
@@ -68,8 +68,9 @@ export async function getUserValidCredits(
     .where(
       and(
         // 包含未过期的积分：expired_at 为 null（永不过期）或 expired_at >= 当前时间
-        or(isNull(credits.expired_at), gte(credits.expired_at, now)),
-        eq(credits.user_uuid, user_uuid)
+        or(isNull(credits.expired_at), gt(credits.expired_at, now)),
+        eq(credits.user_uuid, user_uuid),
+        or(isNull(credits.available_at), lte(credits.available_at, now))
       )
     )
     .orderBy(asc(credits.expired_at));

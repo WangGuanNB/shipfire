@@ -17,6 +17,7 @@ import { usePayment } from "@/hooks/usePayment";
 import { useAppContext } from "@/contexts/app";
 import { useLocale } from "next-intl";
 import { PaymentMethodSelector } from "@/components/payment/PaymentMethodSelector";
+import { minorToMajor, formatPrice } from "@/lib/pricing";
 
 /** Pricing `amount` is minor units (e.g. USD cents). */
 function minorToMajorUsd(minor: number): number {
@@ -119,9 +120,7 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
       ? pricing.comparison_features_by_group?.monthly
       : undefined) ??
     [];
-  const comparisonRows: PricingComparisonRow[] = embed
-    ? comparisonRowsRaw.slice(0, 4)
-    : comparisonRowsRaw;
+  const comparisonRows: PricingComparisonRow[] = comparisonRowsRaw;
   const useComparison = comparisonRows.length > 0;
 
   return (
@@ -193,7 +192,7 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
               const isSelected = selectedKey === itemKey;
 
               const yearlyUsd =
-                item.interval === "year" ? minorToMajorUsd(item.amount) : 0;
+                item.interval === "year" ? minorToMajor(item.amount, item.currency) : 0;
               const monthlyUsd = item.interval === "year" ? yearlyUsd / 12 : 0;
               const origYearlyUsd =
                 item.interval === "year" ? parseDisplayUsd(item.original_price) : null;
@@ -202,16 +201,11 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
               const yearlyBilledCaption =
                 item.interval === "year"
                   ? locale === "zh"
-                    ? `${formatUsd(yearlyUsd, locale)}/年，按年一次性扣款`
-                    : `${formatUsd(yearlyUsd, locale)}/year billed yearly`
+                    ? `${formatPrice(yearlyUsd, locale, item.currency)}/年，按年一次性扣款`
+                    : `${formatPrice(yearlyUsd, locale, item.currency)}/year billed yearly`
                   : "";
 
-              const tierKey =
-                item.product_id === "starter" ||
-                item.product_id === "standard" ||
-                item.product_id === "premium"
-                  ? item.product_id
-                  : null;
+              const tierKey = item.product_id;
 
               const checkoutBusyKey = `${item.product_id}|${item.group ?? ""}`;
 
@@ -260,11 +254,11 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
                               <span
                                 className={`text-muted-foreground font-semibold line-through ${embed ? "text-base" : "text-xl"}`}
                               >
-                                {formatUsd(monthlyOrigUsd, locale)}
+                                {formatPrice(monthlyOrigUsd, locale, item.currency)}
                               </span>
                             )}
                             <span className={`font-semibold ${embed ? "text-3xl" : "text-5xl"}`}>
-                              {formatUsd(monthlyUsd, locale)}
+                              {formatPrice(monthlyUsd, locale, item.currency)}
                             </span>
                             <span className="pb-1 text-sm font-medium text-muted-foreground">
                               {locale === "zh" ? "/月" : "/month"}
@@ -281,7 +275,7 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
                           )}
                           {item.price && (
                             <span className={`font-semibold ${embed ? "text-3xl" : "text-5xl"}`}>
-                              {item.price}
+                              {formatPrice(minorToMajor(item.amount, item.currency), locale, item.currency)}
                             </span>
                           )}
                           {(item.unit || item.unit_note) && (
@@ -345,7 +339,7 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
                                   (tierKey != null && row.visible_for.includes(tierKey))
                               )
                               .map((row, fi) => {
-                              const included = row[tierKey];
+                              const included = row.plans?.[tierKey] ?? (row as unknown as Record<string, unknown>)[tierKey] === true;
                               return (
                                 <li className="flex gap-2" key={`cmp-${fi}`}>
                                   {included ? (
@@ -376,7 +370,7 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
                           )}
                           {item.features && (
                             <ul className={`flex flex-col ${embed ? "gap-1.5" : "gap-3"}`}>
-                              {(embed ? item.features.slice(0, 4) : item.features).map((feature, fi) => {
+                              {item.features.map((feature, fi) => {
                                 return (
                                   <li className="flex gap-2" key={`feature-${fi}`}>
                                     <Check className="mt-1 size-4 shrink-0" />

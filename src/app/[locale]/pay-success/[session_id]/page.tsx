@@ -1,4 +1,5 @@
-import Stripe from "stripe";
+import { getStripeClient } from "@/services/stripe";
+import { getUserUuid } from "@/services/user";
 import { handleOrderSession } from "@/services/order";
 import { redirect } from "@/i18n/navigation";
 
@@ -15,8 +16,9 @@ export default async function ({
       redirectLocale = locale;
     }
 
-    const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || "");
+    const stripe = getStripeClient();
     const session = await stripe.checkout.sessions.retrieve(session_id);
+    if (!session.metadata?.user_uuid || session.metadata.user_uuid !== await getUserUuid()) throw new Error("Unauthorized checkout");
 
     await handleOrderSession(session);
   } catch (e) {

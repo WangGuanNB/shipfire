@@ -1,0 +1,223 @@
+{
+  "page_type": "tool",
+  "metadata": {
+    "title": "AI Video Generator — Text & Image to Video | ShipFire",
+    "description": "Describe a scene or upload a reference image, choose resolution, duration and aspect ratio, then generate. Sign in and use credits. Keep this page open while the video renders.",
+    "keywords": [
+      "AI video generator",
+      "text to video",
+      "image to video",
+      "AI video maker"
+    ]
+  },
+  "modules": [
+    { "id": "hero", "type": "hero", "source": "hero", "tool": "primary", "surface": "default" },
+    { "id": "introduce", "type": "intro", "source": "introduce", "surface": "default" },
+    { "id": "usage", "type": "steps", "source": "usage", "surface": "default" },
+    { "id": "feature", "type": "features", "source": "feature", "surface": "default" },
+    { "id": "benefit", "type": "benefits", "source": "benefit", "surface": "default" },
+    { "id": "cost", "type": "content", "source": "cost", "surface": "default" },
+    { "id": "faq", "type": "faq", "source": "faq", "surface": "default" },
+    { "id": "cta", "type": "cta", "source": "cta", "surface": "default" }
+  ],
+  "hero": {
+    "name": "hero",
+    "variant": "tool",
+    "title": "AI Video Maker",
+    "highlight_text": "Create Videos from Text & Images",
+    "description": "Describe a scene or upload a reference image, choose resolution, duration and aspect ratio, then generate. Sign in and use credits—keep this page open while the video renders.",
+    "metrics": [],
+    "buttons": [],
+    "show_happy_users": false,
+    "show_badge": false,
+    "announcement": {
+      "label": "Free to start",
+      "title": "Sign up for 20 credits — no card required"
+    }
+  },
+  "tools": {
+    "primary": {
+      "type": "video-generator",
+      "config": {
+        "featureBadges": "Free AI Video Generator|2 Generation Modes|Up to 1080P Output|No Card Required",
+        "toolSubtitle": "Start with 20 free credits. No credit card needed to try the AI video generator.",
+        "footerTags": "AI GENERATED CONTENT|COMMERCIAL USE READY|HD 1080P OUTPUT",
+        "tabTextToVideoLabel": "Text to Video",
+        "tabImageToVideoLabel": "Image to Video",
+        "textPromptPlaceholder": "Describe the content you want to create...",
+        "imagePromptPlaceholder": "Optional: describe how the image should move...",
+        "uploadShortLabel": "UPLOAD",
+        "defaultModelId": "basic",
+        "modelPlaceholder": "Model",
+        "createButtonText": "Create",
+        "generatingText": "Creating...",
+        "randomPromptTooltip": "Use a random example prompt",
+        "resetTooltip": "Clear input",
+        "creditsLowPrefix": "Only",
+        "creditsLowMiddle": "credits left — this generation needs",
+        "topUpLabel": "Top up",
+        "insufficientTitle": "More credits needed",
+        "insufficientDescription": "Choose a credit package to continue generating AI videos."
+      }
+    }
+  },
+  "usage": {
+    "name": "usage",
+    "label": "HOW IT WORKS",
+    "title": "From a prompt to a video clip",
+    "items": [
+      {
+        "title": "Describe or upload",
+        "description": "Use text-to-video, or switch to image-to-video and upload a PNG, JPEG or WebP reference (up to 10MB)."
+      },
+      {
+        "title": "Choose settings",
+        "description": "Set resolution, duration and aspect ratio. The tool shows the estimated credit cost before you submit."
+      },
+      {
+        "title": "Generate and wait",
+        "description": "Sign in to submit. Stay on this page while the job runs; download the clip from task history when it succeeds."
+      }
+    ]
+  },
+  "feature": {
+    "name": "feature",
+    "title": "What you can do, and what to expect",
+    "description": "Video generation is asynchronous. Plan time to review the output before publishing.",
+    "items": [
+      {
+        "title": "Text to video",
+        "description": "Describe motion, camera and lighting in plain language.",
+        "icon": "RiZapLine"
+      },
+      {
+        "title": "Image to video",
+        "description": "Upload a still image as the visual starting point.",
+        "icon": "RiImageLine"
+      },
+      {
+        "title": "Multiple models",
+        "description": "Choose Basic, Seedance 2 Fast, Seedance 2 or Wan 2.6. Each model has its own credit rate.",
+        "icon": "RiCpuLine"
+      },
+      {
+        "title": "Resolution & duration",
+        "description": "Pick 480p–1080p and clip length. Longer clips use more credits.",
+        "icon": "RiHdLine"
+      },
+      {
+        "title": "Task history",
+        "description": "Recent jobs appear below the tool with status updates and download links.",
+        "icon": "RiHistoryLine"
+      },
+      {
+        "title": "Credit estimate",
+        "description": "Cost is shown before submit; failed jobs refund reserved credits when confirmed.",
+        "icon": "RiCopperCoinLine"
+      },
+      {
+        "title": "Review before publish",
+        "description": "Check motion, text and rights before using the clip commercially.",
+        "icon": "RiSearchEyeLine"
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "title": "How long does generation take?",
+        "description": "Often one to three minutes depending on duration and provider load. The page polls status automatically while it stays open."
+      },
+      {
+        "title": "Can I leave the page?",
+        "description": "For local testing, keep the tab open until the job completes. Production sites can add a maintenance cron to recover long jobs when users navigate away."
+      },
+      {
+        "title": "Do I need to sign in?",
+        "description": "Yes. Credits are reserved when you submit and settled when the job succeeds or fails."
+      },
+      {
+        "title": "What image formats are supported for image-to-video?",
+        "description": "PNG, JPEG and WebP up to 10MB. Files are validated on upload."
+      },
+      {
+        "title": "What if generation fails?",
+        "description": "Reserved credits are released when the task is marked failed. You can retry with a revised prompt."
+      }
+    ]
+  },
+  "sections": {
+    "cost": {
+      "title": "Video generation costs",
+      "paragraphs": [
+        "Credits depend on the model, resolution and duration. Basic 480p/5s starts at 20 credits; Seedance 2 and Wan 2.6 cost more.",
+        "The Create button shows the exact estimate before you submit. Failed jobs refund reserved credits.",
+        "If your balance is low, open pricing from the dialog or visit the pricing page."
+      ],
+      "buttons": [
+        {
+          "title": "View pricing",
+          "url": "/pricing/",
+          "variant": "outline"
+        }
+      ]
+    }
+  },
+  "introduce": {
+    "name": "introduce",
+    "label": "FEATURES",
+    "title": "Built for short AI video drafts",
+    "description": "Use the hero tool above as the reference implementation when cloning a video-first site.",
+    "items": [
+      {
+        "title": "Prompt-driven clips",
+        "label": "Create",
+        "description": "Start from text or a reference frame. Iterate on motion and camera notes between runs.",
+        "icon": "RiMagicLine",
+        "image": { "src": "/imgs/features/2.webp", "alt": "AI video generation workflow" },
+        "buttons": [{ "title": "Try the tool", "url": "#hero-tool", "variant": "default" }]
+      },
+      {
+        "title": "Provider-backed rendering",
+        "label": "Pipeline",
+        "description": "Jobs run asynchronously with status in task history—no blocking the whole page on one request.",
+        "icon": "RiMovieLine",
+        "image": { "src": "/imgs/features/3.webp", "alt": "Async video task pipeline" },
+        "buttons": [{ "title": "Open tool", "url": "#hero-tool", "variant": "default" }]
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "label": "USE CASES",
+    "title": "Where a video tool fits",
+    "description": "Concrete scenarios for short-form clips—not generic marketing claims.",
+    "items": [
+      {
+        "title": "Social teasers",
+        "description": "Draft motion concepts for product launches before a full shoot.",
+        "icon": "RiShareLine",
+        "image": { "src": "/imgs/features/1.webp", "alt": "Social video teaser use case" },
+        "buttons": [{ "title": "Start a prompt", "url": "#hero-tool", "variant": "default" }]
+      },
+      {
+        "title": "Storyboard motion",
+        "description": "Turn a still frame into movement to align stakeholders quickly.",
+        "icon": "RiFilmLine",
+        "image": { "src": "/imgs/features/4.webp", "alt": "Storyboard motion use case" },
+        "buttons": [{ "title": "Try image to video", "url": "#hero-tool", "variant": "default" }]
+      }
+    ]
+  },
+  "cta": {
+    "name": "cta",
+    "title": "Ready to generate a video?",
+    "description": "Return to the tool, check your credits, and keep the page open until the job completes.",
+    "buttons": [
+      { "title": "Back to the tool", "url": "#hero-tool", "variant": "default", "icon": "RiMovieLine" },
+      { "title": "View pricing", "url": "/pricing/", "variant": "outline" }
+    ]
+  }
+}

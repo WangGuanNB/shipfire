@@ -7,6 +7,7 @@ import { Table as TableSlotType } from "@/types/slots/table";
 import { getTranslations } from "next-intl/server";
 import moment from "moment";
 import { redirect } from "next/navigation";
+import BillingPortalButton from "@/components/payment/billing-portal-button";
 
 export default async function () {
   const t = await getTranslations();
@@ -63,5 +64,5 @@ export default async function () {
     empty_message: t("my_orders.no_orders"),
   };
 
-  return <TableSlot {...table} />;
+  return <div className="space-y-6">{orders?.some(order => order.stripe_customer_id) && <BillingPortalButton />}<TableSlot {...table} /></div>;
 }

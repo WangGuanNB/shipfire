@@ -59,7 +59,7 @@
   --surface-shadow: 0 1px 2px oklch(0 0 0 / 0.04), 0 20px 50px oklch(0.2 0.04 265 / 0.08);
   /* Landing section bands — override per theme, never hardcode in blocks */
   --section-surface: var(--background);
-  --section-surface-alt: var(--muted);
+  --section-surface-alt: var(--background);
   --section-surface-emphasis: var(--background);
 }
 
@@ -88,7 +88,7 @@
   --surface-border: oklch(0.9 0.012 265 / 0.9);
   --surface-shadow: 0 1px 2px oklch(0.2 0.02 265 / 0.04), 0 24px 64px oklch(0.28 0.08 275 / 0.1);
   --section-surface: var(--background);
-  --section-surface-alt: color-mix(in oklch, var(--muted) 88%, var(--background));
+  --section-surface-alt: var(--background);
   --section-surface-emphasis: var(--background);
 }
 
@@ -108,8 +108,8 @@
   --surface-border: oklch(0.34 0.02 265 / 0.9);
   --surface-shadow: 0 24px 64px oklch(0 0 0 / 0.24);
   --section-surface: var(--background);
-  --section-surface-alt: color-mix(in oklch, var(--muted) 80%, var(--background));
-  --section-surface-emphasis: var(--card);
+  --section-surface-alt: var(--background);
+  --section-surface-emphasis: var(--background);
 }
 
 .dark {

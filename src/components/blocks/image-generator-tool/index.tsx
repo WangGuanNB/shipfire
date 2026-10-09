@@ -24,6 +24,9 @@ import {
 import Pricing from "@/components/blocks/pricing";
 import type { Pricing as PricingType } from "@/types/blocks/pricing";
 import { toast } from "sonner";
+import { useAITasks, TaskRequestError } from "@/hooks/use-ai-tasks";
+import ToolHistoryLink from "@/components/ai/tool-history-link";
+import type { MediaModel } from "@/ai/types";
 
 const PROMPT_MAX_LENGTH = 5000;
 const RESOLUTIONS = ["1K", "2K", "4K"] as const;
@@ -36,12 +39,10 @@ const ASPECT_RATIOS = [
   { value: "4:3", label: "4:3" },
   { value: "3:2", label: "3:2" },
   { value: "2:3", label: "2:3" },
-  { value: "5:4", label: "5:4" },
-  { value: "4:5", label: "4:5" },
-  { value: "21:9", label: "21:9" },
 ] as const;
 
 interface ImageGeneratorToolProps {
+  model?: MediaModel;
   id?: string;
   /** Supplied by an example action; never starts generation. */
   example?: { values: Record<string, string>; revision: number };
@@ -67,14 +68,19 @@ export default function ImageGeneratorTool({
   tool,
   embed = false,
   creditCost = 10,
+  model,
   pricing = null,
 }: ImageGeneratorToolProps) {
   const { user, setShowSignModal, fetchUserInfo } = useAppContext();
+  const { submit } = useAITasks("image-generator", user?.uuid);
+  const resolutions = model?.capabilities.resolutions ?? [...RESOLUTIONS];
+  const aspectRatios = model?.capabilities.aspectRatios.map(value => ({ value, label: value === "auto" ? "Auto" : value })) ?? ASPECT_RATIOS;
+  const maxPromptLength = model?.capabilities.maxPromptLength ?? PROMPT_MAX_LENGTH;
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [pricingModalOpen, setPricingModalOpen] = useState(false);
 
   const [prompt, setPrompt] = useState("");
-  const [resolution, setResolution] = useState<(typeof RESOLUTIONS)[number]>("2K");
+  const [resolution, setResolution] = useState<string>(resolutions.includes("2K") ? "2K" : resolutions[0]);
   const [aspectRatio, setAspectRatio] = useState<string>("auto");
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -84,10 +90,10 @@ export default function ImageGeneratorTool({
 
   useEffect(() => {
     if (!example) return;
-    if (typeof example.values.prompt === "string") setPrompt(example.values.prompt.slice(0, PROMPT_MAX_LENGTH));
-    const nextResolution = RESOLUTIONS.find(value => value === example.values.resolution);
+    if (typeof example.values.prompt === "string") setPrompt(example.values.prompt.slice(0, maxPromptLength));
+    const nextResolution = resolutions.find(value => value === example.values.resolution);
     if (nextResolution) setResolution(nextResolution);
-    if (ASPECT_RATIOS.some(value => value.value === example.values.aspect_ratio)) setAspectRatio(example.values.aspect_ratio);
+    if (aspectRatios.some(value => value.value === example.values.aspect_ratio)) setAspectRatio(example.values.aspect_ratio);
   }, [example]);
 
   const leftCredits = user?.credits?.left_credits ?? 0;
@@ -100,115 +106,27 @@ export default function ImageGeneratorTool({
 
   const handleGenerate = async () => {
     if (!prompt.trim()) return;
-
-    // 1. 未登录 -> 打开登录
-    if (!user) {
-      setShowSignModal(true);
-      return;
-    }
-
-    // 2. 积分不足 -> 弹出套餐页面（与 /pricing 一致）
-    if (leftCredits < creditCost) {
-      if (pricing && !pricing.disabled) {
-        setPricingModalOpen(true);
-      } else {
-        toast.error("Insufficient credits. Please upgrade your plan.");
-      }
-      return;
-    }
-
+    if (!user) { setShowSignModal(true); return; }
     setIsGenerating(true);
     setGeneratedImage(null);
     setProgress(0);
-    setProgressMessage("Initializing...");
-
+    setProgressMessage(copy("generatingText", "Generating…"));
     try {
-      // 模拟进度更新
-      const progressInterval = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 90) return prev;
-          return prev + Math.random() * 10;
-        });
-      }, 1000);
-
-      // 更新进度消息
-      setTimeout(() => setProgressMessage("Connecting to AI provider..."), 500);
-      setTimeout(() => setProgressMessage("Generating image..."), 2000);
-      setTimeout(() => setProgressMessage("Processing..."), 10000);
-      setTimeout(() => setProgressMessage("Almost done..."), 30000);
-
-      // 3. 调用真实的图片生成 API
-      const resp = await fetch("/api/generate-image", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          prompt: prompt.trim(),
-          aspect_ratio: aspectRatio,
-          resolution: resolution,
-          output_format: "png",
-          locale: document.documentElement.lang || "en",
-        }),
-      });
-
-      clearInterval(progressInterval);
-      setProgress(95);
-      setProgressMessage("Finalizing...");
-
-      const res = await resp.json();
-
-      // 处理未登录
-      if (res.code === -2) {
-        setShowSignModal(true);
-        setIsGenerating(false);
-        return;
-      }
-
-      // 处理积分不足
-      if (res.code === -3 && res.data?.insufficient) {
-        if (pricing && !pricing.disabled) {
-          setPricingModalOpen(true);
-        } else {
-          toast.error("Insufficient credits. Please upgrade your plan.");
-        }
-        setIsGenerating(false);
-        return;
-      }
-
-      // 处理其他错误
-      if (res.code !== 0) {
-        toast.error(res.message ?? "Failed to generate image");
-        setIsGenerating(false);
-        return;
-      }
-
-      // 4. 生成成功，显示图片
-      if (res.data?.url) {
+      const task = await submit(model?.id ?? "default", { prompt: prompt.trim(), aspectRatio, resolution, outputFormat: "png", locale: document.documentElement.lang || "en" });
+      if (task.status === "succeeded" && task.artifacts[0]?.url) {
+        setGeneratedImage(task.artifacts[0].url);
         setProgress(100);
-        setProgressMessage("Complete!");
-        setGeneratedImage(res.data.url);
-        
-        // 显示成功提示（可选：显示使用的 provider）
-        if (res.data.fallbackUsed) {
-          toast.success(`Image generated successfully (using fallback provider: ${res.data.provider})`);
-        } else {
-          toast.success(`Image generated successfully (provider: ${res.data.provider})`);
-        }
-      } else {
-        toast.error("No image URL returned");
+        setProgressMessage(copy("completeText", "Complete"));
+      } else if (task.status === "needs_review") {
+        toast.error(copy("reviewText", "Check your task history and contact support before retrying."));
       }
-
-      // 5. 异步刷新用户积分
-      fetchUserInfo?.();
-    } catch (e) {
-      console.error("Generate failed:", e);
-      toast.error("Generate failed. Please try again.");
+      await fetchUserInfo();
+    } catch (error) {
+      if (error instanceof TaskRequestError && error.status === 401) setShowSignModal(true);
+      else if (error instanceof TaskRequestError && error.status === 402 && pricing && !pricing.disabled) setPricingModalOpen(true);
+      else toast.error(error instanceof Error ? error.message : "Generation failed");
     } finally {
       setIsGenerating(false);
-      // 重置进度
-      setTimeout(() => {
-        setProgress(0);
-        setProgressMessage("");
-      }, 2000);
     }
   };
 
@@ -266,14 +184,14 @@ export default function ImageGeneratorTool({
             placeholder={copy("promptPlaceholder", "Describe the image you want to create in detail...")}
             value={prompt}
             onChange={(e) =>
-              setPrompt(e.target.value.slice(0, PROMPT_MAX_LENGTH))
+              setPrompt(e.target.value.slice(0, maxPromptLength))
             }
             className="min-h-[160px] resize-y text-base pr-16"
             disabled={isGenerating}
             rows={6}
           />
           <span className="absolute bottom-3 right-3 text-xs text-muted-foreground">
-            {prompt.length}/{PROMPT_MAX_LENGTH}
+            {prompt.length}/{maxPromptLength}
           </span>
         </div>
       </div>
@@ -282,7 +200,7 @@ export default function ImageGeneratorTool({
       <div className="space-y-2">
         <Label className="text-sm font-medium">{copy("resolutionLabel", "Resolution")}</Label>
         <div className="flex gap-2">
-          {RESOLUTIONS.map((r) => (
+          {resolutions.map((r) => (
             <Button
               key={r}
               type="button"
@@ -310,7 +228,7 @@ export default function ImageGeneratorTool({
           disabled={isGenerating}
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {ASPECT_RATIOS.map(({ value, label }) => (
+          {aspectRatios.map(({ value, label }) => (
             <option key={value} value={value}>
               {value === "auto" ? copy("autoLabel", label) : label}
             </option>
@@ -442,6 +360,9 @@ export default function ImageGeneratorTool({
           {toolContent}
         </div>
         {pricingModalContent}
+        <div className="mt-6">
+          <ToolHistoryLink />
+        </div>
       </div>
     );
   }
@@ -461,6 +382,9 @@ export default function ImageGeneratorTool({
               </p>
             </header>
             {toolContent}
+            <div className="mt-8">
+              <ToolHistoryLink />
+            </div>
           </div>
         </div>
       </div>

@@ -10,11 +10,14 @@ export interface PricingGroup {
 /** Same feature row on every tier card; booleans control check vs strikethrough. */
 export interface PricingComparisonRow {
   text: string;
-  starter: boolean;
-  standard: boolean;
-  premium: boolean;
+  /** New configurations use arbitrary plan IDs. */
+  plans?: Record<string, boolean>;
+  /** Legacy comparison rows remain supported. */
+  starter?: boolean;
+  standard?: boolean;
+  premium?: boolean;
   /** If set, only these tiers render this row (e.g. one credits line per plan, no strikeouts). */
-  visible_for?: ("starter" | "standard" | "premium")[];
+  visible_for?: string[];
 }
 
 export interface PricingItem {
@@ -23,7 +26,6 @@ export interface PricingItem {
   label?: string;
   price?: string;
   original_price?: string;
-  currency?: string;
   unit?: string;
   unit_note?: string;
   features_title?: string;

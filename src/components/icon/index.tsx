@@ -85,6 +85,7 @@ const icons = {
   RiFileTextLine,
   RiFingerprintLine,
   RiFlashlightFill,
+  RiFlashlightLine,
   RiFundsLine,
   RiGiftLine,
   RiGithubFill,

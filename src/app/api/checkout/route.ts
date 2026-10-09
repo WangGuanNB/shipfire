@@ -15,6 +15,10 @@ import { orders } from "@/db/schema";
 import Stripe from "stripe";
 import { createCreemCheckoutSession } from "@/services/creem";
 import { createPayPalOrder } from "@/services/paypal";
+import { getStripeClient } from "@/services/stripe";
+import { makeBillingSnapshot } from "@/services/billing";
+import { getEnabledPaymentMethods } from "@/services/payment-selector";
+import { getCanonicalUrl } from "@/lib/utils";
 
 /**
  * 通用订单验证和创建逻辑
@@ -75,6 +79,10 @@ async function validateAndCreateOrder(params: {
   }
 
   const is_subscription = interval === "month" || interval === "year";
+  const policy = makeBillingSnapshot(product_id, item.credits ?? 0);
+  if (pay_type !== "stripe" && (policy.grantCadence !== "billing" || policy.entitlements.length)) {
+    throw new Error("This plan's scheduled credits and entitlements require Stripe");
+  }
 
   if (interval === "year" && valid_months !== 12) {
     throw new Error("invalid valid_months");
@@ -136,6 +144,7 @@ async function validateAndCreateOrder(params: {
     product_name: product_name,
     valid_months: valid_months,
     pay_type: pay_type,
+    billing_snapshot: JSON.stringify(policy),
   };
   await insertOrder(order as typeof orders.$inferInsert);
 
@@ -171,7 +180,7 @@ async function handleStripeCheckout(params: {
     throw new Error("STRIPE_PRIVATE_KEY is not configured");
   }
 
-  const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
+  const stripe = getStripeClient();
 
   let options: Stripe.Checkout.SessionCreateParams = {
     payment_method_types: ["card"],
@@ -202,7 +211,7 @@ async function handleStripeCheckout(params: {
       user_uuid: user_uuid,
     },
     mode: is_subscription ? "subscription" : "payment",
-    success_url: `${process.env.NEXT_PUBLIC_WEB_URL}/${locale}/pay-success/{CHECKOUT_SESSION_ID}`,
+    success_url: getCanonicalUrl(locale, "/pay-success/{CHECKOUT_SESSION_ID}"),
     cancel_url: cancel_url,
   };
 
@@ -227,7 +236,7 @@ async function handleStripeCheckout(params: {
   }
 
   const order_detail = JSON.stringify(options);
-  const session = await stripe.checkout.sessions.create(options);
+  const session = await stripe.checkout.sessions.create(options, { idempotencyKey: `checkout:${order_no}` });
   const stripe_session_id = session.id;
   await updateOrderSession(order_no, stripe_session_id, order_detail);
 
@@ -433,6 +442,8 @@ export async function POST(req: Request) {
         return respErr("No payment method available. Please configure at least one payment gateway.");
       }
     }
+    if (!getEnabledPaymentMethods().includes(paymentMethod)) return respErr("Payment method is disabled");
+    locale = locale === "zh" ? "zh" : "en";
 
     // 3. 处理 cancel_url
     if (!cancel_url) {
@@ -445,6 +456,10 @@ export async function POST(req: Request) {
         cancel_url = `${process.env.NEXT_PUBLIC_WEB_URL}/${locale}${cancel_url}`;
       }
     }
+
+    const siteOrigin = new URL(process.env.NEXT_PUBLIC_WEB_URL || "http://localhost:3000").origin;
+    try { if (new URL(cancel_url, siteOrigin).origin !== siteOrigin) return respErr("Invalid return URL"); }
+    catch { return respErr("Invalid return URL"); }
 
     // 4. 验证并创建订单
     const orderData = await validateAndCreateOrder({
@@ -506,7 +521,7 @@ export async function POST(req: Request) {
           interval: interval,
           locale: locale,
           cancel_url: cancel_url,
-          creem_product_id: creem_product_id,
+          creem_product_id: orderData.item.creem_product_id,
         });
         break;
 

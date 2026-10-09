@@ -8,6 +8,7 @@ import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
 import LocaleToggle from "@/components/locale/toggle";
 import { Menu, X } from "lucide-react";
+import HeaderCredits from "@/components/sign/header-credits";
 import SignToggle from "@/components/sign/toggle";
 import ThemeToggle from "@/components/theme/toggle";
 import { cn } from "@/lib/utils";
@@ -120,6 +121,7 @@ export default function Header({ header }: { header: HeaderType }) {
                   </Button>
                 );
               })}
+              {header.show_sign && <HeaderCredits />}
               {header.show_sign && <SignToggle />}
             </div>
           </div>
@@ -155,25 +157,23 @@ export default function Header({ header }: { header: HeaderType }) {
               <div className="border-t border-border/50 my-4"></div>
             )}
 
-            {/* 下半部分：多语言、主题切换、按钮和登录 */}
-            <div className="w-full pt-2 space-y-4">
-              {/* 多语言和主题切换 - 水平排列 */}
-              {(header.show_locale || header.show_theme) && (
-                <div className="flex items-center justify-between gap-4 py-2">
-                  {header.show_locale && (
-                    <div className="flex-1">
-                      <LocaleToggle />
-                    </div>
-                  )}
-                  {header.show_theme && (
-                    <div className="flex-1 flex justify-end">
-                      <ThemeToggle />
+            {/* 下半部分：语言 / 主题 / 积分 / 头像 — 移动端单行 */}
+            <div className="w-full space-y-4 pt-2">
+              {(header.show_locale || header.show_theme || header.show_sign) && (
+                <div className="flex items-center justify-between gap-2 py-2">
+                  <div className="flex min-w-0 items-center gap-2">
+                    {header.show_locale && <LocaleToggle />}
+                    {header.show_theme && <ThemeToggle />}
+                  </div>
+                  {header.show_sign && (
+                    <div className="flex shrink-0 items-center gap-2">
+                      <HeaderCredits className="px-2.5 py-1 text-xs" />
+                      <SignToggle />
                     </div>
                   )}
                 </div>
               )}
 
-              {/* 自定义按钮 */}
               {header.buttons && header.buttons.length > 0 && (
                 <div className="flex flex-col gap-3">
                   {header.buttons.map((item, i) => {
@@ -199,13 +199,6 @@ export default function Header({ header }: { header: HeaderType }) {
                       </Button>
                     );
                   })}
-                </div>
-              )}
-
-              {/* 登录/注册按钮 */}
-              {header.show_sign && (
-                <div className="pt-2 flex justify-start">
-                  <SignToggle />
                 </div>
               )}
             </div>

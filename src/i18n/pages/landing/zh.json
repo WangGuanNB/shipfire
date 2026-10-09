@@ -16,20 +16,12 @@
     "nav": {
       "items": [
         {
-          "title": "工具",
-          "url": "/#hero-tool"
+          "title": "视频",
+          "url": "/video-generator/"
         },
         {
-          "title": "效果示例",
-          "url": "/#examples"
-        },
-        {
-          "title": "功能特色",
-          "url": "/#introduce"
-        },
-        {
-          "title": "使用方法",
-          "url": "/#usage"
+          "title": "图片",
+          "url": "/image-generator/"
         },
         {
           "title": "套餐",

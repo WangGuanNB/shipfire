@@ -1,7 +1,7 @@
 import ConsoleLayout from "@/components/console/layout";
 import { ReactNode } from "react";
 import { Sidebar } from "@/types/blocks/sidebar";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { getUserInfo } from "@/services/user";
 import { redirect } from "next/navigation";
 
@@ -12,10 +12,12 @@ export default async function ({ children }: { children: ReactNode }) {
   }
 
   const t = await getTranslations();
+  const locale = await getLocale();
 
   const sidebar: Sidebar = {
     nav: {
       items: [
+        { title: locale === "zh" ? "历史记录" : "History", url: "/history", icon: "RiHistoryLine", is_active: false },
         {
           title: t("user.my_orders"),
           url: "/my-orders",

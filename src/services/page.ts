@@ -10,11 +10,20 @@ import {
 export const getLandingPage = cache(async (locale: string): Promise<LandingPage> => {
   const pageData = (await getPage("landing", locale)) as LandingPage;
   // 注入环境变量配置的社交媒体链接
-  return replaceSocialMediaUrls(pageData);
+  const page: LandingPage = replaceSocialMediaUrls(structuredClone(pageData));
+  return page;
 });
 
 export const getPricingPage = cache(async (locale: string): Promise<PricingPage> => {
-  const page = (await getPage("pricing", locale)) as PricingPage;
+  const page = structuredClone(await getPage("pricing", locale)) as PricingPage;
+  // Economic fields have a single source; translations contain display copy only.
+  const canonical = (await getPage("pricing", "en")) as PricingPage;
+  if (page.pricing && canonical.pricing) {
+    page.pricing.items = canonical.pricing.items?.map(item => {
+      const translated = page.pricing?.items?.find(t => t.product_id === item.product_id && t.interval === item.interval && t.group === item.group);
+      return { ...item, ...translated, amount: item.amount, cn_amount: item.cn_amount, currency: item.currency, credits: item.credits, interval: item.interval, valid_months: item.valid_months, product_id: item.product_id, group: item.group, creem_product_id: item.creem_product_id };
+    });
+  }
 
   if (!page.pricing) return page;
 
@@ -73,6 +82,10 @@ export const getPricingPage = cache(async (locale: string): Promise<PricingPage>
 
 export const getImageGeneratorPage = cache(async (locale: string): Promise<ImageGeneratorPage> => {
   return (await getPage("image-generator", locale)) as ImageGeneratorPage;
+});
+
+export const getVideoGeneratorPage = cache(async (locale: string): Promise<ImageGeneratorPage> => {
+  return (await getPage("video-generator", locale)) as ImageGeneratorPage;
 });
 
 export async function getPage(

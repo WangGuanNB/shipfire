@@ -1,0 +1,189 @@
+{
+  "page_type": "tool",
+  "metadata": {
+    "title": "AI 视频生成器 — 文字/图片生成视频 | ShipFire",
+    "description": "描述场景或上传参考图，选择分辨率、时长和比例后生成视频。需登录并使用积分；生成过程中请保持页面打开。",
+    "keywords": [
+      "AI 视频生成器",
+      "文字生成视频",
+      "图生视频",
+      "AI 视频制作"
+    ]
+  },
+  "modules": [
+    { "id": "hero", "type": "hero", "source": "hero", "tool": "primary", "surface": "default" },
+    { "id": "introduce", "type": "intro", "source": "introduce", "surface": "default" },
+    { "id": "usage", "type": "steps", "source": "usage", "surface": "default" },
+    { "id": "feature", "type": "features", "source": "feature", "surface": "default" },
+    { "id": "benefit", "type": "benefits", "source": "benefit", "surface": "default" },
+    { "id": "cost", "type": "content", "source": "cost", "surface": "default" },
+    { "id": "faq", "type": "faq", "source": "faq", "surface": "default" },
+    { "id": "cta", "type": "cta", "source": "cta", "surface": "default" }
+  ],
+  "hero": {
+    "name": "hero",
+    "variant": "tool",
+    "title": "AI 视频制作",
+    "highlight_text": "文字与图片生成视频",
+    "description": "描述场景或上传参考图，选择分辨率、时长和画面比例后生成。需登录并使用积分，生成过程中请保持页面打开。",
+    "metrics": [],
+    "buttons": [],
+    "show_happy_users": false,
+    "show_badge": false,
+    "announcement": {
+      "label": "免费开始",
+      "title": "注册即送 20 积分，无需绑卡"
+    }
+  },
+  "tools": {
+    "primary": {
+      "type": "video-generator",
+      "config": {
+        "featureBadges": "免费 AI 视频生成|2 种生成模式|最高 1080P|无需绑卡",
+        "toolSubtitle": "注册即送 20 积分，无需信用卡即可体验 AI 视频生成。",
+        "footerTags": "AI 生成内容|可商用|高清 1080P 输出",
+        "tabTextToVideoLabel": "文生视频",
+        "tabImageToVideoLabel": "图生视频",
+        "textPromptPlaceholder": "描述你想生成的视频内容…",
+        "imagePromptPlaceholder": "可选：描述画面如何运动…",
+        "uploadShortLabel": "上传",
+        "defaultModelId": "basic",
+        "modelPlaceholder": "模型",
+        "createButtonText": "生成",
+        "generatingText": "生成中…",
+        "randomPromptTooltip": "随机示例提示词",
+        "resetTooltip": "清空",
+        "creditsLowPrefix": "仅剩",
+        "creditsLowMiddle": "积分，本次需要",
+        "topUpLabel": "充值",
+        "insufficientTitle": "需要更多积分",
+        "insufficientDescription": "选择适合你的套餐以继续生成视频。"
+      }
+    }
+  },
+  "usage": {
+    "name": "usage",
+    "label": "使用方法",
+    "title": "从提示词到视频片段",
+    "items": [
+      {
+        "title": "描述或上传",
+        "description": "使用文生视频，或切换到图生视频并上传 PNG、JPEG、WebP 参考图（最大 10MB）。"
+      },
+      {
+        "title": "选择参数",
+        "description": "设置分辨率、时长和比例。提交前会显示预估积分消耗。"
+      },
+      {
+        "title": "生成并等待",
+        "description": "登录后提交任务。请保持页面打开；完成后可在任务历史中下载。"
+      }
+    ]
+  },
+  "feature": {
+    "name": "feature",
+    "title": "能力与使用预期",
+    "description": "视频为异步任务，发布前请预留时间检查成片。",
+    "items": [
+      { "title": "文生视频", "description": "用自然语言描述运动、镜头和光线。", "icon": "RiZapLine" },
+      { "title": "图生视频", "description": "上传静态图作为画面起点。", "icon": "RiImageLine" },
+      { "title": "多模型选择", "description": "可选 Basic、Seedance 2 Fast、Seedance 2 或 Wan 2.6，不同模型积分费率不同。", "icon": "RiCpuLine" },
+      { "title": "分辨率与时长", "description": "可选 480p–1080p 与片段长度，越长消耗越多积分。", "icon": "RiHdLine" },
+      { "title": "任务历史", "description": "工具下方显示近期任务状态与下载链接。", "icon": "RiHistoryLine" },
+      { "title": "积分预估", "description": "提交前显示费用；失败任务在确认后会释放预占积分。", "icon": "RiCopperCoinLine" },
+      { "title": "发布前检查", "description": "商用前请检查画面、文字与相关权利。", "icon": "RiSearchEyeLine" }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "title": "常见问题",
+    "items": [
+      {
+        "title": "生成需要多久？",
+        "description": "通常一至三分钟，取决于时长与服务商负载。页面打开时会自动轮询状态。"
+      },
+      {
+        "title": "可以关闭页面吗？",
+        "description": "本地测试请保持标签页打开直至完成。线上可配置 maintenance 定时任务在用户离开后继续推进任务。"
+      },
+      {
+        "title": "需要登录吗？",
+        "description": "需要。提交时预占积分，成功或失败后结算。"
+      },
+      {
+        "title": "图生视频支持哪些格式？",
+        "description": "PNG、JPEG、WebP，最大 10MB，上传时会校验。"
+      },
+      {
+        "title": "生成失败怎么办？",
+        "description": "任务标记为失败后释放预占积分，可修改提示词后重试。"
+      }
+    ]
+  },
+  "sections": {
+    "cost": {
+      "title": "视频生成费用",
+      "paragraphs": [
+        "积分按模型、分辨率与时长计算。Basic 480p/5 秒起价 20 积分；Seedance 2 与 Wan 2.6 费率更高。",
+        "Create 按钮会显示本次预估积分；失败任务会退还已预留积分。",
+        "余额不足时可通过弹窗或定价页购买套餐。"
+      ],
+      "buttons": [{ "title": "查看定价", "url": "/pricing/", "variant": "outline" }]
+    }
+  },
+  "introduce": {
+    "name": "introduce",
+    "label": "功能",
+    "title": "面向短视频草稿的 AI 工具",
+    "description": "克隆视频站时，以本页 hero 工具区为参考实现。",
+    "items": [
+      {
+        "title": "提示词驱动",
+        "label": "创作",
+        "description": "从文字或参考帧开始，在多次生成之间调整运动与镜头描述。",
+        "icon": "RiMagicLine",
+        "image": { "src": "/imgs/features/2.webp", "alt": "AI 视频生成流程" },
+        "buttons": [{ "title": "试用工具", "url": "#hero-tool", "variant": "default" }]
+      },
+      {
+        "title": "异步任务管线",
+        "label": "流程",
+        "description": "任务在后台运行，状态显示在任务历史中，不会长时间阻塞整页请求。",
+        "icon": "RiMovieLine",
+        "image": { "src": "/imgs/features/3.webp", "alt": "异步视频任务" },
+        "buttons": [{ "title": "打开工具", "url": "#hero-tool", "variant": "default" }]
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "label": "适用场景",
+    "title": "视频工具适合做什么",
+    "description": "具体任务场景，而非空泛卖点。",
+    "items": [
+      {
+        "title": "社媒预告",
+        "description": "在正式拍摄前快速验证产品动效概念。",
+        "icon": "RiShareLine",
+        "image": { "src": "/imgs/features/1.webp", "alt": "社媒视频场景" },
+        "buttons": [{ "title": "开始写提示词", "url": "#hero-tool", "variant": "default" }]
+      },
+      {
+        "title": "分镜动效",
+        "description": "把静帧变成运动画面，便于团队对齐方向。",
+        "icon": "RiFilmLine",
+        "image": { "src": "/imgs/features/4.webp", "alt": "分镜动效场景" },
+        "buttons": [{ "title": "试试图生视频", "url": "#hero-tool", "variant": "default" }]
+      }
+    ]
+  },
+  "cta": {
+    "name": "cta",
+    "title": "准备好生成视频了吗？",
+    "description": "返回工具区，确认积分，并保持页面打开直至任务完成。",
+    "buttons": [
+      { "title": "返回工具", "url": "#hero-tool", "variant": "default", "icon": "RiMovieLine" },
+      { "title": "查看定价", "url": "/pricing/", "variant": "outline" }
+    ]
+  }
+}

@@ -69,7 +69,20 @@ content_inventory:
       template_reference: "/image-generator/"
       json_page_key: "image-generator"
       route_file: "src/app/[locale]/(default)/image-generator/page.tsx"
-      differentiation_notes: "模板演示工具页；克隆真实产品时请替换。"
+      differentiation_notes: "图片工具内页样板；克隆时复制 hero+tools 到 landing。"
+
+    - path: "/video-generator/"
+      locale: "en"
+      page_type: "tool"
+      primary_keyword: "AI video generator"
+      secondary_keywords: []
+      localized_locales: []
+      topic_cluster: "demo tool"
+      status: "published"
+      template_reference: "/video-generator/"
+      json_page_key: "video-generator"
+      route_file: "src/app/[locale]/(default)/video-generator/page.tsx"
+      differentiation_notes: "视频工具内页样板；克隆时复制 hero+tools 到 landing。"
 
 page_strategy:
   # 允许的页面类型（枚举值保持英文）

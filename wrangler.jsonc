@@ -54,7 +54,7 @@
     // ========== 5. 支付配置 ==========
 
      // 定价页 monthly,yearly,one-time（全显示）| monthly,yearly（只月+年）| one-time（仅一次性）
-     "NEXT_PUBLIC_PRICING_VISIBLE_TABS": "one-time",
+     "NEXT_PUBLIC_PRICING_VISIBLE_TABS": "monthly,yearly,one-time",
 
     
     // 支付方式开关（优先级: Stripe > PayPal > Creem，至少启用一个）
@@ -77,30 +77,38 @@
     // ========== 6. Creem 支付配置 ==========
     // 支付方式开关（优先级: Stripe > PayPal > Creem，至少启用一个）
     "NEXT_PUBLIC_PAYMENT_CREEM_ENABLED": "true",
-    // Creem 测试模式（true=测试环境，false=生产环境）
+    // Creem 测试模式（true=测试环境，false=生产环境；dev 隧道测支付请在 .env.local 设 true）
     "CREEM_TEST_MODE": "false",
     // Creem API 地址（可选，默认: https://api.creem.io）
     "CREEM_API_URL": "https://api.creem.io",
     // Creem 产品 ID（6 套餐，从 Creem Dashboard 创建产品后获取 prod_xxx）
     //  ---- 月订阅：Starter / Standard / Premium ----
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY": "",
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_MONTHLY": "",
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY": "",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_MONTHLY": "prod_1LXdXxSyRyUB0wAEctaixp",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_MONTHLY": "prod_6VYZJU7R1l9DlT3g6vduuF",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_MONTHLY": "prod_2WcXEPQKzsGK16yWBuFN71",
     // ---- 年订阅：Starter / Standard / Premium ----
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY": "",
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY": "",
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY": "",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_YEARLY": "prod_2uN3KJeOyGN5Hw7J1YV6A8",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_YEARLY": "prod_1JCIlQHaHA5GwHvaOZIC51",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_YEARLY": "prod_4DNSPn2ZJmwDPinYvyGt9M",
     // ---- 一次性：从 Creem Dashboard 创建产品后填入 prod_xxx ----
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_ONETIME": "",
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_ONETIME": "",
-    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_ONETIME": "",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STARTER_ONETIME": "prod_11U4DF2cTSKFcJ3KUCNlc0",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_STANDARD_ONETIME": "prod_18IioiMQOeBs86mYQPjgJ7",
+    "NEXT_PUBLIC_CREEM_PRODUCT_ID_PREMIUM_ONETIME": "prod_2LnE64WgbtrzxqavtIj0nQ",
 
 
     // ========== 7. 积分系统配置 ==========
     // 新用户注册时赠送的积分（默认: 20）
     "NEW_USER_CREDITS": "20",
-    // 每次 AI 聊天消耗的积分（默认: 10）
+    // 每次 AI 生成消耗的积分（图片默认: 10）
     "AI_CHAT_CREDIT_COST": "10",
+
+    // ========== 7.1 AI 工具（API 层也会校验）==========
+    // 仅图片: image-generator | 仅视频: video-generator | 全开: image-generator,video-generator
+    "AI_ENABLED_TOOLS": "image-generator,video-generator",
+    // 可选：覆盖 Basic 模型的 KIE endpoint；多模型列表见 src/config/ai.ts
+    // 敏感项走 Secrets：KIE_API_KEY、R2_ACCESS_KEY_ID、R2_SECRET_ACCESS_KEY、AI_MAINTENANCE_SECRET
+    // 部署前：D1 执行 0003_ai_foundation.sql，再运行 scripts/sync-wrangler-secrets.sh
+    "KIE_VIDEO_MODEL": "bytedance/seedance-1.5-pro",
 
     // ========== 8. 邮件服务配置 ==========
     // 发件人邮箱地址（可选，默认: noreply@shipfire.com）
