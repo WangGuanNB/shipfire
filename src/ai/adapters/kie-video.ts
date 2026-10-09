@@ -30,7 +30,7 @@ function resolveKieModel(model: ToolModel, input: ToolInput): string {
   return model.providerModel;
 }
 
-async function pollTask(providerTaskId: string, taskId: string, userId: string) {
+async function pollTask(providerTaskId: string, _input: ToolInput, _model: ToolModel, taskId: string, userId: string) {
   const data = await request(`/api/v1/jobs/recordInfo?taskId=${encodeURIComponent(providerTaskId)}`);
   if (data.code !== 200) throw new Error("Video status is temporarily unavailable");
   if (data.data?.state === "fail") {
