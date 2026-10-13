@@ -6,6 +6,7 @@ import { taskPolicy } from "@/config/ai";
 import { resolveTool } from "./catalog";
 import { adapters } from "./adapters";
 import { assertEntitlements } from "@/services/billing";
+import { moderateGenerationInput } from "@/services/moderation/moderate-input";
 import { SubmissionRejected, ToolError, type AdapterResult, type PublicTask, type ToolInput, type ToolModel } from "./types";
 
 export type TaskRow = typeof aiTasks.$inferSelect;
@@ -36,6 +37,7 @@ export async function createTask(userId: string, toolId: string, modelId: string
   const adapter = adapters[model.adapter];
   if (!adapter) throw new ToolError("Tool adapter is not installed", 503);
   const input = adapter.validate(rawInput, model);
+  await moderateGenerationInput(toolId, input);
   const serialized = JSON.stringify(input);
   const id = createHash("sha256").update(`${userId}:${requestKey}`).digest("hex");
   const existing = await db().select().from(aiTasks).where(eq(aiTasks.id, id)).limit(1);

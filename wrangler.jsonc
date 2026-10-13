@@ -110,6 +110,13 @@
     // 部署前：D1 执行 0003_ai_foundation.sql，再运行 scripts/sync-wrangler-secrets.sh
     "KIE_VIDEO_MODEL": "bytedance/seedance-1.5-pro",
 
+    // ========== 7.2 内容审核（SeeAPI，默认 off 不影响生成）==========
+    // off | shadow（只记录）| enforce（拦截违规）
+    "CONTENT_MODERATION_MODE": "off",
+    // allow：SeeAPI 失败/超时仍允许生成 | block：失败则 503
+    "CONTENT_MODERATION_ON_ERROR": "allow",
+    // Secret：SEEAPI_API_KEY（scripts/sync-wrangler-secrets.sh）
+
     // ========== 8. 邮件服务配置 ==========
     // 发件人邮箱地址（可选，默认: noreply@shipfire.com）
     "RESEND_FROM_EMAIL": "noreply@astrocarto.org",
