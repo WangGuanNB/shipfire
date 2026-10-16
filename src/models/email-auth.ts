@@ -79,6 +79,24 @@ export async function recordAuthAttempt(action: string, attemptKey: string) {
     .where(lt(emailAuthAttempts.created_at, new Date(now.getTime() - 24 * 60 * 60 * 1000)));
 }
 
+const SIGNUP_GRANT_WINDOW_MS = 24 * 60 * 60 * 1000;
+
+export function signupGrantKey(ip: string) {
+  return `signup:ip:${ip || "unknown"}`;
+}
+
+export async function hasSignupGrant(ip: string) {
+  const count = await countAuthAttempts(
+    signupGrantKey(ip),
+    new Date(Date.now() - SIGNUP_GRANT_WINDOW_MS)
+  );
+  return count > 0;
+}
+
+export async function recordSignupGrant(ip: string) {
+  await recordAuthAttempt("signup", signupGrantKey(ip));
+}
+
 export async function countAuthAttempts(attemptKey: string, since: Date) {
   const rows = await db()
     .select({ id: emailAuthAttempts.id })

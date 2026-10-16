@@ -20,6 +20,7 @@ const ERROR_CODES = [
   "already_registered",
   "email_send_failed",
   "rate_limited",
+  "ip_daily_signup",
   "invalid_token",
   "generic",
 ] as const;

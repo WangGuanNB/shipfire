@@ -51,6 +51,7 @@
       "already_registered": "This email is already registered. Sign in instead.",
       "email_send_failed": "We could not send the email. Try again in a moment.",
       "rate_limited": "Too many attempts. Wait a few minutes and try again.",
+      "ip_daily_signup": "This network already created an account today. Try again tomorrow.",
       "invalid_token": "This link is invalid or has expired.",
       "generic": "Something went wrong. Try again."
     },

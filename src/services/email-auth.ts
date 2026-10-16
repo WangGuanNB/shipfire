@@ -15,10 +15,12 @@ import {
   deleteExpiredEmailAuthTokens,
   findEmailAccount,
   findEmailAuthToken,
+  hasSignupGrant,
   insertEmailAuthToken,
   invalidateEmailAuthTokens,
   markEmailAuthTokenUsed,
   recordAuthAttempt,
+  recordSignupGrant,
   setEmailPassword,
 } from "@/models/email-auth";
 
@@ -29,7 +31,7 @@ const VERIFY_TTL_MS = 24 * 60 * 60 * 1000;
 const RESET_TTL_MS = 60 * 60 * 1000;
 
 const LIMITS = {
-  register: { email: 5, ip: 20, windowMs: 60 * 60 * 1000 },
+  register: { email: 5, ip: 8, emailWindowMs: 60 * 60 * 1000, ipWindowMs: 24 * 60 * 60 * 1000 },
   login: { email: 10, ip: 30, windowMs: 15 * 60 * 1000 },
   forgot: { email: 3, ip: 10, windowMs: 60 * 60 * 1000 },
   reset: { email: 10, ip: 20, windowMs: 60 * 60 * 1000 },
@@ -155,14 +157,16 @@ async function enforceRateLimit(
 ): Promise<{ ok: false; error: "rate_limited" } | null> {
   const rule = LIMITS[action];
   const ip = await clientIp();
+  const emailWindowMs = "emailWindowMs" in rule ? rule.emailWindowMs : rule.windowMs;
+  const ipWindowMs = "ipWindowMs" in rule ? rule.ipWindowMs : rule.windowMs;
   const keys = [
-    { key: `${action}:email:${email || "none"}`, limit: rule.email },
-    { key: `${action}:ip:${ip}`, limit: rule.ip },
+    { key: `${action}:email:${email || "none"}`, limit: rule.email, windowMs: emailWindowMs },
+    { key: `${action}:ip:${ip}`, limit: rule.ip, windowMs: ipWindowMs },
   ];
 
   for (const item of keys) {
     await recordAuthAttempt(action, item.key);
-    const count = await countAuthAttempts(item.key, new Date(Date.now() - rule.windowMs));
+    const count = await countAuthAttempts(item.key, new Date(Date.now() - item.windowMs));
     if (count > item.limit) {
       return { ok: false, error: "rate_limited" };
     }
@@ -225,6 +229,9 @@ export async function registerWithEmail(input: {
 
   const limited = await enforceRateLimit("register", email);
   if (limited) return limited;
+  if (await hasSignupGrant(await clientIp())) {
+    return { ok: false, error: "ip_daily_signup" };
+  }
 
   const existing = await findUsersByEmail(email);
   for (const user of existing) {
@@ -279,6 +286,11 @@ async function createEmailUser(email: string, passwordHash: string) {
     return;
   }
 
+  const ip = await clientIp();
+  if (await hasSignupGrant(ip)) {
+    throw new Error("ip_daily_signup");
+  }
+
   const uuid = getUuid();
   await insertUser({
     uuid,
@@ -289,7 +301,7 @@ async function createEmailUser(email: string, passwordHash: string) {
     signin_provider: "email",
     signin_openid: email,
     created_at: new Date(),
-    signin_ip: await clientIp(),
+    signin_ip: ip,
     password_hash: passwordHash,
     email_verified_at: new Date(),
   });
@@ -300,6 +312,7 @@ async function createEmailUser(email: string, passwordHash: string) {
     credits: getNewUserCredits(),
     expired_at: getOneYearLaterTimestr(),
   });
+  await recordSignupGrant(ip);
 }
 
 export async function verifyEmailSignup(token: unknown): Promise<EmailAuthResult> {
@@ -329,8 +342,10 @@ export async function verifyEmailSignup(token: unknown): Promise<EmailAuthResult
     await createEmailUser(row.email, row.password_hash);
   } catch (error) {
     const message = error instanceof Error ? error.message : "";
-    if (message === "use_google" || message === "use_github") {
-      await markEmailAuthTokenUsed(row.id);
+    if (message === "use_google" || message === "use_github" || message === "ip_daily_signup") {
+      if (message !== "ip_daily_signup") {
+        await markEmailAuthTokenUsed(row.id);
+      }
       return { ok: false, error: message };
     }
     throw error;

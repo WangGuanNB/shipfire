@@ -52,6 +52,7 @@
       "already_registered": "这个邮箱已经注册，请直接登录。",
       "email_send_failed": "邮件没有发出去，请稍后再试。",
       "rate_limited": "尝试次数太多，请稍后再试。",
+      "ip_daily_signup": "这个网络今天已经注册过账户，请明天再试。",
       "invalid_token": "这个链接无效或已经过期。",
       "generic": "出了点问题，请再试一次。"
     },

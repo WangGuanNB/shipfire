@@ -24,7 +24,11 @@ export default async function VerifyEmailPage({
     const result = await verifyEmailSignup(token);
     if (result.ok) {
       message = t("sign_modal.notices.verify_success");
-    } else if (result.error === "use_google" || result.error === "use_github") {
+    } else if (
+      result.error === "use_google" ||
+      result.error === "use_github" ||
+      result.error === "ip_daily_signup"
+    ) {
       message = t(`sign_modal.errors.${result.error}`);
     }
   } catch (error) {

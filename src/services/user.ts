@@ -1,5 +1,7 @@
 import { CreditsTransType } from "./credit";
+import { hasSignupGrant, recordSignupGrant } from "@/models/email-auth";
 import { findUserByEmail, findUserByUuid, insertUser } from "@/models/user";
+import { getClientIp } from "@/lib/ip";
 
 import { User } from "@/types/user";
 import { auth } from "@/auth";
@@ -26,6 +28,11 @@ export async function saveUser(user: User) {
         user.uuid = getUuid();
       }
 
+      const signupIp = user.signin_ip || (await getClientIp()) || "unknown";
+      if (await hasSignupGrant(signupIp)) {
+        throw new Error("ip_daily_signup");
+      }
+
       console.log("user to be inserted:", user);
 
       try {
@@ -35,9 +42,10 @@ export async function saveUser(user: User) {
         await increaseCredits({
           user_uuid: user.uuid,
           trans_type: CreditsTransType.NewUser,
-          credits: getNewUserCredits(), // 从配置读取新用户积分（默认 1000）
+          credits: getNewUserCredits(),
           expired_at: getOneYearLaterTimestr(),
         });
+        await recordSignupGrant(signupIp);
 
         user = {
           ...(dbUser as unknown as User),
