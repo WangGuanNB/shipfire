@@ -12,6 +12,8 @@ import { getIsoTimestr } from "@/lib/time";
 import { getUuid } from "@/lib/hash";
 import { saveUser } from "@/services/user";
 import { handleSignInUser } from "./handler";
+import { EmailSignInError } from "./email-error";
+import { authenticateEmailPassword } from "@/services/email-auth";
 
 let providers: Provider[] = [];
 
@@ -78,6 +80,28 @@ if (
     })
   );
 }
+
+providers.push(
+  CredentialsProvider({
+    id: "email",
+    name: "Email",
+    credentials: {
+      email: { label: "Email", type: "email" },
+      password: { label: "Password", type: "password" },
+    },
+    async authorize(credentials) {
+      try {
+        return await authenticateEmailPassword(credentials?.email, credentials?.password);
+      } catch (error) {
+        if (error instanceof EmailSignInError) {
+          throw error;
+        }
+        console.log("email sign in failed", error);
+        throw new EmailSignInError("invalid_credentials");
+      }
+    },
+  })
+);
 
 // Google Auth
 if (

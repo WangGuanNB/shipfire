@@ -118,8 +118,10 @@
     // Secret：SEEAPI_API_KEY（scripts/sync-wrangler-secrets.sh）
 
     // ========== 8. 邮件服务配置 ==========
-    // 发件人邮箱地址（可选，默认: noreply@shipfire.com）
+    // 留言、订单确认走 Resend，发件人用已在 Resend 验证的域名
     "RESEND_FROM_EMAIL": "noreply@astrocarto.org",
+    // 注册验证、重置密码走 Cloudflare Email Service，发件人必须属于已接入的域名
+    "CLOUDFLARE_EMAIL_FROM": "noreply@shipstart.net",
     // 支持邮箱地址（用于联系表单和用户反馈）
     "NEXT_PUBLIC_SUPPORT_EMAIL": "support@astrocarto.org",
 
@@ -191,6 +193,11 @@
       "binding": "DB",
       "database_name": "shipfire-db",
       "database_id": "ad72dedb-9c09-44ea-8798-f202789c9103"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL"
     }
   ]
 }

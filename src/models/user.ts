@@ -33,6 +33,10 @@ export async function findUserByEmail(
   return user;
 }
 
+export async function findUsersByEmail(email: string) {
+  return db().select().from(users).where(eq(users.email, email));
+}
+
 export async function findUserByUuid(
   uuid: string
 ): Promise<typeof users.$inferSelect | undefined> {

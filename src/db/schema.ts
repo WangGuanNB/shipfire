@@ -21,6 +21,8 @@ export const users = sqliteTable(
     signin_ip: text(),
     signin_provider: text(),
     signin_openid: text(),
+    password_hash: text(),
+    email_verified_at: integer({ mode: "timestamp" }),
     invite_code: text().notNull().default(""),
     updated_at: integer({ mode: "timestamp" }),
     invited_by: text().notNull().default(""),
@@ -34,6 +36,37 @@ export const users = sqliteTable(
     // 🔥 性能优化：添加常用查询字段的索引
     index("users_invite_code_idx").on(table.invite_code),
     index("users_created_at_idx").on(table.created_at),
+  ]
+);
+
+export const emailAuthTokens = sqliteTable(
+  "email_auth_tokens_shipfire",
+  {
+    id: integer().primaryKey({ autoIncrement: true }),
+    email: text().notNull(),
+    token_hash: text().notNull(),
+    purpose: text().notNull(),
+    password_hash: text(),
+    expires_at: integer({ mode: "timestamp" }).notNull(),
+    used_at: integer({ mode: "timestamp" }),
+    created_at: integer({ mode: "timestamp" }).notNull(),
+  },
+  (table) => [
+    uniqueIndex("email_auth_tokens_hash_unique_idx").on(table.token_hash),
+    index("email_auth_tokens_email_idx").on(table.email, table.purpose),
+  ]
+);
+
+export const emailAuthAttempts = sqliteTable(
+  "email_auth_attempts_shipfire",
+  {
+    id: integer().primaryKey({ autoIncrement: true }),
+    action: text().notNull(),
+    attempt_key: text().notNull(),
+    created_at: integer({ mode: "timestamp" }).notNull(),
+  },
+  (table) => [
+    index("email_auth_attempts_key_idx").on(table.attempt_key, table.created_at),
   ]
 );
 

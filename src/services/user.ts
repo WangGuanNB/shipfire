@@ -125,6 +125,10 @@ export async function getUserInfo() {
   }
 
   const user = await findUserByUuid(user_uuid);
+  if (!user) {
+    return;
+  }
 
-  return user;
+  const { password_hash: _passwordHash, ...safeUser } = user;
+  return safeUser;
 }

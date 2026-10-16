@@ -31,9 +31,26 @@ declare global {
     batch<T = Record<string, unknown>>(statements: D1PreparedStatement[]): Promise<D1Result<T>[]>;
   }
 
+  interface EmailSendResult {
+    messageId: string;
+  }
+
+  interface EmailSendBinding {
+    send(message: {
+      to: string;
+      from: string;
+      subject: string;
+      html?: string;
+      text?: string;
+      replyTo?: string;
+    }): Promise<EmailSendResult>;
+  }
+
   interface CloudflareEnv {
     /** D1 数据库 binding（对应 wrangler.jsonc 中的 binding: "DB"） */
     DB: D1Database;
+    /** Email Service 发信 binding（对应 wrangler.jsonc 中的 send_email name: "EMAIL"） */
+    EMAIL: EmailSendBinding;
   }
 }
 export {};

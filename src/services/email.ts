@@ -1,8 +1,11 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { Resend } from "resend";
+
 import { getSocialMediaConfig } from "@/lib/utils";
 import type { Order } from "@/types/order";
 
-// 延迟创建 Resend 实例，避免在构建时因缺少 API key 而报错
+const AUTH_FROM = "noreply@shipstart.net";
+
 function getResendInstance() {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -19,8 +22,8 @@ interface SendEmailParams {
 }
 
 /**
- * 通用邮件发送函数
- * 使用 Resend 服务发送邮件
+ * 留言和订单邮件走 Resend。
+ * 发件人仍用 RESEND_FROM_EMAIL，和注册邮件无关。
  */
 export async function sendEmail({
   to,
@@ -36,12 +39,11 @@ export async function sendEmail({
     }
 
     const fromEmail = from || process.env.RESEND_FROM_EMAIL || "noreply@shipfire.com";
-
     const { data, error } = await resend.emails.send({
       from: fromEmail,
-      to: to,
-      subject: subject,
-      html: html,
+      to,
+      subject,
+      html,
     });
 
     if (error) {
@@ -55,6 +57,75 @@ export async function sendEmail({
     console.log("send email error: ", e);
     throw e;
   }
+}
+
+function authSenderAddress(): string {
+  const configured = process.env.CLOUDFLARE_EMAIL_FROM || AUTH_FROM;
+  const match = configured.match(/<([^>]+)>/);
+  return (match?.[1] || configured).trim();
+}
+
+function readEmailBinding() {
+  try {
+    const { env } = getCloudflareContext();
+    return env?.EMAIL;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
+ * 注册验证和重置密码走 Cloudflare Email Service。
+ * Worker 上用 EMAIL 绑定；本地开发改走发信接口。
+ */
+export async function sendAuthEmail({
+  to,
+  subject,
+  html,
+}: {
+  to: string;
+  subject: string;
+  html: string;
+}) {
+  const from = authSenderAddress();
+  const binding = readEmailBinding();
+  if (binding) {
+    const result = await binding.send({ to, from, subject, html });
+    console.log("auth email sent: ", result.messageId);
+    return result;
+  }
+
+  const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const token =
+    process.env.CLOUDFLARE_EMAIL_API_TOKEN ||
+    process.env.CLOUDFLARE_API_TOKEN ||
+    process.env.CLOUDFLARE_D1_TOKEN;
+  if (!accountId || !token) {
+    throw new Error("missing CLOUDFLARE_ACCOUNT_ID or CLOUDFLARE_EMAIL_API_TOKEN");
+  }
+
+  const response = await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${accountId}/email/sending/send`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ to, from, subject, html }),
+    }
+  );
+  const payload = (await response.json().catch(() => null)) as {
+    success?: boolean;
+    errors?: { message?: string }[];
+    result?: { message_id?: string };
+  } | null;
+  if (!response.ok || payload?.success === false) {
+    throw new Error(payload?.errors?.[0]?.message || "cloudflare email send failed");
+  }
+
+  console.log("auth email sent: ", payload?.result?.message_id || "ok");
+  return payload?.result;
 }
 
 /**
