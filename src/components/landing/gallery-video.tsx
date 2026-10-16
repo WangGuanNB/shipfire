@@ -7,7 +7,7 @@ function whenPageReady(run: () => void) {
     if ("requestIdleCallback" in window) {
       window.requestIdleCallback(() => run(), { timeout: 1500 });
     } else {
-      window.setTimeout(run, 300);
+      globalThis.setTimeout(run, 300);
     }
   };
   if (document.readyState === "complete") idle();
