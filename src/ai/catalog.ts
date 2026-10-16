@@ -10,6 +10,7 @@ export function resolveTool(toolId: string, modelId: string) {
 }
 
 export function validateInput(input: ToolInput, model: ToolModel): ToolInput {
+  if ("variantId" in input || "presetId" in input) throw new ToolError("Unsupported generation parameters");
   const c = (model as MediaModel).capabilities;
   const mode = String(input.mode ?? "text");
   const prompt = typeof input.prompt === "string" ? input.prompt.trim() : "";

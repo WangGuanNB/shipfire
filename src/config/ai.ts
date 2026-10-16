@@ -1,9 +1,11 @@
-import type { ToolDefinition } from "@/ai/types";
+import type { ToolDefinition, ToolModel } from "@/ai/types";
 import { getAIChatCreditCost } from "@/services/config";
+import { getReferenceVideoModels } from "./reference-video";
 
 /** Site catalog. Add tools/models here; credentials always stay in server env. */
 export function getToolCatalog(): ToolDefinition[] {
-  const enabled = new Set((process.env.AI_ENABLED_TOOLS ?? "image-generator,video-generator").split(",").map(x => x.trim()));
+  const enabled = new Set((process.env.AI_ENABLED_TOOLS ?? "image-generator,video-generator,reference-video").split(",").map(x => x.trim()));
+  const videoModes = (process.env.AI_VIDEO_MODES ?? "text,image").split(",").map(x => x.trim()).filter(x => x === "text" || x === "image");
   return [
     {
       id: "image-generator", label: "Image generator", enabled: enabled.has("image-generator"),
@@ -14,8 +16,8 @@ export function getToolCatalog(): ToolDefinition[] {
       }],
     },
     {
-      id: "video-generator", label: "Video generator", enabled: enabled.has("video-generator"),
-      models: [
+      id: "video-generator", label: "Video generator", enabled: enabled.has("video-generator") && videoModes.length > 0,
+      models: ([
         {
           id: "basic",
           label: "Basic",
@@ -92,9 +94,28 @@ export function getToolCatalog(): ToolDefinition[] {
           },
           pricing: { perSecond: { "720p": 10, "1080p": 20 }, minimum: 50 },
         },
-      ],
+        {
+          id: "seedance-2-image-reference",
+          label: "Seedance 2 Image Reference",
+          description: "Multimodal photo reference for preset trends. Not a first-frame model.",
+          audience: "workbench",
+          adapter: "kie-seedance2-image-reference",
+          enabled: true,
+          providerModel: "bytedance/seedance-2",
+          capabilities: {
+            modes: ["image"],
+            resolutions: ["480p", "720p", "1080p"],
+            durations: [4, 5, 8, 10, 15],
+            aspectRatios: ["16:9", "9:16", "1:1", "4:3", "3:4"],
+            maxPromptLength: 5000,
+            maxImages: 9,
+          },
+          pricing: { perSecond: { "480p": 4, "720p": 5, "1080p": 8 }, minimum: 16 },
+        },
+      ] satisfies ToolModel[]).map(model => ({ ...model, capabilities: { ...model.capabilities, modes: model.capabilities.modes.filter(mode => videoModes.includes(mode as "text" | "image")) } })),
     },
+    { id: "reference-video", label: "Reference video", enabled: enabled.has("reference-video"), models: getReferenceVideoModels() },
   ];
 }
 
-export const taskPolicy = { maxActivePerUser: 3, pollIntervalSeconds: 15, reviewAfterSeconds: 15 * 60 };
+export { taskPolicy } from "@/ai/task-policy";

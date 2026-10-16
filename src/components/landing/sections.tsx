@@ -2,7 +2,9 @@ import type { ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import type { LandingSection } from "@/types/blocks/landing";
-import { ExampleAction } from "./interactions";
+import { referenceSampleCatalog } from "@/config/reference-video";
+import { ExampleAction, UseSampleButton } from "./interactions";
+import GalleryVideo from "./gallery-video";
 
 function SectionFrame({ section, children }: { section: LandingSection; children: ReactNode }) {
   return (
@@ -31,22 +33,42 @@ export function SectionButtons({ section }: { section: LandingSection }) {
   ))}</div>;
 }
 
-/** Compact results strip: title above, three effect images across. */
+/** Image strip by default. `layout: "gallery"` is a compact vertical video wall. */
 export function Examples({ section }: { section: LandingSection }) {
-  const items = (section.items ?? []).slice(0, 3);
+  const isGallery = section.layout === "gallery";
+  const items = isGallery ? (section.items ?? []) : (section.items ?? []).slice(0, 3);
+  const sampleSrc = new Map(referenceSampleCatalog().map(item => [item.id, item.src]));
   return (
     <SectionFrame section={section}>
-      <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className={isGallery
+        ? "mx-auto grid max-w-5xl grid-cols-2 gap-3 lg:grid-cols-6"
+        : "mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3"}>
         {items.map((item, index) => {
           const image = item.image?.src
             ? item.image
             : item.output?.image?.src
               ? item.output.image
               : undefined;
+          const sampleId = item.action?.values.exampleId;
+          const catalogSrc = sampleId ? sampleSrc.get(sampleId) : undefined;
+          const video = catalogSrc
+            ? { ...(item.video ?? {}), src: catalogSrc, title: item.video?.title }
+            : item.video?.src ? item.video : undefined;
           return (
-            <article key={index} className="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
-                {image?.src ? (
+            <article key={index} className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+              <div className={`relative w-full overflow-hidden bg-muted ${isGallery ? "aspect-[9/16]" : "aspect-[4/3]"}`}>
+                {item.label && (
+                  <span className="absolute left-1.5 top-1.5 z-10 rounded bg-amber-400 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-amber-950">
+                    {item.label}
+                  </span>
+                )}
+                {video ? (
+                  <GalleryVideo
+                    src={video.src}
+                    poster={video.poster || image?.src}
+                    label={video.title || image?.alt || item.title || "Sample video"}
+                  />
+                ) : image?.src ? (
                   <img
                     src={image.src}
                     alt={image.alt || item.title || ""}
@@ -57,22 +79,35 @@ export function Examples({ section }: { section: LandingSection }) {
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                 ) : (
-                  <div className="flex h-full items-center justify-center px-6 text-center text-sm text-muted-foreground">
+                  <div className="flex h-full items-center justify-center px-3 text-center text-xs text-muted-foreground">
                     {item.title || "Example"}
                   </div>
                 )}
-              </div>
-              <div className="flex flex-1 flex-col gap-3 p-4 sm:p-5">
-                {item.title && <h3 className="text-base font-semibold leading-snug sm:text-lg">{item.title}</h3>}
-                {item.description && (
-                  <p className="line-clamp-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
-                )}
-                {item.action && (
-                  <div className="mt-auto pt-1">
-                    <ExampleAction {...item.action} />
-                  </div>
+                {isGallery && item.action?.values.exampleId && (
+                  <UseSampleButton
+                    label={item.action.label}
+                    tool={item.action.tool}
+                    values={item.action.values}
+                  />
                 )}
               </div>
+              {(item.title || item.description || item.action) && (
+                <div className={`flex flex-1 flex-col ${isGallery ? "gap-1 p-2" : "gap-3 p-4 sm:p-5"}`}>
+                  {item.title && (
+                    <h3 className={isGallery ? "line-clamp-2 text-xs font-medium leading-snug" : "text-base font-semibold leading-snug sm:text-lg"}>
+                      {item.title}
+                    </h3>
+                  )}
+                  {item.description && !isGallery && (
+                    <p className="line-clamp-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
+                  )}
+                  {item.action && !isGallery && (
+                    <div className="mt-auto pt-1">
+                      <ExampleAction {...item.action} />
+                    </div>
+                  )}
+                </div>
+              )}
             </article>
           );
         })}

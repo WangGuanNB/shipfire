@@ -13,6 +13,8 @@ export interface ToolModel {
   capabilities: Record<string, unknown>;
   pricing: Record<string, unknown>;
   requiredEntitlements?: string[];
+  /** `workbench` models stay off the free-form model picker. */
+  audience?: "picker" | "workbench";
   /** UI metadata — optional, used by video tool model picker. */
   description?: string;
   tags?: string[];

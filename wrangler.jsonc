@@ -104,7 +104,7 @@
 
     // ========== 7.1 AI 工具（API 层也会校验）==========
     // 仅图片: image-generator | 仅视频: video-generator | 全开: image-generator,video-generator
-    "AI_ENABLED_TOOLS": "image-generator,video-generator",
+    "AI_ENABLED_TOOLS": "image-generator,video-generator,reference-video",
     // 可选：覆盖 Basic 模型的 KIE endpoint；多模型列表见 src/config/ai.ts
     // 敏感项走 Secrets：KIE_API_KEY、R2_ACCESS_KEY_ID、R2_SECRET_ACCESS_KEY、AI_MAINTENANCE_SECRET
     // 部署前：D1 执行 0003_ai_foundation.sql，再运行 scripts/sync-wrangler-secrets.sh
@@ -152,6 +152,8 @@
     "FAL_MODEL": "fal-ai/nano-banana-2",
     // Replicate 模型（默认：google/nano-banana）
     "REPLICATE_MODEL": "google/nano-banana",
+
+     "REFERENCE_VIDEO_URL": "https://cdn.shipstart.net/shipfire/index/examples/example-1.mp4",
 
     // ========== 12. AI 服务配置 ==========
     // SiliconFlow API 地址

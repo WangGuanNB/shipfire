@@ -3,7 +3,7 @@ import { CONTENT_POLICY_MESSAGE, getModerationConfig } from "@/config/moderation
 import { ToolError, type ToolInput } from "@/ai/types";
 import { isInferenceFlagged, runSeeApiInference } from "./seeapi";
 
-const GENERATION_TOOLS = new Set(["image-generator", "video-generator"]);
+const GENERATION_TOOLS = new Set(["image-generator", "video-generator", "reference-video"]);
 
 function idempotencyKey(kind: string, value: string): string {
   return createHash("sha256").update(`mod:${kind}:${value}`).digest("hex").slice(0, 32);
@@ -55,16 +55,21 @@ async function moderateImage(imageUrl: string): Promise<boolean> {
 export async function moderateGenerationInput(toolId: string, input: ToolInput): Promise<void> {
   const cfg = getModerationConfig();
   if (cfg.mode === "off" || !GENERATION_TOOLS.has(toolId)) return;
+  const presetGeneration = toolId === "reference-video" || input.strategy === "image-reference" || input.strategy === "video-reference";
   if (!cfg.apiKey) {
+    if (presetGeneration && cfg.mode === "enforce") throw new ToolError("Content review is not configured", 503);
     console.warn("[moderation] CONTENT_MODERATION_MODE is active but SEEAPI_API_KEY is missing; skipping");
     return;
   }
 
   const prompt = typeof input.prompt === "string" ? input.prompt.trim() : "";
-  const imageUrl = typeof input.imageUrl === "string" ? input.imageUrl : undefined;
+  const imageUrls = [...new Set([
+    ...(typeof input.imageUrl === "string" ? [input.imageUrl] : []),
+    ...(Array.isArray(input.imageUrls) ? input.imageUrls.filter((url): url is string => typeof url === "string") : []),
+  ])];
   const jobs: { kind: "text" | "image"; run: () => Promise<boolean> }[] = [];
   if (prompt) jobs.push({ kind: "text", run: () => moderateText(prompt) });
-  if (imageUrl) jobs.push({ kind: "image", run: () => moderateImage(imageUrl) });
+  for (const imageUrl of imageUrls) jobs.push({ kind: "image", run: () => moderateImage(imageUrl) });
   if (!jobs.length) return;
 
   try {

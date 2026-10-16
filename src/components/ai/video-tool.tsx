@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useLocale } from "next-intl";
 import { useAppContext } from "@/contexts/app";
 import { useAITasks, TaskRequestError } from "@/hooks/use-ai-tasks";
@@ -30,6 +30,7 @@ import Icon from "@/components/icon";
 import { quoteCredits } from "@/lib/quote-credits";
 import { cn } from "@/lib/utils";
 import { Crown } from "lucide-react";
+import GalleryVideo from "@/components/landing/gallery-video";
 import {
   pickRandomSample,
   VIDEO_IMAGE_MOTION_SAMPLE_PROMPTS,
@@ -58,11 +59,22 @@ export default function VideoTool({
   pricing,
   id = "video-tool",
   tool,
+  embed = false,
+  example,
+  forcedMode,
+  navigation,
+  onBusyChange,
 }: {
   models: ToolModel[];
   pricing: PricingType | null;
   id?: string;
   tool?: Record<string, unknown>;
+  /** Landing embed: left input, right example / result preview */
+  embed?: boolean;
+  example?: { values: Record<string, string>; revision: number };
+  forcedMode?: InputMode;
+  navigation?: ReactNode;
+  onBusyChange?: (busy: boolean) => void;
 }) {
   const locale = useLocale();
   const zh = locale === "zh";
@@ -97,7 +109,7 @@ export default function VideoTool({
     ? (configuredDefaultMode as InputMode)
     : availableInputModes[0];
 
-  const [inputMode, setInputMode] = useState<InputMode>(defaultInputMode);
+  const [inputMode, setInputMode] = useState<InputMode>(forcedMode ?? defaultInputMode);
   const [prompt, setPrompt] = useState("");
   const [resolution, setResolution] = useState(
     formatResolutionLabel(model?.capabilities.resolutions[0] || "480p")
@@ -119,7 +131,9 @@ export default function VideoTool({
     resolution: string;
     duration: string;
   } | null>(null);
+  const [previewTab, setPreviewTab] = useState<"example" | "mine">("example");
   const resultPanelRef = useRef<HTMLDivElement>(null);
+  const previewPanelRef = useRef<HTMLDivElement>(null);
 
   const durationSeconds = parseInt(duration.replace(/s/i, ""), 10) || 5;
   const resolutionValue = resolution.toLowerCase();
@@ -148,6 +162,9 @@ export default function VideoTool({
         ? "submitting"
         : undefined;
   const isBusy = sessionBusy;
+  useEffect(() => { onBusyChange?.(sessionBusy); }, [sessionBusy, onBusyChange]);
+  useEffect(() => { return () => onBusyChange?.(false); }, [onBusyChange]);
+  useEffect(() => { if (forcedMode) setInputMode(forcedMode); }, [forcedMode]);
   const displayVideoUrl = useMemo(() => {
     if (resultTask?.status !== "succeeded") return null;
     return resultTask.artifacts.find((a) => a.kind === "video" && a.url)?.url ?? null;
@@ -171,11 +188,26 @@ export default function VideoTool({
     fetchUserInfo();
   }, [tasks.map((t) => `${t.id}:${t.status}`).join(",")]);
 
+  function scrollToResultPanel() {
+    requestAnimationFrame(() => {
+      const target = resultPanelRef.current ?? previewPanelRef.current;
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
   useEffect(() => {
-    if (displayVideoUrl && resultPanelRef.current) {
-      resultPanelRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  }, [displayVideoUrl]);
+    if (!showSessionOutput) return;
+    if (isBusy || displayVideoUrl || resultTask?.status === "failed") scrollToResultPanel();
+  }, [showSessionOutput, isBusy, displayVideoUrl, resultTask?.status]);
+
+  useEffect(() => {
+    if (showSessionOutput) setPreviewTab("mine");
+  }, [showSessionOutput]);
+
+  useEffect(() => {
+    if (!example?.values) return;
+    if (example.values.prompt) setPrompt(example.values.prompt);
+  }, [example?.revision]);
 
   useEffect(() => {
     if (!model) return;
@@ -204,9 +236,14 @@ export default function VideoTool({
     .map((item) => item.trim())
     .filter(Boolean);
 
-  const settingSelectTriggerClass =
-    "h-8 w-full min-w-0 justify-between gap-1 rounded-full border-border/50 bg-background/70 px-2 text-xs shadow-none sm:w-fit sm:gap-2 sm:px-3 [&_[data-slot=select-value]]:truncate";
-  const modelSelectTriggerClass = cn(settingSelectTriggerClass, "sm:min-w-[148px] sm:max-w-[220px]");
+  const settingSelectTriggerClass = cn(
+    "h-8 w-full min-w-0 justify-between gap-1 rounded-full border-border/50 bg-background/70 px-2 text-xs shadow-none sm:gap-2 sm:px-3 [&_[data-slot=select-value]]:truncate",
+    !embed && "sm:w-fit"
+  );
+  const modelSelectTriggerClass = cn(
+    settingSelectTriggerClass,
+    !embed && "sm:min-w-[148px] sm:max-w-[220px]"
+  );
   const promptFieldClassName =
     "min-h-[128px] w-full resize-none border-0 bg-transparent p-0 pr-9 text-[15px] leading-relaxed shadow-none focus-visible:ring-0 sm:min-h-[156px]";
 
@@ -281,6 +318,8 @@ export default function VideoTool({
     setError("");
     setResultTaskId(null);
     setSessionResultMeta(null);
+    setPreviewTab("mine");
+    scrollToResultPanel();
     try {
       const task = await submit(model.id, {
         mode: inputMode,
@@ -330,9 +369,9 @@ export default function VideoTool({
     </div>
   );
 
-  const modeTabs =
+  const modeTabs = navigation !== undefined ? navigation :
     availableInputModes.length > 1 ? (
-      <div className="flex justify-center overflow-x-auto px-1 pb-0.5">
+      <div className={cn("flex overflow-x-auto px-1 pb-0.5", embed ? "justify-start" : "justify-center")}>
         <div className="inline-flex shrink-0 rounded-full border border-border/50 bg-muted/30 p-1">
           {(
             [
@@ -484,11 +523,23 @@ export default function VideoTool({
 
   const controlsBar = (
     <div className="border-t border-border/35 px-3 py-2.5 sm:px-3.5">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-2">
-        <div className={cn(
-          "grid w-full gap-1.5 *:min-w-0 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:gap-2 sm:*:min-w-[unset]",
-          mediaModels.length > 1 ? "grid-cols-2" : "grid-cols-3"
-        )}>
+      <div
+        className={cn(
+          "flex flex-col gap-2",
+          !embed && "sm:flex-row sm:items-center sm:gap-2"
+        )}
+      >
+        <div
+          className={cn(
+            "grid w-full min-w-0 gap-1.5 *:min-w-0",
+            embed
+              ? "grid-cols-2"
+              : cn(
+                  "sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:gap-2 sm:*:min-w-[unset]",
+                  mediaModels.length > 1 ? "grid-cols-2" : "grid-cols-3"
+                )
+          )}
+        >
           {mediaModels.length > 1 && (
             <Select
               value={modelId}
@@ -562,13 +613,16 @@ export default function VideoTool({
           </Select>
         </div>
 
-        <div className="flex justify-end sm:shrink-0">
+        <div className={cn("flex min-w-0", embed ? "w-full" : "justify-end sm:shrink-0")}>
           <Button
             type="button"
             size="lg"
             disabled={isBusy || !canSubmit}
             onClick={generate}
-            className="h-9 rounded-full bg-sky-500 px-5 text-sm text-white hover:bg-sky-600 sm:h-10 sm:min-w-[148px]"
+            className={cn(
+              "h-9 shrink-0 rounded-full bg-sky-500 px-5 text-sm text-white hover:bg-sky-600 sm:h-10",
+              embed ? "w-full" : "sm:min-w-[148px]"
+            )}
           >
             {isBusy ? (
               <>
@@ -614,140 +668,247 @@ export default function VideoTool({
       </div>
     ) : null;
 
-  return (
-    <div id={id} className="mx-auto w-full max-w-3xl space-y-4 text-center">
-      {featureBadges.length > 0 && (
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          {featureBadges.map((label, index) => (
-            <span
-              key={label}
-              className={cn(
-                "rounded-full border px-3 py-1 text-xs font-medium",
-                BADGE_COLORS[badgeColors[index % badgeColors.length]]
-              )}
-            >
-              {label}
-            </span>
-          ))}
-        </div>
-      )}
+  const badgeRow =
+    featureBadges.length > 0 ? (
+      <div className={cn("flex flex-wrap items-center gap-2", embed ? "justify-start" : "justify-center")}>
+        {featureBadges.map((label, index) => (
+          <span
+            key={label}
+            className={cn(
+              "rounded-full border px-3 py-1 text-xs font-medium",
+              BADGE_COLORS[badgeColors[index % badgeColors.length]]
+            )}
+          >
+            {label}
+          </span>
+        ))}
+      </div>
+    ) : null;
 
-      {copy("toolSubtitle", "") && (
-        <p className="text-sm text-muted-foreground">
+  const subtitleBlock =
+    copy("toolSubtitle", "") ? (
+      <p className={cn("text-sm text-muted-foreground", embed ? "text-left" : "text-center")}>
+        {copy(
+          "toolSubtitle",
+          zh
+            ? "登录后使用积分生成视频，生成过程中请保持页面打开。"
+            : "Sign in and use credits to generate. Keep this page open while the job runs."
+        )}
+      </p>
+    ) : null;
+
+  const inputCard = (
+    <div className="overflow-hidden rounded-2xl border border-border/50 bg-card text-left shadow-sm">
+      {inputArea}
+      {controlsBar}
+      {creditWarning}
+    </div>
+  );
+
+  const progressBlock = (
+    <VideoGenerationProgress
+      status={activeStatus}
+      uploading={uploading}
+      imageMode={inputMode === "image"}
+      message={progressMessage}
+      hint={copy(
+        "generatingHint",
+        zh ? "通常需要 1–3 分钟，请保持此页面打开。" : "This usually takes 1–3 minutes. Please keep this tab open."
+      )}
+      labels={{
+        upload: copy("stepUpload", zh ? "上传" : "Upload"),
+        submit: copy("stepSubmit", zh ? "提交" : "Submit"),
+        generate: copy("stepGenerate", zh ? "生成" : "Generate"),
+      }}
+    />
+  );
+
+  const resultVideoBlock = displayVideoUrl ? (
+    <div className="flex h-full flex-col overflow-hidden rounded-xl border border-border/40 bg-card">
+      <div className="border-b border-border/40 px-4 py-3">
+        <p className="text-sm font-medium">
+          {copy("resultTitle", zh ? "生成结果" : "Your generated video")}
+        </p>
+        {sessionResultMeta && (
+          <p className="text-xs text-muted-foreground">
+            {sessionResultMeta.modelLabel} · {sessionResultMeta.resolution} · {sessionResultMeta.duration}
+          </p>
+        )}
+      </div>
+      <video src={displayVideoUrl} controls playsInline className="aspect-video w-full bg-black" />
+      <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border/40 px-4 py-3">
+        <p className="text-xs text-muted-foreground">
           {copy(
-            "toolSubtitle",
-            zh
-              ? "登录后使用积分生成视频，生成过程中请保持页面打开。"
-              : "Sign in and use credits to generate. Keep this page open while the job runs."
+            "resultSavedHint",
+            zh ? "已同步保存到历史记录，刷新后可在历史查看" : "Also saved to History — available after you leave or refresh"
           )}
         </p>
-      )}
-
-      {modeTabs}
-
-      <div className="overflow-hidden rounded-2xl border border-border/50 bg-card text-left shadow-sm">
-        {inputArea}
-        {controlsBar}
-        {creditWarning}
+        <Button asChild size="sm" variant="outline">
+          <a href={displayVideoUrl} download target="_blank" rel="noreferrer">
+            <Icon name="RiDownloadLine" className="mr-1 size-4" />
+            {copy("downloadLabel", zh ? "下载 MP4" : "Download MP4")}
+          </a>
+        </Button>
       </div>
+    </div>
+  ) : null;
 
-      {showSessionOutput && (
-        <div ref={resultPanelRef}>
-          {isBusy ? (
-            <VideoGenerationProgress
-              status={activeStatus}
-              uploading={uploading}
-              imageMode={inputMode === "image"}
-              message={progressMessage}
-              hint={copy(
-                "generatingHint",
-                zh ? "通常需要 1–3 分钟，请保持此页面打开。" : "This usually takes 1–3 minutes. Please keep this tab open."
-              )}
-              labels={{
-                upload: copy("stepUpload", zh ? "上传" : "Upload"),
-                submit: copy("stepSubmit", zh ? "提交" : "Submit"),
-                generate: copy("stepGenerate", zh ? "生成" : "Generate"),
-              }}
-            />
-          ) : displayVideoUrl ? (
-            <div className="overflow-hidden rounded-2xl border border-border/60 bg-card text-left shadow-sm">
-              <div className="border-b border-border/40 px-4 py-3 sm:px-5">
-                <p className="text-sm font-medium">
-                  {copy("resultTitle", zh ? "生成结果" : "Your generated video")}
-                </p>
-                {sessionResultMeta && (
-                  <p className="text-xs text-muted-foreground">
-                    {sessionResultMeta.modelLabel} · {sessionResultMeta.resolution} ·{" "}
-                    {sessionResultMeta.duration}
-                  </p>
-                )}
-              </div>
-              <video
-                src={displayVideoUrl}
-                controls
-                playsInline
-                className="aspect-video w-full bg-black"
-              />
-              <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border/40 px-4 py-3 sm:px-5">
-                <p className="text-xs text-muted-foreground">
-                  {copy(
-                    "resultSavedHint",
-                    zh ? "已同步保存到历史记录，刷新后可在历史查看" : "Also saved to History — available after you leave or refresh"
-                  )}
-                </p>
-                <Button asChild size="sm" variant="outline">
-                  <a href={displayVideoUrl} download target="_blank" rel="noreferrer">
-                    <Icon name="RiDownloadLine" className="mr-1 size-4" />
-                    {copy("downloadLabel", zh ? "下载 MP4" : "Download MP4")}
-                  </a>
-                </Button>
-              </div>
+  const failedBlock =
+    resultTask?.status === "failed" ? (
+      <p
+        role="alert"
+        className="rounded-lg border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-destructive"
+      >
+        {resultTask.error ??
+          (zh ? "视频生成失败，积分已退还。" : "Video generation failed. Credits have been released.")}
+      </p>
+    ) : null;
+
+  const sessionOutputPanel = showSessionOutput ? (
+    <div ref={resultPanelRef}>
+      {isBusy ? progressBlock : resultVideoBlock ?? failedBlock}
+    </div>
+  ) : null;
+
+  const exampleVideoSrc = copy("exampleVideoSrc", "/video/hero.mp4");
+  const previewPanel = (
+    <div
+      ref={previewPanelRef}
+      className="flex min-h-[360px] min-w-0 scroll-mt-20 flex-col rounded-2xl border border-border/50 bg-muted/15 p-4 md:min-h-[420px] md:scroll-mt-24"
+    >
+      <div className="mb-3 inline-flex w-fit rounded-full border border-border/50 bg-muted/30 p-1">
+        <button
+          type="button"
+          onClick={() => setPreviewTab("example")}
+          className={cn(
+            "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+            previewTab === "example" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"
+          )}
+        >
+          {copy("previewTabExample", zh ? "示例" : "Example")}
+        </button>
+        <button
+          type="button"
+          onClick={() => setPreviewTab("mine")}
+          className={cn(
+            "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+            previewTab === "mine" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"
+          )}
+        >
+          {copy("previewTabMine", zh ? "我的视频" : "My video")}
+        </button>
+      </div>
+      <div className="flex flex-1 flex-col justify-center overflow-hidden rounded-xl bg-black/90">
+        {previewTab === "example" && !showSessionOutput ? (
+          <GalleryVideo
+            src={exampleVideoSrc}
+            label={copy("exampleVideoTitle", zh ? "示例视频" : "Sample video")}
+            className="aspect-video w-full object-cover"
+          />
+        ) : showSessionOutput ? (
+          sessionOutputPanel
+        ) : (
+          <div className="flex flex-col items-center gap-3 px-6 py-12 text-center">
+            <div className="flex size-14 items-center justify-center rounded-full bg-primary/10">
+              <Icon name="RiOrderPlayLine" className="size-7 text-primary" />
             </div>
-          ) : resultTask?.status === "failed" ? (
-            <p
-              role="alert"
-              className="rounded-lg border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-destructive"
-            >
-              {resultTask.error ??
-                (zh ? "视频生成失败，积分已退还。" : "Video generation failed. Credits have been released.")}
-            </p>
-          ) : null}
-        </div>
-      )}
-
-      {error && (
-        <p role="alert" className="text-sm text-destructive">{error}</p>
-      )}
-
-      {footerTags.length > 0 && (
-        <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] font-medium tracking-[0.12em] text-muted-foreground uppercase">
-          {footerTags.map((tag, index) => (
-            <span key={tag} className="inline-flex items-center gap-3">
-              {index > 0 && <span className="text-sky-500/80">•</span>}
-              {tag}
-            </span>
-          ))}
-        </p>
-      )}
-
-      {!displayVideoUrl && !isBusy && <ToolHistoryLink />}
-
-      <Dialog open={showPricing} onOpenChange={setShowPricing}>
-        <DialogContent className="max-h-[90vh] max-w-5xl overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>
-              {copy("insufficientTitle", zh ? "需要更多积分" : "More credits needed")}
-            </DialogTitle>
-            <DialogDescription>
+            <p className="font-medium">{copy("previewEmptyTitle", zh ? "你的视频将显示在这里" : "Your video will appear here")}</p>
+            <p className="text-sm text-muted-foreground">
               {copy(
-                "insufficientDescription",
-                zh ? "选择适合你的套餐" : "Choose a plan to continue"
+                "previewEmptyDescription",
+                zh ? "在左侧输入提示词并点击生成，结果会出现在此面板。" : "Enter a prompt on the left and create — the result shows in this panel."
               )}
-            </DialogDescription>
-          </DialogHeader>
-          {pricing && <Pricing pricing={pricing} embed />}
-        </DialogContent>
-      </Dialog>
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  const footerRow =
+    footerTags.length > 0 ? (
+      <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] font-medium tracking-[0.12em] text-muted-foreground uppercase">
+        {footerTags.map((tag, index) => (
+          <span key={tag} className="inline-flex items-center gap-3">
+            {index > 0 && <span className="text-sky-500/80">•</span>}
+            {tag}
+          </span>
+        ))}
+      </p>
+    ) : null;
+
+  const pricingDialog = (
+    <Dialog open={showPricing} onOpenChange={setShowPricing}>
+      <DialogContent className="max-h-[90vh] max-w-5xl overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>
+            {copy("insufficientTitle", zh ? "需要更多积分" : "More credits needed")}
+          </DialogTitle>
+          <DialogDescription>
+            {copy(
+              "insufficientDescription",
+              zh ? "选择适合你的套餐" : "Choose a plan to continue"
+            )}
+          </DialogDescription>
+        </DialogHeader>
+        {pricing && <Pricing pricing={pricing} embed />}
+      </DialogContent>
+    </Dialog>
+  );
+
+  if (embed) {
+    const sectionTitle = copy("sectionTitle", "");
+    const sectionLead = copy("sectionLead", "");
+    const showSectionHeader = Boolean(sectionTitle || sectionLead);
+
+    return (
+      <div className="w-full text-left">
+        {showSectionHeader && (
+          <header className="mx-auto mb-6 max-w-3xl space-y-2 text-center md:mb-8">
+            {sectionTitle ? (
+              <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                {sectionTitle}
+              </h2>
+            ) : null}
+            {sectionLead ? (
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">{sectionLead}</p>
+            ) : null}
+          </header>
+        )}
+        <div
+          id={id}
+          className="scroll-mt-20 min-w-0 max-w-full rounded-2xl border bg-card p-3 shadow-sm md:scroll-mt-24 md:p-8"
+        >
+          <div className="grid min-w-0 gap-6 lg:grid-cols-2 lg:items-start lg:gap-8">
+            <div className="min-w-0 space-y-3">
+              {modeTabs}
+              {inputCard}
+              {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
+            </div>
+            {previewPanel}
+          </div>
+          {!displayVideoUrl && !isBusy && (
+            <div className="mt-4">
+              <ToolHistoryLink />
+            </div>
+          )}
+        </div>
+        {pricingDialog}
+      </div>
+    );
+  }
+
+  return (
+    <div id={id} className="mx-auto w-full max-w-3xl scroll-mt-24 space-y-4 text-center">
+      {badgeRow}
+      {subtitleBlock}
+      {modeTabs}
+      {inputCard}
+      {sessionOutputPanel}
+      {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
+      {footerRow}
+      {!displayVideoUrl && !isBusy && <ToolHistoryLink />}
+      {pricingDialog}
     </div>
   );
 }

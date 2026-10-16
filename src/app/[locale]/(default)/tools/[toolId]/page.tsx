@@ -16,5 +16,6 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const View = toolViews[toolId];
   if (!tool || !View) notFound();
   const pricing = await getPricingPage(locale);
-  return <section className="container max-w-4xl py-12 md:py-20"><h1 className="mb-8 text-3xl font-semibold">{locale === "zh" && toolId === "video-generator" ? "AI 视频生成" : tool.label}</h1><View models={tool.models.filter(m => m.enabled)} pricing={pricing.pricing ?? null} /></section>;
+  const title = locale === "zh" ? ({ "video-generator": "AI 视频生成", "reference-video": "参考视频生成" }[toolId] ?? tool.label) : tool.label;
+  return <section className="container max-w-4xl py-12 md:py-20"><h1 className="mb-8 text-3xl font-semibold">{title}</h1><View models={tool.models.filter(m => m.enabled)} pricing={pricing.pricing ?? null} /></section>;
 }

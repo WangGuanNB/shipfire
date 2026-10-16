@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import Icon from "@/components/icon";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import GalleryVideo from "@/components/landing/gallery-video";
 
 const ACTIVE: TaskStatus[] = ["queued", "submitting", "running"];
 type Filter = "all" | "video-generator" | "image-generator";
@@ -52,11 +53,11 @@ export default function HistoryList({ tasks, locale = "en" }: { tasks: PublicTas
       };
 
   const typeLabels: Record<string, string> = zh
-    ? { "video-generator": "视频", "image-generator": "图片" }
-    : { "video-generator": "Video", "image-generator": "Image" };
+    ? { "video-generator": "视频", "reference-video": "参考视频", "image-generator": "图片" }
+    : { "video-generator": "Video", "reference-video": "Reference video", "image-generator": "Image" };
 
   const filtered = useMemo(
-    () => (filter === "all" ? tasks : tasks.filter((t) => t.toolId === filter)),
+    () => (filter === "all" ? tasks : tasks.filter((t) => t.toolId === filter || (filter === "video-generator" && t.toolId === "reference-video"))),
     [tasks, filter]
   );
 
@@ -104,7 +105,7 @@ export default function HistoryList({ tasks, locale = "en" }: { tasks: PublicTas
               <li key={task.id} className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
                 <div className="flex h-20 w-full shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border/60 bg-muted/30 sm:h-16 sm:w-28">
                   {asset?.kind === "video" && asset.url ? (
-                    <video src={asset.url} className="h-full w-full object-cover" muted playsInline preload="metadata" />
+                    <GalleryVideo src={asset.url} label={task.toolId} play={false} className="h-full w-full object-cover" />
                   ) : asset?.kind === "image" && asset.url ? (
                     <img src={asset.url} alt="" className="h-full w-full object-cover" />
                   ) : inProgress ? (

@@ -81,7 +81,13 @@ for (const locale of ["en", "zh"]) {
         const isVideoGenerator = path.includes("/video-generator/");
         assert.ok(modules.length >= 8, `${path} expected >= 8 modules, got ${modules.length}`);
         assert.equal(page.page_type, "tool");
-        assert.ok(modules.some(module => module.id === "hero" && module.tool === "primary"));
+        const isLandingHome = path.includes("/pages/landing/") && !path.includes("/presets/");
+        if (isLandingHome) {
+          assert.ok(modules.some(module => module.id === "hero" && !module.tool));
+          assert.ok(modules.some(module => module.id === "generator" && module.type === "tool" && module.tool === "primary"));
+        } else {
+          assert.ok(modules.some(module => module.id === "hero" && module.tool === "primary"));
+        }
         if (!isVideoGenerator) {
           assert.ok(modules.some(module => module.id === "examples"));
           assert.ok(modules.some(module => module.id === "testimonial"));

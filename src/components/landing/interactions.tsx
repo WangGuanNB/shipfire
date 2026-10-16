@@ -41,6 +41,24 @@ export function useToolSelection(tool: string) {
   return context?.selection?.tool === tool ? context.selection : undefined;
 }
 
+export function UseSampleButton({ label, tool, values }: {
+  label: string;
+  tool: string;
+  values: Record<string, string>;
+}) {
+  const context = useContext(Context);
+  if (!context?.anchors[tool]) return null;
+  return (
+    <button
+      type="button"
+      className="pointer-events-auto absolute inset-x-2 bottom-2 z-20 rounded-full bg-primary px-2 py-1.5 text-[11px] font-medium leading-tight text-primary-foreground shadow-sm lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100 lg:group-focus-within:opacity-100"
+      onClick={() => context.select(tool, values)}
+    >
+      {label}
+    </button>
+  );
+}
+
 export function ExampleAction({ label, tool, values }: {
   label: string;
   tool: string;

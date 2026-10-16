@@ -36,16 +36,26 @@
   },
   "hero": {
     "name": "hero",
-    "variant": "tool",
-    "title": "把你的想法变成图片",
-    "highlight_text": "AI 图片生成器",
-    "description": "描述主体、风格和构图，选择图片比例与目标分辨率。先试试下方的提示词示例，再生成你的图片。",
-    "metrics": [
-      "生成需要登录",
-      "按次使用积分",
-      "支持多种图片比例"
+    "variant": "split",
+    "video": {
+      "src": "/video/hero.mp4",
+      "title": "生成视频效果示例"
+    },
+    "title": "把想法变成视频",
+    "highlight_text": "高端 AI 视频生成",
+    "description": "上传两张人物照片即可生成。需要更接近模板动作时勾选高还原。需登录并使用积分，生成过程中请保持页面打开。",
+    "buttons": [
+      {
+        "title": "去制作",
+        "url": "/#generator-tool",
+        "variant": "default"
+      },
+      {
+        "title": "查看示例",
+        "url": "/#examples",
+        "variant": "outline"
+      }
     ],
-    "buttons": [],
     "show_happy_users": false,
     "show_badge": false
   },
@@ -113,7 +123,7 @@
         "buttons": [
           {
             "title": "试用工具",
-            "url": "/#hero-tool",
+            "url": "/#generator-tool",
             "variant": "default"
           },
           {
@@ -140,7 +150,7 @@
         "buttons": [
           {
             "title": "选择比例",
-            "url": "/#hero-tool",
+            "url": "/#generator-tool",
             "variant": "default"
           }
         ]
@@ -162,7 +172,7 @@
         "buttons": [
           {
             "title": "设置分辨率",
-            "url": "/#hero-tool",
+            "url": "/#generator-tool",
             "variant": "default"
           }
         ]
@@ -189,7 +199,7 @@
           },
           {
             "title": "返回工具",
-            "url": "/#hero-tool",
+            "url": "/#generator-tool",
             "variant": "outline"
           }
         ]
@@ -213,7 +223,7 @@
         "buttons": [
           {
             "title": "从提示词开始",
-            "url": "/#hero-tool",
+            "url": "/#generator-tool",
             "variant": "default"
           }
         ]
@@ -229,7 +239,7 @@
         "buttons": [
           {
             "title": "探索想法",
-            "url": "/#hero-tool",
+            "url": "/#generator-tool",
             "variant": "default"
           }
         ]
@@ -407,7 +417,7 @@
     "buttons": [
       {
         "title": "返回工具",
-        "url": "#hero-tool",
+        "url": "#generator-tool",
         "variant": "default",
         "icon": "RiMagicLine"
       },
@@ -437,7 +447,7 @@
           "children": [
             {
               "title": "工具",
-              "url": "/#hero-tool"
+              "url": "/#generator-tool"
             },
             {
               "title": "常见问题",
@@ -499,6 +509,11 @@
       "id": "hero",
       "type": "hero",
       "source": "hero",
+      "surface": "default"
+    },
+    {
+      "id": "generator",
+      "type": "tool",
       "tool": "primary",
       "surface": "default"
     },
@@ -558,89 +573,58 @@
     }
   ],
   "metadata": {
-    "title": "AI 图片生成器 — 从文字创建图片 | ShipFire",
-    "description": "描述画面、选择比例与分辨率，然后生成图片。可先使用提示词示例，登录后按页面显示的积分费用生成。"
+    "title": "AI 视频生成器 — 文字/图片生成视频 | ShipFire",
+    "description": "ShipFire 高端 AI 视频生成：描述场景或上传参考图，选择分辨率与时长，在浏览器中完成创作。"
   },
   "tools": {
     "primary": {
-      "type": "image-generator",
+      "type": "video-generator",
       "config": {
-        "promptLabel": "画面描述",
-        "promptPlaceholder": "描述主体、场景、光线和风格……",
-        "resolutionLabel": "目标分辨率",
-        "aspectRatioLabel": "图片比例",
-        "autoLabel": "自动",
-        "buttonText": "生成图片",
-        "generatingText": "正在生成……",
-        "creditsRequired": "每次生成所需积分",
-        "creditsAvailable": "当前可用积分",
-        "emptyTitle": "生成的图片将显示在这里",
-        "emptyDescription": "输入画面描述，或先选用下方的提示词示例。",
-        "downloadLabel": "下载",
-        "shareLabel": "复制图片链接",
+        "toolLayout": "split",
+        "workbench": "duo",
+        "inputModes": "reference",
+        "sectionTitle": "上传照片生成视频",
+        "sectionLead": "上传两张人物照片后生成，成片带有模型生成的声音。需要更接近模板动作时，勾选高还原。",
+        "tabTextToVideoLabel": "文生视频",
+        "tabImageToVideoLabel": "图生视频",
+        "textPromptPlaceholder": "描述你想生成的视频内容…",
+        "imagePromptPlaceholder": "可选：描述画面如何运动…",
+        "uploadShortLabel": "上传",
+        "defaultModelId": "basic",
+        "modelPlaceholder": "模型",
+        "createButtonText": "生成",
+        "generatingText": "生成中…",
+        "randomPromptTooltip": "随机示例提示词",
+        "resetTooltip": "清空",
+        "creditsLowPrefix": "仅剩",
+        "creditsLowMiddle": "积分，本次需要",
+        "topUpLabel": "充值",
         "insufficientTitle": "需要更多积分",
-        "insufficientDescription": "选择积分套餐以继续生成图片。"
+        "insufficientDescription": "选择适合你的套餐以继续生成视频。",
+        "exampleVideoSrc": "/video/hero.mp4",
+        "exampleVideoTitle": "示例视频",
+        "previewTabExample": "示例",
+        "previewTabMine": "我的视频",
+        "previewEmptyTitle": "你的视频将显示在这里",
+        "previewEmptyDescription": "在左侧输入提示词并点击生成，结果会出现在此面板。",
+        "downloadLabel": "下载 MP4"
       }
     }
   },
   "sections": {
     "examples": {
       "name": "examples",
-      "label": "效果示例",
-      "title": "真实生成效果",
-      "description": "三张效果示意。点击下方按钮只会填入提示词；按下生成后才会开始生成。",
+      "label": "示例",
+      "title": "视频示例",
+      "description": "这个梗的示范视频。换成新片时，改对应卡片的视频地址即可。",
+      "layout": "gallery",
       "items": [
-        {
-          "title": "产品静物",
-          "description": "哑光陶瓷杯、柔和窗光、极简产品摄影。",
-          "image": {
-            "src": "/imgs/features/1.webp",
-            "alt": "产品静物生成效果示意"
-          },
-          "action": {
-            "label": "使用此提示词",
-            "tool": "primary",
-            "values": {
-              "prompt": "一只哑光陶瓷马克杯放在暖米色桌面上，左侧柔和窗光，极简构图，写实产品摄影。",
-              "aspect_ratio": "1:1",
-              "resolution": "2K"
-            }
-          }
-        },
-        {
-          "title": "编辑插画",
-          "description": "黄昏天文台，深蓝与暖橙，宽幅构图。",
-          "image": {
-            "src": "/imgs/features/2.webp",
-            "alt": "编辑插画生成效果示意"
-          },
-          "action": {
-            "label": "使用此提示词",
-            "tool": "primary",
-            "values": {
-              "prompt": "黄昏山丘上的小型天文台编辑插画，深蓝与暖橙色调，干净几何形状，宽幅构图。",
-              "aspect_ratio": "16:9",
-              "resolution": "2K"
-            }
-          }
-        },
-        {
-          "title": "柔和人像光",
-          "description": "黄金时刻人像，柔和轮廓光，浅景深。",
-          "image": {
-            "src": "/imgs/features/3.webp",
-            "alt": "人像光线生成效果示意"
-          },
-          "action": {
-            "label": "使用此提示词",
-            "tool": "primary",
-            "values": {
-              "prompt": "户外黄金时刻的平静人像，柔和轮廓光，浅景深，自然肤色，摄影风格。",
-              "aspect_ratio": "3:4",
-              "resolution": "2K"
-            }
-          }
-        }
+        { "label": "示范", "title": "示例 1", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-1", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
+        { "title": "示例 2", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-2", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
+        { "title": "示例 3", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-3", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
+        { "title": "示例 4", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-4", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
+        { "title": "示例 5", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-5", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
+        { "title": "示例 6", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-6", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } }
       ]
     },
     "cost": {

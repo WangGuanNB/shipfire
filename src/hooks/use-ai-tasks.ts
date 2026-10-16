@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { PublicTask, ToolInput } from "@/ai/types";
-import { taskPolicy } from "@/config/ai";
+import { taskPolicy } from "@/ai/task-policy";
 
 export class TaskRequestError extends Error { constructor(message: string, public status: number) { super(message); } }
 export function useAITasks(toolId: string, userId?: string) {

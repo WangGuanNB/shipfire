@@ -90,6 +90,7 @@
     "highlight.js": "^11.11.0",
     "lucide-react": "^0.439.0",
     "markdown-it": "^14.1.0",
+    "mediabunny": "^1.61.4",
     "moment": "^2.30.1",
     "next": "^15.5.7",
     "next-auth": "5.0.0-beta.25",

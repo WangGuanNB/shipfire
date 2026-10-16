@@ -53,5 +53,5 @@ export interface LandingSection extends Section {
   paragraphs?: string[];
   /** Plain text comparison data, never injected HTML. */
   table?: { caption?: string; columns: string[]; rows: string[][] };
-  layout?: "default" | "stacked";
+  layout?: "default" | "stacked" | "gallery";
 }

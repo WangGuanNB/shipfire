@@ -11,7 +11,7 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const inputMode = searchParams.get("inputMode");
   const models = tool.models
-    .filter((model) => model.enabled)
+    .filter((model) => model.enabled && model.audience !== "workbench")
     .filter((model) => {
       if (inputMode !== "text" && inputMode !== "image") return true;
       const modes = (model as MediaModel).capabilities.modes;

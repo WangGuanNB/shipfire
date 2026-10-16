@@ -9,6 +9,7 @@ import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { RetroGrid } from "@/components/ui/retro-grid";
+import GalleryVideo from "@/components/landing/gallery-video";
 
 const heroAnimationStyles = `
 @keyframes heroTextUp {
@@ -63,41 +64,59 @@ function SplitHero({ hero }: { hero: HeroType }) {
   const productImage = hero.image || hero.images?.[0];
 
   return (
-    <HeroBackdrop className="min-h-0 py-28 md:py-36">
-      <div className="container grid items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
-        <div className="max-w-2xl space-y-7 text-center lg:text-left">
-          {hero.announcement && (
-            <Link
-              href={hero.announcement.url as any}
-              className="hero-text-down landing-eyebrow gap-2 text-left transition-colors hover:text-foreground"
-            >
-              {hero.announcement.label && <span className="text-primary">{hero.announcement.label}</span>}
-              <span>{hero.announcement.title}</span>
-            </Link>
+    <HeroBackdrop
+      solidBackground
+      className="min-h-[calc(100svh-1rem)] bg-background pt-[max(5.75rem,10vh)] pb-[max(3.5rem,8vh)] md:pt-[max(6.5rem,12vh)] md:pb-[max(4.5rem,10vh)]"
+    >
+      <div className="container grid items-center gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16">
+        <div className="max-w-xl space-y-6 text-center lg:text-left">
+          {hero.announcement?.title && (
+            hero.announcement.url ? (
+              <Link
+                href={hero.announcement.url as any}
+                className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {hero.announcement.label && <span className="text-foreground">{hero.announcement.label}</span>}
+                <span>{hero.announcement.title}</span>
+              </Link>
+            ) : (
+              <p className="inline-flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                {hero.announcement.label && (
+                  <Badge variant="outline" className="font-normal">
+                    {hero.announcement.label}
+                  </Badge>
+                )}
+                <span>{hero.announcement.title}</span>
+              </p>
+            )
           )}
 
-          <h1 className="hero-text-down text-balance text-4xl font-semibold leading-[1.06] tracking-[-0.045em] text-foreground sm:text-5xl lg:text-6xl">
-            {hero.title}
+          <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
+            <span className="block text-foreground">{hero.title}</span>
             {hero.highlight_text && (
-              <span className="block bg-gradient-to-r from-primary to-primary/65 bg-clip-text text-transparent">
+              <span className="mt-2 block bg-gradient-to-r from-primary via-primary to-primary/75 bg-clip-text text-transparent">
                 {hero.highlight_text}
               </span>
             )}
           </h1>
 
           {hero.description && (
-            <p className="hero-text-up max-w-xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8 lg:mx-0">
+            <p className="mx-auto max-w-lg text-base leading-7 text-muted-foreground lg:mx-0">
               {hero.description.replace(/<[^>]+>/g, "")}
             </p>
           )}
 
-          {hero.buttons && (
-            <div className="hero-text-up flex flex-wrap justify-center gap-3 lg:justify-start">
+          {hero.buttons && hero.buttons.length > 0 && (
+            <div className="flex w-full flex-nowrap justify-center gap-3 lg:justify-start">
               {hero.buttons.slice(0, 2).map((item, index) => (
-                <Link key={`${item.title}-${index}`} href={item.url as any} target={item.target || ""}>
-                  <Button size="lg" variant={item.variant || (index === 0 ? "default" : "outline")}>
+                <Link key={`${item.title}-${index}`} href={item.url as any} target={item.target || ""} className="min-w-0 flex-1 lg:flex-none">
+                  <Button
+                    size="lg"
+                    variant={item.variant || (index === 0 ? "default" : "outline")}
+                    className="h-12 w-full rounded-full px-3 text-sm sm:px-6 sm:text-base"
+                  >
                     {item.icon && <Icon name={item.icon} className="size-4" />}
-                    {item.title}
+                    <span className="truncate">{item.title}</span>
                   </Button>
                 </Link>
               ))}
@@ -105,13 +124,26 @@ function SplitHero({ hero }: { hero: HeroType }) {
           )}
 
           {hero.metrics && hero.metrics.length > 0 && (
-            <p className="hero-text-up text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               {hero.metrics.join(" · ")}
             </p>
           )}
+
+          {hero.tip && (
+            <p className="text-xs tracking-wide text-muted-foreground uppercase">{hero.tip}</p>
+          )}
         </div>
 
-        {productImage && (
+        {hero.video?.src ? (
+          <div className="overflow-hidden rounded-[1.75rem] shadow-[0_24px_60px_-28px_rgba(0,0,0,0.45)]">
+            <GalleryVideo
+              src={hero.video.src}
+              poster={hero.video.poster}
+              label={hero.video.title || hero.title || "Preview"}
+              className="aspect-video w-full object-cover"
+            />
+          </div>
+        ) : productImage ? (
           <div className="hero-text-up landing-surface relative overflow-hidden p-2 sm:p-3">
             <div className="absolute inset-x-0 top-0 z-10 flex h-9 items-center gap-1.5 px-4 text-muted-foreground">
               <span className="size-2 rounded-full bg-border" />
@@ -125,7 +157,7 @@ function SplitHero({ hero }: { hero: HeroType }) {
               className="aspect-[4/3] w-full rounded-[calc(var(--radius)*1.05)] object-cover pt-7"
             />
           </div>
-        )}
+        ) : null}
       </div>
     </HeroBackdrop>
   );
@@ -368,7 +400,8 @@ function HeroBackdrop({
   return (
     <div
       className={cn(
-        "relative flex min-h-[860px] w-full items-center justify-center overflow-hidden px-4 text-foreground",
+        "relative flex w-full items-center justify-center overflow-hidden px-4 text-foreground",
+        !className?.includes("min-h-") && "min-h-[860px]",
         solidBackground ? "bg-background" : "bg-transparent",
         className,
       )}

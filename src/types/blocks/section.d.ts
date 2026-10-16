@@ -7,6 +7,12 @@ export interface SectionItem {
   label?: string;
   icon?: string;
   image?: Image;
+  /** Showcase clip. Path comes from landing JSON, for example `/video/hero.mp4`. */
+  video?: {
+    src: string;
+    poster?: string;
+    title?: string;
+  };
   buttons?: Button[];
   url?: string;
   target?: string;

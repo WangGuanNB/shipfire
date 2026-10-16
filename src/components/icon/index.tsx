@@ -3,6 +3,7 @@
 import {
   RiAddLine,
   RiAppsLine,
+  RiArrowRightSLine,
   RiArticleLine,
   RiBankCardLine,
   RiBookLine,
@@ -67,6 +68,7 @@ import {
 const icons = {
   RiAddLine,
   RiAppsLine,
+  RiArrowRightSLine,
   RiArticleLine,
   RiBankCardLine,
   RiBookLine,
