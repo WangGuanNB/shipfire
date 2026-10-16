@@ -49,7 +49,7 @@ export const landingModuleRegistry: LandingModuleRegistry = {
     return <Pricing pricing={section as unknown as PricingData} />;
   },
   testimonials: ({ section }) => <Testimonials section={section} />,
-  faq: ({ section }) => <FAQ section={section} layout={section.layout} />,
+  faq: ({ section }) => <FAQ section={section} layout={section.layout === "gallery" ? undefined : section.layout} />,
   cta: ({ section }) => <CTA section={section} />,
   branding: ({ section }) => <Branding section={section} />,
   stats: ({ section }) => <Stats section={section} />,
