@@ -10,6 +10,7 @@ import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { RetroGrid } from "@/components/ui/retro-grid";
 import GalleryVideo from "@/components/landing/gallery-video";
+import { JeanPhilSplitHero } from "./jean-phil-split";
 
 const heroAnimationStyles = `
 @keyframes heroTextUp {
@@ -38,7 +39,9 @@ export default function Hero({
   if (hero.disabled) return null;
 
   const content =
-    hero.variant === "tool" ? (
+    hero.variant === "jean-phil" ? (
+      <JeanPhilSplitHero hero={hero}>{children}</JeanPhilSplitHero>
+    ) : hero.variant === "tool" ? (
       <ToolHero hero={hero}>{children}</ToolHero>
     ) : hero.variant === "split" ? (
       <SplitHero hero={hero} />
@@ -60,108 +63,108 @@ export default function Hero({
  * Product-facing hero. Its composition is selected from landing JSON rather
  * than being tied to a product name, colour, or fixed marketing copy.
  */
+const heroSerif = 'Georgia, "Times New Roman", Times, serif';
+
 function SplitHero({ hero }: { hero: HeroType }) {
-  const productImage = hero.image || hero.images?.[0];
+  const action = hero.buttons?.[0];
+  const secondary = hero.buttons?.[1];
+  const plainDescription = hero.description?.replace(/<[^>]+>/g, "");
+  const offerTitle = hero.offer?.title || hero.title;
+  const offerDescription = hero.offer?.description || plainDescription;
+  const offerPrice = hero.offer?.price || hero.metrics?.[0];
 
   return (
-    <HeroBackdrop
-      solidBackground
-      className="min-h-[calc(100svh-1rem)] bg-background pt-[max(5.75rem,10vh)] pb-[max(3.5rem,8vh)] md:pt-[max(6.5rem,12vh)] md:pb-[max(4.5rem,10vh)]"
-    >
-      <div className="container grid items-center gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16">
-        <div className="max-w-xl space-y-6 text-center lg:text-left">
-          {hero.announcement?.title && (
-            hero.announcement.url ? (
-              <Link
-                href={hero.announcement.url as any}
-                className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {hero.announcement.label && <span className="text-foreground">{hero.announcement.label}</span>}
-                <span>{hero.announcement.title}</span>
-              </Link>
-            ) : (
-              <p className="inline-flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-                {hero.announcement.label && (
-                  <Badge variant="outline" className="font-normal">
-                    {hero.announcement.label}
-                  </Badge>
-                )}
-                <span>{hero.announcement.title}</span>
+    <section className="bg-background px-4 pb-10 pt-20 text-foreground md:pb-14 md:pt-24">
+      <div className="container mx-auto max-w-6xl">
+        <div className="mx-auto grid max-w-[520px] grid-cols-1 gap-6 lg:max-w-none lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-12 xl:gap-16">
+          <div className="order-2 space-y-6 lg:order-1">
+            {hero.announcement?.label && (
+              <p className="hidden items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground lg:flex">
+                <span className="inline-block h-px w-6 bg-primary" aria-hidden />
+                {hero.announcement.label}
               </p>
-            )
-          )}
-
-          <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
-            <span className="block text-foreground">{hero.title}</span>
-            {hero.highlight_text && (
-              <span className="mt-2 block bg-gradient-to-r from-primary via-primary to-primary/75 bg-clip-text text-transparent">
-                {hero.highlight_text}
-              </span>
             )}
-          </h1>
 
-          {hero.description && (
-            <p className="mx-auto max-w-lg text-base leading-7 text-muted-foreground lg:mx-0">
-              {hero.description.replace(/<[^>]+>/g, "")}
-            </p>
-          )}
-
-          {hero.buttons && hero.buttons.length > 0 && (
-            <div className="flex w-full flex-nowrap justify-center gap-3 lg:justify-start">
-              {hero.buttons.slice(0, 2).map((item, index) => (
-                <Link key={`${item.title}-${index}`} href={item.url as any} target={item.target || ""} className="min-w-0 flex-1 lg:flex-none">
-                  <Button
-                    size="lg"
-                    variant={item.variant || (index === 0 ? "default" : "outline")}
-                    className="h-12 w-full rounded-full px-3 text-sm sm:px-6 sm:text-base"
-                  >
-                    {item.icon && <Icon name={item.icon} className="size-4" />}
-                    <span className="truncate">{item.title}</span>
-                  </Button>
-                </Link>
-              ))}
+            <div className="hidden space-y-3 lg:block">
+              <h1
+                className="text-balance text-[2.65rem] font-normal leading-[1.12] tracking-[-0.02em] text-foreground"
+                style={{ fontFamily: heroSerif }}
+              >
+                {hero.title}
+              </h1>
+              {hero.highlight_text && (
+                <p className="text-2xl italic leading-snug text-foreground/80" style={{ fontFamily: heroSerif }}>
+                  {hero.highlight_text}
+                </p>
+              )}
             </div>
-          )}
 
-          {hero.metrics && hero.metrics.length > 0 && (
-            <p className="text-sm text-muted-foreground">
-              {hero.metrics.join(" · ")}
-            </p>
-          )}
+            {plainDescription && (
+              <p className="max-w-xl text-[15px] leading-7 text-muted-foreground sm:text-base">{plainDescription}</p>
+            )}
 
-          {hero.tip && (
-            <p className="text-xs tracking-wide text-muted-foreground uppercase">{hero.tip}</p>
+            {(offerTitle || action) && (
+              <div className="grid items-center gap-4 rounded-[1.35rem] border border-border/60 bg-card p-4 shadow-sm sm:flex sm:gap-5 sm:p-5">
+                <div className="min-w-0 flex-1 space-y-1">
+                  {offerTitle && (
+                    <h2 className="text-base font-semibold leading-snug text-foreground sm:text-[1.05rem]">{offerTitle}</h2>
+                  )}
+                  {offerDescription && offerDescription !== plainDescription && (
+                    <p className="text-sm leading-relaxed text-muted-foreground">{offerDescription}</p>
+                  )}
+                  {offerPrice && <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400">{offerPrice}</p>}
+                </div>
+                {action?.url && (
+                  <Link href={action.url as never} className="sm:shrink-0">
+                    <span className="inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:min-w-[132px] sm:py-2.5">
+                      {action.title}
+                    </span>
+                  </Link>
+                )}
+              </div>
+            )}
+
+            {secondary?.url && (
+              <p className="text-sm text-muted-foreground">
+                <Link href={secondary.url as never} className="font-medium text-foreground underline underline-offset-2 hover:text-primary">
+                  {secondary.title}
+                </Link>
+              </p>
+            )}
+          </div>
+
+          {hero.video?.src && (
+            <div className="order-1 flex w-full flex-col lg:order-2 lg:items-end">
+              <div className="relative w-full overflow-hidden rounded-[1.35rem] border border-border/60 bg-muted shadow-sm max-lg:aspect-[4/5] lg:aspect-[9/16] lg:w-[340px]">
+                <GalleryVideo
+                  src={hero.video.src}
+                  poster={hero.video.poster}
+                  label={hero.video.title || hero.title || "Preview"}
+                  className="absolute inset-0 h-full w-full object-cover lg:static lg:aspect-[9/16] lg:h-auto lg:max-h-[640px]"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/80 via-black/35 to-transparent lg:hidden" aria-hidden />
+                <div className="absolute inset-x-0 bottom-0 space-y-1.5 px-5 pb-5 lg:hidden">
+                  <h1
+                    className="text-balance text-[1.9rem] font-normal leading-[1.12] tracking-[-0.02em] text-white drop-shadow-md"
+                    style={{ fontFamily: heroSerif }}
+                  >
+                    {hero.title}
+                  </h1>
+                  {hero.highlight_text && (
+                    <p className="text-lg italic leading-snug text-white/90 drop-shadow" style={{ fontFamily: heroSerif }}>
+                      {hero.highlight_text}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
           )}
         </div>
-
-        {hero.video?.src ? (
-          <div className="overflow-hidden rounded-[1.75rem] shadow-[0_24px_60px_-28px_rgba(0,0,0,0.45)]">
-            <GalleryVideo
-              src={hero.video.src}
-              poster={hero.video.poster}
-              label={hero.video.title || hero.title || "Preview"}
-              className="aspect-video w-full object-cover"
-            />
-          </div>
-        ) : productImage ? (
-          <div className="hero-text-up landing-surface relative overflow-hidden p-2 sm:p-3">
-            <div className="absolute inset-x-0 top-0 z-10 flex h-9 items-center gap-1.5 px-4 text-muted-foreground">
-              <span className="size-2 rounded-full bg-border" />
-              <span className="size-2 rounded-full bg-border" />
-              <span className="size-2 rounded-full bg-border" />
-              <span className="ml-3 truncate text-xs">{productImage.title || hero.title}</span>
-            </div>
-            <img
-              src={productImage.src}
-              alt={productImage.alt || productImage.title || hero.title || "Product preview"}
-              className="aspect-[4/3] w-full rounded-[calc(var(--radius)*1.05)] object-cover pt-7"
-            />
-          </div>
-        ) : null}
       </div>
-    </HeroBackdrop>
+    </section>
   );
 }
+
 
 function DefaultHero({ hero }: { hero: HeroType }) {
   const highlightText = hero.highlight_text;

@@ -36,26 +36,45 @@
   },
   "hero": {
     "name": "hero",
-    "variant": "split",
-    "video": {
-      "src": "/video/hero.mp4",
-      "title": "生成视频效果示例"
+    "variant": "jean-phil",
+    "announcement": {
+      "label": "AI 视频"
     },
-    "title": "把想法变成视频",
-    "highlight_text": "高端 AI 视频生成",
+    "title": "两张照片，\n生成一条 ShipFire 视频。",
+    "title_mark": "ShipFire",
+    "highlight_text": "勾选高还原，就跟着模板走。",
     "description": "上传两张人物照片即可生成。需要更接近模板动作时勾选高还原。需登录并使用积分，生成过程中请保持页面打开。",
-    "buttons": [
+    "preview": {
+      "video": "/video/hero.mp4",
+      "poster": "/imgs/hero/preview-poster.png",
+      "badge": "示例",
+      "overlayCta": "开始制作",
+      "caption": "模板动作配上你的照片——shipstart.net 上的 AI 视频。"
+    },
+    "workflows": [
       {
-        "title": "去制作",
-        "url": "/#generator-tool",
-        "variant": "default"
-      },
-      {
-        "title": "查看示例",
-        "url": "/#examples",
-        "variant": "outline"
+        "id": "duo-photos",
+        "title": "用你的照片来生成",
+        "description": "两张照片 · 模板动作 · 模型生成声音",
+        "beforeImage": "/imgs/hero/workflow-before.png",
+        "afterImage": "/imgs/hero/workflow-after.png",
+        "action": {
+          "label": "开始制作",
+          "tool": "primary",
+          "kind": "select",
+          "values": {}
+        }
       }
     ],
+    "footerLinks": [
+      {
+        "prefix": "或",
+        "highlight": "查看示例",
+        "suffix": "— 向下滚动到案例区",
+        "url": "#examples"
+      }
+    ],
+    "buttons": [],
     "show_happy_users": false,
     "show_badge": false
   },

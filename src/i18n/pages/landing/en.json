@@ -36,26 +36,45 @@
   },
   "hero": {
     "name": "hero",
-    "variant": "split",
-    "video": {
-      "src": "/video/hero.mp4",
-      "title": "Sample generated video"
+    "variant": "jean-phil",
+    "announcement": {
+      "label": "AI video"
     },
-    "title": "Turn ideas into video",
-    "highlight_text": "Premium AI Video Generator",
+    "title": "Turn two photos into a\nShipFire video.",
+    "title_mark": "ShipFire",
+    "highlight_text": "Higher fidelity follows the template.",
     "description": "Upload two photos to generate. Turn on higher fidelity to follow the template motion. Sign in to use credits—keep the tab open while rendering.",
-    "buttons": [
+    "preview": {
+      "video": "/video/hero.mp4",
+      "poster": "/imgs/hero/preview-poster.png",
+      "badge": "Sample",
+      "overlayCta": "Make it",
+      "caption": "Template motion with your faces—AI video on shipstart.net."
+    },
+    "workflows": [
       {
-        "title": "Start creating",
-        "url": "/#generator-tool",
-        "variant": "default"
-      },
-      {
-        "title": "View examples",
-        "url": "/#examples",
-        "variant": "outline"
+        "id": "duo-photos",
+        "title": "Generate from your photos",
+        "description": "Two photos · template motion · model-generated sound",
+        "beforeImage": "/imgs/hero/workflow-before.png",
+        "afterImage": "/imgs/hero/workflow-after.png",
+        "action": {
+          "label": "Make it",
+          "tool": "primary",
+          "kind": "select",
+          "values": {}
+        }
       }
     ],
+    "footerLinks": [
+      {
+        "prefix": "Or",
+        "highlight": "view examples",
+        "suffix": "— scroll to samples below",
+        "url": "#examples"
+      }
+    ],
+    "buttons": [],
     "show_happy_users": false,
     "show_badge": false
   },

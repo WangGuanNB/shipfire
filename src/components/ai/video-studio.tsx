@@ -21,6 +21,8 @@ export interface VideoStudioProps {
   tool?: Record<string, unknown>;
   embed?: boolean;
   example?: { values: Record<string, string>; revision: number };
+  /** Landing tool slot name (e.g. primary) for hero workflow events. */
+  toolSlot?: string;
 }
 
 /** One configurable shell. A workbench page replaces the three technical tabs. */
@@ -42,7 +44,8 @@ export default function VideoStudio({ referencePresets, workbench, ...props }: V
     return <VideoWorkbench page={workbench} pricing={props.pricing} id={props.id}
       sectionTitle={props.embed && typeof props.tool?.sectionTitle === "string" ? props.tool.sectionTitle : undefined}
       sectionLead={props.embed && typeof props.tool?.sectionLead === "string" ? props.tool.sectionLead : undefined}
-      selectedExample={props.example} />;
+      selectedExample={props.example}
+      toolSlot={props.toolSlot} />;
   }
   const labels: Record<Mode, string> = zh
     ? { text: "文生视频", image: "图生视频", reference: "参考视频生成" }

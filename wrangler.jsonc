@@ -191,8 +191,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "shipfire-db",
-      "database_id": "ad72dedb-9c09-44ea-8798-f202789c9103"
+      "database_name": "shipfire-one",
+      "database_id": "d4aab34b-5594-4fa9-b028-8a958ad6d096"
     }
   ],
   "send_email": [

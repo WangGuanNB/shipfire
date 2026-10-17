@@ -34,7 +34,14 @@ export type LandingModuleRegistry = Record<string, (props: ModuleRenderProps) =>
 
 /** Register a new presentation component here, or inject it via the renderers prop. */
 export const landingModuleRegistry: LandingModuleRegistry = {
-  hero: ({ section, tool }) => <Hero hero={{ ...section, ...(tool ? { variant: "tool" } : {}) } as HeroData}>{tool}</Hero>,
+  hero: ({ section, tool }) => {
+    const heroSection = section as HeroData;
+    const variant =
+      heroSection.variant === "jean-phil" ? "jean-phil" : tool ? "tool" : heroSection.variant;
+    return (
+      <Hero hero={{ ...heroSection, variant }}>{variant === "jean-phil" ? undefined : tool}</Hero>
+    );
+  },
   tool: ({ module, tool }) => tool ? <section id={module.id} className="landing-section scroll-mt-24"><div className="container">{tool}</div></section> : null,
   intro: ({ section }) => <Intro section={section} />,
   features: ({ section }) => <Features section={section} />,

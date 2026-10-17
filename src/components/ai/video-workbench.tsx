@@ -18,6 +18,7 @@ import VideoGenerationProgress from "./video-generation-progress";
 import Icon from "@/components/icon";
 import { cn } from "@/lib/utils";
 import GalleryVideo from "@/components/landing/gallery-video";
+import { LANDING_PHOTO_UPLOAD_EVENT } from "@/components/landing/interactions";
 
 const ACTIVE = ["queued", "submitting", "running"];
 
@@ -34,6 +35,7 @@ export default function VideoWorkbench({
   sectionTitle,
   sectionLead,
   selectedExample,
+  toolSlot,
 }: {
   page: PublicWorkbenchPage;
   pricing: PricingType | null;
@@ -41,6 +43,7 @@ export default function VideoWorkbench({
   sectionTitle?: string;
   sectionLead?: string;
   selectedExample?: { values: Record<string, string>; revision: number };
+  toolSlot?: string;
 }) {
   const locale = useLocale();
   const lang = locale === "zh" ? "zh" : "en";
@@ -141,6 +144,18 @@ export default function VideoWorkbench({
   useEffect(() => {
     if (task && ["succeeded", "failed"].includes(task.status)) void fetchUserInfo();
   }, [task?.id, task?.status, fetchUserInfo]);
+
+  useEffect(() => {
+    if (!toolSlot) return;
+    function handlePhotoUpload(event: Event) {
+      const detail = (event as CustomEvent<{ tool: string }>).detail;
+      if (detail?.tool !== toolSlot) return;
+      const firstSlotId = variant?.slots[0]?.id;
+      if (firstSlotId) fileInputs.current[firstSlotId]?.click();
+    }
+    window.addEventListener(LANDING_PHOTO_UPLOAD_EVENT, handlePhotoUpload);
+    return () => window.removeEventListener(LANDING_PHOTO_UPLOAD_EVENT, handlePhotoUpload);
+  }, [toolSlot, variant?.slots]);
 
   async function upload(slotId: string, purpose: string, file?: File) {
     if (!file || busy || locked.current || !variant) return;
@@ -264,8 +279,6 @@ export default function VideoWorkbench({
   const standardVariant = preset.variants.find(item => item.strategy === "image-reference");
   const fidelityVariant = preset.variants.find(item => item.strategy === "video-reference");
   const fidelityToggle = !!standardVariant && !!fidelityVariant && preset.variants.length === 2;
-  const fidelityCredits = fidelityVariant?.credits[workbenchCreditKey(fidelityVariant.output.resolution, fidelityVariant.output.duration, fidelityVariant.output.audio)];
-
   return (
     <div className="w-full text-left">
       {(sectionTitle || sectionLead) && <header className="mx-auto mb-6 max-w-3xl space-y-2 text-center md:mb-8">
@@ -301,7 +314,6 @@ export default function VideoWorkbench({
                 }} />
                 <span>
                   <span className="font-medium">{zh ? "高还原" : "Higher fidelity"}</span>
-                  {fidelityCredits !== undefined && <span className="ml-2 tabular-nums text-primary">{fidelityCredits} {zh ? "积分" : "credits"}</span>}
                   <span className="mt-1 block text-muted-foreground">{zh ? "沿用模板的动作和节奏。不勾选时只使用照片和提示词。" : "Follow the template's motion and timing. Leave this off to use your photos and the prompt only."}</span>
                 </span>
               </label>
@@ -379,25 +391,25 @@ export default function VideoWorkbench({
                 <Textarea value={prompt} disabled={busy || !variant.ready} rows={10} placeholder={zh ? "描述你想生成的视频" : "Describe the video"} onChange={event => { promptEdited.current = true; setPrompt(event.target.value); }} />
               </label>
             ) : null}
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:flex-wrap">
               {variant.output.resolutions.length > 0 && (
-                <label className="space-y-2 text-sm"><span className="block font-medium">{zh ? "画质" : "Quality"}</span>
-                  <Select value={resolution} disabled={busy || !variant.ready} onValueChange={setResolution}><SelectTrigger className="h-10 w-[140px]"><SelectValue /></SelectTrigger><SelectContent>{variant.output.resolutions.map(item => <SelectItem key={item} value={item}>{item.toUpperCase()}</SelectItem>)}</SelectContent></Select>
+                <label className="min-w-0 space-y-2 text-sm"><span className="block font-medium">{zh ? "画质" : "Quality"}</span>
+                  <Select value={resolution} disabled={busy || !variant.ready} onValueChange={setResolution}><SelectTrigger className="h-10 w-full min-w-0 sm:w-[140px]"><SelectValue /></SelectTrigger><SelectContent>{variant.output.resolutions.map(item => <SelectItem key={item} value={item}>{item.toUpperCase()}</SelectItem>)}</SelectContent></Select>
                 </label>
               )}
-              {variant.output.durations.length > 1 && (
-                <label className="space-y-2 text-sm"><span className="block font-medium">{zh ? "时长" : "Duration"}</span>
-                  <Select value={String(duration)} disabled={busy || !variant.ready} onValueChange={value => setDuration(Number(value))}><SelectTrigger className="h-10 w-[120px]"><SelectValue /></SelectTrigger><SelectContent>{variant.output.durations.map(item => <SelectItem key={item} value={String(item)}>{item}s</SelectItem>)}</SelectContent></Select>
+              {variant.output.durations.length > 0 && (
+                <label className="min-w-0 space-y-2 text-sm"><span className="block font-medium">{zh ? "时长" : "Duration"}</span>
+                  <Select value={String(duration)} disabled={busy || !variant.ready} onValueChange={value => setDuration(Number(value))}><SelectTrigger className="h-10 w-full min-w-0 sm:w-[120px]"><SelectValue /></SelectTrigger><SelectContent>{variant.output.durations.map(item => <SelectItem key={item} value={String(item)}>{item}s</SelectItem>)}</SelectContent></Select>
                 </label>
               )}
               {variant.output.aspectRatios.length > 1 && (
-                <label className="space-y-2 text-sm"><span className="block font-medium">{zh ? "比例" : "Ratio"}</span>
-                  <Select value={aspectRatio} disabled={busy || !variant.ready} onValueChange={setAspectRatio}><SelectTrigger className="h-10 w-[120px]"><SelectValue /></SelectTrigger><SelectContent>{variant.output.aspectRatios.map(item => <SelectItem key={item} value={item}>{item}</SelectItem>)}</SelectContent></Select>
+                <label className="col-span-2 min-w-0 space-y-2 text-sm sm:col-span-1"><span className="block font-medium">{zh ? "比例" : "Ratio"}</span>
+                  <Select value={aspectRatio} disabled={busy || !variant.ready} onValueChange={setAspectRatio}><SelectTrigger className="h-10 w-full min-w-0 sm:w-[120px]"><SelectValue /></SelectTrigger><SelectContent>{variant.output.aspectRatios.map(item => <SelectItem key={item} value={item}>{item}</SelectItem>)}</SelectContent></Select>
                 </label>
               )}
               {variant.output.audioOptions.length > 1 && (
-                <label className="space-y-2 text-sm"><span className="block font-medium">{zh ? "声音" : "Audio"}</span>
-                  <Select value={audio} disabled={busy || !variant.ready} onValueChange={value => setAudio(value as "off" | "generated")}><SelectTrigger className="h-10 w-[160px]"><SelectValue /></SelectTrigger><SelectContent>
+                <label className="col-span-2 min-w-0 space-y-2 text-sm sm:col-span-1"><span className="block font-medium">{zh ? "声音" : "Audio"}</span>
+                  <Select value={audio} disabled={busy || !variant.ready} onValueChange={value => setAudio(value as "off" | "generated")}><SelectTrigger className="h-10 w-full min-w-0 sm:w-[160px]"><SelectValue /></SelectTrigger><SelectContent>
                     {variant.output.audioOptions.map(item => <SelectItem key={item} value={item}>{item === "generated" ? (zh ? "生成声音" : "Generated") : (zh ? "关闭" : "Off")}</SelectItem>)}
                   </SelectContent></Select>
                 </label>
@@ -410,11 +422,11 @@ export default function VideoWorkbench({
               </label>
             )}
             <div className="grid gap-2 sm:grid-cols-2">
-              <Button type="button" variant="outline" className="w-full" disabled={busy || previewing || !ready || task?.status === "needs_review"} onClick={() => void previewRequest()}>
+              <Button type="button" variant="outline" className="h-12 w-full rounded-full" disabled={busy || previewing || !ready || task?.status === "needs_review"} onClick={() => void previewRequest()}>
                 {previewing ? (zh ? "正在预览…" : "Previewing…") : (zh ? "预览本次请求" : "Preview this request")}
               </Button>
-              <Button type="button" className="w-full" disabled={busy || previewing || !ready || task?.status === "needs_review"} onClick={() => void generate()}>
-                {(submitting || (!!task && ACTIVE.includes(task.status))) ? (zh ? "处理中…" : "Processing…") : `${zh ? "生成视频" : "Generate video"}${credits === undefined ? "" : ` · ${credits} ${zh ? "积分" : "credits"}`}`}
+              <Button type="button" className="h-12 w-full rounded-full text-base font-semibold" disabled={busy || previewing || !ready || task?.status === "needs_review"} onClick={() => void generate()}>
+                {(submitting || (!!task && ACTIVE.includes(task.status))) ? (zh ? "处理中…" : "Processing…") : `${zh ? "开始制作" : "Make it"}${credits === undefined ? "" : ` · ${credits} ${zh ? "积分" : "credits"}`}`}
               </Button>
             </div>
             {requestPreview && (

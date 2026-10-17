@@ -29,6 +29,7 @@ export default function VideoGeneratorSlot({
     <VideoStudio
       id={id}
       embed
+      toolSlot={slot}
       models={models}
       pricing={pricing}
       tool={copy}
