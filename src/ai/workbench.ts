@@ -358,6 +358,7 @@ export function publicWorkbench(pageId: string, presets = getVideoPresets(), pag
     id: page.id,
     showPresetPicker: page.showPresetPicker,
     showOperatorPreview: page.showOperatorPreview,
+    variantPicker: page.variantPicker ?? "auto",
     defaultPresetId: page.defaultPresetId,
     defaultVariantId: page.defaultVariantId,
     presets: page.presetIds.flatMap(presetId => {

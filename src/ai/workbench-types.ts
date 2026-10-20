@@ -68,6 +68,8 @@ export interface VideoPreset {
   variants: VideoVariant[];
 }
 
+export type WorkbenchVariantPicker = "auto" | "tabs" | "cards" | "modal";
+
 export interface WorkbenchPageConfig {
   id: string;
   presetIds: string[];
@@ -77,6 +79,8 @@ export interface WorkbenchPageConfig {
   defaultVariantId: string;
   showPresetPicker: boolean;
   showOperatorPreview: boolean;
+  /** `modal` opens a template gallery; `cards` keeps inline tiles; `tabs` uses compact toggles. */
+  variantPicker?: WorkbenchVariantPicker;
 }
 
 export interface PublicWorkbenchVariant {
@@ -110,6 +114,7 @@ export interface PublicWorkbenchPage {
   id: string;
   showPresetPicker: boolean;
   showOperatorPreview: boolean;
+  variantPicker: WorkbenchVariantPicker;
   defaultPresetId: string;
   defaultVariantId: string;
   presets: PublicWorkbenchPreset[];

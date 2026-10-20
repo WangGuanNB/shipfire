@@ -600,10 +600,10 @@
       "type": "video-generator",
       "config": {
         "toolLayout": "split",
-        "workbench": "duo",
+        "workbench": "meme-duo-video",
         "inputModes": "reference",
         "sectionTitle": "上传照片生成视频",
-        "sectionLead": "上传两张人物照片后生成，成片带有模型生成的声音。需要更接近模板动作时，勾选高还原。",
+        "sectionLead": "先选择动作模板，再上传两张照片生成。每个模板都有独立的参照视频和提示词。",
         "tabTextToVideoLabel": "文生视频",
         "tabImageToVideoLabel": "图生视频",
         "textPromptPlaceholder": "描述你想生成的视频内容…",

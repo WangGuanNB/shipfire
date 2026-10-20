@@ -68,6 +68,7 @@ export default function VideoWorkbench({
   const [taskId, setTaskId] = useState<string | null>(null);
   const [taskTool, setTaskTool] = useState<string>("video-generator");
   const [showPricing, setShowPricing] = useState(false);
+  const [showTemplatePicker, setShowTemplatePicker] = useState(false);
   const [previewing, setPreviewing] = useState(false);
   const [requestPreview, setRequestPreview] = useState<{
     credits: number;
@@ -279,6 +280,25 @@ export default function VideoWorkbench({
   const standardVariant = preset.variants.find(item => item.strategy === "image-reference");
   const fidelityVariant = preset.variants.find(item => item.strategy === "video-reference");
   const fidelityToggle = !!standardVariant && !!fidelityVariant && preset.variants.length === 2;
+  const allVideoReference = preset.variants.every(item => item.strategy === "video-reference");
+  const useModalPicker = page.variantPicker === "modal" || (page.variantPicker !== "tabs" && page.variantPicker !== "cards" && allVideoReference);
+  const useInlineCardPicker = page.variantPicker === "cards";
+
+  function templatePreviewSrc(item: PublicWorkbenchVariant): string | undefined {
+    return item.operatorPreviews.find(preview => preview.kind === "video")?.src ?? item.examples[0]?.src;
+  }
+
+  function selectTemplate(item: PublicWorkbenchVariant) {
+    const kept = Object.fromEntries(Object.entries(images).filter(([slotId, photo]) => item.slots.some(slot => slot.id === slotId && slot.purpose === photo.purpose)));
+    applyVariant(preset!, item, kept);
+    setTaskId(null);
+    setShowTemplatePicker(false);
+  }
+
+  const sidePreviewSrc = result
+    ?? example?.src
+    ?? templatePreviewSrc(variant);
+  const selectedCredits = credits;
   return (
     <div className="w-full text-left">
       {(sectionTitle || sectionLead) && <header className="mx-auto mb-6 max-w-3xl space-y-2 text-center md:mb-8">
@@ -318,7 +338,75 @@ export default function VideoWorkbench({
                 </span>
               </label>
             )}
-            {!fidelityToggle && preset.variants.length > 1 && (
+            {!fidelityToggle && useModalPicker && (
+              <div className="space-y-2">
+                <p className="text-sm font-medium">{zh ? "模板" : "Template"}</p>
+                <div className="flex items-center gap-3 rounded-2xl border border-border bg-muted/20 p-3">
+                  <div className="relative h-20 w-14 shrink-0 overflow-hidden rounded-lg bg-muted">
+                    {templatePreviewSrc(variant)
+                      ? <GalleryVideo src={templatePreviewSrc(variant)!} label={variant.title[lang]} className="size-full object-cover" />
+                      : <div className="flex size-full items-center justify-center px-1 text-center text-[10px] text-muted-foreground">{variant.title[lang]}</div>}
+                  </div>
+                  <div className="min-w-0 flex-1 space-y-1">
+                    <p className="truncate text-sm font-semibold">{variant.title[lang]}</p>
+                    <p className="line-clamp-2 text-xs text-muted-foreground">{variant.description[lang]}</p>
+                    {selectedCredits !== undefined && (
+                      <p className="text-xs tabular-nums text-muted-foreground">
+                        {zh ? "约" : "From"} {selectedCredits} {zh ? "积分" : "credits"}
+                      </p>
+                    )}
+                  </div>
+                  {preset.variants.length > 1 && (
+                    <Button type="button" variant="outline" size="sm" className="shrink-0 rounded-full" disabled={busy} onClick={() => setShowTemplatePicker(true)}>
+                      <Icon name="RiAppsLine" className="mr-1 size-4" />
+                      {zh ? "更换" : "Change"}
+                    </Button>
+                  )}
+                </div>
+              </div>
+            )}
+            {!fidelityToggle && preset.variants.length > 1 && useInlineCardPicker && (
+              <div className="space-y-2">
+                <p className="text-sm font-medium">{zh ? "选择模板" : "Choose a template"}</p>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3" role="listbox" aria-label={zh ? "视频模板" : "Video templates"}>
+                  {preset.variants.map(item => {
+                    const itemCredits = item.credits[workbenchCreditKey(item.output.resolution, item.output.duration, item.output.audio)];
+                    const selected = item.id === variant.id;
+                    const previewSrc = templatePreviewSrc(item);
+                    return (
+                      <button
+                        type="button"
+                        key={item.id}
+                        role="option"
+                        aria-selected={selected}
+                        disabled={busy || !item.ready}
+                        onClick={() => selectTemplate(item)}
+                        className={cn(
+                          "overflow-hidden rounded-2xl border text-left transition-colors disabled:opacity-60",
+                          selected ? "border-primary ring-2 ring-primary/30" : "border-border hover:border-primary/40",
+                        )}
+                      >
+                        <div className="relative aspect-[9/16] bg-muted">
+                          {previewSrc
+                            ? <GalleryVideo src={previewSrc} label={item.title[lang]} className="size-full object-cover" />
+                            : <div className="flex size-full items-center justify-center px-2 text-center text-xs text-muted-foreground">{item.title[lang]}</div>}
+                          {itemCredits !== undefined && (
+                            <span className="absolute bottom-2 right-2 rounded-full bg-background/90 px-2 py-0.5 text-[11px] font-medium tabular-nums text-foreground shadow-sm">
+                              {itemCredits} {zh ? "积分" : "cr"}
+                            </span>
+                          )}
+                        </div>
+                        <div className="space-y-0.5 p-2.5">
+                          <p className="text-sm font-medium leading-tight">{item.title[lang]}</p>
+                          <p className="line-clamp-2 text-xs text-muted-foreground">{item.description[lang]}</p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+            {!fidelityToggle && preset.variants.length > 1 && !useModalPicker && !useInlineCardPicker && (
               <div className="grid grid-cols-2 gap-1 rounded-2xl bg-muted/50 p-1" role="group" aria-label={zh ? "生成方式" : "Generation option"}>
                 {preset.variants.map(item => {
                   const itemCredits = item.credits[workbenchCreditKey(item.output.resolution, item.output.duration, item.output.audio)];
@@ -443,7 +531,11 @@ export default function VideoWorkbench({
           </div>
           <div ref={previewRef} className="scroll-mt-20 space-y-3 md:scroll-mt-24">
             <div className={cn("overflow-hidden rounded-2xl bg-muted", frameClass(aspectRatio))}>
-              {result ? <video src={result} controls playsInline className="size-full object-contain" /> : example ? <GalleryVideo src={example.src} label={example.label[lang]} /> : <div className="flex h-full min-h-48 items-center justify-center px-4 text-center text-sm text-muted-foreground">{zh ? "生成结果会显示在这里" : "Your video will appear here"}</div>}
+              {sidePreviewSrc
+                ? result
+                  ? <video src={result} controls playsInline className="size-full object-contain" />
+                  : <GalleryVideo src={sidePreviewSrc} label={variant.title[lang]} />
+                : <div className="flex h-full min-h-48 items-center justify-center px-4 text-center text-sm text-muted-foreground">{zh ? "生成结果会显示在这里" : "Your video will appear here"}</div>}
             </div>
             {task?.error && <p className="text-sm text-destructive">{task.error}</p>}
           </div>
@@ -453,6 +545,71 @@ export default function VideoWorkbench({
         <DialogHeader><DialogTitle>{zh ? "需要更多积分" : "More credits needed"}</DialogTitle><DialogDescription>{zh ? "选择适合你的套餐。" : "Choose a plan to continue."}</DialogDescription></DialogHeader>
         {pricing && <Pricing pricing={pricing} embed />}
       </DialogContent></Dialog>
+      <Dialog open={showTemplatePicker} onOpenChange={setShowTemplatePicker}>
+        <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>{zh ? "选择模板" : "Choose a template"}</DialogTitle>
+            <DialogDescription>
+              {zh
+                ? "每个模板都有独立的参照视频、提示词和输出参数。选中后会自动应用到下方表单。"
+                : "Each template ships its own reference video, prompt and output settings. Your selection updates the form below."}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-2 sm:grid sm:grid-cols-2 sm:gap-3 lg:grid-cols-3" role="listbox" aria-label={zh ? "视频模板" : "Video templates"}>
+            {preset.variants.map(item => {
+              const itemCredits = item.credits[workbenchCreditKey(item.output.resolution, item.output.duration, item.output.audio)];
+              const selected = item.id === variant.id;
+              const previewSrc = templatePreviewSrc(item);
+              return (
+                <button
+                  type="button"
+                  key={item.id}
+                  role="option"
+                  aria-selected={selected}
+                  disabled={busy || !item.ready}
+                  onClick={() => selectTemplate(item)}
+                  className={cn(
+                    "flex gap-3 overflow-hidden rounded-2xl border p-2.5 text-left transition-colors disabled:opacity-60 sm:flex-col sm:gap-0 sm:p-0",
+                    selected ? "border-primary ring-2 ring-primary/30" : "border-border hover:border-primary/40",
+                  )}
+                >
+                  <div className="relative h-[84px] w-[60px] shrink-0 overflow-hidden rounded-lg bg-muted sm:aspect-[9/16] sm:h-auto sm:max-h-44 sm:w-full sm:rounded-none">
+                    {previewSrc
+                      ? <GalleryVideo src={previewSrc} label={item.title[lang]} className="size-full object-cover" />
+                      : <div className="flex size-full items-center justify-center px-1 text-center text-[10px] text-muted-foreground">{item.title[lang]}</div>}
+                    {selected && (
+                      <span className="absolute left-1 top-1 rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-medium text-primary-foreground sm:left-2 sm:top-2 sm:px-2 sm:text-[11px]">
+                        {zh ? "已选" : "Selected"}
+                      </span>
+                    )}
+                    {itemCredits !== undefined && (
+                      <span className="absolute bottom-1 right-1 hidden rounded-full bg-background/90 px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-foreground shadow-sm sm:inline sm:bottom-2 sm:right-2 sm:px-2 sm:text-[11px]">
+                        {itemCredits} {zh ? "积分" : "cr"}
+                      </span>
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1 space-y-1 py-0.5 sm:space-y-1.5 sm:p-3">
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="text-sm font-semibold leading-tight">{item.title[lang]}</p>
+                      {itemCredits !== undefined && (
+                        <span className="shrink-0 text-[11px] tabular-nums text-muted-foreground sm:hidden">
+                          {itemCredits} {zh ? "积分" : "cr"}
+                        </span>
+                      )}
+                    </div>
+                    <p className="line-clamp-2 text-xs text-muted-foreground">{item.description[lang]}</p>
+                    <div className="flex flex-wrap gap-1.5 text-[11px] text-muted-foreground">
+                      <span className="rounded-full bg-muted px-2 py-0.5">{item.output.duration}s</span>
+                      <span className="rounded-full bg-muted px-2 py-0.5">{item.output.resolution.toUpperCase()}</span>
+                      <span className="rounded-full bg-muted px-2 py-0.5">{item.output.aspectRatio}</span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

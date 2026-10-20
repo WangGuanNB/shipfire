@@ -569,10 +569,10 @@
       "type": "video-generator",
       "config": {
         "toolLayout": "split",
-        "workbench": "duo",
+        "workbench": "meme-duo-video",
         "inputModes": "reference",
         "sectionTitle": "Generate from your photos",
-        "sectionLead": "Upload two photos. The result includes model-generated sound. Turn on higher fidelity to follow the template motion.",
+        "sectionLead": "Pick a motion template, upload two photos, and generate. Each template ships its own reference video and prompt.",
         "tabTextToVideoLabel": "Text to Video",
         "tabImageToVideoLabel": "Image to Video",
         "textPromptPlaceholder": "Describe the content you want to create...",

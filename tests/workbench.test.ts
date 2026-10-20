@@ -220,6 +220,47 @@ test("image reference adapter omits video fields", async () => {
   } finally { globalThis.fetch = original; restore(); }
 });
 
+test("meme duo video page exposes multiple motion templates with card picker", () => {
+  const restore = restoreUpload();
+  try {
+    const page = publicWorkbench("meme-duo-video");
+    assert.equal(page?.variantPicker, "modal");
+    assert.equal(page?.presets.length, 1);
+    assert.deepEqual(page?.presets[0].variants.map(item => item.id), [
+      "template-original",
+      "template-remix",
+      "template-slow",
+    ]);
+    assert.equal(page?.defaultVariantId, "template-original");
+    const videoModel = resolveTool("reference-video", "seedance-2-reference").model;
+    const original = validateWorkbenchInput({
+      presetId: "meme-duo-video",
+      presetVersion: "1",
+      variantId: "template-original",
+      pricingVersion: "1",
+      consent: true,
+      resolution: "720p",
+      duration: 4,
+      images: photos(),
+    }, videoModel, "reference-video");
+    const remix = validateWorkbenchInput({
+      presetId: "meme-duo-video",
+      presetVersion: "1",
+      variantId: "template-remix",
+      pricingVersion: "1",
+      consent: true,
+      resolution: "720p",
+      duration: 4,
+      images: photos(),
+    }, videoModel, "reference-video");
+    assert.equal(original.referenceVideoUrl, "https://media.example.test/owned-motion.mp4");
+    assert.equal(remix.referenceVideoUrl, "https://cdn.shipstart.net/shipfire/index/examples/example-2.mp4");
+    assert.notEqual(original.referenceVideoUrl, remix.referenceVideoUrl);
+    assert.equal(page?.presets[0].variants.every(item => item.strategy === "video-reference"), true);
+    assert.equal(page?.presets[0].variants.every(item => item.ready), true);
+  } finally { restore(); }
+});
+
 test("image reference enforce mode cannot skip review when the key is missing", async () => {
   const restore = env({ CONTENT_MODERATION_MODE: "enforce", SEEAPI_API_KEY: undefined });
   try {

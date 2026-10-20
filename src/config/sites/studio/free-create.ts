@@ -1,0 +1,65 @@
+import type { VideoPreset } from "@/ai/workbench-types";
+import { BASIC_RETAIL } from "../shared/pricing";
+
+export const freeCreatePreset: VideoPreset = {
+  id: "free-create",
+  version: "1",
+  enabled: true,
+  title: { en: "Free create", zh: "自由生成" },
+  description: {
+    en: "Describe a clip, or animate one uploaded photo as the opening frame.",
+    zh: "用文字生成，或上传一张照片作为开头画面。",
+  },
+  defaultVariantId: "text",
+  variants: [
+    {
+      id: "text",
+      enabled: true,
+      title: { en: "Text to video", zh: "文生视频" },
+      description: { en: "Generate from a prompt only.", zh: "只根据提示词生成。" },
+      strategy: "text",
+      toolId: "video-generator",
+      modelId: "basic",
+      inputSlots: [],
+      operatorAssets: [],
+      promptPolicy: { mode: "editable", instruction: "", showInstruction: false },
+      output: {
+        duration: 5, durations: [5, 8, 10],
+        resolution: "720p", resolutions: ["480p", "720p", "1080p"],
+        aspectRatio: "9:16", aspectRatios: ["16:9", "9:16", "1:1"],
+        audio: "off", audioOptions: ["off"],
+      },
+      retailPricing: BASIC_RETAIL,
+      pricingVersion: "1",
+      examples: [],
+    },
+    {
+      id: "first-frame",
+      enabled: true,
+      title: { en: "Image to video", zh: "图生视频" },
+      description: { en: "One photo becomes the opening frame.", zh: "一张照片作为视频的第一帧。" },
+      strategy: "first-frame",
+      toolId: "video-generator",
+      modelId: "basic",
+      inputSlots: [{
+        id: "frame",
+        purpose: "first-frame",
+        label: { en: "Opening photo", zh: "开头照片" },
+        description: { en: "This photo is the first frame, not a character reference.", zh: "这张照片是第一帧，不是人物参考。" },
+        required: true,
+        maxCount: 1,
+      }],
+      operatorAssets: [],
+      promptPolicy: { mode: "editable", instruction: "", showInstruction: false },
+      output: {
+        duration: 5, durations: [5, 8, 10],
+        resolution: "720p", resolutions: ["480p", "720p", "1080p"],
+        aspectRatio: "9:16", aspectRatios: ["16:9", "9:16", "1:1"],
+        audio: "off", audioOptions: ["off"],
+      },
+      retailPricing: BASIC_RETAIL,
+      pricingVersion: "1",
+      examples: [],
+    },
+  ],
+};
