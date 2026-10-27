@@ -11,14 +11,55 @@
     ]
   },
   "modules": [
-    { "id": "hero", "type": "hero", "source": "hero", "tool": "primary", "surface": "default" },
-    { "id": "introduce", "type": "intro", "source": "introduce", "surface": "default" },
-    { "id": "usage", "type": "steps", "source": "usage", "surface": "default" },
-    { "id": "feature", "type": "features", "source": "feature", "surface": "default" },
-    { "id": "benefit", "type": "benefits", "source": "benefit", "surface": "default" },
-    { "id": "cost", "type": "content", "source": "cost", "surface": "default" },
-    { "id": "faq", "type": "faq", "source": "faq", "surface": "default" },
-    { "id": "cta", "type": "cta", "source": "cta", "surface": "default" }
+    {
+      "id": "hero",
+      "type": "hero",
+      "source": "hero",
+      "tool": "primary",
+      "surface": "default"
+    },
+    {
+      "id": "introduce",
+      "type": "intro",
+      "source": "introduce",
+      "surface": "default"
+    },
+    {
+      "id": "usage",
+      "type": "steps",
+      "source": "usage",
+      "surface": "default"
+    },
+    {
+      "id": "feature",
+      "type": "features",
+      "source": "feature",
+      "surface": "default"
+    },
+    {
+      "id": "benefit",
+      "type": "benefits",
+      "source": "benefit",
+      "surface": "default"
+    },
+    {
+      "id": "cost",
+      "type": "content",
+      "source": "cost",
+      "surface": "default"
+    },
+    {
+      "id": "faq",
+      "type": "faq",
+      "source": "faq",
+      "surface": "default"
+    },
+    {
+      "id": "cta",
+      "type": "cta",
+      "source": "cta",
+      "surface": "default"
+    }
   ],
   "hero": {
     "name": "hero",
@@ -33,6 +74,17 @@
     "announcement": {
       "label": "免费开始",
       "title": "注册即送 20 积分，无需绑卡"
+    },
+    "media_side": "right",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
+    "preview": {
+      "assetId": "hero",
+      "badge": "",
+      "caption": "效果示例，生成结果将显示在工具下方。"
     }
   },
   "tools": {
@@ -51,13 +103,20 @@
         "modelPlaceholder": "模型",
         "createButtonText": "生成",
         "generatingText": "生成中…",
+        "generatingHint": "通常需要 2–5 分钟，请保持此页面打开。",
+        "progressUploading": "正在上传图片…",
+        "progressQueued": "任务排队中…",
+        "progressStarting": "正在提交任务…",
+        "progressGenerating": "正在生成视频…",
         "randomPromptTooltip": "随机示例提示词",
         "resetTooltip": "清空",
         "creditsLowPrefix": "仅剩",
         "creditsLowMiddle": "积分，本次需要",
         "topUpLabel": "充值",
         "insufficientTitle": "需要更多积分",
-        "insufficientDescription": "选择适合你的套餐以继续生成视频。"
+        "insufficientDescription": "选择适合你的套餐以继续生成视频。",
+        "workbench": "studio",
+        "toolLayout": "hero"
       }
     }
   },
@@ -85,13 +144,41 @@
     "title": "能力与使用预期",
     "description": "视频为异步任务，发布前请预留时间检查成片。",
     "items": [
-      { "title": "文生视频", "description": "用自然语言描述运动、镜头和光线。", "icon": "RiZapLine" },
-      { "title": "图生视频", "description": "上传静态图作为画面起点。", "icon": "RiImageLine" },
-      { "title": "多模型选择", "description": "可选 Basic、Seedance 2 Fast、Seedance 2 或 Wan 2.6，不同模型积分费率不同。", "icon": "RiCpuLine" },
-      { "title": "分辨率与时长", "description": "可选 480p–1080p 与片段长度，越长消耗越多积分。", "icon": "RiHdLine" },
-      { "title": "任务历史", "description": "工具下方显示近期任务状态与下载链接。", "icon": "RiHistoryLine" },
-      { "title": "积分预估", "description": "提交前显示费用；失败任务在确认后会释放预占积分。", "icon": "RiCopperCoinLine" },
-      { "title": "发布前检查", "description": "商用前请检查画面、文字与相关权利。", "icon": "RiSearchEyeLine" }
+      {
+        "title": "文生视频",
+        "description": "用自然语言描述运动、镜头和光线。",
+        "icon": "RiZapLine"
+      },
+      {
+        "title": "图生视频",
+        "description": "上传静态图作为画面起点。",
+        "icon": "RiImageLine"
+      },
+      {
+        "title": "多模型选择",
+        "description": "可选 Basic、Seedance 2 Fast、Seedance 2 或 Wan 2.6，不同模型积分费率不同。",
+        "icon": "RiCpuLine"
+      },
+      {
+        "title": "分辨率与时长",
+        "description": "可选 480p–1080p 与片段长度，越长消耗越多积分。",
+        "icon": "RiHdLine"
+      },
+      {
+        "title": "任务历史",
+        "description": "工具下方显示近期任务状态与下载链接。",
+        "icon": "RiHistoryLine"
+      },
+      {
+        "title": "积分预估",
+        "description": "提交前显示费用；失败任务在确认后会释放预占积分。",
+        "icon": "RiCopperCoinLine"
+      },
+      {
+        "title": "发布前检查",
+        "description": "商用前请检查画面、文字与相关权利。",
+        "icon": "RiSearchEyeLine"
+      }
     ]
   },
   "faq": {
@@ -128,7 +215,13 @@
         "Create 按钮会显示本次预估积分；失败任务会退还已预留积分。",
         "余额不足时可通过弹窗或定价页购买套餐。"
       ],
-      "buttons": [{ "title": "查看定价", "url": "/pricing/", "variant": "outline" }]
+      "buttons": [
+        {
+          "title": "查看定价",
+          "url": "/pricing/",
+          "variant": "outline"
+        }
+      ]
     }
   },
   "introduce": {
@@ -136,22 +229,45 @@
     "label": "功能",
     "title": "面向短视频草稿的 AI 工具",
     "description": "克隆视频站时，以本页 hero 工具区为参考实现。",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
     "items": [
       {
         "title": "提示词驱动",
         "label": "创作",
         "description": "从文字或参考帧开始，在多次生成之间调整运动与镜头描述。",
         "icon": "RiMagicLine",
-        "image": { "src": "/imgs/features/2.webp", "alt": "AI 视频生成流程" },
-        "buttons": [{ "title": "试用工具", "url": "#hero-tool", "variant": "default" }]
+        "image": {
+          "src": "/imgs/features/2.webp",
+          "alt": "AI 视频生成流程"
+        },
+        "buttons": [
+          {
+            "title": "试用工具",
+            "url": "#hero-tool",
+            "variant": "default"
+          }
+        ]
       },
       {
         "title": "异步任务管线",
         "label": "流程",
         "description": "任务在后台运行，状态显示在任务历史中，不会长时间阻塞整页请求。",
         "icon": "RiMovieLine",
-        "image": { "src": "/imgs/features/3.webp", "alt": "异步视频任务" },
-        "buttons": [{ "title": "打开工具", "url": "#hero-tool", "variant": "default" }]
+        "image": {
+          "src": "/imgs/features/3.webp",
+          "alt": "异步视频任务"
+        },
+        "buttons": [
+          {
+            "title": "打开工具",
+            "url": "#hero-tool",
+            "variant": "default"
+          }
+        ]
       }
     ]
   },
@@ -160,20 +276,43 @@
     "label": "适用场景",
     "title": "视频工具适合做什么",
     "description": "具体任务场景，而非空泛卖点。",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
     "items": [
       {
         "title": "社媒预告",
         "description": "在正式拍摄前快速验证产品动效概念。",
         "icon": "RiShareLine",
-        "image": { "src": "/imgs/features/1.webp", "alt": "社媒视频场景" },
-        "buttons": [{ "title": "开始写提示词", "url": "#hero-tool", "variant": "default" }]
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "社媒视频场景"
+        },
+        "buttons": [
+          {
+            "title": "开始写提示词",
+            "url": "#hero-tool",
+            "variant": "default"
+          }
+        ]
       },
       {
         "title": "分镜动效",
         "description": "把静帧变成运动画面，便于团队对齐方向。",
         "icon": "RiFilmLine",
-        "image": { "src": "/imgs/features/4.webp", "alt": "分镜动效场景" },
-        "buttons": [{ "title": "试试图生视频", "url": "#hero-tool", "variant": "default" }]
+        "image": {
+          "src": "/imgs/features/4.webp",
+          "alt": "分镜动效场景"
+        },
+        "buttons": [
+          {
+            "title": "试试图生视频",
+            "url": "#hero-tool",
+            "variant": "default"
+          }
+        ]
       }
     ]
   },
@@ -182,8 +321,17 @@
     "title": "准备好生成视频了吗？",
     "description": "返回工具区，确认积分，并保持页面打开直至任务完成。",
     "buttons": [
-      { "title": "返回工具", "url": "#hero-tool", "variant": "default", "icon": "RiMovieLine" },
-      { "title": "查看定价", "url": "/pricing/", "variant": "outline" }
+      {
+        "title": "返回工具",
+        "url": "#hero-tool",
+        "variant": "default",
+        "icon": "RiMovieLine"
+      },
+      {
+        "title": "查看定价",
+        "url": "/pricing/",
+        "variant": "outline"
+      }
     ]
   }
 }

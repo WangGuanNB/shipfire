@@ -3,7 +3,7 @@ import type { LocalizedCopy } from "./reference-video-types";
 /** Internal generation strategies. Old task rows keep their existing mode values. */
 export type GenerationStrategy = "text" | "first-frame" | "image-reference" | "video-reference";
 export type PromptPolicyMode = "editable" | "prefilled" | "append" | "locked";
-export type WorkbenchAudio = "off" | "generated";
+export type WorkbenchAudio = "off" | "generated" | "template";
 
 export interface WorkbenchSlot {
   id: string;
@@ -40,7 +40,7 @@ export interface VideoVariant {
   inputSlots: WorkbenchSlot[];
   operatorAssets: OperatorAsset[];
   /** `instruction` stays on the server. `defaultPrompt` is the text shown in the box. */
-  promptPolicy: { mode: PromptPolicyMode; instruction: string; showInstruction: boolean };
+  promptPolicy: { mode: PromptPolicyMode; instruction: string; showInstruction: boolean; source?: "preset" | "legacy-duo" };
   defaultPrompt?: LocalizedCopy;
   output: {
     duration: number;
@@ -79,6 +79,8 @@ export interface WorkbenchPageConfig {
   defaultVariantId: string;
   showPresetPicker: boolean;
   showOperatorPreview: boolean;
+  /** Operator-only request preview is opt-in; ordinary users see a simple generation flow. */
+  showRequestPreview?: boolean;
   /** `modal` opens a template gallery; `cards` keeps inline tiles; `tabs` uses compact toggles. */
   variantPicker?: WorkbenchVariantPicker;
 }
@@ -94,6 +96,7 @@ export interface PublicWorkbenchVariant {
   slots: { id: string; purpose: WorkbenchSlot["purpose"]; label: LocalizedCopy; description: LocalizedCopy; required: boolean }[];
   operatorPreviews: { id: string; kind: OperatorAsset["kind"]; label: LocalizedCopy; src: string }[];
   promptMode: PromptPolicyMode;
+  promptSource?: "preset" | "legacy-duo";
   defaultPrompt?: LocalizedCopy;
   output: VideoVariant["output"];
   credits: Record<string, number>;
@@ -114,6 +117,8 @@ export interface PublicWorkbenchPage {
   id: string;
   showPresetPicker: boolean;
   showOperatorPreview: boolean;
+  /** Operator-only request preview is opt-in; ordinary users see a simple generation flow. */
+  showRequestPreview?: boolean;
   variantPicker: WorkbenchVariantPicker;
   defaultPresetId: string;
   defaultVariantId: string;

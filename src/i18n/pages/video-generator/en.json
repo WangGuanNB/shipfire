@@ -11,14 +11,55 @@
     ]
   },
   "modules": [
-    { "id": "hero", "type": "hero", "source": "hero", "tool": "primary", "surface": "default" },
-    { "id": "introduce", "type": "intro", "source": "introduce", "surface": "default" },
-    { "id": "usage", "type": "steps", "source": "usage", "surface": "default" },
-    { "id": "feature", "type": "features", "source": "feature", "surface": "default" },
-    { "id": "benefit", "type": "benefits", "source": "benefit", "surface": "default" },
-    { "id": "cost", "type": "content", "source": "cost", "surface": "default" },
-    { "id": "faq", "type": "faq", "source": "faq", "surface": "default" },
-    { "id": "cta", "type": "cta", "source": "cta", "surface": "default" }
+    {
+      "id": "hero",
+      "type": "hero",
+      "source": "hero",
+      "tool": "primary",
+      "surface": "default"
+    },
+    {
+      "id": "introduce",
+      "type": "intro",
+      "source": "introduce",
+      "surface": "default"
+    },
+    {
+      "id": "usage",
+      "type": "steps",
+      "source": "usage",
+      "surface": "default"
+    },
+    {
+      "id": "feature",
+      "type": "features",
+      "source": "feature",
+      "surface": "default"
+    },
+    {
+      "id": "benefit",
+      "type": "benefits",
+      "source": "benefit",
+      "surface": "default"
+    },
+    {
+      "id": "cost",
+      "type": "content",
+      "source": "cost",
+      "surface": "default"
+    },
+    {
+      "id": "faq",
+      "type": "faq",
+      "source": "faq",
+      "surface": "default"
+    },
+    {
+      "id": "cta",
+      "type": "cta",
+      "source": "cta",
+      "surface": "default"
+    }
   ],
   "hero": {
     "name": "hero",
@@ -33,6 +74,17 @@
     "announcement": {
       "label": "Free to start",
       "title": "Sign up for 20 credits — no card required"
+    },
+    "media_side": "right",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
+    "preview": {
+      "assetId": "hero",
+      "badge": "",
+      "caption": "Example only. Your result appears below the tool."
     }
   },
   "tools": {
@@ -51,13 +103,20 @@
         "modelPlaceholder": "Model",
         "createButtonText": "Create",
         "generatingText": "Creating...",
+        "generatingHint": "This usually takes 2–5 minutes. Please keep this tab open.",
+        "progressUploading": "Uploading image…",
+        "progressQueued": "Waiting in queue…",
+        "progressStarting": "Preparing your request…",
+        "progressGenerating": "Generating your video…",
         "randomPromptTooltip": "Use a random example prompt",
         "resetTooltip": "Clear input",
         "creditsLowPrefix": "Only",
         "creditsLowMiddle": "credits left — this generation needs",
         "topUpLabel": "Top up",
         "insufficientTitle": "More credits needed",
-        "insufficientDescription": "Choose a credit package to continue generating AI videos."
+        "insufficientDescription": "Choose a credit package to continue generating AI videos.",
+        "workbench": "studio",
+        "toolLayout": "hero"
       }
     }
   },
@@ -170,22 +229,45 @@
     "label": "FEATURES",
     "title": "Built for short AI video drafts",
     "description": "Use the hero tool above as the reference implementation when cloning a video-first site.",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
     "items": [
       {
         "title": "Prompt-driven clips",
         "label": "Create",
         "description": "Start from text or a reference frame. Iterate on motion and camera notes between runs.",
         "icon": "RiMagicLine",
-        "image": { "src": "/imgs/features/2.webp", "alt": "AI video generation workflow" },
-        "buttons": [{ "title": "Try the tool", "url": "#hero-tool", "variant": "default" }]
+        "image": {
+          "src": "/imgs/features/2.webp",
+          "alt": "AI video generation workflow"
+        },
+        "buttons": [
+          {
+            "title": "Try the tool",
+            "url": "#hero-tool",
+            "variant": "default"
+          }
+        ]
       },
       {
         "title": "Provider-backed rendering",
         "label": "Pipeline",
         "description": "Jobs run asynchronously with status in task history—no blocking the whole page on one request.",
         "icon": "RiMovieLine",
-        "image": { "src": "/imgs/features/3.webp", "alt": "Async video task pipeline" },
-        "buttons": [{ "title": "Open tool", "url": "#hero-tool", "variant": "default" }]
+        "image": {
+          "src": "/imgs/features/3.webp",
+          "alt": "Async video task pipeline"
+        },
+        "buttons": [
+          {
+            "title": "Open tool",
+            "url": "#hero-tool",
+            "variant": "default"
+          }
+        ]
       }
     ]
   },
@@ -194,20 +276,43 @@
     "label": "USE CASES",
     "title": "Where a video tool fits",
     "description": "Concrete scenarios for short-form clips—not generic marketing claims.",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
     "items": [
       {
         "title": "Social teasers",
         "description": "Draft motion concepts for product launches before a full shoot.",
         "icon": "RiShareLine",
-        "image": { "src": "/imgs/features/1.webp", "alt": "Social video teaser use case" },
-        "buttons": [{ "title": "Start a prompt", "url": "#hero-tool", "variant": "default" }]
+        "image": {
+          "src": "/imgs/features/1.webp",
+          "alt": "Social video teaser use case"
+        },
+        "buttons": [
+          {
+            "title": "Start a prompt",
+            "url": "#hero-tool",
+            "variant": "default"
+          }
+        ]
       },
       {
         "title": "Storyboard motion",
         "description": "Turn a still frame into movement to align stakeholders quickly.",
         "icon": "RiFilmLine",
-        "image": { "src": "/imgs/features/4.webp", "alt": "Storyboard motion use case" },
-        "buttons": [{ "title": "Try image to video", "url": "#hero-tool", "variant": "default" }]
+        "image": {
+          "src": "/imgs/features/4.webp",
+          "alt": "Storyboard motion use case"
+        },
+        "buttons": [
+          {
+            "title": "Try image to video",
+            "url": "#hero-tool",
+            "variant": "default"
+          }
+        ]
       }
     ]
   },
@@ -216,8 +321,17 @@
     "title": "Ready to generate a video?",
     "description": "Return to the tool, check your credits, and keep the page open until the job completes.",
     "buttons": [
-      { "title": "Back to the tool", "url": "#hero-tool", "variant": "default", "icon": "RiMovieLine" },
-      { "title": "View pricing", "url": "/pricing/", "variant": "outline" }
+      {
+        "title": "Back to the tool",
+        "url": "#hero-tool",
+        "variant": "default",
+        "icon": "RiMovieLine"
+      },
+      {
+        "title": "View pricing",
+        "url": "/pricing/",
+        "variant": "outline"
+      }
     ]
   }
 }

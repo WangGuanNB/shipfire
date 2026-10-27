@@ -4,11 +4,11 @@
   "private": true,
   "author": "banner",
   "scripts": {
-    "dev": "cross-env NODE_NO_WARNINGS=1 next dev --turbopack",
-    "dev:proxy": "cross-env GLOBAL_AGENT_HTTP_PROXY=http://127.0.0.1:7889 GLOBAL_AGENT_HTTPS_PROXY=http://127.0.0.1:7889 GLOBAL_AGENT_NO_PROXY=localhost,127.0.0.1 NODE_NO_WARNINGS=1 next dev --turbopack",
+    "dev": "node scripts/load-wrangler-env.js next dev --turbopack",
+    "dev:proxy": "cross-env GLOBAL_AGENT_HTTP_PROXY=http://127.0.0.1:7889 GLOBAL_AGENT_HTTPS_PROXY=http://127.0.0.1:7889 GLOBAL_AGENT_NO_PROXY=localhost,127.0.0.1 NODE_NO_WARNINGS=1 node scripts/load-wrangler-env.js next dev --turbopack",
     "dev:remote": "pnpm run cf:build && ./node_modules/.bin/wrangler dev --remote",
-    "build": "node scripts/load-wrangler-env.js next build",
-    "cf:build": "node scripts/load-wrangler-env.js next build && pnpm exec opennextjs-cloudflare build",
+    "build": "pnpm run check:template && node scripts/load-wrangler-env.js next build",
+    "cf:build": "pnpm run build && pnpm exec opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion",
     "cf:deploy": "pnpm run cf:build && npx wrangler deploy",
     "start": "NODE_NO_WARNINGS=1 next start",
     "lint": "next lint",
@@ -18,7 +18,9 @@
     "db:migrate": "npx drizzle-kit migrate --config=src/db/config.ts",
     "db:studio": "npx drizzle-kit studio --config=src/db/config.ts",
     "db:push": "npx drizzle-kit push --config=src/db/config.ts",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "fumadocs-mdx",
+    "check:template": "node --import tsx scripts/check-template.ts",
+    "test": "node --import tsx --test tests/*.test.ts tests/*.test.tsx"
   },
   "dependencies": {
     "@ai-sdk/deepseek": "^0.1.11",

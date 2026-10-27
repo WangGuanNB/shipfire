@@ -6,7 +6,7 @@ import type { Hero as HeroType } from "@/types/blocks/hero";
 import { cn } from "@/lib/utils";
 import { LANDING_TOOL_OPEN_EVENT, useLandingToolActions } from "@/components/landing/interactions";
 
-const serif = 'Georgia, "Times New Roman", Times, serif';
+const serif = "var(--font-serif)";
 
 type Workflow = NonNullable<HeroType["workflows"]>[number];
 
@@ -54,7 +54,7 @@ function WorkflowCard({
             <div className="flex h-[64px] w-[46px] items-center justify-center rounded-lg border border-dashed border-border bg-muted/30 sm:h-[88px] sm:w-[62px]">
               <Video className="size-5 text-muted-foreground/70" />
             </div>
-            <ArrowRight className="size-4 shrink-0 text-[#E8B923]" strokeWidth={2.5} />
+            <ArrowRight className="size-4 shrink-0 text-primary" strokeWidth={2.5} />
             <div className="h-[64px] w-[46px] overflow-hidden rounded-lg border border-border/70 bg-muted sm:h-[88px] sm:w-[62px]">
               {workflow.afterImage ? (
                 <img src={workflow.afterImage} alt="" className="h-full w-full object-cover" />
@@ -80,7 +80,7 @@ function WorkflowCard({
                 </div>
               )}
             </div>
-            <ArrowRight className="size-4 shrink-0 text-[#E8B923]" strokeWidth={2.5} />
+            <ArrowRight className="size-4 shrink-0 text-primary" strokeWidth={2.5} />
             <div className="h-[64px] w-[46px] overflow-hidden rounded-lg border border-border/70 bg-muted sm:h-[88px] sm:w-[62px]">
               {workflow.afterImage ? (
                 <img
@@ -127,7 +127,7 @@ function WorkflowCard({
           "col-span-2 inline-flex w-full shrink-0 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-colors sm:w-auto sm:min-w-[120px] sm:py-2.5",
           isPlaceholder
             ? "cursor-not-allowed bg-muted text-muted-foreground"
-            : "bg-[#F4C542] text-black hover:bg-[#e8b923]",
+            : "bg-primary text-primary-foreground hover:bg-primary/90",
         )}
       >
         {isPlaceholder ? "Soon" : actionLabel}
@@ -202,7 +202,7 @@ function TitleMark({ mark }: { mark: string }) {
   return (
     <span className="relative mx-1 inline-block whitespace-nowrap">
       <span
-        className="absolute -inset-x-1 bottom-1 top-[42%] -skew-y-1 rounded-sm bg-[#F5D565]/90 max-lg:bottom-0.5 max-lg:top-[68%]"
+        className="absolute -inset-x-1 bottom-1 top-[42%] -skew-y-1 rounded-sm bg-[var(--hero-mark)]/90 max-lg:bottom-0.5 max-lg:top-[68%]"
         aria-hidden
       />
       <span className="relative">{mark}</span>
@@ -272,7 +272,7 @@ export function JeanPhilSplitHero({
             <div className="space-y-6 max-lg:z-10 max-lg:col-start-1 max-lg:row-start-1 max-lg:self-end max-lg:px-5 max-lg:pb-5 lg:space-y-6">
               {hero.announcement?.label && (
                 <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground max-lg:hidden lg:text-[0.8125rem]">
-                  <span className="inline-block h-px w-6 bg-[#F4C542] lg:w-8" aria-hidden />
+                  <span className="inline-block h-px w-6 bg-primary lg:w-8" aria-hidden />
                   {hero.announcement.label}
                 </p>
               )}
@@ -295,7 +295,7 @@ export function JeanPhilSplitHero({
 
                 {hero.highlight_text && (
                   <p
-                    className="text-lg italic leading-snug text-foreground/90 max-lg:text-[#F5D565] max-lg:drop-shadow sm:text-2xl lg:text-[1.65rem] lg:leading-snug xl:text-[1.75rem]"
+                    className="text-lg italic leading-snug text-foreground/90 max-lg:text-[var(--hero-mark)] max-lg:drop-shadow sm:text-2xl lg:text-[1.65rem] lg:leading-snug xl:text-[1.75rem]"
                     style={{ fontFamily: serif }}
                   >
                     {hero.highlight_text}
@@ -360,7 +360,7 @@ export function JeanPhilSplitHero({
                     <button
                       type="button"
                       onClick={handlePrimaryAction}
-                      className="absolute bottom-3 left-1/2 max-w-[92%] -translate-x-1/2 rounded-full bg-[#F4C542] px-3 py-1.5 text-center text-[10px] font-semibold text-black shadow-md transition-colors hover:bg-[#e8b923] max-lg:bottom-auto max-lg:left-auto max-lg:right-3 max-lg:top-3 max-lg:translate-x-0 max-lg:px-4 max-lg:py-2 max-lg:text-sm lg:text-xs"
+                      className="absolute bottom-3 left-1/2 max-w-[92%] -translate-x-1/2 rounded-full bg-primary px-3 py-1.5 text-center text-[10px] font-semibold text-primary-foreground shadow-md transition-colors hover:bg-primary/90 max-lg:bottom-auto max-lg:left-auto max-lg:right-3 max-lg:top-3 max-lg:translate-x-0 max-lg:px-4 max-lg:py-2 max-lg:text-sm lg:text-xs"
                     >
                       {preview.overlayCta}
                     </button>

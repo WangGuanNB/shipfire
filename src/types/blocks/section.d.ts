@@ -9,7 +9,8 @@ export interface SectionItem {
   image?: Image;
   /** Showcase clip. Path comes from landing JSON, for example `/video/hero.mp4`. */
   video?: {
-    src: string;
+    src?: string;
+    assetId?: string;
     poster?: string;
     title?: string;
   };
@@ -29,6 +30,7 @@ export interface SectionItem {
 export interface Section {
   /** Opt in only when items contain genuine ratings for this product. */
   review_schema?: { product_name: string; description?: string };
+  media_frame?: import("@/lib/media-frame").MediaFrameConfig;
   disabled?: boolean;
   name?: string;
   title?: string;

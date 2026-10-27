@@ -128,12 +128,15 @@ page_strategy:
   # ShipFire JSON 页面区块结构（build 时克隆，只改文案）
   page_patterns:
     homepage_landing:
+      tool_placement: "hero"
+      result_placement: "below-hero-grid"
+      media_manifest: "src/config/public-media.ts"
       description: "主落地页 src/i18n/pages/landing/{locale}.json"
       route: "src/app/[locale]/(default)/page.tsx"
       json_sections:
         - header
         - hero
-        - generator
+        - tools
         - branding
         - introduce
         - benefit
@@ -145,7 +148,7 @@ page_strategy:
         - footer
       components:
         - Hero
-        - GeneratorSection
+        - HeroEmbeddedTool
         - FeatureWhatTwo
         - Feature
         - Feature2
@@ -168,8 +171,8 @@ page_strategy:
         - faq
         - cta
       components:
-        - Hero_or_custom_hero
-        - ImageGeneratorTool_or_domain_tool
+        - HeroWithEmbeddedTool
+        - ToolResultOutlet
         - FeatureWhatTwo
         - Feature
         - Feature2
@@ -193,6 +196,13 @@ page_strategy:
         - description
         - keywords
       hero_variant: "tool"
+      tool_placement: "hero"
+      hero_media_side: "left"
+      media_heights:
+        hero: { desktop: 480, mobile: 280 }
+        examples: { desktop: 260, mobile: 220 }
+      result_placement: "below-hero-grid"
+      reference_media_manifest: "src/config/public-media.ts"
       structured_data:
         - SoftwareApplication
         - BreadcrumbList

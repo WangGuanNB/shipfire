@@ -5,6 +5,7 @@ import { useLocale } from "next-intl";
 import { useAppContext } from "@/contexts/app";
 import { useAITasks, TaskRequestError } from "@/hooks/use-ai-tasks";
 import VideoGenerationProgress from "./video-generation-progress";
+import { videoWaitCopy } from "@/lib/video-generation-wait";
 import ToolHistoryLink from "./tool-history-link";
 import type { TaskStatus } from "@/ai/types";
 import type { ToolModel, MediaModel } from "@/ai/types";
@@ -78,6 +79,7 @@ export default function VideoTool({
 }) {
   const locale = useLocale();
   const zh = locale === "zh";
+  const wait = videoWaitCopy(zh);
   const { user, setShowSignModal, fetchUserInfo } = useAppContext();
   const { tasks, submit, submitting } = useAITasks("video-generator", user?.uuid);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -174,15 +176,12 @@ export default function VideoTool({
     (!!resultTaskId && (isBusy || !!displayVideoUrl || resultTask?.status === "failed"));
   const progressMessage =
     uploading
-      ? copy("progressUploading", zh ? "正在上传图片…" : "Uploading image...")
+      ? copy("progressUploading", wait.uploading)
       : activeStatus === "queued"
-        ? copy("progressQueued", zh ? "任务排队中…" : "Waiting in queue...")
+        ? copy("progressQueued", wait.queued)
         : activeStatus === "submitting"
-          ? copy("progressStarting", zh ? "正在提交任务…" : "Preparing your video request...")
-          : copy(
-              "progressGenerating",
-              zh ? "正在生成视频，通常需要 1–3 分钟…" : "Generating video — this may take 1–3 minutes..."
-            );
+          ? copy("progressStarting", wait.submitting)
+          : copy("progressGenerating", wait.generating);
 
   useEffect(() => {
     fetchUserInfo();
@@ -711,10 +710,7 @@ export default function VideoTool({
       uploading={uploading}
       imageMode={inputMode === "image"}
       message={progressMessage}
-      hint={copy(
-        "generatingHint",
-        zh ? "通常需要 1–3 分钟，请保持此页面打开。" : "This usually takes 1–3 minutes. Please keep this tab open."
-      )}
+      hint={copy("generatingHint", wait.hintKeepOpen)}
       labels={{
         upload: copy("stepUpload", zh ? "上传" : "Upload"),
         submit: copy("stepSubmit", zh ? "提交" : "Submit"),

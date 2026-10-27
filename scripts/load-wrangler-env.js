@@ -65,20 +65,14 @@ const vars = wranglerConfig.vars || {};
 // 设置所有变量到 process.env（包括 NEXT_PUBLIC_* 和其他变量）
 Object.entries(vars).forEach(([key, value]) => {
   // 将所有变量设置为环境变量（字符串格式）
+  // Empty template placeholders must not mask real values from .env.local or Secrets.
+  if (value === null || value === undefined || String(value).trim() === '') return;
   process.env[key] = String(value);
 });
 
 // 输出已设置的变量（仅 NEXT_PUBLIC_* 用于调试）
 const nextPublicVars = Object.keys(vars).filter(key => key.startsWith('NEXT_PUBLIC_'));
-if (nextPublicVars.length > 0) {
-  console.log('✅ 已从 wrangler.jsonc 加载环境变量:');
-  nextPublicVars.forEach(key => {
-    const value = vars[key];
-    // 隐藏敏感信息（空字符串或长字符串）
-    const displayValue = value ? (value.length > 50 ? value.substring(0, 50) + '...' : value) : '(empty)';
-    console.log(`   ${key}=${displayValue}`);
-  });
-}
+console.log(`Loaded ${nextPublicVars.length} public settings from wrangler.jsonc (values hidden).`);
 
 // 执行后续命令（如果有的话）
 const args = process.argv.slice(2);

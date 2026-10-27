@@ -47,6 +47,7 @@ export async function createTask(userId: string, toolId: string, modelId: string
   }
   await assertEntitlements(userId, model.requiredEntitlements ?? []);
   adapter.checkConfiguration();
+  await adapter.preflight?.(input, model);
   const credits = adapter.quote(input, model);
   if (!Number.isSafeInteger(credits) || credits < 0) throw new ToolError("Invalid credit quote", 503);
   const time = now();

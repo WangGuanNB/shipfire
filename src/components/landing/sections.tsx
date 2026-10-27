@@ -5,6 +5,8 @@ import type { LandingSection } from "@/types/blocks/landing";
 import { referenceSampleCatalog } from "@/config/reference-video";
 import { ExampleAction, UseSampleButton } from "./interactions";
 import GalleryVideo from "./gallery-video";
+import { resolvePublicMedia } from "@/config/public-media";
+import { mediaFrameStyle } from "@/lib/media-frame";
 
 function SectionFrame({ section, children }: { section: LandingSection; children: ReactNode }) {
   return (
@@ -41,22 +43,22 @@ export function Examples({ section }: { section: LandingSection }) {
   return (
     <SectionFrame section={section}>
       <div className={isGallery
-        ? "mx-auto grid max-w-5xl grid-cols-2 gap-3 lg:grid-cols-6"
+        ? `mx-auto grid gap-3 ${items.length === 1 ? "max-w-sm grid-cols-1" : "max-w-5xl grid-cols-2 lg:grid-cols-3"}`
         : "mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3"}>
         {items.map((item, index) => {
-          const image = item.image?.src
+          const asset = resolvePublicMedia(item.video?.assetId);
+          const image = asset?.kind === "image" ? {src:asset.src,alt:item.title} : item.image?.src
             ? item.image
             : item.output?.image?.src
               ? item.output.image
               : undefined;
           const sampleId = item.action?.values.exampleId;
           const catalogSrc = sampleId ? sampleSrc.get(sampleId) : undefined;
-          const video = catalogSrc
-            ? { ...(item.video ?? {}), src: catalogSrc, title: item.video?.title }
-            : item.video?.src ? item.video : undefined;
+          const videoSrc = asset?.kind === "image" ? undefined : asset?.src || item.video?.src || catalogSrc;
+          const video = videoSrc ? { src: videoSrc, poster: asset?.poster || item.video?.poster, title: item.video?.title || item.title } : undefined;
           return (
             <article key={index} className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-              <div className={`relative w-full overflow-hidden bg-muted ${isGallery ? "aspect-[9/16]" : "aspect-[4/3]"}`}>
+              <div data-example-media style={mediaFrameStyle(section.media_frame, { desktop: 260, mobile: 220 })} className="relative h-[var(--media-mobile-height)] w-full overflow-hidden bg-muted lg:h-[var(--media-height)]">
                 {item.label && (
                   <span className="absolute left-1.5 top-1.5 z-10 rounded bg-amber-400 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-amber-950">
                     {item.label}
@@ -67,6 +69,7 @@ export function Examples({ section }: { section: LandingSection }) {
                     src={video.src}
                     poster={video.poster || image?.src}
                     label={video.title || image?.alt || item.title || "Sample video"}
+                    className={`size-full ${section.media_frame?.fit === "cover" ? "object-cover" : "object-contain"}`}
                   />
                 ) : image?.src ? (
                   <img
@@ -76,7 +79,7 @@ export function Examples({ section }: { section: LandingSection }) {
                     height={image.height || 600}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    className={`h-full w-full ${section.media_frame?.fit === "cover" ? "object-cover" : "object-contain"} transition-transform duration-500 group-hover:scale-[1.02]`}
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center px-3 text-center text-xs text-muted-foreground">

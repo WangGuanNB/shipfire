@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { resolvePublicMedia } from "@/config/public-media";
 import Hero from "@/components/blocks/hero";
 import Intro from "@/components/blocks/feature-what-two";
 import Features from "@/components/blocks/feature";
@@ -18,6 +19,7 @@ import { LandingInteractions } from "./interactions";
 import { ContentSection, Contents, Examples, Related } from "./sections";
 
 export interface ToolRenderProps {
+  placement?: "hero" | "section";
   id: string;
   slot: string;
   locale: string;
@@ -36,10 +38,13 @@ export type LandingModuleRegistry = Record<string, (props: ModuleRenderProps) =>
 export const landingModuleRegistry: LandingModuleRegistry = {
   hero: ({ section, tool }) => {
     const heroSection = section as HeroData;
-    const variant =
-      heroSection.variant === "jean-phil" ? "jean-phil" : tool ? "tool" : heroSection.variant;
+    const media = resolvePublicMedia(heroSection.preview?.assetId);
+    const resolvedHero = media ? media.kind === "image"
+      ? { ...heroSection, video: undefined, image: {src:media.src,alt:heroSection.image?.alt || heroSection.title}, preview: {...heroSection.preview,video:undefined} }
+      : { ...heroSection, preview: { ...heroSection.preview, video: media.src, poster: media.poster } } : heroSection;
+    const variant = tool ? "tool" : heroSection.variant;
     return (
-      <Hero hero={{ ...heroSection, variant }}>{variant === "jean-phil" ? undefined : tool}</Hero>
+      <Hero hero={{ ...resolvedHero, variant }}>{tool}</Hero>
     );
   },
   tool: ({ module, tool }) => tool ? <section id={module.id} className="landing-section scroll-mt-24"><div className="container">{tool}</div></section> : null,
@@ -84,7 +89,7 @@ export default async function LandingRenderer({ page, locale, tools = {}, render
     if (!Object.hasOwn(tools, tool.type)) throw new Error(`Unregistered landing tool: ${tool.type}`);
     const id = `${module.id}-tool`;
     if (modules.some(item => item.id === id)) throw new Error(`Landing tool anchor conflicts with module: ${id}`);
-    nodes[module.id] = await tools[tool.type]({ id, slot: module.tool, locale, tool });
+    nodes[module.id] = await tools[tool.type]({ id, slot: module.tool, locale, tool, placement: module.type === "hero" ? "hero" : "section" });
     if (nodes[module.id]) anchors[module.tool] = id;
   }));
 

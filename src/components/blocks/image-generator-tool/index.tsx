@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -25,6 +25,7 @@ import Pricing from "@/components/blocks/pricing";
 import type { Pricing as PricingType } from "@/types/blocks/pricing";
 import { toast } from "sonner";
 import { useAITasks, TaskRequestError } from "@/hooks/use-ai-tasks";
+import { ToolResult } from "@/components/ai/tool-result-layout";
 import ToolHistoryLink from "@/components/ai/tool-history-link";
 import type { MediaModel } from "@/ai/types";
 
@@ -79,6 +80,7 @@ export default function ImageGeneratorTool({
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [pricingModalOpen, setPricingModalOpen] = useState(false);
 
+  const promptInput = useRef<HTMLTextAreaElement>(null);
   const [prompt, setPrompt] = useState("");
   const [resolution, setResolution] = useState<string>(resolutions.includes("2K") ? "2K" : resolutions[0]);
   const [aspectRatio, setAspectRatio] = useState<string>("auto");
@@ -105,7 +107,7 @@ export default function ImageGeneratorTool({
   }, []);
 
   const handleGenerate = async () => {
-    if (!prompt.trim()) return;
+    if (!prompt.trim()) { promptInput.current?.focus(); promptInput.current?.scrollIntoView({block:"center",behavior:"smooth"}); return; }
     if (!user) { setShowSignModal(true); return; }
     setIsGenerating(true);
     setGeneratedImage(null);
@@ -179,7 +181,7 @@ export default function ImageGeneratorTool({
           {copy("promptLabel", "Prompt")}
         </Label>
         <div className="relative">
-          <Textarea
+          <Textarea ref={promptInput}
             id={`${id}-prompt`}
             placeholder={copy("promptPlaceholder", "Describe the image you want to create in detail...")}
             value={prompt}
@@ -241,7 +243,7 @@ export default function ImageGeneratorTool({
         size="lg"
         className="w-full"
         onClick={handleGenerate}
-        disabled={isGenerating || !prompt.trim()}
+        disabled={isGenerating}
       >
         {isGenerating ? (
           <>
@@ -254,7 +256,7 @@ export default function ImageGeneratorTool({
         ) : (
           <>
             <Icon name="RiImageAddLine" className="mr-2 size-5" />
-            {tool?.buttonText ?? "Generate Image"}
+            {!prompt.trim() ? copy("promptRequiredText", "Add your prompt") : tool?.buttonText ?? "Generate Image"}
           </>
         )}
       </Button>
@@ -357,7 +359,8 @@ export default function ImageGeneratorTool({
     return (
       <div id={id} className="w-full scroll-mt-24">
         <div className="rounded-2xl border bg-card p-6 shadow-sm md:p-8">
-          {toolContent}
+          {tool?.embedInHero === "true" ? inputPanel : toolContent}
+          {tool?.embedInHero === "true" && (isGenerating || generatedImage) && <ToolResult><div className="rounded-2xl border bg-card p-5">{previewPanel}</div></ToolResult>}
         </div>
         {pricingModalContent}
         <div className="mt-6">

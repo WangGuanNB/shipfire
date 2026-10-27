@@ -7,6 +7,7 @@ import { TaskRequestError, useAITasks } from "@/hooks/use-ai-tasks";
 import type { PublicTask, TaskStatus } from "@/ai/types";
 import type { PublicReferencePreset } from "@/ai/reference-video-types";
 import VideoGenerationProgress from "./video-generation-progress";
+import { videoWaitCopy } from "@/lib/video-generation-wait";
 import type { Pricing as PricingType } from "@/types/blocks/pricing";
 import Pricing from "@/components/blocks/pricing";
 import { Button } from "@/components/ui/button";
@@ -36,6 +37,7 @@ function PreviewPanel({ zh, preset, example, onExample, video, task, generating 
   task?: PublicTask;
   generating: boolean;
 }) {
+  const wait = videoWaitCopy(zh);
   const busy = generating || (!!task && ACTIVE.includes(task.status));
   const examples = preset?.examples ?? [];
   return (
@@ -64,11 +66,11 @@ function PreviewPanel({ zh, preset, example, onExample, video, task, generating 
           uploading={false}
           imageMode
           message={task?.status === "queued"
-              ? (zh ? "排队中…" : "Waiting in queue…")
+              ? wait.queued
               : task?.status === "submitting"
-                ? (zh ? "正在提交…" : "Submitting…")
-                : (zh ? "正在生成视频，通常需要几分钟…" : "Generating your video. This usually takes a few minutes…")}
-          hint={zh ? "请保持页面打开" : "Keep this page open"}
+                ? wait.submitting
+                : wait.generating}
+          hint={wait.hintKeepOpen}
           labels={{ upload: zh ? "上传" : "Upload", submit: zh ? "提交" : "Submit", generate: zh ? "生成" : "Generate" }}
         />
       ) : task ? (

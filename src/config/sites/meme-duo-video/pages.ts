@@ -5,7 +5,6 @@ export const memeDuoVideoPages: WorkbenchPageConfig[] = [
   {
     id: "meme-duo-video",
     presetIds: ["meme-duo-video"],
-    variantIds: ["template-original", "template-remix", "template-slow"],
     defaultPresetId: "meme-duo-video",
     defaultVariantId: "template-original",
     showPresetPicker: false,

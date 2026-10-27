@@ -20,6 +20,7 @@ export interface VideoStudioProps {
   id?: string;
   tool?: Record<string, unknown>;
   embed?: boolean;
+  embedInHero?: boolean;
   example?: { values: Record<string, string>; revision: number };
   /** Landing tool slot name (e.g. primary) for hero workflow events. */
   toolSlot?: string;
@@ -45,7 +46,7 @@ export default function VideoStudio({ referencePresets, workbench, ...props }: V
       sectionTitle={props.embed && typeof props.tool?.sectionTitle === "string" ? props.tool.sectionTitle : undefined}
       sectionLead={props.embed && typeof props.tool?.sectionLead === "string" ? props.tool.sectionLead : undefined}
       selectedExample={props.example}
-      toolSlot={props.toolSlot} />;
+      toolSlot={props.toolSlot} embedInHero={props.embedInHero} />;
   }
   const labels: Record<Mode, string> = zh
     ? { text: "文生视频", image: "图生视频", reference: "参考视频生成" }

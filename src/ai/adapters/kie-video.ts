@@ -1,7 +1,7 @@
 import { newStorage } from "@/lib/storage";
 import { SubmissionRejected, ToolError, type ToolAdapter, type ToolInput, type ToolModel } from "../types";
 import { validateInput, quoteCredits } from "../catalog";
-import { attachTemplateAudio } from "../template-audio";
+import { attachTemplateAudio, inspectTemplateVideo } from "../template-audio";
 import { mapKieInput, type KieVideoMapper } from "./kie-mappers";
 
 function kieRejectionMessage(payload: unknown, fallback: string): string {
@@ -79,7 +79,7 @@ async function pollTask(providerTaskId: string, input: ToolInput, _model: ToolMo
   const max = 64 * 1024 * 1024;
   const response = await fetch(url, { signal: AbortSignal.timeout(60000) });
   let body = await readBody(response, max);
-  if (input.strategy === "video-reference" && input.generateAudio !== true && typeof input.referenceVideoUrl === "string") {
+  if (input.strategy === "video-reference" && (input.audioMode === "template" || (input.audioMode === undefined && input.generateAudio !== true)) && typeof input.referenceVideoUrl === "string") {
     const templateUrl = new URL(input.referenceVideoUrl);
     if (templateUrl.protocol !== "https:") throw new Error("Template video is unavailable");
     const template = await fetch(templateUrl, { signal: AbortSignal.timeout(60000) });
@@ -97,6 +97,13 @@ export function createKieVideoAdapter(mapper: KieVideoMapper | ((input: ToolInpu
     quote: (input, model) => quoteCredits(model, input),
     checkConfiguration() {
       if (!process.env.KIE_API_KEY) throw new ToolError("Video provider is not configured", 503);
+    },
+    async preflight(input) {
+      if (input.strategy !== "video-reference" || !Number.isFinite(Number(input.referenceDurationSeconds))) return;
+      try {
+        const response = await fetch(String(input.referenceVideoUrl), { signal: AbortSignal.timeout(15000) });
+        await inspectTemplateVideo(await readBody(response, 50 * 1024 * 1024), Number(input.referenceDurationSeconds), input.audioMode === "template");
+      } catch { throw new ToolError("The configured template is unavailable or its duration/audio does not match. No credits were charged.", 503); }
     },
     async submit(input, model) {
       const kieModel = resolveKieModel(model, input);

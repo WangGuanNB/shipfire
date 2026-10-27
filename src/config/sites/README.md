@@ -1,3 +1,5 @@
+> 模板默认已升级：固定素材从 `src/config/public-media.ts` 配置并放入 `public/`；Hero 默认嵌入工具，结果显示在独立行。新的接入流程、音轨策略和验收步骤见 [模板升级说明](../../../docs/template-upgrade.md)。下文外部 URL 仅为可选覆盖示例。
+
 # Site workbench presets
 
 Each cloned meme site should edit files under this folder instead of scattering config across the repo.

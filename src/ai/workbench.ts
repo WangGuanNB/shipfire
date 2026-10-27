@@ -164,7 +164,9 @@ function compilePrompt(variant: VideoVariant, userText: string, identities: { la
     if (!userText) throw new ToolError("Prompt must contain 1–5000 characters");
     return userText;
   }
-  const generated = variant.strategy === "image-reference"
+  const generated = variant.promptPolicy.source === "preset"
+    ? (variant.defaultPrompt?.[locale] ?? "")
+    : variant.strategy === "image-reference"
     ? duoImagePrompt(locale, duration, aspectRatio)
     : variant.strategy === "video-reference"
       ? duoVideoPrompt(locale, duration, resolution)
@@ -173,7 +175,9 @@ function compilePrompt(variant: VideoVariant, userText: string, identities: { la
     ? `${duration} seconds, ${resolution}`
     : `${duration} seconds, ${aspectRatio}`;
   const fallback = generated || (locale === "zh" ? variant.defaultPrompt?.zh : variant.defaultPrompt?.en)?.trim() || "";
-  const visible = userText && userText !== generated
+  const visible = variant.promptPolicy.source === "preset"
+    ? `${userText || fallback}\nOutput settings: ${settings}.`
+    : userText && userText !== generated
     ? `${userText}\nOutput settings: ${settings}.`
     : (userText || fallback);
   if (!visible) throw new ToolError("Prompt must contain 1–5000 characters");
@@ -244,6 +248,8 @@ export function validateWorkbenchInput(
     resolution,
     aspectRatio,
     generateAudio: audio === "generated",
+    audioMode: audio,
+    ...(motion?.durationSeconds ? { referenceDurationSeconds: motion.durationSeconds } : {}),
     consent: needsConsent ? true : undefined,
     locale,
     ...(exampleId ? { displayExampleId: exampleId } : {}),
@@ -343,6 +349,7 @@ function publicVariant(variant: VideoVariant, model: ToolModel | undefined, show
     slots: variant.inputSlots.map(({ id, purpose, label, description, required }) => ({ id, purpose, label, description, required })),
     operatorPreviews,
     promptMode: variant.promptPolicy.mode,
+    promptSource: variant.promptPolicy.source,
     ...(variant.defaultPrompt ? { defaultPrompt: variant.defaultPrompt } : {}),
     output: variant.output,
     credits,
@@ -358,6 +365,7 @@ export function publicWorkbench(pageId: string, presets = getVideoPresets(), pag
     id: page.id,
     showPresetPicker: page.showPresetPicker,
     showOperatorPreview: page.showOperatorPreview,
+    showRequestPreview: page.showRequestPreview === true,
     variantPicker: page.variantPicker ?? "auto",
     defaultPresetId: page.defaultPresetId,
     defaultVariantId: page.defaultVariantId,

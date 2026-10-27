@@ -26,7 +26,8 @@ export interface HeroWorkflow {
 }
 
 export interface HeroPreview {
-  video: string;
+  video?: string;
+  assetId?: string;
   poster?: string;
   badge?: string;
   overlayCta?: string;
@@ -45,11 +46,13 @@ export interface HeroFooterLink {
 }
 
 export interface Hero {
+  media_side?: "left" | "right";
+  media_frame?: import("@/lib/media-frame").MediaFrameConfig;
   name?: string;
   disabled?: boolean;
   announcement?: Announcement;
   title?: string;
-  /** Substring in `title` that gets the yellow highlight mark (jean-phil layout). */
+  /** Substring in `title` emphasized with theme tokens (tool and jean-phil layouts). */
   title_mark?: string;
   highlight_text?: string;
   description?: string;

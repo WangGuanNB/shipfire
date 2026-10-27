@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import HappyUsers from "./happy-users";
 import { Hero as HeroType } from "@/types/blocks/hero";
+import ToolFirstHero from "./tool-first";
 import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
@@ -42,7 +43,7 @@ export default function Hero({
     hero.variant === "jean-phil" ? (
       <JeanPhilSplitHero hero={hero}>{children}</JeanPhilSplitHero>
     ) : hero.variant === "tool" ? (
-      <ToolHero hero={hero}>{children}</ToolHero>
+      <ToolFirstHero hero={hero}>{children}</ToolFirstHero>
     ) : hero.variant === "split" ? (
       <SplitHero hero={hero} />
     ) : hero.variant === "compact" ? (
@@ -63,7 +64,7 @@ export default function Hero({
  * Product-facing hero. Its composition is selected from landing JSON rather
  * than being tied to a product name, colour, or fixed marketing copy.
  */
-const heroSerif = 'Georgia, "Times New Roman", Times, serif';
+const heroSerif = "var(--font-serif)";
 
 function SplitHero({ hero }: { hero: HeroType }) {
   const action = hero.buttons?.[0];

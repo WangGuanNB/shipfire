@@ -86,7 +86,18 @@
     ],
     "buttons": [],
     "show_happy_users": false,
-    "show_badge": false
+    "show_badge": false,
+    "media_side": "right",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
+    "preview": {
+      "assetId": "image-example",
+      "badge": "",
+      "caption": "Example only. Your result appears below the tool."
+    }
   },
   "usage": {
     "name": "usage",

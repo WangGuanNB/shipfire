@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import { Section as SectionType } from "@/types/blocks/section";
 import { Link } from "@/i18n/navigation";
 import { ExampleAction } from "@/components/landing/interactions";
+import { LandingMediaFrame } from "@/components/landing/media-frame";
+import type { MediaFrameConfig } from "@/lib/media-frame";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -44,7 +46,14 @@ export default function FeatureWhatTwo({
 
           {/* 功能区块列表 */}
           <div className="space-y-24 lg:space-y-32">
-          {section.items?.map((item, index) => <FeatureItem key={index} item={item} index={index} />)}
+          {section.items?.map((item, index) => (
+            <FeatureItem
+              key={index}
+              item={item}
+              index={index}
+              mediaFrame={section.media_frame}
+            />
+          ))}
           </div>
         </div>
       </div>
@@ -52,7 +61,15 @@ export default function FeatureWhatTwo({
   );
 }
 
-function FeatureItem({ item, index }: { item: NonNullable<SectionType["items"]>[number]; index: number }) {
+function FeatureItem({
+  item,
+  index,
+  mediaFrame,
+}: {
+  item: NonNullable<SectionType["items"]>[number];
+  index: number;
+  mediaFrame?: MediaFrameConfig;
+}) {
             const hasImage = Boolean(item.image?.src);
             const isReversed = index % 2 === 1;
             const hasButtons = item.buttons && item.buttons.length > 0;
@@ -113,7 +130,7 @@ function FeatureItem({ item, index }: { item: NonNullable<SectionType["items"]>[
               <article
                 key={index}
                 className={cn(
-                  "grid grid-cols-1 items-stretch gap-12 lg:gap-16",
+                  "grid grid-cols-1 items-start gap-12 lg:items-center lg:gap-16",
                   hasImage ? "lg:grid-cols-2" : "lg:grid-cols-[1fr]"
                 )}
               >
@@ -126,19 +143,15 @@ function FeatureItem({ item, index }: { item: NonNullable<SectionType["items"]>[
                     variants={imageVariants}
                     style={{ willChange: "transform, opacity" }} // 性能优化提示
                     className={cn(
-                      "order-1 flex items-start overflow-hidden rounded-2xl",
+                      "order-1 flex w-full justify-center overflow-hidden rounded-2xl",
                       isReversed && "lg:order-2"
                     )}
                   >
-                    <div className="relative aspect-[4/3] w-full h-full bg-muted">
-                      <img
-                        src={item.image?.src}
-                        alt={item.image?.alt || item.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="absolute inset-0 h-full w-full object-cover"
-                      />
-                    </div>
+                    <LandingMediaFrame
+                      config={mediaFrame}
+                      src={item.image?.src}
+                      alt={item.image?.alt || item.title}
+                    />
                   </motion.div>
                 )}
 
@@ -150,7 +163,7 @@ function FeatureItem({ item, index }: { item: NonNullable<SectionType["items"]>[
                   variants={contentVariants}
                   style={{ willChange: "transform, opacity" }} // 性能优化提示
                   className={cn(
-                    "order-2 flex flex-col items-start justify-center gap-6 text-left",
+                    "order-2 flex w-full flex-col items-start justify-center gap-6 text-left lg:max-w-xl lg:py-2",
                     isReversed && hasImage && "lg:order-1"
                   )}
                 >
@@ -197,7 +210,7 @@ function FeatureItem({ item, index }: { item: NonNullable<SectionType["items"]>[
 
                   {/* CTA：示例填入 或 普通链接按钮 */}
                   {(hasAction || hasButtons) && (
-                    <div className="mt-6 flex flex-wrap items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-3">
                       {hasAction && item.action && (
                         <ExampleAction
                           label={item.action.label}

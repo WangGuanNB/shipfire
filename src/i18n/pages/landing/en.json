@@ -36,36 +36,22 @@
   },
   "hero": {
     "name": "hero",
-    "variant": "jean-phil",
+    "variant": "tool",
     "announcement": {
       "label": "AI video"
     },
     "title": "Turn two photos into a\nShipFire video.",
-    "title_mark": "ShipFire",
-    "highlight_text": "Higher fidelity follows the template.",
-    "description": "Upload two photos to generate. Turn on higher fidelity to follow the template motion. Sign in to use credits—keep the tab open while rendering.",
+    "title_mark": "ShipFire video",
+    "highlight_text": "",
+    "description": "Upload one clear photo for each person and bring your pair into a ready-made video scene. Preview the template, create your personalized clip, and download a video you can share with friends.",
     "preview": {
-      "video": "/video/hero.mp4",
+      "video": "/video/template/template.mp4",
       "poster": "/imgs/hero/preview-poster.png",
-      "badge": "Sample",
+      "badge": "",
       "overlayCta": "Make it",
-      "caption": "Template motion with your faces—AI video on shipstart.net."
+      "caption": "Template preview. Your generated video will appear below the tool.",
+      "assetId": "hero"
     },
-    "workflows": [
-      {
-        "id": "duo-photos",
-        "title": "Generate from your photos",
-        "description": "Two photos · template motion · model-generated sound",
-        "beforeImage": "/imgs/hero/workflow-before.png",
-        "afterImage": "/imgs/hero/workflow-after.png",
-        "action": {
-          "label": "Make it",
-          "tool": "primary",
-          "kind": "select",
-          "values": {}
-        }
-      }
-    ],
     "footerLinks": [
       {
         "prefix": "Or",
@@ -76,7 +62,13 @@
     ],
     "buttons": [],
     "show_happy_users": false,
-    "show_badge": false
+    "show_badge": false,
+    "media_side": "right",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    }
   },
   "branding": {
     "title": "Powered by modern web infrastructure",
@@ -88,6 +80,11 @@
     "label": "WHAT YOU GET",
     "title": "From a short description to a site you can refine",
     "description": "An AI Website Builder should do more than paste filler into a template. ShipFire follows describe → draft → edit → publish, so you start from a structured site draft instead of a blank page.",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
     "items": [
       {
         "title": "Prompt to multi-page draft",
@@ -101,7 +98,7 @@
         "buttons": [
           {
             "title": "Try the tool",
-            "url": "/#generator-tool",
+            "url": "/#hero-tool",
             "variant": "default"
           },
           {
@@ -162,7 +159,7 @@
           },
           {
             "title": "Back to tool",
-            "url": "/#generator-tool",
+            "url": "/#hero-tool",
             "variant": "outline"
           }
         ]
@@ -174,6 +171,11 @@
     "label": "WHO IT IS FOR",
     "title": "When a fast first site is enough to start",
     "description": "Use ShipFire when speed matters more than a blank design file—and you still want room to edit after the draft.",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
     "items": [
       {
         "title": "Solo founders validating an idea",
@@ -405,7 +407,7 @@
     "buttons": [
       {
         "title": "Back to tool",
-        "url": "/#generator-tool",
+        "url": "/#hero-tool",
         "variant": "default",
         "icon": "RiSparklingLine"
       },
@@ -435,7 +437,7 @@
           "children": [
             {
               "title": "Tool",
-              "url": "/#generator-tool"
+              "url": "/#hero-tool"
             },
             {
               "title": "FAQ",
@@ -497,13 +499,8 @@
       "id": "hero",
       "type": "hero",
       "source": "hero",
-      "surface": "default"
-    },
-    {
-      "id": "generator",
-      "type": "tool",
-      "tool": "primary",
-      "surface": "default"
+      "surface": "default",
+      "tool": "primary"
     },
     {
       "id": "examples",
@@ -568,11 +565,9 @@
     "primary": {
       "type": "video-generator",
       "config": {
-        "toolLayout": "split",
+        "toolLayout": "hero",
         "workbench": "meme-duo-video",
         "inputModes": "reference",
-        "sectionTitle": "Generate from your photos",
-        "sectionLead": "Pick a motion template, upload two photos, and generate. Each template ships its own reference video and prompt.",
         "tabTextToVideoLabel": "Text to Video",
         "tabImageToVideoLabel": "Image to Video",
         "textPromptPlaceholder": "Describe the content you want to create...",
@@ -601,18 +596,33 @@
   },
   "sections": {
     "examples": {
-      "name": "examples",
-      "label": "SAMPLES",
-      "title": "Video examples",
-      "description": "Sample clips for this trend. Swap any card’s video path when you add a new one.",
+      "disabled": true,
       "layout": "gallery",
+      "title": "Template example",
+      "description": "The same local asset is used for this preview and the reference template.",
+      "media_frame": {
+        "desktopHeight": 260,
+        "mobileHeight": 220,
+        "fit": "contain"
+      },
       "items": [
-        { "label": "DEMO", "title": "Sample 1", "action": { "label": "Use this video", "tool": "primary", "values": { "exampleId": "sample-1", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
-        { "title": "Sample 2", "action": { "label": "Use this video", "tool": "primary", "values": { "exampleId": "sample-2", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
-        { "title": "Sample 3", "action": { "label": "Use this video", "tool": "primary", "values": { "exampleId": "sample-3", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
-        { "title": "Sample 4", "action": { "label": "Use this video", "tool": "primary", "values": { "exampleId": "sample-4", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
-        { "title": "Sample 5", "action": { "label": "Use this video", "tool": "primary", "values": { "exampleId": "sample-5", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
-        { "title": "Sample 6", "action": { "label": "Use this video", "tool": "primary", "values": { "exampleId": "sample-6", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } }
+        {
+          "title": "Original template",
+          "video": {
+            "src": "/video/template/template.mp4",
+            "poster": "/imgs/hero/preview-poster.png",
+            "assetId": "template-original"
+          },
+          "action": {
+            "label": "Use this template",
+            "tool": "primary",
+            "values": {
+              "presetId": "meme-duo-video",
+              "variantId": "template-original",
+              "exampleId": "sample-1"
+            }
+          }
+        }
       ]
     },
     "cost": {

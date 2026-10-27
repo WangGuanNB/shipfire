@@ -31,7 +31,7 @@ export interface PaymentMethodConfig {
 export function getPaymentMethodConfigs(): Record<PaymentMethod, PaymentMethodConfig> {
   return {
     stripe: {
-      enabled: process.env.NEXT_PUBLIC_PAYMENT_STRIPE_ENABLED === 'true',
+      enabled: process.env.NEXT_PUBLIC_PAYMENT_STRIPE_ENABLED !== 'false',
       name: 'Stripe',
       priority: 1, // 最高优先级
     },

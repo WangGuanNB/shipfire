@@ -8,6 +8,7 @@ import { useToolSelection } from "../interactions";
 import type { ToolModel } from "@/ai/types";
 
 export default function VideoGeneratorSlot({
+  embedInHero,
   id,
   slot,
   copy,
@@ -16,6 +17,7 @@ export default function VideoGeneratorSlot({
   referencePresets,
   workbench,
 }: {
+  embedInHero?: boolean;
   id: string;
   slot: string;
   copy: Record<string, string>;
@@ -29,6 +31,7 @@ export default function VideoGeneratorSlot({
     <VideoStudio
       id={id}
       embed
+      embedInHero={embedInHero}
       toolSlot={slot}
       models={models}
       pricing={pricing}

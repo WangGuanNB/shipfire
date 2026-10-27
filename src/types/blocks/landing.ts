@@ -49,6 +49,7 @@ export interface LandingSectionItem extends SectionItem {
 }
 
 export interface LandingSection extends Section {
+  media_frame?: import("@/lib/media-frame").MediaFrameConfig;
   items?: LandingSectionItem[];
   paragraphs?: string[];
   /** Plain text comparison data, never injected HTML. */

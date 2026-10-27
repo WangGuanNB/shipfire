@@ -32,6 +32,39 @@ pre {
 }
 
 @layer components {
+  .landing-hero-title {
+    font-family: var(--hero-font-family);
+    font-size: var(--hero-title-size);
+    font-weight: var(--hero-title-weight);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    color: var(--foreground);
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  .landing-title-mark {
+    /* Inline decoration can wrap on small screens without clipping the title. */
+    background: linear-gradient(
+      transparent 76%,
+      var(--hero-mark) 76%,
+      var(--hero-mark) 94%,
+      transparent 94%
+    );
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  .landing-hero-description {
+    font-family: var(--hero-font-family);
+    font-size: var(--hero-description-size);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.5;
+    color: color-mix(in oklch, var(--foreground) 80%, var(--background));
+    text-wrap: pretty;
+  }
+
   .landing-section {
     padding-block: var(--section-space);
   }
@@ -97,6 +130,17 @@ pre {
 }
 
 @layer utilities {
+  /* Override the foreground only; yellow fills retain their dark button labels. */
+  .text-primary {
+    color: var(--primary-text);
+  }
+
+  @media (hover: hover) {
+    .hover\:text-primary:hover {
+      color: var(--primary-text);
+    }
+  }
+
   .animate-blob {
     animation: blob 7s ease-in-out infinite;
   }

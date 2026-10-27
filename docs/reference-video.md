@@ -1,3 +1,5 @@
+> 模板默认已升级：固定素材从 `src/config/public-media.ts` 配置并放入 `public/`；Hero 默认嵌入工具，结果显示在独立行。新的接入流程、音轨策略和验收步骤见 [模板升级说明](template-upgrade.md)。下文外部 URL 仅为可选覆盖示例。
+
 # 参考视频模式：交接与换站说明
 
 示例墙上选中的视频只用于预览。真正发给模型的参考片来自玩法配置里的 `referenceVideo` 或工作台方案的 operator 素材，不会跟着示例切换。新的统一工作台见 [video-workbench-config.md](./video-workbench-config.md)。
@@ -30,7 +32,10 @@
    ```dotenv
    REFERENCE_VIDEO_URL=/video/template/reference-duo.mp4
    REFERENCE_VIDEO_EXAMPLE_URL=/video/hero.mp4
+   REFERENCE_VIDEO_MODEL=standard
    ```
+
+   `REFERENCE_VIDEO_MODEL` 只影响参考视频工作台（`standard` → Seedance 2，`fast` → Seedance 2 Fast）。与文生视频的 `KIE_VIDEO_MODEL` 无关。
 
    `EXAMPLE` 只用于右侧展示，不会提交给模型。参考片须能被 KIE 通过 HTTPS 公网访问（本地 localhost 无法通过 `ready` 校验，需部署或使用 HTTPS 隧道测试）。
 

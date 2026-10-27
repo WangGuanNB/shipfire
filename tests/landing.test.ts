@@ -83,8 +83,8 @@ for (const locale of ["en", "zh"]) {
         assert.equal(page.page_type, "tool");
         const isLandingHome = path.includes("/pages/landing/") && !path.includes("/presets/");
         if (isLandingHome) {
-          assert.ok(modules.some(module => module.id === "hero" && !module.tool));
-          assert.ok(modules.some(module => module.id === "generator" && module.type === "tool" && module.tool === "primary"));
+          assert.ok(modules.some(module => module.id === "hero" && module.tool === "primary"));
+          assert.equal(modules.filter(module => module.tool === "primary").length, 1);
         } else {
           assert.ok(modules.some(module => module.id === "hero" && module.tool === "primary"));
         }

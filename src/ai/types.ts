@@ -33,6 +33,7 @@ export type AdapterResult =
   | { status: "failed"; error: string };
 export interface ToolAdapter {
   checkConfiguration(): void;
+  preflight?(input: ToolInput, model: ToolModel): Promise<void>;
   validate(input: ToolInput, model: ToolModel): ToolInput;
   quote(input: ToolInput, model: ToolModel): number;
   submit(input: ToolInput, model: ToolModel, taskId: string, userId: string): Promise<AdapterResult>;

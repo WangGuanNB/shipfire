@@ -104,4 +104,4 @@ template:
   sitemap: "public/sitemap.xml"
   robots: "public/robots.txt"
 
-notes: "Landing EN for AI Website Builder (early access). WEB_URL must stay shipstart.net."
+notes: "Clone setup: update site domain, Stripe keys and public-media.ts; bind the tool to the Hero once, with results below. See docs/template-upgrade.md."

@@ -18,6 +18,7 @@ import { createPayPalOrder } from "@/services/paypal";
 import { getStripeClient } from "@/services/stripe";
 import { makeBillingSnapshot } from "@/services/billing";
 import { getEnabledPaymentMethods } from "@/services/payment-selector";
+import { stripeConfigurationReady } from "@/lib/payment-readiness";
 import { getCanonicalUrl } from "@/lib/utils";
 
 /**
@@ -443,6 +444,7 @@ export async function POST(req: Request) {
       }
     }
     if (!getEnabledPaymentMethods().includes(paymentMethod)) return respErr("Payment method is disabled");
+    if (paymentMethod === "stripe" && !stripeConfigurationReady()) return respErr("Stripe checkout is not configured. Please contact support.");
     locale = locale === "zh" ? "zh" : "en";
 
     // 3. 处理 cancel_url

@@ -2,7 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import Database from "better-sqlite3";
-import { getReferenceVideoModels, getReferenceVideoPresets } from "../src/config/reference-video";
+import { getReferenceVideoModels, getReferenceVideoPresets, referenceVideoModelId } from "../src/config/reference-video";
+import { memeDuoVideoPreset } from "../src/config/sites/meme-duo-video/preset";
 import { assertReferencePreset, mapReferenceVideoInput, publicReferencePresets, quoteReferenceCredits, validateReferenceInput } from "../src/ai/reference-video";
 import { getToolCatalog } from "../src/config/ai";
 import { resolveTool, validateInput } from "../src/ai/catalog";
@@ -219,5 +220,25 @@ test("reference tasks reuse reservation, idempotency, ownership, snapshots and o
   } finally {
     adapters["kie-seedance2-reference"] = originalAdapter;
     clearDbCache(); globalThis.fetch = originalFetch; restore(); sqlite.close();
+  }
+});
+
+test("REFERENCE_VIDEO_MODEL selects standard or fast for workbench presets", () => {
+  const restore = env({});
+  try {
+    delete process.env.REFERENCE_VIDEO_MODEL;
+    assert.equal(referenceVideoModelId(), "seedance-2-reference");
+    assert.equal(getReferenceVideoPresets()[0].modelId, "seedance-2-reference");
+    assert.equal(memeDuoVideoPreset().variants[0].modelId, "seedance-2-reference");
+
+    process.env.REFERENCE_VIDEO_MODEL = "fast";
+    assert.equal(referenceVideoModelId(), "seedance-2-fast-reference");
+    assert.equal(getReferenceVideoPresets()[0].modelId, "seedance-2-fast-reference");
+    assert.equal(memeDuoVideoPreset().variants[0].modelId, "seedance-2-fast-reference");
+
+    process.env.REFERENCE_VIDEO_MODEL = "nope";
+    assert.throws(() => referenceVideoModelId(), /standard or fast/);
+  } finally {
+    restore();
   }
 });

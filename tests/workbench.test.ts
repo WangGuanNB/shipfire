@@ -52,7 +52,7 @@ test("image and video variants keep separate models, prompts, assets and prices"
     const imageModel = resolveTool("video-generator", "seedance-2-image-reference").model;
     const videoModel = resolveTool("reference-video", "seedance-2-reference").model;
     const image = validateWorkbenchInput(imageRaw(), imageModel, "video-generator");
-    const video = validateWorkbenchInput({ ...imageRaw(), variantId: "video-reference", pricingVersion: "3", exampleId: "sample-2" }, videoModel, "reference-video");
+    const video = validateWorkbenchInput({ ...imageRaw(), variantId: "video-reference", pricingVersion: "3", exampleId: "sample-1" }, videoModel, "reference-video");
     assert.equal(image.strategy, "image-reference");
     assert.equal(video.strategy, "video-reference");
     assert.equal(image.generateAudio, true);
@@ -60,7 +60,7 @@ test("image and video variants keep separate models, prompts, assets and prices"
     assert.deepEqual(image.imageUrls, ["https://uploads.example.test/a.png", "https://uploads.example.test/b.png"]);
     assert.equal(image.referenceVideoUrl, undefined);
     assert.equal(video.referenceVideoUrl, "https://media.example.test/owned-motion.mp4");
-    assert.equal(video.displayExampleId, "sample-2");
+    assert.equal(video.displayExampleId, "sample-1");
     assert.ok(!String(image.prompt).toLowerCase().includes("reference video"));
     assert.ok(String(image.prompt).includes("orange backdrop"));
     assert.ok(String(image.prompt).includes("0-1s"));
@@ -220,44 +220,23 @@ test("image reference adapter omits video fields", async () => {
   } finally { globalThis.fetch = original; restore(); }
 });
 
-test("meme duo video page exposes multiple motion templates with card picker", () => {
+test("default template enables only genuine local media, with fixed full-length output and template sound", () => {
   const restore = restoreUpload();
   try {
-    const page = publicWorkbench("meme-duo-video");
-    assert.equal(page?.variantPicker, "modal");
-    assert.equal(page?.presets.length, 1);
-    assert.deepEqual(page?.presets[0].variants.map(item => item.id), [
-      "template-original",
-      "template-remix",
-      "template-slow",
-    ]);
-    assert.equal(page?.defaultVariantId, "template-original");
-    const videoModel = resolveTool("reference-video", "seedance-2-reference").model;
-    const original = validateWorkbenchInput({
-      presetId: "meme-duo-video",
-      presetVersion: "1",
-      variantId: "template-original",
-      pricingVersion: "1",
-      consent: true,
-      resolution: "720p",
-      duration: 4,
-      images: photos(),
-    }, videoModel, "reference-video");
-    const remix = validateWorkbenchInput({
-      presetId: "meme-duo-video",
-      presetVersion: "1",
-      variantId: "template-remix",
-      pricingVersion: "1",
-      consent: true,
-      resolution: "720p",
-      duration: 4,
-      images: photos(),
-    }, videoModel, "reference-video");
-    assert.equal(original.referenceVideoUrl, "https://media.example.test/owned-motion.mp4");
-    assert.equal(remix.referenceVideoUrl, "https://cdn.shipstart.net/shipfire/index/examples/example-2.mp4");
-    assert.notEqual(original.referenceVideoUrl, remix.referenceVideoUrl);
-    assert.equal(page?.presets[0].variants.every(item => item.strategy === "video-reference"), true);
-    assert.equal(page?.presets[0].variants.every(item => item.ready), true);
+    const page = publicWorkbench("meme-duo-video")!;
+    assert.deepEqual(page.presets[0].variants.map(item => item.id), ["template-original"]);
+    const model = resolveTool("reference-video", "seedance-2-reference").model;
+    const variant = page.presets[0].variants[0];
+    const compiled = validateWorkbenchInput({presetId:"meme-duo-video",presetVersion:"2",variantId:"template-original",pricingVersion:"2",consent:true,images:photos()}, model, "reference-video");
+    assert.equal(compiled.duration, 15);
+    assert.equal(compiled.audioMode, "template");
+    assert.equal(compiled.generateAudio, false);
+    assert.equal(compiled.referenceDurationSeconds, 15);
+    assert.equal(compiled.referenceVideoUrl, "https://media.example.test/owned-motion.mp4");
+    assert.match(String(compiled.prompt), /assigned roles/);
+    assert.equal(variant.promptSource, "preset");
+    assert.equal(variant.ready, true);
+    assert.equal(quoteWorkbenchInput(compiled), 30);
   } finally { restore(); }
 });
 

@@ -36,36 +36,22 @@
   },
   "hero": {
     "name": "hero",
-    "variant": "jean-phil",
+    "variant": "tool",
     "announcement": {
       "label": "AI 视频"
     },
     "title": "两张照片，\n生成一条 ShipFire 视频。",
-    "title_mark": "ShipFire",
-    "highlight_text": "勾选高还原，就跟着模板走。",
-    "description": "上传两张人物照片即可生成。需要更接近模板动作时勾选高还原。需登录并使用积分，生成过程中请保持页面打开。",
+    "title_mark": "ShipFire 视频",
+    "highlight_text": "",
+    "description": "为两位主角各上传一张清晰照片，让你们一起走进预设的视频场景。先查看模板示例，再生成属于你们的短片，下载后即可分享给朋友。",
     "preview": {
-      "video": "/video/hero.mp4",
+      "video": "/video/template/template.mp4",
       "poster": "/imgs/hero/preview-poster.png",
-      "badge": "示例",
+      "badge": "",
       "overlayCta": "开始制作",
-      "caption": "模板动作配上你的照片——shipstart.net 上的 AI 视频。"
+      "caption": "模板示例。生成的视频会显示在工具下方。",
+      "assetId": "hero"
     },
-    "workflows": [
-      {
-        "id": "duo-photos",
-        "title": "用你的照片来生成",
-        "description": "两张照片 · 模板动作 · 模型生成声音",
-        "beforeImage": "/imgs/hero/workflow-before.png",
-        "afterImage": "/imgs/hero/workflow-after.png",
-        "action": {
-          "label": "开始制作",
-          "tool": "primary",
-          "kind": "select",
-          "values": {}
-        }
-      }
-    ],
     "footerLinks": [
       {
         "prefix": "或",
@@ -76,7 +62,13 @@
     ],
     "buttons": [],
     "show_happy_users": false,
-    "show_badge": false
+    "show_badge": false,
+    "media_side": "right",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    }
   },
   "branding": {
     "title": "由尖端AI技术驱动",
@@ -124,6 +116,11 @@
     "label": "功能特色",
     "title": "为「提示词到可用图片」而设计",
     "description": "下面是你可以直接在上方工具里体验的核心能力，不必为每个想法重建流程。",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
     "items": [
       {
         "title": "文字生成图片",
@@ -142,7 +139,7 @@
         "buttons": [
           {
             "title": "试用工具",
-            "url": "/#generator-tool",
+            "url": "/#hero-tool",
             "variant": "default"
           },
           {
@@ -169,7 +166,7 @@
         "buttons": [
           {
             "title": "选择比例",
-            "url": "/#generator-tool",
+            "url": "/#hero-tool",
             "variant": "default"
           }
         ]
@@ -191,7 +188,7 @@
         "buttons": [
           {
             "title": "设置分辨率",
-            "url": "/#generator-tool",
+            "url": "/#hero-tool",
             "variant": "default"
           }
         ]
@@ -218,7 +215,7 @@
           },
           {
             "title": "返回工具",
-            "url": "/#generator-tool",
+            "url": "/#hero-tool",
             "variant": "outline"
           }
         ]
@@ -230,6 +227,11 @@
     "label": "适用场景",
     "title": "这个图片工具适合做什么",
     "description": "用具体任务判断是否适合你，而不是空泛卖点。",
+    "media_frame": {
+      "desktopHeight": 480,
+      "mobileHeight": 280,
+      "fit": "contain"
+    },
     "items": [
       {
         "title": "内容配图",
@@ -242,7 +244,7 @@
         "buttons": [
           {
             "title": "从提示词开始",
-            "url": "/#generator-tool",
+            "url": "/#hero-tool",
             "variant": "default"
           }
         ]
@@ -258,7 +260,7 @@
         "buttons": [
           {
             "title": "探索想法",
-            "url": "/#generator-tool",
+            "url": "/#hero-tool",
             "variant": "default"
           }
         ]
@@ -436,7 +438,7 @@
     "buttons": [
       {
         "title": "返回工具",
-        "url": "#generator-tool",
+        "url": "#hero-tool",
         "variant": "default",
         "icon": "RiMagicLine"
       },
@@ -466,7 +468,7 @@
           "children": [
             {
               "title": "工具",
-              "url": "/#generator-tool"
+              "url": "/#hero-tool"
             },
             {
               "title": "常见问题",
@@ -528,13 +530,8 @@
       "id": "hero",
       "type": "hero",
       "source": "hero",
-      "surface": "default"
-    },
-    {
-      "id": "generator",
-      "type": "tool",
-      "tool": "primary",
-      "surface": "default"
+      "surface": "default",
+      "tool": "primary"
     },
     {
       "id": "examples",
@@ -599,11 +596,9 @@
     "primary": {
       "type": "video-generator",
       "config": {
-        "toolLayout": "split",
+        "toolLayout": "hero",
         "workbench": "meme-duo-video",
         "inputModes": "reference",
-        "sectionTitle": "上传照片生成视频",
-        "sectionLead": "先选择动作模板，再上传两张照片生成。每个模板都有独立的参照视频和提示词。",
         "tabTextToVideoLabel": "文生视频",
         "tabImageToVideoLabel": "图生视频",
         "textPromptPlaceholder": "描述你想生成的视频内容…",
@@ -632,18 +627,33 @@
   },
   "sections": {
     "examples": {
-      "name": "examples",
-      "label": "示例",
-      "title": "视频示例",
-      "description": "这个梗的示范视频。换成新片时，改对应卡片的视频地址即可。",
+      "disabled": true,
       "layout": "gallery",
+      "title": "模板示例",
+      "description": "展示和生成参考均使用站内配置的本地素材。",
+      "media_frame": {
+        "desktopHeight": 260,
+        "mobileHeight": 220,
+        "fit": "contain"
+      },
       "items": [
-        { "label": "示范", "title": "示例 1", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-1", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
-        { "title": "示例 2", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-2", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
-        { "title": "示例 3", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-3", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
-        { "title": "示例 4", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-4", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
-        { "title": "示例 5", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-5", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } },
-        { "title": "示例 6", "action": { "label": "使用这个视频", "tool": "primary", "values": { "exampleId": "sample-6", "inputMode": "reference", "presetId": "duo-performance", "variantId": "video-reference" } } }
+        {
+          "title": "原版模板",
+          "video": {
+            "src": "/video/template/template.mp4",
+            "poster": "/imgs/hero/preview-poster.png",
+            "assetId": "template-original"
+          },
+          "action": {
+            "label": "使用模板",
+            "tool": "primary",
+            "values": {
+              "presetId": "meme-duo-video",
+              "variantId": "template-original",
+              "exampleId": "sample-1"
+            }
+          }
+        }
       ]
     },
     "cost": {

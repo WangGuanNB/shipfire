@@ -21,6 +21,7 @@ import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
 import { Section as SectionType } from "@/types/blocks/section";
 import { motion, useInView } from "framer-motion";
+import { LandingMediaFrame } from "@/components/landing/media-frame";
 
 const DURATION = 5000;
 
@@ -218,24 +219,21 @@ export default function Feature2({ section }: { section: SectionType }) {
             className="landing-surface flex items-start p-3"
           >
             <Carousel
+              className="w-full"
               opts={{
                 duration: 50,
               }}
               setApi={setApi}
               plugins={[Fade()]}
             >
-              <CarouselContent>
+              <CarouselContent className="ml-0">
                 {section.items?.map((item, i) => (
-                  <CarouselItem key={i}>
-                    <div className="h-full min-h-[320px] w-full overflow-hidden rounded-2xl lg:min-h-[420px]">
-                      <img
-                        src={item.image?.src}
-                        alt={item.image?.alt || item.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
+                  <CarouselItem key={i} className="pl-0">
+                    <LandingMediaFrame
+                      config={section.media_frame}
+                      src={item.image?.src}
+                      alt={item.image?.alt || item.title}
+                    />
                   </CarouselItem>
                 ))}
               </CarouselContent>

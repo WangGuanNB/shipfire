@@ -1,15 +1,15 @@
 import { duoImagePrompt } from "@/ai/duo-image-prompt";
 import { duoVideoPrompt } from "@/ai/duo-video-prompt";
 import type { VideoPreset } from "@/ai/workbench-types";
-import { referenceSampleCatalog } from "@/config/reference-video";
+import { referenceSampleCatalog, referenceVideoModelId } from "@/config/reference-video";
 import { duoIdentitySlots } from "../shared/slots";
 import { sceneAsset } from "../shared/scene-asset";
 import { IMAGE_RETAIL, VIDEO_RETAIL } from "../shared/pricing";
+import { publicMedia, referenceMotionUrl } from "@/config/public-media";
 
-const R2_EXAMPLES = "https://cdn.shipstart.net/shipfire/index/examples";
 
 export function duoPerformancePreset(): VideoPreset {
-  const motionUrl = process.env.REFERENCE_VIDEO_URL ?? `${R2_EXAMPLES}/example-1.mp4`;
+  const motionUrl = referenceMotionUrl();
   return {
     id: "duo-performance",
     version: "10",
@@ -63,14 +63,14 @@ export function duoPerformancePreset(): VideoPreset {
         },
         strategy: "video-reference",
         toolId: "reference-video",
-        modelId: "seedance-2-reference",
+        modelId: referenceVideoModelId(),
         inputSlots: duoIdentitySlots(),
         operatorAssets: [{
           id: "motion",
           kind: "video",
           purpose: "motion",
           url: motionUrl,
-          durationSeconds: 4,
+          durationSeconds: publicMedia.templates[0].durationSeconds,
           label: { en: "Preset motion", zh: "预设动作" },
         }],
         promptPolicy: {

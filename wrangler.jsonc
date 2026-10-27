@@ -24,9 +24,9 @@
     // 项目名称（用于显示、邮件等）
     "NEXT_PUBLIC_PROJECT_NAME": "ShipFire",
     // 默认主题（system/light/dark）
-    "NEXT_PUBLIC_DEFAULT_THEME": "system",
+    "NEXT_PUBLIC_DEFAULT_THEME": "dark",
     // 语言检测（true/false）
-    "NEXT_PUBLIC_LOCALE_DETECTION": "true",
+    "NEXT_PUBLIC_LOCALE_DETECTION": "false",
     // 管理员邮箱（多个用逗号分隔，用于访问后台管理）
     "ADMIN_EMAILS": "banner520521@gmail.com",
 
@@ -58,7 +58,7 @@
 
     
     // 支付方式开关（优先级: Stripe > PayPal > Creem，至少启用一个）
-    "NEXT_PUBLIC_PAYMENT_STRIPE_ENABLED": "false",
+    "NEXT_PUBLIC_PAYMENT_STRIPE_ENABLED": "true",
     // Stripe 公开密钥（前端使用，pk_test_... 或 pk_live_...，敏感信息请用 Secrets）
     "STRIPE_PUBLIC_KEY": "",
     // 支付成功跳转 URL
@@ -76,7 +76,7 @@
 
     // ========== 6. Creem 支付配置 ==========
     // 支付方式开关（优先级: Stripe > PayPal > Creem，至少启用一个）
-    "NEXT_PUBLIC_PAYMENT_CREEM_ENABLED": "true",
+    "NEXT_PUBLIC_PAYMENT_CREEM_ENABLED": "false",
     // Creem 测试模式（true=测试环境，false=生产环境；dev 隧道测支付请在 .env.local 设 true）
     "CREEM_TEST_MODE": "false",
     // Creem API 地址（可选，默认: https://api.creem.io）
@@ -109,6 +109,8 @@
     // 敏感项走 Secrets：KIE_API_KEY、R2_ACCESS_KEY_ID、R2_SECRET_ACCESS_KEY、AI_MAINTENANCE_SECRET
     // 部署前：D1 执行 0003_ai_foundation.sql，再运行 scripts/sync-wrangler-secrets.sh
     "KIE_VIDEO_MODEL": "bytedance/seedance-1.5-pro",
+    // Reference-video workbench: standard → seedance-2 | fast → seedance-2-fast (not Basic / KIE_VIDEO_MODEL)
+    "REFERENCE_VIDEO_MODEL": "fast",
 
     // ========== 7.2 内容审核（SeeAPI，默认 off 不影响生成）==========
     // off | shadow（只记录）| enforce（拦截违规）
@@ -155,7 +157,7 @@
     // Replicate 模型（默认：google/nano-banana）
     "REPLICATE_MODEL": "google/nano-banana",
 
-     "REFERENCE_VIDEO_URL": "https://cdn.shipstart.net/shipfire/index/examples/example-1.mp4",
+    "REFERENCE_VIDEO_URL": "/video/template/template.mp4",
 
     // ========== 12. AI 服务配置 ==========
     // SiliconFlow API 地址
@@ -167,9 +169,9 @@
     // OpenPanel Client ID
     "NEXT_PUBLIC_OPENPANEL_CLIENT_ID": "",
     // Plausible 域名
-    "NEXT_PUBLIC_PLAUSIBLE_DOMAIN": "",
-    // Plausible 脚本 URL
-    "NEXT_PUBLIC_PLAUSIBLE_SCRIPT_URL": "",
+    "NEXT_PUBLIC_PLAUSIBLE_DOMAIN": "https://shipstart.net",
+    // Plausible 脚本 URL，由Plausible生成
+    "NEXT_PUBLIC_PLAUSIBLE_SCRIPT_URL": "https://app.pageview.app/js/script.js",
 
     // ========== 14. 广告配置 ==========
     // Google AdSense 广告代码
