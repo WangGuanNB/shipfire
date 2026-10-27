@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import * as React from "react";
+import { useEffect, useRef, type ReactEventHandler } from "react";
 
 function whenPageReady(run: () => void) {
   const idle = () => {
@@ -24,6 +25,7 @@ export default function GalleryVideo({
   label,
   className = "h-full w-full object-cover",
   play = true,
+  onLoadedMetadata,
 }: {
   src: string;
   poster?: string;
@@ -31,6 +33,7 @@ export default function GalleryVideo({
   className?: string;
   /** When false, only a preview frame is loaded once the card is visible. */
   play?: boolean;
+  onLoadedMetadata?: ReactEventHandler<HTMLVideoElement>;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -72,6 +75,7 @@ export default function GalleryVideo({
       preload="none"
       aria-label={label}
       className={className}
+      onLoadedMetadata={onLoadedMetadata}
     />
   );
 }

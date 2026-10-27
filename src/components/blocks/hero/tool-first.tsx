@@ -3,9 +3,8 @@ import * as React from "react";
 
 import type { ReactNode } from "react";
 import type { Hero } from "@/types/blocks/hero";
-import GalleryVideo from "@/components/landing/gallery-video";
+import { LandingMediaFrame } from "@/components/landing/media-frame";
 import { ToolResultLayout } from "@/components/ai/tool-result-layout";
-import { mediaFrameStyle } from "@/lib/media-frame";
 import { cn } from "@/lib/utils";
 import { HeroTitle } from "./title";
 
@@ -15,7 +14,6 @@ export default function ToolFirstHero({ hero, children }: { hero: Hero; children
   const poster = hero.preview?.poster || hero.video?.poster;
   const image = hero.image?.src;
   const hasMedia = !!(video || image);
-  const fit = hero.media_frame?.fit ?? "contain";
   return <section className="px-4 pb-10 pt-24 md:pb-14 md:pt-24">
     <div className="mx-auto max-w-6xl space-y-6 sm:space-y-8">
       <header className="mx-auto space-y-3 text-center">
@@ -29,10 +27,8 @@ export default function ToolFirstHero({ hero, children }: { hero: Hero; children
             {children}
           </div>
           {hasMedia && <figure className={cn("order-2 min-w-0 space-y-2", hero.media_side !== "right" ? "lg:order-1" : "lg:order-2")}>
-            <div data-hero-media style={mediaFrameStyle(hero.media_frame)} className="relative h-[var(--media-mobile-height)] w-full overflow-hidden rounded-2xl border border-border bg-muted lg:h-[var(--media-height)]">
-              {video ? <GalleryVideo src={video} poster={poster} label={hero.preview?.caption || hero.video?.title || hero.title || "Sample"} className={cn("size-full", fit === "cover" ? "object-cover" : "object-contain")} />
-                : <img src={image} alt={hero.image?.alt || hero.title || "Example"} className={cn("size-full", fit === "cover" ? "object-cover" : "object-contain")} />}
-              {hero.preview?.badge && <span className="absolute left-3 top-3 rounded-full bg-background/90 px-3 py-1 text-xs text-foreground">{hero.preview.badge}</span>}
+            <div data-hero-media>
+              <LandingMediaFrame config={hero.media_frame} src={image} video={video} poster={poster} alt={video ? hero.preview?.caption || hero.video?.title || hero.title || "Sample" : hero.image?.alt || hero.title || "Example"} badge={hero.preview?.badge} />
             </div>
             {hero.preview?.caption && <figcaption className="text-xs text-muted-foreground">{hero.preview.caption}</figcaption>}
           </figure>}

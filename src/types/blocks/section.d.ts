@@ -1,6 +1,8 @@
 import { Image, Button } from "@/types/blocks/base";
 
 export interface SectionItem {
+  /** Per-asset sizing hint; overrides the section defaults. */
+  media_frame?: import("@/lib/media-frame").MediaFrameConfig;
   rating?: number;
   title?: string;
   description?: string;

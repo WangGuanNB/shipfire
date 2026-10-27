@@ -216,7 +216,7 @@ export default function Feature2({ section }: { section: SectionType }) {
             animate={rightInView ? "visible" : "hidden"}
             variants={slideRightVariants}
             style={{ willChange: "transform, opacity" }}
-            className="landing-surface flex items-start p-3"
+            className="flex min-w-0 items-start"
           >
             <Carousel
               className="w-full"
@@ -230,7 +230,8 @@ export default function Feature2({ section }: { section: SectionType }) {
                 {section.items?.map((item, i) => (
                   <CarouselItem key={i} className="pl-0">
                     <LandingMediaFrame
-                      config={section.media_frame}
+                      config={{ ...section.media_frame, ...item.media_frame }}
+                      reserveHeight
                       src={item.image?.src}
                       alt={item.image?.alt || item.title}
                     />

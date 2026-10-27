@@ -143,12 +143,12 @@ function FeatureItem({
                     variants={imageVariants}
                     style={{ willChange: "transform, opacity" }} // 性能优化提示
                     className={cn(
-                      "order-1 flex w-full justify-center overflow-hidden rounded-2xl",
+                      "order-1 flex min-w-0 w-full justify-center",
                       isReversed && "lg:order-2"
                     )}
                   >
                     <LandingMediaFrame
-                      config={mediaFrame}
+                      config={{ ...mediaFrame, ...item.media_frame }}
                       src={item.image?.src}
                       alt={item.image?.alt || item.title}
                     />

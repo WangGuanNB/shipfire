@@ -32,6 +32,34 @@ pre {
 }
 
 @layer components {
+  /* The transparent layout slot and the actual media bounds are separate. */
+  .landing-media-stage {
+    --media-limit: var(--media-mobile-height);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .landing-media-stage[data-reserve-height] {
+    min-height: var(--media-limit);
+  }
+
+  .landing-media-content {
+    position: relative;
+    width: min(100%, calc(var(--media-limit) * var(--media-ratio)));
+    aspect-ratio: var(--media-ratio);
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+
+  @media (min-width: 64rem) {
+    .landing-media-stage {
+      --media-limit: var(--media-height);
+    }
+  }
+
   .landing-hero-title {
     font-family: var(--hero-font-family);
     font-size: var(--hero-title-size);
