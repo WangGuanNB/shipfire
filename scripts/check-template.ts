@@ -1,10 +1,10 @@
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { publicMedia, resolvePublicMedia } from "../src/config/public-media";
 import { getVideoPresets } from "../src/config/video-workbench";
 import { getToolCatalog } from "../src/config/ai";
 import { assertVariant } from "../src/ai/workbench";
-import { inspectTemplateVideo } from "../src/ai/template-audio";
+import { inspectTemplateVideo, templateSha256, type TrustedTemplate } from "../src/ai/template-audio";
 import { publicWorkbench } from "../src/ai/workbench";
 
 async function main() {
@@ -33,9 +33,22 @@ async function main() {
       if (!workbench?.presets.length || workbench.presets.some(preset => !preset.variants.length || preset.variants.some(variant => !variant.ready))) throw new Error(`Unready landing tool: ${locale}/${module.tool}`);
     }
   }
-  for (const item of publicMedia.templates.filter(item => item.enabled)) {
+  const fingerprints: TrustedTemplate[] = [];
+  for (const item of publicMedia.templates.filter(item => item.enabled && item.src.startsWith("/"))) {
     check(item.src); check(item.poster);
-    await inspectTemplateVideo(readFileSync(resolve("public", item.src.slice(1))), item.durationSeconds, false);
+    const bytes = readFileSync(resolve("public", item.src.slice(1)));
+    const info = await inspectTemplateVideo(bytes, item.durationSeconds, true);
+    fingerprints.push({
+      path: item.src, sha256: await templateSha256(bytes), bytes: bytes.length,
+      duration: info.duration, width: info.width, height: info.height, audio: info.audio,
+    });
+  }
+  const manifestPath = resolve("src/config/site-templates.json");
+  const recorded = JSON.parse(readFileSync(manifestPath, "utf8")) as TrustedTemplate[];
+  if (process.argv.includes("--update")) {
+    writeFileSync(manifestPath, JSON.stringify(fingerprints, null, 2) + "\n");
+  } else if (JSON.stringify(recorded) !== JSON.stringify(fingerprints)) {
+    throw new Error("Template changed: run pnpm template:update to inspect and update its fingerprint before deploying.");
   }
   const models = getToolCatalog().flatMap(tool => tool.models);
   for (const preset of getVideoPresets().filter(item => item.enabled)) {

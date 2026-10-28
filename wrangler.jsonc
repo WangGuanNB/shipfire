@@ -10,7 +10,8 @@
   "main": ".open-next/worker.js",
   // 静态资源目录（OpenNext 输出）
   "assets": {
-    "directory": ".open-next/assets"
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
   },
   // 修复 OpenNext + esbuild keep_names 导致的 _name/__name 未定义错误（影响登录页等）
   "keep_names": false,

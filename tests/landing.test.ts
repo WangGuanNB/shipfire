@@ -89,7 +89,8 @@ for (const locale of ["en", "zh"]) {
           assert.ok(modules.some(module => module.id === "hero" && module.tool === "primary"));
         }
         if (!isVideoGenerator) {
-          assert.ok(modules.some(module => module.id === "examples"));
+          const examplesDisabled = page.sections?.examples?.disabled === true;
+          assert.equal(modules.some(module => module.id === "examples"), !examplesDisabled);
           assert.ok(modules.some(module => module.id === "testimonial"));
         }
         assert.ok(modules.some(module => module.id === "introduce"));

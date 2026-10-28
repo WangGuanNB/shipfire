@@ -108,7 +108,11 @@ export async function advanceTask(row: TaskRow): Promise<TaskRow> {
     const claim = await db().update(aiTasks).set({ next_poll_at: time + 120 }).where(and(eq(aiTasks.id, row.id), eq(aiTasks.status, "running"), eq(aiTasks.next_poll_at, row.next_poll_at))).returning({ id: aiTasks.id });
     if (claim.length) {
       try { await finish(row, await adapter.poll(row.provider_task_id, JSON.parse(row.input), model, row.id, row.user_id)); }
-      catch { await db().update(aiTasks).set({ next_poll_at: time + 30, error: "Result retrieval will retry shortly." }).where(and(eq(aiTasks.id, row.id), eq(aiTasks.status, "running"))); }
+      catch (error) {
+        console.error("AI result processing failed", row.id, error instanceof Error ? error.name : "Error",
+          error instanceof Error ? error.message.replace(/https?:\/\/\S+/g, "[URL]").slice(0, 500) : "Unknown error");
+        await db().update(aiTasks).set({ next_poll_at: time + 30, error: "Result retrieval will retry shortly." }).where(and(eq(aiTasks.id, row.id), eq(aiTasks.status, "running")));
+      }
     }
   } else if (row.status === "submitting" && row.updated_at < time - taskPolicy.reviewAfterSeconds) {
     await db().update(aiTasks).set({ status: "needs_review", error: "Submission was interrupted. Contact support with this task ID." }).where(and(eq(aiTasks.id, row.id), eq(aiTasks.status, "submitting")));

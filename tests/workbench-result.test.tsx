@@ -16,7 +16,8 @@ function render(props: Partial<React.ComponentProps<typeof WorkbenchResult>>) {
 test("a running task explains where the result will appear without showing a fake video", () => {
   const html = render({ status: "running" });
   assert.match(html, /role="status"/);
-  assert.match(html, /Creating your video/);
+  assert.match(html, /Generating your video/);
+  assert.match(html, /Your clip will appear below/);
   assert.doesNotMatch(html, /<video/);
 });
 

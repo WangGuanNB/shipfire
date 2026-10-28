@@ -1,8 +1,9 @@
 import { newStorage } from "@/lib/storage";
 import { SubmissionRejected, ToolError, type ToolAdapter, type ToolInput, type ToolModel } from "../types";
 import { validateInput, quoteCredits } from "../catalog";
-import { attachTemplateAudio, inspectTemplateVideo } from "../template-audio";
+import { attachTemplateAudio, inspectTemplateVideo, verifyTemplateForPreflight, TemplateValidationError } from "../template-audio";
 import { mapKieInput, type KieVideoMapper } from "./kie-mappers";
+import { loadTemplateVideo } from "../template-source";
 
 function kieRejectionMessage(payload: unknown, fallback: string): string {
   if (!payload || typeof payload !== "object") return fallback;
@@ -82,9 +83,19 @@ async function pollTask(providerTaskId: string, input: ToolInput, _model: ToolMo
   if (input.strategy === "video-reference" && (input.audioMode === "template" || (input.audioMode === undefined && input.generateAudio !== true)) && typeof input.referenceVideoUrl === "string") {
     const templateUrl = new URL(input.referenceVideoUrl);
     if (templateUrl.protocol !== "https:") throw new Error("Template video is unavailable");
-    const template = await fetch(templateUrl, { signal: AbortSignal.timeout(60000) });
-    if (new URL(template.url).protocol !== "https:") throw new Error("Template video is unavailable");
-    body = Buffer.from(await attachTemplateAudio(body, await readBody(template, max)));
+    const { bytes: templateBytes } = await loadTemplateVideo(templateUrl.href, 60000);
+    // Historical snapshots have no source duration. Read the exact source's fingerprint/metadata;
+    // its duration is independent of both the output duration and today's preset configuration.
+    const templateDuration = input.referenceDurationSeconds === undefined ? undefined : Number(input.referenceDurationSeconds);
+    const outputDuration = Number(input.duration);
+    try {
+      await verifyTemplateForPreflight(templateBytes, templateDuration, true);
+      if (Number.isFinite(outputDuration)) await inspectTemplateVideo(body, outputDuration, false);
+    } catch (error) {
+      if (!(error instanceof TemplateValidationError)) throw error;
+      return { status: "failed" as const, error: "The video did not match the configured template. Your reserved credits have been returned." };
+    }
+    body = Buffer.from(await attachTemplateAudio(body, templateBytes));
   }
   const key = `ai/${userId}/${taskId}/output.mp4`;
   const upload = await newStorage().uploadFile({ key, body, contentType: "video/mp4" });
@@ -100,10 +111,15 @@ export function createKieVideoAdapter(mapper: KieVideoMapper | ((input: ToolInpu
     },
     async preflight(input) {
       if (input.strategy !== "video-reference" || !Number.isFinite(Number(input.referenceDurationSeconds))) return;
+      const url = String(input.referenceVideoUrl);
       try {
-        const response = await fetch(String(input.referenceVideoUrl), { signal: AbortSignal.timeout(15000) });
-        await inspectTemplateVideo(await readBody(response, 50 * 1024 * 1024), Number(input.referenceDurationSeconds), input.audioMode === "template");
-      } catch { throw new ToolError("The configured template is unavailable or its duration/audio does not match. No credits were charged.", 503); }
+        const template = await loadTemplateVideo(url);
+        await verifyTemplateForPreflight(template.bytes, Number(input.referenceDurationSeconds), input.audioMode === "template");
+      } catch (error) {
+        const detail = error instanceof Error ? error.message.replace(/https?:\/\/\S+/g, "[URL]") : "unknown";
+        console.error("Template preflight failed", error instanceof Error ? error.name : "Error", detail.slice(0, 500));
+        throw new ToolError(`Template preflight failed: ${detail}. No credits were charged.`, 503);
+      }
     },
     async submit(input, model) {
       const kieModel = resolveKieModel(model, input);

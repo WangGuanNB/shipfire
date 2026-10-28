@@ -55,9 +55,9 @@
     "footerLinks": [
       {
         "prefix": "或",
-        "highlight": "查看示例",
-        "suffix": "— 向下滚动到案例区",
-        "url": "#examples"
+        "highlight": "试用模板",
+        "suffix": "— 在上方上传照片",
+        "url": "#hero-tool"
       }
     ],
     "buttons": [],
@@ -275,8 +275,8 @@
         },
         "buttons": [
           {
-            "title": "查看产品示例",
-            "url": "/#examples",
+            "title": "试用视频模板",
+            "url": "/#hero-tool",
             "variant": "default"
           }
         ]

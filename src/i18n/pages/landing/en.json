@@ -55,9 +55,9 @@
     "footerLinks": [
       {
         "prefix": "Or",
-        "highlight": "view examples",
-        "suffix": "— scroll to samples below",
-        "url": "#examples"
+        "highlight": "try the template",
+        "suffix": "— upload your photos above",
+        "url": "#hero-tool"
       }
     ],
     "buttons": [],
@@ -203,8 +203,8 @@
         },
         "buttons": [
           {
-            "title": "See example directions",
-            "url": "/#examples",
+            "title": "Try this video template",
+            "url": "/#hero-tool",
             "variant": "default"
           }
         ]

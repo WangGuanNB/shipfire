@@ -1,0 +1,11 @@
+[
+  {
+    "path": "/video/template/template.mp4",
+    "sha256": "f658326ebb1fd92c1e6e8d5e4f3ef03a58fa5e85801464f1ea8066c161996e9b",
+    "bytes": 1073268,
+    "duration": 15,
+    "width": 480,
+    "height": 854,
+    "audio": true
+  }
+]

@@ -8,7 +8,7 @@
     "dev:proxy": "cross-env GLOBAL_AGENT_HTTP_PROXY=http://127.0.0.1:7889 GLOBAL_AGENT_HTTPS_PROXY=http://127.0.0.1:7889 GLOBAL_AGENT_NO_PROXY=localhost,127.0.0.1 NODE_NO_WARNINGS=1 node scripts/load-wrangler-env.js next dev --turbopack",
     "dev:remote": "pnpm run cf:build && ./node_modules/.bin/wrangler dev --remote",
     "build": "pnpm run check:template && node scripts/load-wrangler-env.js next build",
-    "cf:build": "pnpm run build && pnpm exec opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion",
+    "cf:build": "pnpm exec opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion",
     "cf:deploy": "pnpm run cf:build && npx wrangler deploy",
     "start": "NODE_NO_WARNINGS=1 next start",
     "lint": "next lint",
@@ -20,6 +20,8 @@
     "db:push": "npx drizzle-kit push --config=src/db/config.ts",
     "postinstall": "fumadocs-mdx",
     "check:template": "node --import tsx scripts/check-template.ts",
+    "template:update": "node --import tsx scripts/check-template.ts --update",
+    "diagnose:production": "node scripts/check-production-template.mjs",
     "test": "node --import tsx --test tests/*.test.ts tests/*.test.tsx"
   },
   "dependencies": {

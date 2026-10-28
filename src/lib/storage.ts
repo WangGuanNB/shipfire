@@ -122,6 +122,14 @@ export class Storage {
     };
   }
 
+  /** Delete only an explicitly owned object (used to clean up temporary diagnostic files). */
+  async deleteFile(key: string) {
+    const { AwsClient } = await import("aws4fetch");
+    const client = new AwsClient({ accessKeyId: this.accessKeyId, secretAccessKey: this.secretAccessKey });
+    const response = await client.fetch(`${this.endpoint}/${this.bucket}/${key}`, { method: "DELETE" });
+    if (!response.ok) throw new Error(`Storage cleanup failed: HTTP ${response.status}`);
+  }
+
   async downloadAndUpload({
     url,
     key,
