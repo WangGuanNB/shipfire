@@ -16,6 +16,17 @@
   // 修复 OpenNext + esbuild keep_names 导致的 _name/__name 未定义错误（影响登录页等）
   "keep_names": false,
 
+  // 记录运行错误和调用日志，供生产登录问题排查；不启用认证 debug。
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "invocation_logs": true,
+      "persist": true
+    }
+  },
+
   // ========================================
   // 环境变量配置（非敏感变量）
   "vars": {
