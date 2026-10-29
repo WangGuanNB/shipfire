@@ -54,8 +54,8 @@
 
     // ========== 3. Google 登录配置 ==========
     // Google OAuth 公开 Client ID（前端使用，用于 One Tap）
-    "NEXT_PUBLIC_AUTH_GOOGLE_ID": "35054272068-8ds4hqe6e4fuj8u0schj6dtepa2036tk.apps.googleusercontent.com",
-    "AUTH_GOOGLE_ID":"35054272068-8ds4hqe6e4fuj8u0schj6dtepa2036tk.apps.googleusercontent.com",
+    "NEXT_PUBLIC_AUTH_GOOGLE_ID": "35054272068-j1k6si1k13q33lkro0d8296r34for99a.apps.googleusercontent.com",
+    "AUTH_GOOGLE_ID":"35054272068-j1k6si1k13q33lkro0d8296r34for99a.apps.googleusercontent.com",
     // 是否启用 Google 登录（true/false）
     "NEXT_PUBLIC_AUTH_GOOGLE_ENABLED": "true",
     // 是否启用 Google One Tap 登录（true/false）
