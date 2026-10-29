@@ -11,6 +11,7 @@ function run(command: string[], local: Record<string, string> = {}) {
   const logs: string[] = [];
   let envLoads = 0;
   let childEnv: Record<string, string> | undefined;
+  let childCommand: string | undefined;
   runInNewContext(source, {
     __dirname: "/site/scripts", process: { env, argv: ["node", "script", ...command], cwd: () => "/site" },
     console: { log: (s: string) => logs.push(s), error: (s: string) => logs.push(s) },
@@ -20,19 +21,21 @@ function run(command: string[], local: Record<string, string> = {}) {
         AUTH_URL: "https://production.example/api/auth", NEXT_PUBLIC_WEB_URL: "https://production.example",
         AUTH_TRUST_HOST: "true", AUTH_SECRET: "", AUTH_GOOGLE_SECRET: "", NEW_USER_CREDITS: "20",
         NEXT_PUBLIC_PAYMENT_STRIPE_ENABLED: "true",
+        REFERENCE_VIDEO_MODEL: "fast",
       } }) };
       if (name === "@next/env") return { loadEnvConfig: (root: string, dev: boolean) => {
         assert.equal(root, "/site"); assert.equal(dev, true); envLoads++;
         Object.assign(env, local);
       } };
-      if (name === "child_process") return { spawn: (_command: string, options: { env: Record<string, string> }) => {
+      if (name === "child_process") return { spawn: (command: string, options: { env: Record<string, string> }) => {
+        childCommand = command;
         childEnv = options.env;
         return { on() {} };
       } };
       throw new Error(`Unexpected dependency ${name}`);
     },
   });
-  return { env, childEnv, envLoads, logs };
+  return { env, childEnv, envLoads, logs, childCommand };
 }
 
 test("local dev and proxy dev keep tunnel URLs, secrets and explicit local flags", () => {
@@ -68,4 +71,14 @@ test("existing production payment flags still override conflicting shell flags",
   assert.equal(result.envLoads, 0);
   assert.equal(result.env.AUTH_URL, "https://production.example/api/auth");
   assert.equal(result.env.NEXT_PUBLIC_PAYMENT_STRIPE_ENABLED, "true");
+});
+
+test("template preflight and Next build run in one Wrangler-configured environment", () => {
+  const command = "pnpm run check:template && next build";
+  const build = JSON.parse(readFileSync("package.json", "utf8")).scripts.build;
+  assert.equal(build, `node scripts/load-wrangler-env.js ${JSON.stringify(command)}`);
+  const result = run([command]);
+  assert.equal(result.envLoads, 0);
+  assert.equal(result.childCommand, command);
+  assert.equal(result.childEnv?.REFERENCE_VIDEO_MODEL, "fast");
 });

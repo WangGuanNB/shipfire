@@ -1,7 +1,7 @@
 import { duoImagePrompt } from "@/ai/duo-image-prompt";
 import { duoVideoPrompt } from "@/ai/duo-video-prompt";
 import type { VideoPreset } from "@/ai/workbench-types";
-import { referenceSampleCatalog, referenceVideoModelId } from "@/config/reference-video";
+import { getReferenceVideoModels, referenceSampleCatalog, referenceVideoModelId } from "@/config/reference-video";
 import { duoIdentitySlots } from "../shared/slots";
 import { sceneAsset } from "../shared/scene-asset";
 import { IMAGE_RETAIL, VIDEO_RETAIL } from "../shared/pricing";
@@ -10,6 +10,7 @@ import { publicMedia, referenceMotionUrl } from "@/config/public-media";
 
 export function duoPerformancePreset(): VideoPreset {
   const motionUrl = referenceMotionUrl();
+  const referenceModel = getReferenceVideoModels().find(model => model.id === referenceVideoModelId())!;
   return {
     id: "duo-performance",
     version: "10",
@@ -63,7 +64,7 @@ export function duoPerformancePreset(): VideoPreset {
         },
         strategy: "video-reference",
         toolId: "reference-video",
-        modelId: referenceVideoModelId(),
+        modelId: referenceModel.id,
         inputSlots: duoIdentitySlots(),
         operatorAssets: [{
           id: "motion",
@@ -84,7 +85,7 @@ export function duoPerformancePreset(): VideoPreset {
         },
         output: {
           duration: 4, durations: [4, 5, 8],
-          resolution: "720p", resolutions: ["480p", "720p", "1080p"],
+          resolution: "720p", resolutions: [...referenceModel.capabilities.resolutions],
           aspectRatio: "9:16", aspectRatios: ["9:16"],
           audio: "generated", audioOptions: ["generated"],
         },
