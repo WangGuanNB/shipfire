@@ -227,7 +227,7 @@ test("default template enables only genuine local media, with fixed full-length 
     assert.deepEqual(page.presets[0].variants.map(item => item.id), ["template-original"]);
     const model = resolveTool("reference-video", "seedance-2-reference").model;
     const variant = page.presets[0].variants[0];
-    const compiled = validateWorkbenchInput({presetId:"meme-duo-video",presetVersion:"2",variantId:"template-original",pricingVersion:"2",consent:true,images:photos()}, model, "reference-video");
+    const compiled = validateWorkbenchInput({presetId:"meme-duo-video",presetVersion:"3",variantId:"template-original",pricingVersion:"3",consent:true,images:photos()}, model, "reference-video");
     assert.equal(compiled.duration, 15);
     assert.equal(compiled.audioMode, "template");
     assert.equal(compiled.generateAudio, false);
@@ -236,7 +236,7 @@ test("default template enables only genuine local media, with fixed full-length 
     assert.match(String(compiled.prompt), /assigned roles/);
     assert.equal(variant.promptSource, "preset");
     assert.equal(variant.ready, true);
-    assert.equal(quoteWorkbenchInput(compiled), 30);
+    assert.equal(quoteWorkbenchInput(compiled), 100);
   } finally { restore(); }
 });
 

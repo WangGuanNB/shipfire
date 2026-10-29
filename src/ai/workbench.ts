@@ -37,6 +37,13 @@ function maxImages(model: ToolModel): number {
 }
 
 export function quoteVariantRetail(variant: VideoVariant, resolution: string, duration: number): number {
+  if (variant.retailPricing.perGeneration) {
+    const credits = variant.retailPricing.perGeneration[resolution];
+    if (!Number.isInteger(duration) || duration <= 0 || !Number.isSafeInteger(credits) || credits <= 0) {
+      throw new ToolError("Invalid workbench pricing", 503);
+    }
+    return credits;
+  }
   const rate = variant.retailPricing.perSecond[resolution];
   const templateSeconds = variant.strategy === "video-reference"
     ? Number(variant.operatorAssets.find(asset => asset.kind === "video")?.durationSeconds ?? 0)

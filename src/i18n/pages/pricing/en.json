@@ -3,60 +3,86 @@
     "name": "pricing",
     "label": "Pricing",
     "title": "Template video packs",
-    "description": "One 720p template video costs 30 credits. The $9.90 pack generates exactly one video.",
+    "description": "Standard 480p uses 100 credits; HD 720p uses 200 from the same balance. Start with $6.99, or choose $9.99 for one HD or two Standard videos. One-time payment, no subscription.",
     "groups": [
       { "name": "one-time", "title": "One-time" }
     ],
     "comparison_title": "What's included",
     "comparison_features_by_group": {
       "one-time": [
-        { "text": "90 credits, 3 videos, valid for 1 year", "starter": false, "standard": false, "premium": true, "visible_for": ["premium"] },
-        { "text": "60 credits, 2 videos, valid for 1 year", "starter": false, "standard": true, "premium": false, "visible_for": ["standard"] },
-        { "text": "30 credits, 1 video, valid for 1 year", "starter": true, "standard": false, "premium": false, "visible_for": ["starter"] },
-        { "text": "720p template video", "starter": true, "standard": true, "premium": true },
-        { "text": "Two photos, with the template scene, motion and original sound", "starter": true, "standard": true, "premium": true },
-        { "text": "Credit cost shown before generation", "starter": true, "standard": true, "premium": true },
-        { "text": "Failed jobs refund reserved credits", "starter": true, "standard": true, "premium": true },
-        { "text": "Generation history and downloads", "starter": true, "standard": true, "premium": true },
-        { "text": "Email support", "starter": true, "standard": true, "premium": true },
-        { "text": "Priority support", "starter": false, "standard": false, "premium": true }
+        { "text": "600 credits: 3 HD or 6 Standard videos", "premium": true, "visible_for": ["premium"] },
+        { "text": "400 credits: 2 HD or 4 Standard videos", "standard": true, "visible_for": ["standard"] },
+        { "text": "200 credits: 1 HD or 2 Standard videos", "hd": true, "visible_for": ["hd"] },
+        { "text": "100 credits: 1 Standard video", "starter": true, "visible_for": ["starter"] },
+        { "text": "Choose 480p (100 credits) or 720p (200 credits) before generating", "starter": true, "hd": true, "standard": true, "premium": true },
+        { "text": "Purchased credits valid for 1 year", "starter": true, "hd": true, "standard": true, "premium": true },
+        { "text": "Template scene, motion and original sound", "starter": true, "hd": true, "standard": true, "premium": true },
+        { "text": "Failed jobs refund reserved credits", "starter": true, "hd": true, "standard": true, "premium": true },
+        { "text": "Generation history, downloads and email support", "starter": true, "hd": true, "standard": true, "premium": true },
+        { "text": "Priority support", "starter": false, "hd": false, "standard": false, "premium": true }
       ]
     },
     "items": [
       {
-        "title": "1 video",
-        "description": "One 720p template video.",
+        "title": "Standard",
+        "description": "Try one template video at 480p.",
         "features_title": "Includes",
         "features": [
-          "30 credits, valid for 1 year",
-          "Exactly 1 template video at 720p",
+          "100 credits, valid for 1 year",
+          "1 Standard template video at 480p",
           "Template scene, motion and original sound",
           "Failed jobs refund reserved credits",
           "Email support"
         ],
         "interval": "one-time",
-        "amount": 990,
-        "cn_amount": 7128,
+        "amount": 699,
+        "cn_amount": 5033,
         "currency": "USD",
-        "price": "$9.90",
+        "price": "$6.99",
         "unit": "USD",
-        "is_featured": true,
-        "tip": "1 template video at 720p",
+        "is_featured": false,
+        "tip": "1 Standard video at 480p",
         "button": { "title": "Buy now", "url": "/pricing", "icon": "RiFlashlightFill" },
         "product_id": "starter",
         "creem_product_id": "starter_onetime",
-        "product_name": "1 template video",
-        "credits": 30,
+        "product_name": "100 template video credits",
+        "credits": 100,
         "valid_months": 12,
         "group": "one-time"
       },
       {
-        "title": "2 videos",
-        "description": "Two videos at the same price per video.",
+        "title": "1 HD or 2 Standard",
+        "description": "Choose one 720p video or two 480p videos from the same balance.",
         "features_title": "Includes",
         "features": [
-          "60 credits, valid for 1 year",
-          "Exactly 2 template videos at 720p",
+          "200 credits, valid for 1 year",
+          "1 HD video at 720p, or 2 Standard videos at 480p",
+          "Template scene, motion and original sound",
+          "Failed jobs refund reserved credits",
+          "Email support"
+        ],
+        "interval": "one-time",
+        "amount": 999,
+        "cn_amount": 7193,
+        "currency": "USD",
+        "price": "$9.99",
+        "unit": "USD",
+        "is_featured": true,
+        "tip": "1 HD or 2 Standard videos",
+        "button": { "title": "Buy now", "url": "/pricing", "icon": "RiFlashlightFill" },
+        "product_id": "hd",
+        "product_name": "200 template video credits",
+        "credits": 200,
+        "valid_months": 12,
+        "group": "one-time"
+      },
+      {
+        "title": "2 HD or 4 Standard",
+        "description": "More credits for more template videos.",
+        "features_title": "Includes",
+        "features": [
+          "400 credits, valid for 1 year",
+          "2 HD videos at 720p, or 4 Standard videos at 480p",
           "Template scene, motion and original sound",
           "Failed jobs refund reserved credits",
           "Email support"
@@ -68,22 +94,22 @@
         "price": "$19.80",
         "unit": "USD",
         "is_featured": false,
-        "tip": "2 template videos at 720p",
+        "tip": "2 HD or 4 Standard videos",
         "button": { "title": "Buy now", "url": "/pricing", "icon": "RiFlashlightFill" },
         "product_id": "standard",
         "creem_product_id": "standard_onetime",
-        "product_name": "2 template videos",
-        "credits": 60,
+        "product_name": "400 template video credits",
+        "credits": 400,
         "valid_months": 12,
         "group": "one-time"
       },
       {
-        "title": "3 videos",
-        "description": "Three videos at the same price per video.",
+        "title": "3 HD or 6 Standard",
+        "description": "A larger balance with priority support.",
         "features_title": "Includes",
         "features": [
-          "90 credits, valid for 1 year",
-          "Exactly 3 template videos at 720p",
+          "600 credits, valid for 1 year",
+          "3 HD videos at 720p, or 6 Standard videos at 480p",
           "Template scene, motion and original sound",
           "Failed jobs refund reserved credits",
           "Priority support"
@@ -95,12 +121,12 @@
         "price": "$29.70",
         "unit": "USD",
         "is_featured": false,
-        "tip": "3 template videos at 720p",
+        "tip": "3 HD or 6 Standard videos",
         "button": { "title": "Buy now", "url": "/pricing", "icon": "RiFlashlightFill" },
         "product_id": "premium",
         "creem_product_id": "premium_onetime",
-        "product_name": "3 template videos",
-        "credits": 90,
+        "product_name": "600 template video credits",
+        "credits": 600,
         "valid_months": 12,
         "group": "one-time"
       }
@@ -114,7 +140,7 @@
     "items": [
       {
         "title": "How are credits used?",
-        "description": "One 720p template video costs 30 credits. The generate button shows that cost before you submit. The $9.90 pack is 30 credits, exactly one video."
+        "description": "Each Standard 480p template video uses 100 credits; each HD 720p video uses 200. Both use the same balance. The $6.99 pack adds 100 credits; the $9.99 pack adds 200, enough for one HD or two Standard videos. The 20 signup credits alone are not enough for either template tier."
       },
       {
         "title": "Do failed generations refund credits?",
@@ -130,7 +156,7 @@
       },
       {
         "title": "What is one video?",
-        "description": "Upload two photos and generate one 720p clip from the current template. The template supplies the scene, motion and sound."
+        "description": "Upload the required photos and choose Standard 480p or HD 720p. The current template determines the clip duration, scene, motion and sound; review the tool before generating."
       },
       {
         "title": "Can I get help using the product?",

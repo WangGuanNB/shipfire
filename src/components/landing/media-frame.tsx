@@ -17,6 +17,8 @@ type LandingMediaFrameProps = {
   badge?: string;
   /** Keep carousel slides at a stable height while their media keeps its own ratio. */
   reserveHeight?: boolean;
+  /** Fixed showcase viewport: intrinsic media dimensions never size the outer box. */
+  fixedViewport?: boolean;
 };
 
 export function LandingMediaFrame(props: LandingMediaFrameProps) {
@@ -34,6 +36,7 @@ function MediaFrameContent({
   poster,
   badge,
   reserveHeight = false,
+  fixedViewport = false,
 }: LandingMediaFrameProps) {
   const [ratio, setRatio] = React.useState<number>();
   const imageRef = React.useRef<HTMLImageElement>(null);
@@ -56,6 +59,7 @@ function MediaFrameContent({
     <div
       data-landing-media
       data-reserve-height={reserveHeight || undefined}
+      data-fixed-viewport={fixedViewport || undefined}
       style={intrinsicMediaFrameStyle(config, defaults, ratio)}
       className={cn("landing-media-stage", className)}
     >

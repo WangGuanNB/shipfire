@@ -182,7 +182,7 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
               </RadioGroup>
             </div>
           )}
-          <div className="w-full mt-0 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div className={`w-full mt-0 grid gap-4 grid-cols-1 sm:grid-cols-2 ${visibleItems.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
             {pricing.items?.map((item, index) => {
               if (item.group && item.group !== effectiveGroupName) {
                 return null;
@@ -221,7 +221,7 @@ export default function Pricing({ pricing, showGroups = true, embed = false }: P
                       setSelectedKey(itemKey);
                     }
                   }}
-                  className={`rounded-lg cursor-pointer transition-all ${
+                  className={`rounded-lg cursor-pointer transition-all ${item.is_featured ? "order-first sm:order-none" : ""} ${
                     embed ? "p-4" : "p-6"
                   } ${
                     isSelected

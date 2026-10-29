@@ -3,60 +3,86 @@
     "name": "pricing",
     "label": "定价",
     "title": "模板视频套餐",
-    "description": "一条 720p 模板视频消耗 30 积分。$9.90 的套餐正好生成一条，用完需要再购买。",
+    "description": "480p 标准版每条 100 积分，720p 高清版每条 200 积分，共用同一余额。$6.99 入门，或选 $9.99 生成 1 条高清版或 2 条标准版。一次性付款，不自动续费。",
     "groups": [
       { "name": "one-time", "title": "一次性" }
     ],
     "comparison_title": "套餐包含",
     "comparison_features_by_group": {
       "one-time": [
-        { "text": "90 积分，可生成 3 条视频，有效期 1 年", "starter": false, "standard": false, "premium": true, "visible_for": ["premium"] },
-        { "text": "60 积分，可生成 2 条视频，有效期 1 年", "starter": false, "standard": true, "premium": false, "visible_for": ["standard"] },
-        { "text": "30 积分，可生成 1 条视频，有效期 1 年", "starter": true, "standard": false, "premium": false, "visible_for": ["starter"] },
-        { "text": "720p 模板视频", "starter": true, "standard": true, "premium": true },
-        { "text": "上传两张照片，使用模板的场景、动作和原音", "starter": true, "standard": true, "premium": true },
-        { "text": "生成前显示积分", "starter": true, "standard": true, "premium": true },
-        { "text": "失败任务退还积分", "starter": true, "standard": true, "premium": true },
-        { "text": "历史记录与下载", "starter": true, "standard": true, "premium": true },
-        { "text": "邮件支持", "starter": true, "standard": true, "premium": true },
-        { "text": "优先支持", "starter": false, "standard": false, "premium": true }
+        { "text": "600 积分，可生成 3 条高清版或 6 条标准版", "premium": true, "visible_for": ["premium"] },
+        { "text": "400 积分，可生成 2 条高清版或 4 条标准版", "standard": true, "visible_for": ["standard"] },
+        { "text": "200 积分，可生成 1 条高清版或 2 条标准版", "hd": true, "visible_for": ["hd"] },
+        { "text": "100 积分，可生成 1 条标准版", "starter": true, "visible_for": ["starter"] },
+        { "text": "生成前选择 480p（100 积分）或 720p（200 积分）", "starter": true, "hd": true, "standard": true, "premium": true },
+        { "text": "购买积分有效期 1 年", "starter": true, "hd": true, "standard": true, "premium": true },
+        { "text": "使用模板的场景、动作和原音", "starter": true, "hd": true, "standard": true, "premium": true },
+        { "text": "失败任务退还积分", "starter": true, "hd": true, "standard": true, "premium": true },
+        { "text": "历史记录、下载与邮件支持", "starter": true, "hd": true, "standard": true, "premium": true },
+        { "text": "优先支持", "starter": false, "hd": false, "standard": false, "premium": true }
       ]
     },
     "items": [
       {
-        "title": "1 条视频",
-        "description": "购买后可生成一条 720p 模板视频。",
+        "title": "标准版入门",
+        "description": "先体验一条 480p 模板视频。",
         "features_title": "包含",
         "features": [
-          "30 积分，有效期 1 年",
-          "正好 1 条 720p 模板视频",
+          "100 积分，有效期 1 年",
+          "可生成 1 条 480p 标准版模板视频",
           "使用模板的场景、动作和原音",
           "失败任务退还积分",
           "邮件支持"
         ],
         "interval": "one-time",
-        "amount": 990,
-        "cn_amount": 7128,
+        "amount": 699,
+        "cn_amount": 5033,
         "currency": "USD",
-        "price": "$9.90",
+        "price": "$6.99",
         "unit": "USD",
-        "is_featured": true,
-        "tip": "1 条 720p 模板视频",
+        "is_featured": false,
+        "tip": "1 条 480p 标准版",
         "button": { "title": "立即购买", "url": "/pricing", "icon": "RiFlashlightFill" },
         "product_id": "starter",
         "creem_product_id": "starter_onetime",
-        "product_name": "1 条模板视频",
-        "credits": 30,
+        "product_name": "100 模板视频积分",
+        "credits": 100,
         "valid_months": 12,
         "group": "one-time"
       },
       {
-        "title": "2 条视频",
-        "description": "一次购买两条，单价与单条套餐相同。",
+        "title": "1 条高清或 2 条标准",
+        "description": "同一余额，选择一条 720p 高清版或两条 480p 标准版。",
         "features_title": "包含",
         "features": [
-          "60 积分，有效期 1 年",
-          "正好 2 条 720p 模板视频",
+          "200 积分，有效期 1 年",
+          "可生成 1 条 720p 高清版或 2 条 480p 标准版",
+          "使用模板的场景、动作和原音",
+          "失败任务退还积分",
+          "邮件支持"
+        ],
+        "interval": "one-time",
+        "amount": 999,
+        "cn_amount": 7193,
+        "currency": "USD",
+        "price": "$9.99",
+        "unit": "USD",
+        "is_featured": true,
+        "tip": "1 条高清或 2 条标准",
+        "button": { "title": "立即购买", "url": "/pricing", "icon": "RiFlashlightFill" },
+        "product_id": "hd",
+        "product_name": "200 模板视频积分",
+        "credits": 200,
+        "valid_months": 12,
+        "group": "one-time"
+      },
+      {
+        "title": "2 条高清或 4 条标准",
+        "description": "增加余额，制作更多模板视频。",
+        "features_title": "包含",
+        "features": [
+          "400 积分，有效期 1 年",
+          "可生成 2 条 720p 高清版或 4 条 480p 标准版",
           "使用模板的场景、动作和原音",
           "失败任务退还积分",
           "邮件支持"
@@ -68,22 +94,22 @@
         "price": "$19.80",
         "unit": "USD",
         "is_featured": false,
-        "tip": "2 条 720p 模板视频",
+        "tip": "2 条高清或 4 条标准",
         "button": { "title": "立即购买", "url": "/pricing", "icon": "RiFlashlightFill" },
         "product_id": "standard",
         "creem_product_id": "standard_onetime",
-        "product_name": "2 条模板视频",
-        "credits": 60,
+        "product_name": "400 模板视频积分",
+        "credits": 400,
         "valid_months": 12,
         "group": "one-time"
       },
       {
-        "title": "3 条视频",
-        "description": "一次购买三条，单价与单条套餐相同。",
+        "title": "3 条高清或 6 条标准",
+        "description": "更多积分，并享有优先支持。",
         "features_title": "包含",
         "features": [
-          "90 积分，有效期 1 年",
-          "正好 3 条 720p 模板视频",
+          "600 积分，有效期 1 年",
+          "可生成 3 条 720p 高清版或 6 条 480p 标准版",
           "使用模板的场景、动作和原音",
           "失败任务退还积分",
           "优先支持"
@@ -95,12 +121,12 @@
         "price": "$29.70",
         "unit": "USD",
         "is_featured": false,
-        "tip": "3 条 720p 模板视频",
+        "tip": "3 条高清或 6 条标准",
         "button": { "title": "立即购买", "url": "/pricing", "icon": "RiFlashlightFill" },
         "product_id": "premium",
         "creem_product_id": "premium_onetime",
-        "product_name": "3 条模板视频",
-        "credits": 90,
+        "product_name": "600 模板视频积分",
+        "credits": 600,
         "valid_months": 12,
         "group": "one-time"
       }
@@ -114,7 +140,7 @@
     "items": [
       {
         "title": "积分怎么扣？",
-        "description": "一条 720p 模板视频扣 30 积分。生成按钮会在提交前显示这个数字。$9.90 的套餐是 30 积分，正好生成一条。"
+        "description": "480p 标准版每条扣 100 积分，720p 高清版每条扣 200 积分，共用同一余额。$6.99 套餐获得 100 积分，$9.99 套餐获得 200 积分，可兑换 1 条高清版或 2 条标准版。注册送的 20 积分单独不足以生成任一档模板视频。"
       },
       {
         "title": "生成失败会退积分吗？",
@@ -130,7 +156,7 @@
       },
       {
         "title": "一条视频是什么？",
-        "description": "上传两张照片，按当前模板视频生成一条 720p 成片。场景、动作和声音来自模板。"
+        "description": "按要求上传照片，选择 480p 标准版或 720p 高清版。当前模板决定成片时长、场景、动作和声音，生成前请查看工具中的规格说明。"
       },
       {
         "title": "可以获得使用帮助吗？",

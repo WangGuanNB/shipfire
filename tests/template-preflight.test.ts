@@ -6,6 +6,7 @@ import { checkTemplateHealth } from "../src/ai/template-health";
 import { POST } from "../src/app/api/ai/diagnostics/template/route";
 import { Storage } from "../src/lib/storage";
 import { Input } from "mediabunny";
+import { Request as ProxyRequest } from "undici";
 import { createKieVideoAdapter } from "../src/ai/adapters/kie-video";
 import { loadTemplateVideo } from "../src/ai/template-source";
 import manifest from "../src/config/site-templates.json";
@@ -32,14 +33,16 @@ test("diagnostics never fetch templates or contact KIE without the maintenance s
   finally { globalThis.fetch = original; }
 });
 
-test("Workers read same-site templates through ASSETS without a public-site subrequest", async () => {
+test("ASSETS accepts a URL string across Node/Workers Request implementations without a public-site subrequest", async () => {
   const context = Symbol.for("__cloudflare-context__");
   const globals = globalThis as unknown as Record<symbol, unknown>;
   const previousContext = globals[context];
   const previousUrl = process.env.NEXT_PUBLIC_WEB_URL;
   const previousFetch = globalThis.fetch;
   let assetCalls = 0;
-  globals[context] = { env: { ASSETS: { fetch: async (request: Request) => {
+  globals[context] = { env: { ASSETS: { fetch: async (url: string, init?: RequestInit) => {
+    assert.equal(typeof url, "string", "Never pass a Node Request across the proxy boundary");
+    const request = new ProxyRequest(url, init as ConstructorParameters<typeof ProxyRequest>[1]);
     assert.equal(new URL(request.url).pathname, recorded.path);
     assetCalls++; return new Response(template);
   } } } };

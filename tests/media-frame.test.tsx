@@ -48,3 +48,15 @@ test("video keeps lazy playback and positions the badge inside the media bounds"
   assert.match(html, /aria-label="Preview"/);
   assert.match(html, /Sample<\/span><\/div><\/div>$/);
 });
+
+test("fixed showcase viewports are explicit and keep existing media sizing hints", () => {
+  for (const ratio of [16 / 9, 1, 9 / 16, 1 / 8]) {
+    const html = renderToStaticMarkup(<LandingMediaFrame fixedViewport config={{ desktopHeight: 480, mobileHeight: 280, aspectRatio: ratio }} src="/test.webp" />);
+    assert.match(html, /data-fixed-viewport="true"/);
+    assert.match(html, /--media-height:480px/);
+    assert.match(html, /--media-mobile-height:280px/);
+    assert.match(html, /object-contain/);
+  }
+  const normal = renderToStaticMarkup(<LandingMediaFrame src="/test.webp" />);
+  assert.doesNotMatch(normal, /data-fixed-viewport/);
+});

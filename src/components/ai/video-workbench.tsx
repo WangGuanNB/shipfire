@@ -1,5 +1,6 @@
 "use client";
 
+import "./workbench.css";
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { useAppContext } from "@/contexts/app";
@@ -16,7 +17,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import VideoGenerationProgress from "./video-generation-progress";
 import ChoiceButtons from "./choice-buttons";
+import { WorkbenchPhotoButton, WorkbenchQualityPicker, WorkbenchStep } from "./workbench-controls";
 import WorkbenchResult from "./workbench-result";
+import OperatorDiagnostics from "./operator-diagnostics";
 import { ToolResult } from "./tool-result-layout";
 import Icon from "@/components/icon";
 import { cn } from "@/lib/utils";
@@ -78,6 +81,7 @@ export default function VideoWorkbench({
   const [showPricing, setShowPricing] = useState(false);
   const [showTemplatePicker, setShowTemplatePicker] = useState(false);
   const [previewing, setPreviewing] = useState(false);
+  const [diagnosing, setDiagnosing] = useState(false);
   const [requestPreview, setRequestPreview] = useState<{
     credits: number;
     includesReferenceVideo: boolean;
@@ -87,7 +91,7 @@ export default function VideoWorkbench({
   const submitting = videoTasks.submitting || referenceTasks.submitting;
   const task = tasks.find(item => item.id === taskId);
   const result = task?.artifacts.find(item => item.kind === "video")?.url;
-  const busy = uploading !== null || submitting || (!!task && ACTIVE.includes(task.status));
+  const busy = diagnosing || uploading !== null || submitting || (!!task && ACTIVE.includes(task.status));
   const locked = useRef(false);
   const identity = useRef(user?.uuid);
   const selection = useRef(0);
@@ -343,14 +347,21 @@ export default function VideoWorkbench({
     ?? templatePreviewSrc(variant);
   const selectedCredits = credits;
   return (
-    <div className="w-full text-left">
+    <div className="w-full text-left" data-workbench-embedded={embedInHero || undefined}>
       {!embedInHero && (sectionTitle || sectionLead) && <header className="mx-auto mb-6 max-w-3xl space-y-2 text-center md:mb-8">
         {sectionTitle && <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{sectionTitle}</h2>}
         {sectionLead && <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">{sectionLead}</p>}
       </header>}
-      <div id={id} className="scroll-mt-20 min-w-0 max-w-full rounded-2xl border border-border bg-card p-3 shadow-sm sm:p-5 md:scroll-mt-24 md:p-8">
-        <div className={cn("grid min-w-0 gap-6 lg:items-start lg:gap-8", !embedInHero && "lg:grid-cols-2")}>
-          <div className="min-w-0 space-y-4">
+      <div id={id} className="workbench-panel scroll-mt-20 min-w-0 max-w-full p-4 sm:p-6 md:scroll-mt-24">
+        <div className={cn("workbench-grid grid min-w-0 gap-6 lg:items-start lg:gap-8", !embedInHero && "lg:grid-cols-2")}>
+          <div className="workbench-form min-w-0 space-y-4">
+            <div className="workbench-heading flex flex-wrap items-start justify-between gap-2 border-b border-border pb-4">
+              <div className="space-y-1">
+                <h2 className="text-lg font-semibold tracking-tight">{zh ? "制作你的视频" : "Create your video"}</h2>
+              </div>
+              {preset.variants.length === 1 && <span className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground"><Icon name="RiOrderPlayLine" className="size-3.5 shrink-0" /><span className="truncate">{variant.title[lang]}</span></span>}
+            </div>
+            <div className="workbench-fields space-y-4" role="region" aria-label={zh ? "视频制作选项" : "Video creation options"}>
             {page.showPresetPicker && page.presets.length > 1 && (
               <div className="space-y-2 text-sm font-medium">
                 <span className="block">{zh ? "玩法" : "Preset"}</span>
@@ -381,7 +392,6 @@ export default function VideoWorkbench({
                 </span>
               </label>
             )}
-            {preset.variants.length === 1 && <div className="flex items-center justify-between gap-3 text-sm"><span className="font-medium">{variant.title[lang]}</span><span className="text-xs text-muted-foreground">{credits} {zh ? "积分" : "credits"}</span></div>}
             {!fidelityToggle && useModalPicker && preset.variants.length > 1 && (
               <div className="space-y-2">
                 <p className="text-sm font-medium">{zh ? "模板" : "Template"}</p>
@@ -478,6 +488,8 @@ export default function VideoWorkbench({
             )}
             {!variant.ready && <p role="status" className="rounded-lg border border-border bg-muted p-3 text-sm">{zh ? "这个方案还不能生成，也不会扣积分。" : "This option is not ready. It will not generate or charge credits."}</p>}
             {!!variant.slots.length && (
+              <div className="space-y-3">
+              <WorkbenchStep number={1}>{zh ? "添加照片" : "Add your photos"}</WorkbenchStep>
               <div className={cn("grid gap-3", variant.slots.length > 1 ? "grid-cols-2" : "grid-cols-1")}>
                 {variant.slots.map(slot => {
                   const photo = images[slot.id]?.purpose === slot.purpose ? images[slot.id] : undefined;
@@ -485,13 +497,11 @@ export default function VideoWorkbench({
                     <div key={`${variant.id}-${slot.id}`} className="min-w-0 space-y-2">
                       <p className="text-sm font-medium">{slot.label[lang]}</p>
                       <input ref={element => { fileInputs.current[slot.id] = element; }} type="file" accept="image/png,image/jpeg,image/webp" className="sr-only" disabled={!variant.ready || busy} onChange={event => { const file = event.target.files?.[0]; event.target.value = ""; void upload(slot.id, slot.purpose, file); }} />
-                      <button type="button" disabled={!variant.ready || busy} onClick={() => choosePhoto(slot.id)} className="relative flex h-[148px] w-full items-center justify-center overflow-hidden rounded-2xl border border-dashed border-border/70 bg-muted/20">
-                        {photo ? <img src={photo.url} alt={slot.label[lang]} className="absolute inset-0 size-full object-cover" /> : <span className="px-3 text-center text-sm text-muted-foreground">{slot.description[lang]}</span>}
-                        {uploading === slot.id && <span className="absolute inset-0 flex items-center justify-center bg-background/75"><Icon name="RiLoader4Line" className="size-8 animate-spin text-primary" /></span>}
-                      </button>
+                      <WorkbenchPhotoButton label={slot.label[lang]} description={slot.description[lang]} photo={photo?.url} uploading={uploading === slot.id} disabled={!variant.ready || busy} zh={zh} onClick={() => choosePhoto(slot.id)} />
                     </div>
                   );
                 })}
+              </div>
               </div>
             )}
             {page.showOperatorPreview && variant.operatorPreviews.length > 0 && (
@@ -523,16 +533,17 @@ export default function VideoWorkbench({
                 <Textarea ref={promptRef} value={prompt} disabled={busy || !variant.ready} rows={10} placeholder={zh ? "描述你想生成的视频" : "Describe the video"} onChange={event => { promptEdited.current = true; setPrompt(event.target.value); }} />
               </label>
             ) : null}
-            {[variant.output.resolutions, variant.output.durations, variant.output.aspectRatios, variant.output.audioOptions].every(options => options.length === 1) ? <div className="rounded-xl bg-muted/30 px-3 py-3 text-xs text-muted-foreground">{resolution.toUpperCase()} · {duration}s · {aspectRatio} · {audio === "template" ? (zh ? "模板原音" : "Template sound") : audio === "generated" ? (zh ? "生成声音" : "Generated sound") : (zh ? "静音" : "Muted")}</div> : <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:flex-wrap">
-              {variant.output.resolutions.length > 0 && (
-                <label className="min-w-0 space-y-2 text-sm"><span className="block font-medium">{zh ? "画质" : "Quality"}</span>
-                  <ChoiceButtons label={zh ? "画质" : "Quality"} value={resolution} disabled={busy || !variant.ready} onChange={setResolution} options={variant.output.resolutions.map(value => ({value, label:value.toUpperCase()}))} />
-                </label>
-              )}
-              {variant.output.durations.length > 0 && (
-                <label className="min-w-0 space-y-2 text-sm"><span className="block font-medium">{zh ? "时长" : "Duration"}</span>
+            <div className="space-y-2">
+              <WorkbenchStep number={variant.slots.length ? 2 : 1}>{zh ? "选择画质" : "Choose your quality"}</WorkbenchStep>
+              <WorkbenchQualityPicker variant={variant} resolution={resolution} duration={duration} audio={audio} disabled={busy || !variant.ready} zh={zh} onChange={setResolution} />
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground" aria-label={zh ? "当前成片规格" : "Current video specifications"}>
+                <span>{duration}s</span><span aria-hidden="true">·</span><span>{aspectRatio}</span><span aria-hidden="true">·</span><span>{audio === "template" ? (zh ? "模板原音" : "Template sound") : audio === "generated" ? (zh ? "生成声音" : "Generated sound") : (zh ? "静音" : "Muted")}</span>
+              </div>
+            {[variant.output.durations, variant.output.aspectRatios, variant.output.audioOptions].some(options => options.length > 1) && <div className="flex flex-wrap gap-3">
+              {variant.output.durations.length > 1 && (
+                <div className="min-w-0 space-y-2 text-sm"><span className="block font-medium">{zh ? "时长" : "Duration"}</span>
                   <ChoiceButtons label={zh ? "时长" : "Duration"} value={String(duration)} disabled={busy || !variant.ready} onChange={value => setDuration(Number(value))} options={variant.output.durations.map(value => ({value:String(value), label:`${value}s`}))} />
-                </label>
+                </div>
               )}
               {variant.output.aspectRatios.length > 1 && (
                 <label className="col-span-2 min-w-0 space-y-2 text-sm sm:col-span-1"><span className="block font-medium">{zh ? "比例" : "Ratio"}</span>
@@ -547,21 +558,7 @@ export default function VideoWorkbench({
                 </label>
               )}
             </div>}
-            {!!variant.slots.length && (
-              <label className="flex items-start gap-2 text-sm">
-                <input ref={consentRef} type="checkbox" className="mt-1" checked={consent} disabled={busy} onChange={event => setConsent(event.target.checked)} />
-                <span>{zh ? "我有权使用上传的照片，并同意把它们用于这次生成。" : "I have permission to use the uploaded photos for this generation."}</span>
-              </label>
-            )}
-            <div className={cn("grid gap-2", page.showRequestPreview && "sm:grid-cols-2")}>
-              {page.showRequestPreview && <Button type="button" variant="outline" className="h-12 w-full rounded-full" disabled={busy || previewing || !ready || task?.status === "needs_review"} onClick={() => void previewRequest()}>
-                {previewing ? (zh ? "正在预览…" : "Previewing…") : (zh ? "预览本次请求" : "Preview this request")}
-              </Button>}
-              <Button type="button" aria-describedby={nextLabel ? `${id}-next-step` : undefined} className="h-auto min-h-12 w-full whitespace-normal rounded-full text-base font-semibold" disabled={busy || previewing || !variant.ready || !Number.isSafeInteger(credits) || task?.status === "needs_review"} onClick={() => void generate()}>
-                {(submitting || (!!task && ACTIVE.includes(task.status))) ? (zh ? "处理中…" : "Processing…") : nextLabel ?? `${zh ? "开始制作" : "Make it"}${credits === undefined ? "" : ` · ${credits} ${zh ? "积分" : "credits"}`}`}
-              </Button>
             </div>
-            {nextLabel && <p id={`${id}-next-step`} role="status" className="text-sm text-muted-foreground">{zh ? "下一步：" : "Next: "}{nextLabel}</p>}
             {requestPreview && (
               <div className="space-y-2 rounded-xl border border-border bg-muted/30 p-3 text-sm">
                 <p className="font-medium">{zh ? "这是预览。没有扣积分，也没有请求生成接口。" : "Preview only. No credits were charged and no generation request was sent."}</p>
@@ -570,9 +567,33 @@ export default function VideoWorkbench({
                 <pre className="max-h-64 overflow-auto whitespace-pre-wrap break-all rounded-lg bg-background p-3 text-xs">{JSON.stringify(requestPreview.request, null, 2)}</pre>
               </div>
             )}
-            {insufficient && <p className="text-sm text-muted-foreground">{zh ? "当前积分不足。" : "You need more credits."}{pricing && !pricing.disabled && <button type="button" className="ml-2 text-primary underline" onClick={() => setShowPricing(true)}>{zh ? "充值" : "Get credits"}</button>}</p>}
+            </div>
+            <div className="workbench-actions space-y-3 border-t border-border pt-4">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <WorkbenchStep number={variant.slots.length ? 3 : 2}>{zh ? "确认并生成" : "Ready to create"}</WorkbenchStep>
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold tabular-nums"><Icon name="RiCopperCoinLine" className="size-4 text-primary" />{credits ?? "—"}<span className="text-xs font-normal text-muted-foreground">{zh ? "积分 / 次" : "credits / video"}</span></span>
+              </div>
+            {!!variant.slots.length && (
+              <label className="flex cursor-pointer items-start gap-2.5 text-xs leading-relaxed text-muted-foreground">
+                <input ref={consentRef} type="checkbox" className="mt-0.5 size-4 shrink-0 accent-[var(--primary)]" checked={consent} disabled={busy} onChange={event => setConsent(event.target.checked)} />
+                <span>{zh ? "我有权使用上传的照片，并同意把它们用于这次生成。" : "I have permission to use the uploaded photos for this generation."}</span>
+              </label>
+            )}
+            <div className={cn("grid gap-2", page.showRequestPreview && "sm:grid-cols-2")}>
+              {page.showRequestPreview && <Button type="button" variant="outline" className="h-12 w-full rounded-full" disabled={busy || previewing || !ready || task?.status === "needs_review"} onClick={() => void previewRequest()}>
+                {previewing ? (zh ? "正在预览…" : "Previewing…") : (zh ? "预览本次请求" : "Preview this request")}
+              </Button>}
+              <Button type="button" aria-describedby={nextLabel ? `${id}-next-step` : undefined} className="h-auto min-h-12 w-full gap-2 whitespace-normal rounded-xl text-sm font-semibold" disabled={busy || previewing || !variant.ready || !Number.isSafeInteger(credits) || task?.status === "needs_review"} onClick={() => void generate()}>
+                <Icon name="RiSparklingLine" className="size-4 shrink-0" />
+                {(submitting || (!!task && ACTIVE.includes(task.status))) ? (zh ? "处理中…" : "Processing…") : nextLabel ?? (zh ? "生成视频" : "Generate video")}
+              </Button>
+            </div>
+            {nextLabel && <p id={`${id}-next-step`} role="status" className="sr-only">{zh ? "下一步：" : "Next: "}{nextLabel}</p>}
+            {insufficient && <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-muted/35 px-3 py-2 text-xs text-muted-foreground"><span>{zh ? "余额" : "Balance"}: {user?.credits?.left_credits ?? 0} / {credits} {zh ? "积分" : "credits"}</span>{pricing && !pricing.disabled && <button type="button" className="min-h-9 font-medium text-primary underline underline-offset-4" onClick={() => setShowPricing(true)}>{zh ? "获取更多积分" : "Get more credits"}</button>}</div>}
             {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
             {!embedInHero && (submitting || (!!task && ACTIVE.includes(task.status))) && <VideoGenerationProgress status={task?.status} uploading={false} imageMode={variant.slots.length > 0} message={wait.generating} hint={wait.hintResultRight} labels={{ upload: zh ? "上传" : "Upload", submit: zh ? "提交" : "Submit", generate: zh ? "生成" : "Generate" }} />}
+            {user?.can_test_ai === true && <OperatorDiagnostics key={user.uuid} toolId={variant.toolId} modelId={variant.modelId} input={ready ? requestInput() : null} disabled={busy || previewing} onBusyChange={setDiagnosing} />}
+            </div>
           </div>
           {!embedInHero && <div ref={previewRef} className="scroll-mt-20 space-y-3 md:scroll-mt-24">
             <div className={cn("overflow-hidden rounded-2xl bg-muted", frameClass(aspectRatio))}>

@@ -1,5 +1,5 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
-type AssetBinding = { fetch(request: Request): Promise<Response> };
+type AssetBinding = { fetch(url: string, init?: RequestInit): Promise<Response> };
 
 /** Read deployed public media from the Workers ASSETS binding instead of fetching the public site. */
 export async function loadTemplateVideo(value: string, timeoutMs = 15000) {
@@ -12,8 +12,10 @@ export async function loadTemplateVideo(value: string, timeoutMs = 15000) {
     catch { /* Node tests and next start have no Workers context. */ }
   }
   const source = assets ? "assets-binding" : "https";
-  const request = new Request(url, { signal: AbortSignal.timeout(timeoutMs) });
-  const response = assets ? await assets.fetch(request) : await fetch(url, { signal: request.signal });
+  // A Node/Next Request is not necessarily recognized by the local Workers proxy.
+  // Pass the URL string so each runtime creates its own compatible Request.
+  const init = { signal: AbortSignal.timeout(timeoutMs) };
+  const response = assets ? await assets.fetch(url.href, init) : await fetch(url.href, init);
   if (!response.ok) throw new Error(`Template HTTP ${response.status}`);
   if (response.url && new URL(response.url).protocol !== "https:") throw new Error("Template redirect must use HTTPS");
   const reader = response.body?.getReader();

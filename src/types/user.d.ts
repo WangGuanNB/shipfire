@@ -14,6 +14,8 @@ export interface User {
   invite_code?: string;
   invited_by?: string;
   is_affiliate?: boolean;
+  /** UI hint only. The diagnostics API independently verifies the signed-in account. */
+  can_test_ai?: boolean;
 }
 
 export interface UserCredits {

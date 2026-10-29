@@ -30,6 +30,8 @@
     "NEXT_PUBLIC_LOCALE_DETECTION": "false",
     // 管理员邮箱（多个用逗号分隔，用于访问后台管理）
     "ADMIN_EMAILS": "banner520521@gmail.com",
+    // 仅允许无付费 AI 诊断，不授予后台或积分管理权限；留空关闭
+    "AI_DIAGNOSTICS_EMAILS": "banner520521@gmail.com",
 
     // ========== 2. 认证配置 ==========
     // NextAuth 认证 URL（开发环境: http://localhost:3000/api/auth）

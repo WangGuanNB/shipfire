@@ -53,7 +53,7 @@ export interface VideoVariant {
     audioOptions: WorkbenchAudio[];
   };
   /** Site retail credits. Independent from provider cost. */
-  retailPricing: { perSecond: Record<string, number>; minimum: number };
+  retailPricing: { perSecond: Record<string, number>; minimum: number; perGeneration?: Record<string, number> };
   pricingVersion: string;
   examples: WorkbenchExample[];
 }

@@ -7,6 +7,8 @@ import { LandingMediaFrame } from "@/components/landing/media-frame";
 import { ToolResultLayout } from "@/components/ai/tool-result-layout";
 import { cn } from "@/lib/utils";
 import { HeroTitle } from "./title";
+import { mediaFrameStyle } from "@/lib/media-frame";
+import "./tool-first.css";
 
 /** Tool-first landing shell. Media dimensions never depend on text or form height. */
 export default function ToolFirstHero({ hero, children }: { hero: Hero; children?: ReactNode }) {
@@ -22,15 +24,15 @@ export default function ToolFirstHero({ hero, children }: { hero: Hero; children
         {hero.description && <p className="landing-hero-description mx-auto max-w-4xl">{hero.description.replace(/<[^>]+>/g, "")}</p>}
       </header>
       <ToolResultLayout>
-        <div className={cn("grid min-w-0 items-start gap-6 lg:gap-8", hasMedia && "lg:grid-cols-2")}>
-          <div className={cn("order-1 min-w-0", hasMedia && hero.media_side !== "right" ? "lg:order-2" : "lg:order-1")}>
+        <div style={mediaFrameStyle(hero.media_frame)} className={cn("grid min-w-0 items-start gap-6 lg:gap-8", hasMedia && "tool-first-workspace lg:grid-cols-2")}>
+          <div className={cn("tool-first-editor order-1 min-w-0", hasMedia && hero.media_side !== "right" ? "lg:order-2" : "lg:order-1")}>
             {children}
           </div>
-          {hasMedia && <figure className={cn("order-2 min-w-0 space-y-2", hero.media_side !== "right" ? "lg:order-1" : "lg:order-2")}>
-            <div data-hero-media>
-              <LandingMediaFrame config={hero.media_frame} src={image} video={video} poster={poster} alt={video ? hero.preview?.caption || hero.video?.title || hero.title || "Sample" : hero.image?.alt || hero.title || "Example"} badge={hero.preview?.badge} />
+          {hasMedia && <figure className={cn("tool-first-preview order-2 min-w-0", hero.media_side !== "right" ? "lg:order-1" : "lg:order-2")}>
+            <div data-hero-media className="tool-first-preview-media">
+              <LandingMediaFrame fixedViewport config={{ ...hero.media_frame, fit: "contain" }} src={image} video={video} poster={poster} alt={video ? hero.preview?.caption || hero.video?.title || hero.title || "Sample" : hero.image?.alt || hero.title || "Example"} badge={hero.preview?.badge} />
             </div>
-            {hero.preview?.caption && <figcaption className="text-xs text-muted-foreground">{hero.preview.caption}</figcaption>}
+            {hero.preview?.caption && <figcaption className="tool-first-preview-caption text-xs text-muted-foreground">{hero.preview.caption}</figcaption>}
           </figure>}
         </div>
       </ToolResultLayout>

@@ -4,6 +4,7 @@ import { findUserByUuid } from "@/models/user";
 import { getUserUuid } from "@/services/user";
 import { getUserCredits } from "@/services/credit";
 import { User } from "@/types/user";
+import { canUseAiDiagnostics } from "@/lib/ai-diagnostics-access";
 
 export async function POST(req: Request) {
   try {
@@ -29,10 +30,13 @@ export async function POST(req: Request) {
       invite_code: dbUser.invite_code,
       created_at: dbUser.created_at,
       is_affiliate: dbUser.is_affiliate,
+      can_test_ai: canUseAiDiagnostics(dbUser.email),
       credits: userCredits,
     };
 
-    return respData(user);
+    const response = respData(user);
+    response.headers.set("Cache-Control", "no-store");
+    return response;
   } catch (e) {
     console.log("get user info failed: ", e);
     return respErr("get user info failed");

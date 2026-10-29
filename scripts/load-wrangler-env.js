@@ -8,6 +8,16 @@
 const fs = require('fs');
 const path = require('path');
 
+const args = process.argv.slice(2);
+const isLocalDevelopment = args[0] === 'next' && args[1] === 'dev';
+
+// Local tunnels need their own origin and OAuth callback. Load Next's normal
+// development env files first; Wrangler only supplies missing local defaults.
+// Production/build commands intentionally retain Wrangler's existing precedence.
+if (isLocalDevelopment) {
+  require('@next/env').loadEnvConfig(path.join(__dirname, '..'), true);
+}
+
 // 读取 wrangler.jsonc 文件
 const wranglerPath = path.join(__dirname, '..', 'wrangler.jsonc');
 const wranglerContent = fs.readFileSync(wranglerPath, 'utf-8');
@@ -67,15 +77,17 @@ Object.entries(vars).forEach(([key, value]) => {
   // 将所有变量设置为环境变量（字符串格式）
   // Empty template placeholders must not mask real values from .env.local or Secrets.
   if (value === null || value === undefined || String(value).trim() === '') return;
+  if (isLocalDevelopment && process.env[key] !== undefined) return;
   process.env[key] = String(value);
 });
 
 // 输出已设置的变量（仅 NEXT_PUBLIC_* 用于调试）
 const nextPublicVars = Object.keys(vars).filter(key => key.startsWith('NEXT_PUBLIC_'));
-console.log(`Loaded ${nextPublicVars.length} public settings from wrangler.jsonc (values hidden).`);
+console.log(isLocalDevelopment
+  ? 'Loaded local development environment; Wrangler supplies missing defaults (values hidden).'
+  : `Loaded ${nextPublicVars.length} public settings from wrangler.jsonc (values hidden).`);
 
 // 执行后续命令（如果有的话）
-const args = process.argv.slice(2);
 if (args.length > 0) {
   const { spawn } = require('child_process');
   const isWindows = process.platform === 'win32';

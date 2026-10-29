@@ -2,7 +2,7 @@ import type { LocalizedCopy } from "@/ai/reference-video-types";
 import type { VideoVariant, WorkbenchExample, WorkbenchSlot } from "@/ai/workbench-types";
 import { referenceVideoModelId } from "@/config/reference-video";
 import { duoIdentitySlots } from "./slots";
-import { VIDEO_RETAIL } from "./pricing";
+import { TEMPLATE_RETAIL } from "./pricing";
 
 export interface VideoTemplateVariantOptions {
   id: string;
@@ -39,6 +39,6 @@ export function createVideoTemplateVariant(options: VideoTemplateVariantOptions)
     output: { duration, durations: options.output?.durations ?? options.outputDurations ?? [duration], resolution,
       resolutions: options.output?.resolutions ?? [resolution], aspectRatio: "9:16", aspectRatios: ["9:16"],
       ...options.output, audio, audioOptions: options.output?.audioOptions ?? [audio] },
-    retailPricing: options.retailPricing ?? VIDEO_RETAIL, pricingVersion: options.pricingVersion, examples: options.examples,
+    retailPricing: options.retailPricing ?? TEMPLATE_RETAIL, pricingVersion: options.pricingVersion, examples: options.examples,
   };
 }
