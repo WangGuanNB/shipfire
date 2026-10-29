@@ -73,7 +73,9 @@ test("request diagnostics compile actual prices and read images, but never submi
     const value = String(url); seen.push(value);
     if (value === `https://site.example.test${path}`) return new Response(template);
     assert.ok(value.startsWith("https://uploads.example.test/"), "Only validated image storage URLs may be read; no Kie or database HTTP");
-    assert.equal(options?.redirect, "error");
+    assert.equal(options?.redirect, "manual");
+    assert.equal(options?.cache, undefined, "The production Workers compatibility date does not support RequestInit.cache");
+    assert.equal(new Headers(options?.headers).get("Cache-Control"), "no-store");
     return new Response(new Uint8Array([137,80,78,71,13,10,26,10]), { headers: { "Content-Type": "image/png" } });
   }) as typeof fetch;
   try {
@@ -107,6 +109,31 @@ test("request diagnostics compile actual prices and read images, but never submi
   } finally {
     globalThis.fetch = originalFetch; adapter.submit = originalSubmit; adapter.poll = originalPoll; restore();
   }
+});
+
+test("image redirects are rejected without following them or calling a provider", async () => {
+  const restore = environment({ AI_DIAGNOSTICS_EMAILS: owner.email, R2_PUBLIC_URL: "https://uploads.example.test", KIE_API_KEY: "test-only-not-used" });
+  const originalFetch = globalThis.fetch;
+  const seen: string[] = [];
+  globalThis.fetch = (async (url, options) => {
+    assert.equal(options?.redirect, "manual", "Workers must never receive redirect: error");
+    assert.ok(String(url).startsWith("https://uploads.example.test/"));
+    seen.push(String(url));
+    return new Response(null, { status: 302, headers: { Location: "https://untrusted.example.test/image.png" } });
+  }) as typeof fetch;
+  try {
+    const preset = getVideoPresets().find(item => item.variants.some(variant => variant.strategy === "image-reference"))!;
+    const variant = preset.variants.find(item => item.strategy === "image-reference")!;
+    const input = { presetId: preset.id, presetVersion: preset.version, variantId: variant.id, pricingVersion: variant.pricingVersion, consent: true,
+      images: variant.inputSlots.map(slot => ({ slotId: slot.id, url: `https://uploads.example.test/${slot.id}.png` })) };
+    const result = await (await handleAiDiagnostics(request({ action: "request", toolId: variant.toolId, modelId: variant.modelId, input }), owner)).json();
+    assert.equal(result.ok, false);
+    assert.equal(seen.length, input.images.length);
+    const images = result.checks.filter((check: { stage: string }) => check.stage.startsWith("image-"));
+    assert.equal(images.length, input.images.length);
+    assert.ok(images.every((check: { ok: boolean; error: string }) => !check.ok && /redirects \(HTTP 302\)/.test(check.error)));
+    for (const field of ["charged", "providerCalled", "taskCreated"]) assert.equal(result[field], false);
+  } finally { globalThis.fetch = originalFetch; restore(); }
 });
 
 test("template failures are reported by the same preflight as generation, without any storage writes", async () => {

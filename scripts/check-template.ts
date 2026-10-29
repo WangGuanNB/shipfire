@@ -6,11 +6,13 @@ import { getToolCatalog } from "../src/config/ai";
 import { assertVariant } from "../src/ai/workbench";
 import { inspectTemplateVideo, templateSha256, type TrustedTemplate } from "../src/ai/template-audio";
 import { publicWorkbench } from "../src/ai/workbench";
+import { httpsUrl } from "../src/ai/media-url";
+import { loadTemplateVideo } from "../src/ai/template-source";
 
 async function main() {
   process.env.NEXT_PUBLIC_WEB_URL ||= "https://example.invalid";
   const check = (url: string) => {
-    if (!url.startsWith("/")) return;
+    if (!url.startsWith("/")) { httpsUrl(url); return; }
     const file = resolve("public", url.slice(1));
     if (!file.startsWith(resolve("public") + "/") || !existsSync(file)) throw new Error(`Missing local media: ${url}`);
   };
@@ -34,9 +36,11 @@ async function main() {
     }
   }
   const fingerprints: TrustedTemplate[] = [];
-  for (const item of publicMedia.templates.filter(item => item.enabled && item.src.startsWith("/"))) {
+  for (const item of publicMedia.templates.filter(item => item.enabled)) {
     check(item.src); check(item.poster);
-    const bytes = readFileSync(resolve("public", item.src.slice(1)));
+    const bytes = item.src.startsWith("/")
+      ? readFileSync(resolve("public", item.src.slice(1)))
+      : (await loadTemplateVideo(item.src, 60000)).bytes;
     const info = await inspectTemplateVideo(bytes, item.durationSeconds, true);
     fingerprints.push({
       path: item.src, sha256: await templateSha256(bytes), bytes: bytes.length,
@@ -63,6 +67,6 @@ async function main() {
       for (const example of variant.examples) check(example.src);
     }
   }
-  console.log("Template check passed: local files, durations, audio, model capabilities and retail quotes. No paid API calls.");
+  console.log("Template check passed: configured media, durations, audio, model capabilities and retail quotes. No paid API calls.");
 }
 main().catch(error => { console.error(error.message); process.exitCode = 1; });

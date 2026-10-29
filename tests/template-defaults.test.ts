@@ -3,24 +3,63 @@ import assert from "node:assert/strict";
 import { runInNewContext } from "node:vm";
 import path from "node:path";
 import { readFileSync, existsSync } from "node:fs";
-import { publicMedia } from "../src/config/public-media";
+import { publicMedia, referenceMotionUrl, resolvePublicMedia } from "../src/config/public-media";
 import { createVideoTemplateVariant } from "../src/config/sites/shared/video-template";
 import { validateWorkbenchInput, quoteWorkbenchInput } from "../src/ai/workbench";
-import { getReferenceVideoModels } from "../src/config/reference-video";
+import { getReferenceVideoModels, referenceSampleCatalog } from "../src/config/reference-video";
+import { getVideoPresets } from "../src/config/video-workbench";
 import { createKieVideoAdapter } from "../src/ai/adapters/kie-video";
 import { mapReferenceVideoInput } from "../src/ai/reference-video";
 import { mediaFrameStyle } from "../src/lib/media-frame";
 import { stripeConfigurationReady } from "../src/lib/payment-readiness";
 import { getEnabledPaymentMethods } from "../src/services/payment-selector";
 
-test("enabled templates are local, real files; media sizing is bounded and independent of text", () => {
-  for (const item of publicMedia.templates.filter(item => item.enabled)) {
-    assert.ok(item.src.startsWith("/video/"));
-    assert.ok(existsSync(`public${item.src}`));
-    assert.ok(existsSync(`public${item.poster}`));
+test("default templates are real files; media sizing is bounded and independent of text", () => {
+  const previous = process.env.REFERENCE_VIDEO_URL;
+  delete process.env.REFERENCE_VIDEO_URL;
+  try {
+    for (const item of publicMedia.templates.filter(item => item.enabled)) {
+      assert.ok(item.src.startsWith("/video/"));
+      assert.ok(existsSync(`public${item.src}`));
+      assert.ok(existsSync(`public${item.poster}`));
+    }
+    assert.equal((mediaFrameStyle({desktopHeight:520,mobileHeight:240}) as any)["--media-height"], "520px");
+    assert.equal((mediaFrameStyle({desktopHeight:-1,mobileHeight:10000}) as any)["--media-mobile-height"], "280px");
+  } finally {
+    if (previous === undefined) delete process.env.REFERENCE_VIDEO_URL; else process.env.REFERENCE_VIDEO_URL = previous;
   }
-  assert.equal((mediaFrameStyle({desktopHeight:520,mobileHeight:240}) as any)["--media-height"], "520px");
-  assert.equal((mediaFrameStyle({desktopHeight:-1,mobileHeight:10000}) as any)["--media-mobile-height"], "280px");
+});
+
+test("one R2 URL supplies landing media, samples, reference variants and compiled provider inputs", () => {
+  const previous = process.env.REFERENCE_VIDEO_URL, previousStorage = process.env.R2_PUBLIC_URL;
+  const url = "https://cdn.example.test/templates/performance.mp4";
+  process.env.REFERENCE_VIDEO_URL = ` ${url} `;
+  process.env.R2_PUBLIC_URL = "https://uploads.example.test";
+  try {
+    assert.equal(referenceMotionUrl(), url);
+    assert.equal(publicMedia.hero.src, url);
+    assert.equal(publicMedia.templates[0].src, url);
+    assert.equal(resolvePublicMedia("hero")?.src, url);
+    assert.equal(resolvePublicMedia("template-original")?.src, url);
+    assert.equal(referenceSampleCatalog()[0].src, url);
+    assert.equal(JSON.parse(JSON.stringify(publicMedia)).hero.src, url, "Getters must serialize into the client preview URL");
+    for (const preset of getVideoPresets()) {
+      for (const variant of preset.variants.filter(item => item.strategy === "video-reference")) {
+        assert.equal(variant.operatorAssets.find(item => item.kind === "video")?.url, url);
+        assert.equal(variant.examples[0]?.src, url);
+        const model = getReferenceVideoModels().find(item => item.id === variant.modelId)!;
+        const input = validateWorkbenchInput({ presetId: preset.id, presetVersion: preset.version,
+          variantId: variant.id, pricingVersion: variant.pricingVersion, consent: true,
+          images: variant.inputSlots.map(slot => ({ slotId: slot.id, url: `https://uploads.example.test/${slot.id}.png` })),
+        }, model, "reference-video", [preset]);
+        assert.equal(input.referenceVideoUrl, url);
+        assert.deepEqual(mapReferenceVideoInput(input).reference_video_urls, [url]);
+      }
+    }
+  } finally {
+    if (previous === undefined) delete process.env.REFERENCE_VIDEO_URL; else process.env.REFERENCE_VIDEO_URL = previous;
+    if (previousStorage === undefined) delete process.env.R2_PUBLIC_URL; else process.env.R2_PUBLIC_URL = previousStorage;
+  }
 });
 
 test("new one-person and three-person tools configure role count, prompt, output and retail pricing without shared code edits", () => {

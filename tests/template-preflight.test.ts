@@ -13,7 +13,10 @@ import manifest from "../src/config/site-templates.json";
 import { memeDuoVideoPreset } from "../src/config/sites/meme-duo-video/preset";
 
 const recorded = manifest[0];
-const template = readFileSync(`public${recorded.path}`);
+// The bundled fixture has the same bytes as the configured R2 object. Its local
+// path is independent of the production manifest URL (trust is content-based).
+const fixturePath = "/video/template/template.mp4";
+const template = readFileSync(`public${fixturePath}`);
 
 test("only the exact build-checked template skips metadata parsing; a header-only file does not", async () => {
   const info = await verifyTemplateForPreflight(template, recorded.duration);
@@ -43,18 +46,50 @@ test("ASSETS accepts a URL string across Node/Workers Request implementations wi
   globals[context] = { env: { ASSETS: { fetch: async (url: string, init?: RequestInit) => {
     assert.equal(typeof url, "string", "Never pass a Node Request across the proxy boundary");
     const request = new ProxyRequest(url, init as ConstructorParameters<typeof ProxyRequest>[1]);
-    assert.equal(new URL(request.url).pathname, recorded.path);
+    assert.equal(new URL(request.url).pathname, fixturePath);
     assetCalls++; return new Response(template);
   } } } };
   process.env.NEXT_PUBLIC_WEB_URL = "https://ship.example.test";
   globalThis.fetch = (async () => { throw new Error("Must not fetch the public site"); }) as typeof fetch;
   try {
-    const result = await loadTemplateVideo(`https://ship.example.test${recorded.path}`);
+    const result = await loadTemplateVideo(`https://ship.example.test${fixturePath}`);
     assert.equal(result.source, "assets-binding");
     assert.equal(assetCalls, 1);
     assert.deepEqual(result.bytes, template);
   } finally {
     globalThis.fetch = previousFetch;
+    if (previousContext === undefined) delete globals[context]; else globals[context] = previousContext;
+    if (previousUrl === undefined) delete process.env.NEXT_PUBLIC_WEB_URL; else process.env.NEXT_PUBLIC_WEB_URL = previousUrl;
+  }
+});
+
+test("R2 HTTPS templates bypass local ASSETS and retain duration/audio preflight", async () => {
+  const context = Symbol.for("__cloudflare-context__");
+  const globals = globalThis as unknown as Record<symbol, unknown>;
+  const previousContext = globals[context], previousUrl = process.env.NEXT_PUBLIC_WEB_URL;
+  const originalFetch = globalThis.fetch;
+  const url = "https://cdn.example.test/templates/performance.mp4";
+  globals[context] = { env: { ASSETS: { fetch: async () => { throw new Error("R2 media must not read deployed public assets"); } } } };
+  process.env.NEXT_PUBLIC_WEB_URL = "https://ship.example.test";
+  const calls: string[] = [];
+  globalThis.fetch = (async value => {
+    calls.push(String(value));
+    assert.equal(String(value), url);
+    return new Response(template);
+  }) as typeof fetch;
+  try {
+    const loaded = await loadTemplateVideo(url);
+    assert.equal(loaded.source, "https");
+    assert.deepEqual(loaded.bytes, template);
+    const adapter = createKieVideoAdapter(mapper => mapper);
+    const input = { strategy: "video-reference", referenceVideoUrl: url, referenceDurationSeconds: recorded.duration, audioMode: "template" };
+    await adapter.preflight!(input, {} as never);
+    await assert.rejects(adapter.preflight!({ ...input, referenceDurationSeconds: recorded.duration + 3 }, {} as never), /No credits were charged/);
+    globalThis.fetch = (async () => new Response(readFileSync("tests/fixtures/silent-video.mp4"))) as typeof fetch;
+    await assert.rejects(adapter.preflight!(input, {} as never), /No credits were charged/);
+    assert.equal(calls.length, 3);
+  } finally {
+    globalThis.fetch = originalFetch;
     if (previousContext === undefined) delete globals[context]; else globals[context] = previousContext;
     if (previousUrl === undefined) delete process.env.NEXT_PUBLIC_WEB_URL; else process.env.NEXT_PUBLIC_WEB_URL = previousUrl;
   }
@@ -71,7 +106,7 @@ test("free diagnostic exercises template, soundtrack, storage read and cleanup w
   delete process.env.REFERENCE_VIDEO_URL;
   try {
     globalThis.fetch = (async url => {
-      if (String(url) === `https://ship.example.test${recorded.path}`) return new Response(template);
+      if (String(url) === `https://ship.example.test${fixturePath}`) return new Response(template);
       if (String(url) === "https://storage.example.test/diagnostic.mp4") return new Response(uploaded!.slice(0, 32));
       throw new Error("Unexpected network request: no provider API may be called");
     }) as typeof fetch;
@@ -108,7 +143,7 @@ test("a runtime metadata failure keeps a paid provider result retrievable instea
       : new Response(template)) as typeof fetch;
     const adapter = createKieVideoAdapter(() => ({}));
     await assert.rejects(adapter.poll!("existing-paid-task", {
-      strategy: "video-reference", generateAudio: false, referenceVideoUrl: `https://ship.example.test${recorded.path}`,
+      strategy: "video-reference", generateAudio: false, referenceVideoUrl: `https://ship.example.test${fixturePath}`,
       referenceDurationSeconds: recorded.duration, duration: recorded.duration, audioMode: "template",
     }, {} as never, "local-task", "local-user"), /simulated runtime parser failure/);
   } finally { globalThis.fetch = originalFetch; Input.prototype.getPrimaryVideoTrack = originalTrack; }
@@ -131,7 +166,7 @@ test("old task snapshots recover source duration independently of a shorter outp
       uploads++; return {url:"https://storage.example.test/result.mp4",location:"",bucket:"test",key:options.key,filename:"output.mp4"};
     };
     const adapter = createKieVideoAdapter(() => ({}));
-    const old = {strategy:"video-reference",generateAudio:false,referenceVideoUrl:`https://ship.example.test${recorded.path}`,duration:outputInfo.duration};
+    const old = {strategy:"video-reference",generateAudio:false,referenceVideoUrl:`https://ship.example.test${fixturePath}`,duration:outputInfo.duration};
     assert.equal((await adapter.poll!("already-paid",old,{} as never,"task","user")).status,"succeeded");
     assert.equal(uploads,1);
     const invalid = await adapter.poll!("already-paid",{...old,referenceDurationSeconds:recorded.duration+3},{} as never,"task","user");

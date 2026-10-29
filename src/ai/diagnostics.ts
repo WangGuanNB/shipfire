@@ -63,9 +63,14 @@ function safeMessage(error: unknown) {
 
 /** URLs have already passed the real submission compiler's origin/asset validation. */
 async function checkImageReadable(url: string) {
-  const response = await fetch(url, { redirect: "error", signal: AbortSignal.timeout(10000), cache: "no-store" });
+  // Workers rejects redirect: "error" before sending a request. Inspect redirects
+  // ourselves so checks work at the edge without following an unvalidated URL.
+  // Use a header instead of RequestInit.cache: this deployment's older Workers
+  // compatibility date does not support the cache option either.
+  const response = await fetch(url, { redirect: "manual", signal: AbortSignal.timeout(10000), headers: { "Cache-Control": "no-store" } });
   const reader = response.body?.getReader();
   try {
+    if (response.status >= 300 && response.status < 400) throw new Error(`Image URL redirects (HTTP ${response.status}); use a direct image URL`);
     if (!response.ok || !reader) throw new Error(`Image HTTP ${response.status}`);
     if (!/^image\/(png|jpeg|webp)(?:;|$)/i.test(response.headers.get("content-type") || "")) throw new Error("Expected a PNG, JPEG or WebP image response");
     let size = 0;

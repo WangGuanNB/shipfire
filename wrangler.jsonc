@@ -171,7 +171,8 @@
     // Replicate 模型（默认：google/nano-banana）
     "REPLICATE_MODEL": "google/nano-banana",
 
-    "REFERENCE_VIDEO_URL": "/video/template/template.mp4",
+    // 模板视频统一地址：首页/工具示例、模型参考和模板音轨共用。可填 R2 自定义域名的直链。
+    "REFERENCE_VIDEO_URL": "https://cdn.shipstart.net/shipfire/template/template.mp4",
 
     // ========== 12. AI 服务配置 ==========
     // SiliconFlow API 地址
